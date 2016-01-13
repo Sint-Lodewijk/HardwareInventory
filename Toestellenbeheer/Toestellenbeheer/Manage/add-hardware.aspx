@@ -25,7 +25,7 @@
             <label for="Picture">Picture -&nbsp; </label> add a picture - select one from the computer.
             <asp:FileUpload ID="PictureUpload" runat="server" />
             <asp:Button ID="Upload" runat="server" Text="Upload" OnClick="Upload_Click" />
-            <asp:Label ID="ResultUploadAtt" runat="server" Text=""></asp:Label>
+            <asp:Label ID="ResultUploadImg" runat="server" Text=""></asp:Label>
             <asp:Label ID="Testlocation" runat="server" Text=""></asp:Label>
             <br />
             

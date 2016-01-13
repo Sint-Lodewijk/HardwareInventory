@@ -101,19 +101,19 @@ namespace Toestellenbeheer.Manage
                     try
                     {
                         PictureUpload.PostedFile.SaveAs(path
-                            + AttachmentUpload.FileName);
+                            + PictureUpload.FileName);
                        String mImagePath = path.ToString() + PictureUpload.FileName.ToString();
                         Testlocation.Text = mImagePath;
-                        ResultUploadAtt.Text = "File uploaded!";
+                        ResultUploadImg.Text = "File uploaded!";
                     }
                     catch (Exception ex)
                     {
-                        ResultUploadAtt.Text = "File could not be uploaded.";
+                        ResultUploadImg.Text = "File could not be uploaded.";
                     }
                 }
                 else
                 {
-                    ResultUploadAtt.Text = "Not a extension of image";
+                    ResultUploadImg.Text = "Not a extension of image";
                 }
             }
         }
@@ -123,14 +123,14 @@ namespace Toestellenbeheer.Manage
         {
             if (IsPostBack)
             {
-                String path = Server.MapPath("~/UserUploads/Attachment/");
+                String path = Server.MapPath("~/UserUploads/Attachments/");
                 if (AttachmentUpload.HasFile)
                 {
                     try
                     {
                         AttachmentUpload.PostedFile.SaveAs(path
                             + AttachmentUpload.FileName);
-                        String mAttachPath = path.ToString() + PictureUpload.FileName.ToString();
+                        String mAttachPath = path.ToString() + AttachmentUpload.FileName.ToString();
                         TestlocationAtt.Text = mAttachPath;
                         ResultUploadAtta.Text = "File uploaded!";
                     }

@@ -2,13 +2,19 @@
 <asp:Content ID="addHardware" ContentPlaceHolderID="MainContent" runat="server">
 
             <div id="add-hardware">
-        <fieldset>
+        <fieldset class ="hardware-add-item">
             <legend>Voer de nodige gegevens in.</legend>
            <label for="type">type</label>&nbsp;
-            <asp:DropDownList ID="DropDownList2" runat="server">
+            <asp:DropDownList ID="typeList" runat="server" >
+              
             </asp:DropDownList>
-            <br />
-            <label for="Manufacturer">Manufacturer<asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True">
+           <!-- <asp:SqlDataSource ID="TypeListDB" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT type FROM type;"></asp:SqlDataSource>
+           --> <br />
+            <label for="Manufacturer">Manufacturer
+                <asp:DropDownList ID="manufacturerList" runat="server" AutoPostBack="True" Height="16px">
+                <asp:ListItem>Apple</asp:ListItem>
+                <asp:ListItem>Lenovo</asp:ListItem>
+                <asp:ListItem>HP</asp:ListItem>
             </asp:DropDownList>
             </label>
                 <br />
@@ -45,6 +51,7 @@
             <br />
 
            <asp:Button ID="Submit" runat="server" Text="Add hardware" OnClick="Submit_Click" />
+            <asp:Label ID="testSelected" runat="server" Text="testSelected"></asp:Label>
             <asp:TextBox id="test" runat="server"></asp:TextBox>
         </fieldset>
     </div>

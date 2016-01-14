@@ -36,3 +36,10 @@ input[type="select"] {
         padding: 0;
     }
 }
+#add-hardware{
+    margin-left: auto;
+    margin-right: auto;
+}
+#hardware-add{
+    width: 50%;
+}

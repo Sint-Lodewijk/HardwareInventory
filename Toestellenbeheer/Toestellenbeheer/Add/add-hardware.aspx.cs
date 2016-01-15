@@ -8,6 +8,7 @@ using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace Toestellenbeheer.Manage
 {
@@ -74,7 +75,8 @@ namespace Toestellenbeheer.Manage
                     addHIEP.Parameters.AddWithValue("@extraInfo", strExtraInfo);
                     addHIEP.Parameters.AddWithValue("@attLocation", strExtraInfo);
                     */
-                    //Use the mysql to connect the database
+                //Use the mysql to connect the database
+                mysqlConnectie.Close();
                 mysqlConnectie.Open();
 
                 MySqlCommand addHIEP = new MySqlCommand("Insert into hardware (purchaseDate, serialNr, internalNr,  warranty, extraInfo, manufacturerName, addedDate, pictureLocation, typeNr) values (@purchaseDate, @serialNr, @internalNr,  @warranty, @extraInfo, @manufacturerName, @addedDate, @pictureLocation, @typeNr)", mysqlConnectie);
@@ -98,6 +100,7 @@ namespace Toestellenbeheer.Manage
                 
                 addHIEP.ExecuteNonQuery();
                 addHIEP.Dispose();
+                mysqlConnectie.Close();
             }
             catch (MySqlException ex)
             {

@@ -13,6 +13,24 @@ namespace Toestellenbeheer.Manage {
     public partial class add_license {
         
         /// <summary>
+        /// licenseName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label licenseName;
+        
+        /// <summary>
+        /// txtLicnseName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLicnseName;
+        
+        /// <summary>
         /// licenseCode control.
         /// </summary>
         /// <remarks>
@@ -58,12 +76,21 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.GridView grvHardwareLicenseSelect;
         
         /// <summary>
-        /// assaingToSelectedHardware control.
+        /// assignToSelectedHardware control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button assaingToSelectedHardware;
+        protected global::System.Web.UI.WebControls.Button assignToSelectedHardware;
+        
+        /// <summary>
+        /// testLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label testLabel;
     }
 }

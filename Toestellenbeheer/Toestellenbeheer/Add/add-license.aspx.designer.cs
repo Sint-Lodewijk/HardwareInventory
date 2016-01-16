@@ -22,13 +22,13 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.Label licenseName;
         
         /// <summary>
-        /// txtLicnseName control.
+        /// txtLicenseName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLicnseName;
+        protected global::System.Web.UI.WebControls.TextBox txtLicenseName;
         
         /// <summary>
         /// licenseCode control.
@@ -47,6 +47,15 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLicenseCode;
+        
+        /// <summary>
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
         /// addLicenseHardware control.

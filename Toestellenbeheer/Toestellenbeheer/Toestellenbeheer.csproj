@@ -185,7 +185,6 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
-    <Content Include="Add\searchTest.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -197,11 +196,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="hardware-overview.aspx" />
+    <Content Include="Overview\Default.aspx" />
+    <Content Include="Overview\hardware-overview.aspx" />
     <Content Include="Add\add-hardware.aspx" />
     <Content Include="Add\add-license.aspx" />
     <Content Include="Add\Default.aspx" />
     <Content Include="Manage\Default.aspx" />
+    <Content Include="Overview\license-overview.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -356,13 +357,6 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Add\searchTest.aspx.cs">
-      <DependentUpon>searchTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Add\searchTest.aspx.designer.cs">
-      <DependentUpon>searchTest.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -391,11 +385,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="hardware-overview.aspx.cs">
+    <Compile Include="Overview\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Overview\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Overview\hardware-overview.aspx.cs">
       <DependentUpon>hardware-overview.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="hardware-overview.aspx.designer.cs">
+    <Compile Include="Overview\hardware-overview.aspx.designer.cs">
       <DependentUpon>hardware-overview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Add\add-hardware.aspx.cs">
@@ -430,6 +431,13 @@
     <Compile Include="Models\MySqlConfiguration.cs" />
     <Compile Include="Models\MySqlHistoryContext.cs" />
     <Compile Include="Models\MySqlInitializer.cs" />
+    <Compile Include="Overview\license-overview.aspx.cs">
+      <DependentUpon>license-overview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Overview\license-overview.aspx.designer.cs">
+      <DependentUpon>license-overview.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

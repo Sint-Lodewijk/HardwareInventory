@@ -24,7 +24,7 @@ input[type="password"],
 input[type="email"],
 input[type="tel"],
 input[type="select"] {
-    max-width: 280px;
+    
 }
 
 /* Responsive: Portrait tablets and up */
@@ -42,4 +42,32 @@ input[type="select"] {
 }
 #hardware-add{
     width: 50%;
+}
+.form-control{
+   height: 34px;
+}
+.hardware-add-item{
+    margin-left: auto;
+    margin-right:auto;
+    margin-top: 2vh;
+
+}
+.normal-height{
+    height: 34px;
+}
+.control-label{
+    margin-top: 11.5px;
+}
+.margin-top-5{
+    margin-top: 5px;
+}
+.margin-top-15{
+        margin-top: 15px;
+
+}
+.gridview {
+    width: 100%; 
+    word-wrap:break-word;
+    table-layout: fixed;
+    margin-top: 30px;
 }

@@ -32,18 +32,18 @@ namespace Toestellenbeheer.Manage
             typeList.DataValueField = "type";
             typeList.DataBind();
 
-           /* No MySQL connection required for get the items 
-            DataSet Manufacturer = new DataSet();
-            string listManufacturerOut = "select manufacturerName from hardware";
-            MySqlCommand listOutManufacturer = new MySqlCommand(listManufacturerOut, mysqlConnectie);
-            using (MySqlDataAdapter data2 = new MySqlDataAdapter(listOutManufacturer))
-                data2.Fill(Manufacturer, "manufacturerName");
-            manufacturerList.DataSource = Manufacturer.Tables["hardware"];
-            manufacturerList.DataBind();
-            manufacturerList.DataTextField = "manufacturerName";
-            manufacturerList.DataValueField = "manufacturerName";
-            mysqlConnectie.Close();
-            */
+            /* No MySQL connection required for get the items 
+             DataSet Manufacturer = new DataSet();
+             string listManufacturerOut = "select manufacturerName from hardware";
+             MySqlCommand listOutManufacturer = new MySqlCommand(listManufacturerOut, mysqlConnectie);
+             using (MySqlDataAdapter data2 = new MySqlDataAdapter(listOutManufacturer))
+                 data2.Fill(Manufacturer, "manufacturerName");
+             manufacturerList.DataSource = Manufacturer.Tables["hardware"];
+             manufacturerList.DataBind();
+             manufacturerList.DataTextField = "manufacturerName";
+             manufacturerList.DataValueField = "manufacturerName";
+             mysqlConnectie.Close();
+             */
         }
         #endregion
         #region Insert Data
@@ -65,7 +65,18 @@ namespace Toestellenbeheer.Manage
             String dteAddedDate = DateTime.Now.ToString("yyyy-MM-dd");
             try
             {
-                /*
+                if (strInternalNr == "")
+                {
+                    ShowMessage("Internal number is required, please add this!");
+
+                }
+                else if(strSerialNr == "")
+                {
+                    ShowMessage("Serial number is required, please add this");
+                }
+                else
+                {
+                    /*
                     MySqlCommand addHIEP= new MySqlCommand("Insert into hardware (purchaseDate, serialNr, internalNr, pictureLocation, warranty, extraInfo, attachmentLocation) values (@purchaseDate, @serialNr, @internalNr, @picLocation, @warranty, @extraInfo, @attLocation)", mysqlConnectie);
                     addHIEP.Parameters.AddWithValue("@purchaseDate", dtePurchaseDate);
                     addHIEP.Parameters.AddWithValue("@serialNr", strSerialNr);
@@ -75,40 +86,41 @@ namespace Toestellenbeheer.Manage
                     addHIEP.Parameters.AddWithValue("@extraInfo", strExtraInfo);
                     addHIEP.Parameters.AddWithValue("@attLocation", strExtraInfo);
                     */
-                //Use the mysql to connect the database
-                mysqlConnectie.Close();
-                mysqlConnectie.Open();
+                    //Use the mysql to connect the database
+                    mysqlConnectie.Close();
+                    mysqlConnectie.Open();
 
-                MySqlCommand addHIEP = new MySqlCommand("Insert into hardware (purchaseDate, serialNr, internalNr,  warranty, extraInfo, manufacturerName, addedDate, pictureLocation, typeNr) values (@purchaseDate, @serialNr, @internalNr,  @warranty, @extraInfo, @manufacturerName, @addedDate, @pictureLocation, @typeNr)", mysqlConnectie);
+                    MySqlCommand addHIEP = new MySqlCommand("Insert into hardware (purchaseDate, serialNr, internalNr,  warranty, extraInfo, manufacturerName, addedDate, pictureLocation, typeNr) values (@purchaseDate, @serialNr, @internalNr,  @warranty, @extraInfo, @manufacturerName, @addedDate, @pictureLocation, @typeNr)", mysqlConnectie);
 
-                //add parameters (assaign the values to the column.)
-                addHIEP.Parameters.AddWithValue("@purchaseDate", dtePurchaseDate);
-                addHIEP.Parameters.AddWithValue("@serialNr", strSerialNr);
-                addHIEP.Parameters.AddWithValue("@internalNr", strInternalNr);
-                addHIEP.Parameters.AddWithValue("@warranty", strWarrantyInfo);
-                addHIEP.Parameters.AddWithValue("@extraInfo", strExtrainfo);
-                //addHIEP.Parameters.AddWithValue("@attLocation", mAttPath);
-                // addHIEP.Parameters.AddWithValue("@addedDate", dteAddedDate);
-                addHIEP.Parameters.AddWithValue("@manufacturerName", strSelectedManufacturer);
+                    //add parameters (assaign the values to the column.)
+                    addHIEP.Parameters.AddWithValue("@purchaseDate", dtePurchaseDate);
+                    addHIEP.Parameters.AddWithValue("@serialNr", strSerialNr);
+                    addHIEP.Parameters.AddWithValue("@internalNr", strInternalNr);
+                    addHIEP.Parameters.AddWithValue("@warranty", strWarrantyInfo);
+                    addHIEP.Parameters.AddWithValue("@extraInfo", strExtrainfo);
+                    //addHIEP.Parameters.AddWithValue("@attLocation", mAttPath);
+                    // addHIEP.Parameters.AddWithValue("@addedDate", dteAddedDate);
+                    addHIEP.Parameters.AddWithValue("@manufacturerName", strSelectedManufacturer);
 
-                addHIEP.Parameters.AddWithValue("@addedDate", dteAddedDate);
-                addHIEP.Parameters.AddWithValue("@pictureLocation", mImagePath);
+                    addHIEP.Parameters.AddWithValue("@addedDate", dteAddedDate);
+                    addHIEP.Parameters.AddWithValue("@pictureLocation", mImagePath);
 
-                addHIEP.Parameters.AddWithValue("@typeNr", intSelectedTypeIndex);
-                //addHIEP.Parameters.AddWithValue("@nameAD", dteAddedDate);
+                    addHIEP.Parameters.AddWithValue("@typeNr", intSelectedTypeIndex);
+                    //addHIEP.Parameters.AddWithValue("@nameAD", dteAddedDate);
 
-                
-                addHIEP.ExecuteNonQuery();
-                addHIEP.Dispose();
-                mysqlConnectie.Close();
+
+                    addHIEP.ExecuteNonQuery();
+                    addHIEP.Dispose();
+                    mysqlConnectie.Close();
+                }
             }
             catch (MySqlException ex)
             {
                 ShowMessage(ex.Message);
             }
             //test the value - removeable
-            test.Text = dtePurchaseDate.ToString();              
-           }
+            test.Text = dtePurchaseDate.ToString();
+        }
 
         void ShowMessage(string msg)
         {
@@ -119,7 +131,7 @@ namespace Toestellenbeheer.Manage
         //Upload the selected file and return the right path
         public void Upload_Click(object sender, EventArgs e)
         {
-           
+
             if (IsPostBack)
             {
                 Boolean fileOK = false;
@@ -145,7 +157,7 @@ namespace Toestellenbeheer.Manage
                     {
                         PictureUpload.PostedFile.SaveAs(path
                             + PictureUpload.FileName);
-                       String mImagePath = path.ToString() + PictureUpload.FileName.ToString();
+                        String mImagePath = path.ToString() + PictureUpload.FileName.ToString();
                         Testlocation.Text = mImagePath;
                         ResultUploadImg.Text = "File uploaded!";
 
@@ -171,7 +183,7 @@ namespace Toestellenbeheer.Manage
         //Upload the attachment and return the path.
 
         protected void UploadAttachment_Click(object sender, EventArgs e)
-        
+
         {
             if (IsPostBack)
             {
@@ -201,8 +213,8 @@ namespace Toestellenbeheer.Manage
             {
                 ResultUploadAtta.Text = "Do you not want to add a attachment?";
             }
-            }
         }
     }
-    
-    
+}
+
+

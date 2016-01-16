@@ -22,6 +22,7 @@ namespace Toestellenbeheer
         {
             if (!IsPostBack)
             {
+                /* ConnectionMethode 1
                 mysqlConnectie.Open();
                 MySqlCommand cmd = new MySqlCommand("Select * from hardware", mysqlConnectie);
                 MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
@@ -33,7 +34,7 @@ namespace Toestellenbeheer
                 HardwareOverviewGrid.DataBind();
                 lblSearch.Text = HardwareOverviewGrid.Rows.Count.ToString();
                 mysqlConnectie.Close();
-
+                */
 
             }
         }
@@ -42,7 +43,7 @@ namespace Toestellenbeheer
         {
             this.BindGrid();
         }
-
+        
         private void BindGrid()
         {
             try
@@ -65,11 +66,12 @@ namespace Toestellenbeheer
 
                 }
                 */
+               
                 mysqlConnectie.Open();
                 String strSearchItem = drpSearchItem.SelectedValue.ToString();
                 String strSearchText = txtSearch.Text.Trim();
-               // string bindToGridCmd = "SELECT * FROM hardware WHERE @searchItem LIKE '%@searchText%'";
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT * FROM hardware WHERE " + strSearchItem + " LIKE '%" + strSearchText + "%';", mysqlConnectie);
+                // string bindToGridCmd = "SELECT * FROM hardware WHERE @searchItem LIKE '%@searchText%'";
+                MySqlCommand bindToGrid = new MySqlCommand("SELECT DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date' FROM hardware WHERE " + strSearchItem + " LIKE '%" + strSearchText + "%';", mysqlConnectie);
                 bindToGrid.Parameters.AddWithValue("@searchItem", strSearchItem);
                 bindToGrid.Parameters.AddWithValue("@searchText", strSearchText);
                 MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
@@ -77,10 +79,20 @@ namespace Toestellenbeheer
                 bindToGrid.Dispose();
                 DataSet ds = new DataSet();
                 adpa.Fill(ds);
-                HardwareOverviewGrid.DataSource = ds;
-                HardwareOverviewGrid.DataBind();
-                lblSearch.Text = HardwareOverviewGrid.Rows.Count.ToString();
+                HardwareOverviewGridSearch.DataSource = ds;
+                HardwareOverviewGridSearch.DataBind();
+                int intTotalResultReturned = HardwareOverviewGridSearch.Rows.Count;
+                if (intTotalResultReturned == 0)
+                {
+                    lblTotalQuery.Text = "No entry found, please use a different keyword or switch between searchtype.";
+                }
+                else
+                {
+                    lblTotalQuery.Text = "Total result returned: " + intTotalResultReturned;
+
+                }
                 mysqlConnectie.Close();
+                HardwareOverviewGrid.Visible = false;
             }
             catch (MySqlException ex)
             {

@@ -45,11 +45,10 @@ namespace Toestellenbeheer.Manage
 
         protected void assignToSelectedHardware_Click(object sender, EventArgs e)
         {
-
-            
+           
                 String strLicenseCode = txtLicenseCode.Text;
                 String internalNr = grvHardwareLicenseSelect.SelectedRow.Cells[3].Text;
-                String strLicenseName = txtLicnseName.Text;
+                String strLicenseName = txtLicenseName.Text;
                 String strSerialCode = grvHardwareLicenseSelect.SelectedRow.Cells[4].Text;
 
             //Accessing TemplateField Column controls
@@ -72,18 +71,25 @@ namespace Toestellenbeheer.Manage
                 mysqlConnectie.Close();
 
 
-                testLabel.Text = internalNr + strLicenseCode + strSerialCode;
+                testLabel.Text = strLicenseCode + " has been assigned to device with a internal number: " + internalNr + " and a serial code " + strSerialCode;
             }
             catch (MySqlException ex)
             {
-                ShowMessage(ex.Message);
+                if (ex.Number.ToString() == "1062")
+                {
+                    //testLabel.Text = ex.Message.ToString() + ", please check your input.";
+                    testLabel.Text = "The license code: " + "<span style=\"color:red\">" + strLicenseCode + "</span>"  + " you have entered for internal number: " + "<span style=\"color:red\">" + internalNr + "</span>" + " has been assigned to another device.";
+
+                }
+                else { ShowMessage(ex.Message); }
+              
             }
             //test the value - removeable
         }
-
+        
         void ShowMessage(string msg)
         {
-            ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> alert('" + msg + "');</ script > ");
+            ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> An error has been occured, please check the errorcode -> ('" + msg + "');</ script > ");
         }
 
        

@@ -20,7 +20,6 @@ namespace Toestellenbeheer.Manage
         protected void Page_Load(object sender, EventArgs e)
         {
             DataSet Type = new DataSet();
-            mysqlConnectie.Open();
             string listTypeOut = "select type from type";
             MySqlCommand listOutType = new MySqlCommand(listTypeOut, mysqlConnectie);
             using (MySqlDataAdapter data1 = new MySqlDataAdapter(listOutType))
@@ -31,7 +30,7 @@ namespace Toestellenbeheer.Manage
             typeList.DataTextField = "type";
             typeList.DataValueField = "type";
             typeList.DataBind();
-
+            mysqlConnectie.Close();
             /* No MySQL connection required for get the items 
              DataSet Manufacturer = new DataSet();
              string listManufacturerOut = "select manufacturerName from hardware";
@@ -87,9 +86,7 @@ namespace Toestellenbeheer.Manage
                     addHIEP.Parameters.AddWithValue("@attLocation", strExtraInfo);
                     */
                     //Use the mysql to connect the database
-                    mysqlConnectie.Close();
                     mysqlConnectie.Open();
-
                     MySqlCommand addHIEP = new MySqlCommand("Insert into hardware (purchaseDate, serialNr, internalNr,  warranty, extraInfo, manufacturerName, addedDate, pictureLocation, typeNr) values (@purchaseDate, @serialNr, @internalNr,  @warranty, @extraInfo, @manufacturerName, @addedDate, @pictureLocation, @typeNr)", mysqlConnectie);
 
                     //add parameters (assaign the values to the column.)
@@ -112,12 +109,23 @@ namespace Toestellenbeheer.Manage
                     addHIEP.ExecuteNonQuery();
                     addHIEP.Dispose();
                     mysqlConnectie.Close();
+                    txtResultUpload.Text = "Congratulations! The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
+                       " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " successfully added to the database.";
                 }
             }
             catch (MySqlException ex)
             {
-                ShowMessage(ex.Message);
-            }
+                if (ex.Number.ToString() == "1062")
+                {
+                    //testLabel.Text = ex.Message.ToString() + ", please check your input.";
+                    txtResultUpload.Text = "The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" + 
+                        " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " already exist in de database.";
+
+                }
+                else { ShowMessage(ex.Message); }
+
+          
+        }
             //test the value - removeable
             test.Text = dtePurchaseDate.ToString();
         }

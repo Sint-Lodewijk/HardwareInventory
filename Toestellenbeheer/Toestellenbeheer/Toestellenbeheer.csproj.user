@@ -3,6 +3,7 @@
   <PropertyGroup>
     <ReferencePath>
     </ReferencePath>
+    <NameOfLastUsedPublishProfile>toestellenbeheer - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

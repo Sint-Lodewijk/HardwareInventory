@@ -84,7 +84,7 @@ namespace Toestellenbeheer
                 int intTotalResultReturned = HardwareOverviewGridSearch.Rows.Count;
                 if (intTotalResultReturned == 0)
                 {
-                    lblTotalQuery.Text = "No entry found, please use a different keyword or switch between searchtype.";
+                    lblTotalQuery.Text = "No entry found, please use a different keyword or switch between the searchtypes.";
                 }
                 else
                 {

@@ -97,8 +97,8 @@
         </div>
         
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-2">
-                <asp:Button ID="Submit" runat="server" Text="Add hardware" CssClass="btn btn-default margin-top-15" OnClick="Submit_Click" />
+            <div class="col-sm-offset-5 col-sm-7">
+                <asp:Button ID="Submit" runat="server" Text="Add hardware" CssClass="btn btn-primary margin-top-15" OnClick="Submit_Click" />
                 <!--<asp:Label ID="testSelected" runat="server" Text="testSelected"></asp:Label>
                 <asp:TextBox ID="test" CssClass="form-control" runat="server"></asp:TextBox>-->
             </div>

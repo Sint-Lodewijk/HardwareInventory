@@ -13,6 +13,51 @@ namespace Toestellenbeheer.Manage {
     public partial class add_license {
         
         /// <summary>
+        /// lblSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSearch;
+        
+        /// <summary>
+        /// txtSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
+        
+        /// <summary>
+        /// lblOn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOn;
+        
+        /// <summary>
+        /// drpSearchItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drpSearchItem;
+        
+        /// <summary>
+        /// btnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+        
+        /// <summary>
         /// licenseName control.
         /// </summary>
         /// <remarks>
@@ -58,6 +103,15 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
+        /// licenseOverviewGridSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView licenseOverviewGridSearch;
+        
+        /// <summary>
         /// addLicenseHardware control.
         /// </summary>
         /// <remarks>
@@ -85,13 +139,22 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.GridView grvHardwareLicenseSelect;
         
         /// <summary>
-        /// assignToSelectedHardware control.
+        /// btnAssignToSelectedHardware control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button assignToSelectedHardware;
+        protected global::System.Web.UI.WebControls.Button btnAssignToSelectedHardware;
+        
+        /// <summary>
+        /// btnAssignToSelectedHardwareSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAssignToSelectedHardwareSearch;
         
         /// <summary>
         /// testLabel control.

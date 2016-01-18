@@ -157,6 +157,15 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.Button btnAssignToSelectedHardwareSearch;
         
         /// <summary>
+        /// hideShowPeople control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button hideShowPeople;
+        
+        /// <summary>
         /// peoplePanel control.
         /// </summary>
         /// <remarks>

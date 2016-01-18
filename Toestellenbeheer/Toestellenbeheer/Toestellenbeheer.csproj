@@ -205,6 +205,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\toestellenbeheer - Web Deploy.pubxml" />
+    <Content Include="Manage\manage-type.aspx" />
     <Content Include="Overview\Default.aspx" />
     <Content Include="Overview\hardware-overview.aspx" />
     <Content Include="Add\add-hardware.aspx" />
@@ -404,6 +405,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Manage\manage-type.aspx.cs">
+      <DependentUpon>manage-type.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manage\manage-type.aspx.designer.cs">
+      <DependentUpon>manage-type.aspx</DependentUpon>
     </Compile>
     <Compile Include="Overview\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

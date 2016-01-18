@@ -32,7 +32,7 @@
                 Managepanel for administrators. 
             </p>
             <p>
-                <a class="btn btn-default" href="~/Manage/Licence">Add now &raquo;</a>
+                <a class="btn btn-default" href="Manage">Add now &raquo;</a>
             </p>
         </div>
     </div>

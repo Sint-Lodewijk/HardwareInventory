@@ -26,7 +26,7 @@
     </div>
   
 
-    <asp:GridView ID="HardwareOverviewGridSearch" CssClass="table table-hover table-striped gridview"  AllowPaging="true" runat="server">
+    <asp:GridView ID="HardwareOverviewGridSearch" CssClass="table table-hover table-striped gridview"   runat="server">
 
         
             <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />

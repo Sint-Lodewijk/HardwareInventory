@@ -21,6 +21,8 @@ namespace Toestellenbeheer.Manage
         {
             btnAssignToSelectedHardwareSearch.Visible = false;
             hardwarePanel.Visible = false;
+            peoplePanel.Visible = false;
+
         }
         //Change the color when selected
         protected void hardwareLicenseSelection_Click(object sender, EventArgs e)
@@ -33,7 +35,7 @@ namespace Toestellenbeheer.Manage
                 {
                     row.BackColor = ColorTranslator.FromHtml("#A1DCF2");
                     row.ToolTip = string.Empty;
-        //Get the row
+                    //Get the row
                     GridViewRow selectedRow = grvHardwareLicenseSelect.SelectedRow;
 
 
@@ -71,7 +73,7 @@ namespace Toestellenbeheer.Manage
                 String strSearchText = txtSearch.Text.Trim();
                 // string bindToGridCmd = "SELECT * FROM hardware WHERE @searchItem LIKE '%@searchText%'";
                 MySqlCommand bindToGrid = new MySqlCommand("SELECT typeNr `Type nr`,manufacturerName `Manufacturer`,internalNr 'Internal nr', serialNr 'Serial nr' FROM hardware WHERE " + strSearchItem + " LIKE '%" + strSearchText + "%';", mysqlConnectie);
-    
+
                 MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
                 bindToGrid.ExecuteNonQuery();
                 bindToGrid.Dispose();
@@ -139,7 +141,7 @@ namespace Toestellenbeheer.Manage
                 }
                 else if (ex.Number.ToString() == "1064")
                 {
-                    
+
                     //testLabel.Text = ex.Message.ToString() + ", please check your input.";
                     testLabel.Text = "Apostrophe ('), quotation mark and semicolum is not allow in the searchword: " + "<span style=\"color:red\">" + txtSearch + "</span>" + ", please delete this marks.";
 
@@ -171,6 +173,7 @@ namespace Toestellenbeheer.Manage
             assign(internalNr, strSerialCode);
         }
         //Expand or hide hardware grid
+
         protected void hideShowHardware_Click(object sender, EventArgs e)
         {
             if (hideShowHardware.Text == "Assign to hardware")
@@ -185,7 +188,39 @@ namespace Toestellenbeheer.Manage
                 hardwarePanel.Visible = false;
 
             }
-          
+            else if (hideShowHardware.Text == "Assign to hardware")
+            {
+                hideShowHardware.Text = "Hide hardware";
+                hardwarePanel.Visible = true;
+
+            }
+
+
+
+
+        }
+        protected void hideShowPeople_Click(object sender, EventArgs e)
+        {
+            if (hideShowPeople.Text == "Assign to people")
+            {
+                hideShowPeople.Text = "Hide people";
+                peoplePanel.Visible = true;
+
+            }
+            else if (hideShowPeople.Text == "Hide people")
+            {
+                hideShowPeople.Text = "Assign to people";
+                peoplePanel.Visible = false;
+
+            }
+
+
+
+        }
+
+        protected void displayHardwarePanel(object sender, GridViewSortEventArgs e)
+        {
+            hardwarePanel.Visible = true;
         }
     }
 

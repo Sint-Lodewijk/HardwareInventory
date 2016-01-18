@@ -19,3 +19,41 @@ FIXED
 KNOWN ISSUES
 18-01-2016
 1|add-license| Page don't display proberly - UI
+
+---------------------------------------------------------------------------------------
+PREVIOUS COMMIT: f3f4c6d63bb287a5860650161208972d713e80b4 at master branch
+
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people.
+2|add-license| Implement search function people.
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|*| Picture overview from the location in database
+7|add-hardware| The purchase date can not be later than today.
+8|*|Archive hardware linked people. - need people - database created.
+9|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI
+2|add-hardware| Attachmentlocation not added into the database.
+3|*| Title not set
+4|hardware-overview| PageIndexChanging not handled after searching
+
+ADDED
+18-01-2016
+1|Manage| Manage default page
+2|manage-type| Manage type page
+3|manage-type| Add type by type typeNr and type name on manage-type page
+
+FIXED
+18-01-2016
+1|add-license| Panel not visible on selecting and sorting hardware
+2|add-license| Hide/ Show People function
+3|add-license| Button Hide/ Show people and hardware -> to btn-info 
+4|*| Use-on-mobile supported
+5|hardware-overview|temporary solution| AllowPaging="true" disabled 
+
+---------------------------------------------------------------------------------------

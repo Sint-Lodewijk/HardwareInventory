@@ -58,8 +58,8 @@ namespace Toestellenbeheer.Manage
             String strSelectedManufacturer = manufacturerList.SelectedItem.ToString();
             //testSelected.Text = strSelectedType;
             String dtePurchaseYear = txtDatepicker.Text.Substring(6);
-            String dtePurchaseMonth = txtDatepicker.Text.Substring(3,2);
-            String dtePurchaseDay = txtDatepicker.Text.Substring(0,2);
+            String dtePurchaseMonth = txtDatepicker.Text.Substring(0,2);
+            String dtePurchaseDay = txtDatepicker.Text.Substring(3,2);
             String dtePurchaseDate = dtePurchaseYear.ToString() + '-' + dtePurchaseMonth.ToString() + '-' + dtePurchaseDay.ToString();
             String dteAddedDate = DateTime.Now.ToString("yyyy-MM-dd");
             try

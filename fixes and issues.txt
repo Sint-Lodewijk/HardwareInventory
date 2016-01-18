@@ -1,0 +1,21 @@
+PREVIOUS COMMIT: aa8792c74fbf32769a9601e713a74c9d12b1d03a at master branch
+
+WORKING POINTS
+18-01-2016
+1|add-license| Assign license to selected people.
+2|add-license| Implement search function people.
+3|add-license| Listed below KNOWN ISSUES
+
+ADDED
+18-01-2016
+1|add-license| MySQL exeption 1064 (syntax error) handling.
+2|add-license| Expand or hide hardware section.
+3|*|	       Improved design for all gridviews - Using Bootstrap table design
+
+FIXED
+18-01-2016
+1|add-license| Display button after selecting on searchGrid.
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page don't display proberly - UI

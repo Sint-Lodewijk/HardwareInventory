@@ -71,6 +71,7 @@ input[type="select"] {
     word-wrap:break-word;
     table-layout: fixed;
     margin-top: 30px;
+    border: 1px solid #ddd;
 }
 .margin-top-26{
     margin-top:26.5px;

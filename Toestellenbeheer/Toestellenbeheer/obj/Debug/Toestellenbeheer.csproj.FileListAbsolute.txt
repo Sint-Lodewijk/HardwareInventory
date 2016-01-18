@@ -83,3 +83,4 @@ C:\Users\Jianing\OneDrive\6 Informaticabeheer\Stage\Toestellenbeheer\Toestellenb
 C:\Users\Jianing\OneDrive\6 Informaticabeheer\Stage\Toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Jianing\OneDrive\6 Informaticabeheer\Stage\Toestellenbeheer\Toestellenbeheer\Toestellenbeheer\obj\Debug\Toestellenbeheer.dll
 C:\Users\Jianing\OneDrive\6 Informaticabeheer\Stage\Toestellenbeheer\Toestellenbeheer\Toestellenbeheer\obj\Debug\Toestellenbeheer.pdb
+C:\Users\Jianing\OneDrive\6 Informaticabeheer\Stage\Toestellenbeheer\Toestellenbeheer\Toestellenbeheer\obj\Debug\Toestellenbeheer.csprojResolveAssemblyReference.cache

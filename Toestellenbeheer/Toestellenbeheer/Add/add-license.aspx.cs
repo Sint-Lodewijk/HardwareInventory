@@ -20,10 +20,13 @@ namespace Toestellenbeheer.Manage
         protected void Page_Load(object sender, EventArgs e)
         {
             btnAssignToSelectedHardwareSearch.Visible = false;
+            hardwarePanel.Visible = false;
         }
         //Change the color when selected
         protected void hardwareLicenseSelection_Click(object sender, EventArgs e)
         {
+            btnAssignToSelectedHardware.Visible = true;
+
             foreach (GridViewRow row in grvHardwareLicenseSelect.Rows)
             {
                 if (row.RowIndex == grvHardwareLicenseSelect.SelectedIndex)
@@ -41,14 +44,21 @@ namespace Toestellenbeheer.Manage
                     row.ToolTip = "Click to select this row.";
                 }
             }
+            hardwarePanel.Visible = true;
         }
         protected void Search_Click(object sender, EventArgs e)
         {
             this.BindGrid();
             btnAssignToSelectedHardwareSearch.Visible = true;
             btnAssignToSelectedHardware.Visible = false;
+            hardwarePanel.Visible = true;
 
 
+        }
+        protected void display_search_button(object sender, EventArgs e)
+        {
+            btnAssignToSelectedHardwareSearch.Visible = true;
+            hardwarePanel.Visible = true;
 
         }
 
@@ -127,6 +137,13 @@ namespace Toestellenbeheer.Manage
                     testLabel.Text = "The license code: " + "<span style=\"color:red\">" + strLicenseCode + "</span>" + " you have entered for internal number: " + "<span style=\"color:red\">" + internalNr + "</span>" + " has been assigned to another device.";
 
                 }
+                else if (ex.Number.ToString() == "1064")
+                {
+                    
+                    //testLabel.Text = ex.Message.ToString() + ", please check your input.";
+                    testLabel.Text = "Apostrophe ('), quotation mark and semicolum is not allow in the searchword: " + "<span style=\"color:red\">" + txtSearch + "</span>" + ", please delete this marks.";
+
+                }
                 else { ShowMessage(ex.Message); }
 
             }
@@ -152,6 +169,23 @@ namespace Toestellenbeheer.Manage
             String internalNr = licenseOverviewGridSearch.SelectedRow.Cells[3].Text;
             String strSerialCode = licenseOverviewGridSearch.SelectedRow.Cells[4].Text;
             assign(internalNr, strSerialCode);
+        }
+        //Expand or hide hardware grid
+        protected void hideShowHardware_Click(object sender, EventArgs e)
+        {
+            if (hideShowHardware.Text == "Assign to hardware")
+            {
+                hideShowHardware.Text = "Hide hardware";
+                hardwarePanel.Visible = true;
+
+            }
+            else if (hideShowHardware.Text == "Hide hardware")
+            {
+                hideShowHardware.Text = "Assign to hardware";
+                hardwarePanel.Visible = false;
+
+            }
+          
         }
     }
 

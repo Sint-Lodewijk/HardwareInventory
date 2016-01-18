@@ -26,19 +26,17 @@
     </div>
   
 
-    <asp:GridView ID="HardwareOverviewGridSearch" CssClass="gridview"  ForeColor="#333333" GridLines="None" AllowPaging="true" runat="server">
+    <asp:GridView ID="HardwareOverviewGridSearch" CssClass="table table-hover table-striped gridview"  AllowPaging="true" runat="server">
 
-        <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-            <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+        
             <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
             <SortedAscendingCellStyle BackColor="#F7F7F7" />
             <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
             <SortedDescendingCellStyle BackColor="#E5E5E5" />
             <SortedDescendingHeaderStyle BackColor="#242121" />
     </asp:GridView>
-    <asp:GridView ID="HardwareOverviewGrid" CssClass="gridview" runat="server" AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" DataKeyNames="serialNr,internalNr" AllowPaging="True" DataSourceID="SqlDataSource1">
-        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+    <asp:GridView ID="HardwareOverviewGrid" CssClass="table table-hover table-striped gridview" runat="server" AllowSorting="True"  AutoGenerateColumns="False" DataKeyNames="serialNr,internalNr" AllowPaging="True" DataSourceID="SqlDataSource1">
+
         <Columns>
             <asp:BoundField DataField="purchaseDate" HeaderText="Purchase date" SortExpression="purchaseDate" />
             <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
@@ -50,10 +48,7 @@
             <asp:BoundField DataField="typeNr" HeaderText="Type nr" SortExpression="typeNr" />
         </Columns>
         <EditRowStyle BackColor="#999999" />
-        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+        
         <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
         <SortedAscendingCellStyle BackColor="#E9E7E2" />
         <SortedAscendingHeaderStyle BackColor="#506C8C" />

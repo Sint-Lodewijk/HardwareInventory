@@ -25,12 +25,22 @@
                 </asp:DropDownList>
             </div>
         </div>
-       
+
 
         <div class="form-group">
-            <asp:Label AssociatedControlID="purchasedateCalendar" CssClass="control-label col-sm-2" runat="server">Purchase date</asp:Label>
+            <asp:Label AssociatedControlID="txtDatepicker" CssClass="control-label col-sm-2" runat="server">Purchasedate</asp:Label>
+            
             <div class="col-sm-10">
-                <asp:Calendar ID="purchasedateCalendar" runat="server"></asp:Calendar>
+                <link rel="stylesheet" href="../../Scripts/jquery-ui.css">
+                <script src="../../Scripts/jquery-2.2.0.js"></script>
+                <script src="../../Scripts/jquery-ui.js"></script>
+                
+                <script>
+                    $(function () {
+                        $("[id$=txtDatepicker]").datepicker();
+                    });
+                </script>
+                <asp:Textbox runat="server" id="txtDatepicker"   CssClass="form-control"/>
             </div>
         </div>
 
@@ -52,11 +62,13 @@
         </div>
 
         <div class="form-group">
-            <asp:Label AssociatedControlID="PictureUpload" CssClass="control-label col-sm-2 input-group" runat="server">Picture</asp:Label>
+            <asp:Label AssociatedControlID="PictureUpload" CssClass="control-label col-sm-2" runat="server">Picture</asp:Label>
             <div class="col-sm-8">
-                <asp:FileUpload ID="PictureUpload" CssClass="btn btn-default form-control" runat="server" /></div>
-            <div class="col-sm-1">
-                <asp:Button ID="Upload" runat="server" Text="Upload" CssClass="btn btn-default margin-top-5" OnClick="Upload_Click" /></div>
+                <asp:FileUpload ID="PictureUpload" CssClass="btn btn-default form-control" runat="server" />
+            </div>
+            <div class="col-sm-2">
+                <asp:Button ID="Upload" runat="server" Text="Upload" CssClass="btn btn-default margin-top-6-2" OnClick="Upload_Click" />
+            </div>
             <asp:Label ID="ResultUploadImg" runat="server" Text=""></asp:Label>
 
             <asp:Label ID="Testlocation" runat="server" Text=""></asp:Label>
@@ -86,8 +98,8 @@
                 <asp:FileUpload ID="AttachmentUpload" CssClass="btn btn-default form-control" runat="server" />
             </div>
 
-            <div class="col-sm-1">
-                <asp:Button ID="UploadAttachment" runat="server" CssClass="btn btn-default margin-top-5" Text="Upload" OnClick="UploadAttachment_Click" />
+            <div class="col-sm-2">
+                <asp:Button ID="UploadAttachment" runat="server" CssClass="btn btn-default margin-top-6-2" Text="Upload" OnClick="UploadAttachment_Click" />
 
             </div>
 
@@ -95,7 +107,7 @@
 
             <asp:Label ID="TestlocationAtt" runat="server" Text=""></asp:Label>
         </div>
-        
+
         <div class="form-group">
             <div class="col-sm-offset-5 col-sm-7">
                 <asp:Button ID="Submit" runat="server" Text="Add hardware" CssClass="btn btn-primary margin-top-15" OnClick="Submit_Click" />

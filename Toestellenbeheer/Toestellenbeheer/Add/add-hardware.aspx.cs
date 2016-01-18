@@ -57,9 +57,9 @@ namespace Toestellenbeheer.Manage
             int intSelectedTypeIndex = typeList.SelectedIndex;
             String strSelectedManufacturer = manufacturerList.SelectedItem.ToString();
             //testSelected.Text = strSelectedType;
-            int dtePurchaseYear = purchasedateCalendar.SelectedDate.Year;
-            int dtePurchaseMonth = purchasedateCalendar.SelectedDate.Month;
-            int dtePurchaseDay = purchasedateCalendar.SelectedDate.Day;
+            String dtePurchaseYear = txtDatepicker.Text.Substring(6);
+            String dtePurchaseMonth = txtDatepicker.Text.Substring(3,2);
+            String dtePurchaseDay = txtDatepicker.Text.Substring(0,2);
             String dtePurchaseDate = dtePurchaseYear.ToString() + '-' + dtePurchaseMonth.ToString() + '-' + dtePurchaseDay.ToString();
             String dteAddedDate = DateTime.Now.ToString("yyyy-MM-dd");
             try

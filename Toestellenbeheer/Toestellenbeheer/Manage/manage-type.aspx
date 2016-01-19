@@ -17,6 +17,6 @@
         </div>
     </div>
     <div class="form-group col-sm-offset-5 col-sm-7">
-        <asp:Button ID="btnAddType" runat="server" Text="" OnClick="btnAddType_Click" />
+        <asp:Button ID="btnAddType" runat="server" Text="Add a tyoe" CssClass="btn btn-primary col-sm-2" OnClick="btnAddType_Click" />
     </div>
 </asp:Content>

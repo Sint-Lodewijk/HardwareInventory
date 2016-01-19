@@ -7,7 +7,7 @@
         <div class="form-group">
             <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="typeList">Type</asp:Label>
             <div class="col-sm-10">
-                <asp:DropDownList ID="typeList" CssClass="form-control" runat="server" />
+                <asp:DropDownList ID="typeList" CssClass="form-control" runat="server"  EnableViewState="true"  AutoPostBack="true" />
             </div>
 
         </div>

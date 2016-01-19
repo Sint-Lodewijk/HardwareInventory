@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Net;
 using System.Net.Mail;
+using System.IO;
 
 namespace Toestellenbeheer
 {
@@ -43,7 +44,7 @@ namespace Toestellenbeheer
         {
             this.BindGrid();
         }
-        
+
         private void BindGrid()
         {
             try
@@ -66,14 +67,16 @@ namespace Toestellenbeheer
 
                 }
                 */
-               
+
                 mysqlConnectie.Open();
+                //GetImagePaths();
                 String strSearchItem = drpSearchItem.SelectedValue.ToString();
                 String strSearchText = txtSearch.Text.Trim();
                 // string bindToGridCmd = "SELECT * FROM hardware WHERE @searchItem LIKE '%@searchText%'";
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date' FROM hardware WHERE " + strSearchItem + " LIKE '%" + strSearchText + "%';", mysqlConnectie);
+                MySqlCommand bindToGrid = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date' FROM hardware WHERE " + strSearchItem + " LIKE '%" + strSearchText + "%';", mysqlConnectie);
                 bindToGrid.Parameters.AddWithValue("@searchItem", strSearchItem);
                 bindToGrid.Parameters.AddWithValue("@searchText", strSearchText);
+
                 MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
                 bindToGrid.ExecuteNonQuery();
                 bindToGrid.Dispose();
@@ -100,7 +103,6 @@ namespace Toestellenbeheer
             }
 
         }
-
         void ShowMessage(string msg)
         {
             ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> alert('" + msg + "');</ script > ");
@@ -111,9 +113,39 @@ namespace Toestellenbeheer
             HardwareOverviewGrid.PageIndex = e.NewPageIndex;
             this.BindGrid();
         }
+        /*protected void GetImagePaths()
+        {
 
+            DataTable dt = new DataTable();
+            MySqlCommand cmd = new MySqlCommand("SELECT pictureLocation FROM hardware;");
+            MySqlConnection con = new MySqlConnection ("MysqlConnectie");
+            MySqlDataAdapter sda = new MySqlDataAdapter();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = con;
+            try
+            {
+                sda.SelectCommand = cmd;
+                sda.Fill(dt);
+                HardwareOverviewGrid.DataSource = dt;
+                HardwareOverviewGrid.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
+            finally
+            {
+     
+                sda.Dispose();
+                con.Dispose();
+            }
+        }*/
 
     }
+
+
+
 }
-        
+
+
 

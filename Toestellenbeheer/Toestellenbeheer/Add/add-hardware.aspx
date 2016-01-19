@@ -114,7 +114,7 @@
                 <!--<asp:Label ID="testSelected" runat="server" Text="testSelected"></asp:Label>
                 <asp:TextBox ID="test" CssClass="form-control" runat="server"></asp:TextBox>-->
             </div>
-            <div class="col-sm-8 margin-top-26">
+            <div class="col-sm-12 margin-top-26">
                 <asp:Label ID="txtResultUpload" CssClass="control-label" runat="server"></asp:Label>
             </div>
         </div>

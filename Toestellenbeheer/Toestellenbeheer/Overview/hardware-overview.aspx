@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="hardware-overview.aspx.cs" Inherits="Toestellenbeheer.hardware_overview" %>
+﻿<%@ Page Title="Hardware overview" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="hardware-overview.aspx.cs" Inherits="Toestellenbeheer.hardware_overview" %>
 
 <asp:Content ID="hardwareOverview" ContentPlaceHolderID="MainContent" runat="server">
     <div id="search" class="form-group">
@@ -26,15 +26,22 @@
     </div>
 
 
-    <asp:GridView ID="HardwareOverviewGridSearch" CssClass="table table-hover table-striped gridview" runat="server">
+    <asp:GridView ID="HardwareOverviewGridSearch" CssClass="table table-hover table-striped gridview" DataKeyNames="pictureLocation,attachmentLocation" runat="server">
         <Columns>
-          <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
-                NullDisplayText="No image associated." ControlStyle-CssClass="picutureGrid" ReadOnly="True" />
-             
-            <asp:BoundField DataField="pictureLocation" InsertVisible="False" Visible="False" />
-             
-        </Columns>
+            <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
+                NullDisplayText="No image associated." ControlStyle-CssClass="picutureGrid" ReadOnly="True">
+                <ControlStyle CssClass="picutureGrid"></ControlStyle>
+            </asp:ImageField>
 
+
+            <asp:TemplateField HeaderText="Attachment">
+                <ItemTemplate>
+                    <asp:LinkButton ID="lnkDownload" CommandArgument='<%# Eval("attachmentLocation") %>' runat="server" OnClick="DownloadFile" Text='<%# Convert.ToString(Eval("attachmentLocation")).Length < 1 ? "" : Convert.ToString(Eval("attachmentLocation")) %>' >Download</asp:LinkButton>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+
+        </Columns>
 
         <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
         <SortedAscendingCellStyle BackColor="#F7F7F7" />
@@ -46,7 +53,9 @@
 
         <Columns>
             <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
-                NullDisplayText="No image associated." ControlStyle-CssClass="picutureGrid" ReadOnly="True" />
+                NullDisplayText="No image associated." ControlStyle-CssClass="picutureGrid" ReadOnly="True">
+                <ControlStyle CssClass="picutureGrid"></ControlStyle>
+            </asp:ImageField>
             <asp:BoundField DataField="purchaseDate" HeaderText="Purchase date" SortExpression="purchaseDate" />
             <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
             <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />
@@ -56,6 +65,11 @@
             <asp:BoundField DataField="addedDate" HeaderText="Added date" SortExpression="addedDate" />
             <asp:BoundField DataField="typeNr" HeaderText="Type nr" SortExpression="typeNr" />
 
+            <asp:TemplateField HeaderText="Attachment">
+                <ItemTemplate>
+                    <asp:LinkButton ID="lnkDownload" CommandArgument='<%# Eval("attachmentLocation") %>' runat="server" OnClick="DownloadFile" Text='<%# Convert.ToString(Eval("attachmentLocation")).Length < 1 ? "" : Convert.ToString(Eval("attachmentLocation")) %>' >Download</asp:LinkButton>
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
         <EditRowStyle BackColor="#999999" />
 
@@ -65,7 +79,7 @@
         <SortedDescendingCellStyle BackColor="#FFFDF8" />
         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
-    <asp:SqlDataSource ID="HardwareDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, warranty, extraInfo, DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate' FROM hardware"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="HardwareDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, warranty, extraInfo, DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation FROM hardware"></asp:SqlDataSource>
     <asp:Label ID="lblTotalQuery" runat="server" Text=""></asp:Label>
     <!-- <asp:SqlDataSource ID="HardwareOverviewGridView" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT * FROM hardware;"></asp:SqlDataSource>
     -->

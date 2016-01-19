@@ -66,7 +66,7 @@ WORKING POINTS
 3|add-license| Listed below KNOWN ISSUES
 4|*|not necessary| Highlight the searchword
 5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
-6|*| Picture overview from the location in database
+6|*| Picture overview from the location in database - FINISHED
 7|add-hardware| The purchase date can not be later than today.
 8|*|Archive hardware linked people. - need people - database created.
 9|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
@@ -91,5 +91,51 @@ FIXED
 
 QUESTION
 19-01-2016
-
 1|manage-type| type nr autogenerate??
+---------------------------------------------------------------------------------------
+PREVIOUS COMMIT: bedaab60a0d40cb9a01db039042ad6136100df05 at master branch
+
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory
+2|add-license| Implement search function people. WITH Active Directory
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|add-hardware| The purchase date can not be later than today. - FIXED - greater = today
+7|*|Archive hardware linked people. - need people - database created.
+8|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+9|*| Working with active directory
+19-01-2016
+10|manage-type| May remove TYPENR selection and use auto_increament for this
+11|*| Role provided page access
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI
+2|add-hardware| Attachmentlocation not added into the database. - FIXING - FIXED
+3|*| Title not set - FIXED
+4|hardware-overview| PageIndexChanging not handled after searching
+5|hardware-overview| Type change failed - FIXED 
+6|add-hardware| Type selected type index have be the same as the selected type nr.
+7|add-hardware| Database issue - table change needed - FIXED
+
+ADDED
+19-01-2016
+1|hardware-overview| Attachment download proberty
+2|hardware-overview| Download only appear when there is a attachment
+FIXED
+19-01-2016
+1|add-hardware| KNOWN ISSUES 2| Attachmentlocation not added into the database.
+2|*| Title not set 
+3|add-hardware| Attachment location not added, in insert into command
+
+QUESTION
+19-01-2016
+1|manage-type| type nr autogenerate??
+2|*| AD credentials
+3|*| Create test AD database
+4|add-license| Assign to people? 
+5|*|Scriptura DocumentFlow
+---------------------------------------------------------------------------------------
+PREVIOUS COMMIT: at master branch

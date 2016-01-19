@@ -19,19 +19,13 @@ namespace Toestellenbeheer.Manage
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
+            try { 
             getTypeList();
-            /* No MySQL connection required for get the items 
-             DataSet Manufacturer = new DataSet();
-             string listManufacturerOut = "select manufacturerName from hardware";
-             MySqlCommand listOutManufacturer = new MySqlCommand(listManufacturerOut, mysqlConnectie);
-             using (MySqlDataAdapter data2 = new MySqlDataAdapter(listOutManufacturer))
-                 data2.Fill(Manufacturer, "manufacturerName");
-             manufacturerList.DataSource = Manufacturer.Tables["hardware"];
-             manufacturerList.DataBind();
-             manufacturerList.DataTextField = "manufacturerName";
-             manufacturerList.DataValueField = "manufacturerName";
-             mysqlConnectie.Close();
-             */
+            }
+            catch(Exception ex)
+            {
+                txtResultUpload.Text = ex.ToString();
+            }
         }
         protected void getTypeList()
         {
@@ -68,17 +62,25 @@ namespace Toestellenbeheer.Manage
             String dtePurchaseDay = txtDatepicker.Text.Substring(3, 2);
             String dtePurchaseDate = dtePurchaseYear.ToString() + '-' + dtePurchaseMonth.ToString() + '-' + dtePurchaseDay.ToString();
             String dteAddedDate = DateTime.Now.ToString("yyyy-MM-dd");
+            DateTime addedDate = DateTime.Today;
+            DateTime purchaseDate = new DateTime(int.Parse(dtePurchaseYear), int.Parse(dtePurchaseMonth), int.Parse(dtePurchaseDay), 0, 0, 0);
+            int result = DateTime.Compare(purchaseDate, addedDate);
+            if (result > 0)
+            {
+                dtePurchaseDate = dteAddedDate;
+            }
             try
             {
                 if (strInternalNr == "")
                 {
-                    ShowMessage("Internal number is required, please add this!");
+                    txtResultUpload.Text = "Internal number is required, please add this!";
 
                 }
                 else if (strSerialNr == "")
                 {
-                    ShowMessage("Serial number is required, please add this");
+                    txtResultUpload.Text = "Serial number is required, please add this";
                 }
+               
                 else
                 {
                     /*
@@ -91,9 +93,10 @@ namespace Toestellenbeheer.Manage
                     addHIEP.Parameters.AddWithValue("@extraInfo", strExtraInfo);
                     addHIEP.Parameters.AddWithValue("@attLocation", strExtraInfo);
                     */
+
                     //Use the mysql to connect the database
                     mysqlConnectie.Open();
-                    MySqlCommand addHIEP = new MySqlCommand("Insert into hardware (purchaseDate, serialNr, internalNr,  warranty, extraInfo, manufacturerName, addedDate, pictureLocation, typeNr) values (@purchaseDate, @serialNr, @internalNr,  @warranty, @extraInfo, @manufacturerName, @addedDate, @pictureLocation, @typeNr)", mysqlConnectie);
+                    MySqlCommand addHIEP = new MySqlCommand("Insert into hardware (purchaseDate, serialNr, internalNr,  warranty, extraInfo, manufacturerName, addedDate, pictureLocation, typeNr, attachmentLocation) values (@purchaseDate, @serialNr, @internalNr,  @warranty, @extraInfo, @manufacturerName, @addedDate, @pictureLocation, @typeNr, @attachmentLocation)", mysqlConnectie);
 
                     //add parameters (assaign the values to the column.)
                     addHIEP.Parameters.AddWithValue("@purchaseDate", dtePurchaseDate);
@@ -109,14 +112,18 @@ namespace Toestellenbeheer.Manage
                     addHIEP.Parameters.AddWithValue("@pictureLocation", mImagePath);
 
                     addHIEP.Parameters.AddWithValue("@typeNr", intSelectedTypeIndex);
-                    //addHIEP.Parameters.AddWithValue("@nameAD", dteAddedDate);
+                    addHIEP.Parameters.AddWithValue("@attachmentLocation", TestlocationAtt.Text);
+
+                    addHIEP.Parameters.AddWithValue("@nameAD", dteAddedDate);
 
 
                     addHIEP.ExecuteNonQuery();
                     addHIEP.Dispose();
-                    mysqlConnectie.Close();
                     txtResultUpload.Text = "Congratulations! The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
                        " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " successfully added to the database.";
+
+                    
+                    mysqlConnectie.Close();
                 }
             }
             catch (MySqlException ex)
@@ -136,6 +143,7 @@ namespace Toestellenbeheer.Manage
             test.Text = dtePurchaseDate.ToString();
         }
 
+      
         void ShowMessage(string msg)
         {
             ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> alert('" + msg + "');</ script > ");
@@ -208,14 +216,11 @@ namespace Toestellenbeheer.Manage
                     {
                         AttachmentUpload.PostedFile.SaveAs(path
                             + AttachmentUpload.FileName);
-                        String mAttachPath = path.ToString() + AttachmentUpload.FileName.ToString();
-                        TestlocationAtt.Text = mAttachPath;
+                        String mAttachPath = AttachmentUpload.FileName.ToString();
+                        TestlocationAtt.Text = AttachmentUpload.FileName.ToString();
                         ResultUploadAtta.Text = "File uploaded!";
-                        /*
-                        MySqlCommand addAtt = new MySqlCommand("Insert into fileLocation (attachmentLocation) values (@attachmentLocation)", mysqlConnectie);
-                        addAtt.Parameters.AddWithValue("@attachmentLocation", mAttachPath);
-                        addAtt.ExecuteNonQuery();
-                        addAtt.Dispose();*/
+                        
+                      
                     }
                     catch (Exception ex)
                     {

@@ -44,7 +44,23 @@ namespace Toestellenbeheer
         {
             this.BindGrid();
         }
+        protected void DownloadFile(object sender, EventArgs e)
+        {
+            //try { 
+            string path = "../UserUploads/Attachments/";
 
+            string filePath = (sender as LinkButton).CommandArgument;
+            Response.ContentType = ContentType;
+            Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
+            Response.WriteFile(path + Path.GetFileName(filePath));
+            Response.End();
+            }
+          //  catch (Exception ex)
+            //{
+           //     lblTotalQuery.Text = "Problem with downloading, please check if you added a attachment to the hardware.";
+            //}
+            //}
+       
         private void BindGrid()
         {
             try
@@ -73,7 +89,7 @@ namespace Toestellenbeheer
                 String strSearchItem = drpSearchItem.SelectedValue.ToString();
                 String strSearchText = txtSearch.Text.Trim();
                 // string bindToGridCmd = "SELECT * FROM hardware WHERE @searchItem LIKE '%@searchText%'";
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date' FROM hardware WHERE " + strSearchItem + " LIKE '%" + strSearchText + "%';", mysqlConnectie);
+                MySqlCommand bindToGrid = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation FROM hardware WHERE " + strSearchItem + " LIKE '%" + strSearchText + "%';", mysqlConnectie);
                 bindToGrid.Parameters.AddWithValue("@searchItem", strSearchItem);
                 bindToGrid.Parameters.AddWithValue("@searchText", strSearchText);
 
@@ -84,6 +100,9 @@ namespace Toestellenbeheer
                 adpa.Fill(ds);
                 HardwareOverviewGridSearch.DataSource = ds;
                 HardwareOverviewGridSearch.DataBind();
+
+                
+
                 int intTotalResultReturned = HardwareOverviewGridSearch.Rows.Count;
                 if (intTotalResultReturned == 0)
                 {

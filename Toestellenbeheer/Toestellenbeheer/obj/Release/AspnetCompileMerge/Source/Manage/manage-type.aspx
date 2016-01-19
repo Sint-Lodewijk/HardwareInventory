@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="manage-type.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_type" %>
+﻿<%@ Page Title="Manage type" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="manage-type.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_type" %>
 
 <asp:Content ID="ManageType" ContentPlaceHolderID="MainContent" runat="server">
 

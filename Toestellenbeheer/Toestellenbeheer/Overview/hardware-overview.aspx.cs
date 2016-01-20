@@ -133,33 +133,7 @@ namespace Toestellenbeheer
             HardwareOverviewGrid.PageIndex = e.NewPageIndex;
             this.BindGrid();
         }
-        /*protected void GetImagePaths()
-        {
-
-            DataTable dt = new DataTable();
-            MySqlCommand cmd = new MySqlCommand("SELECT pictureLocation FROM hardware;");
-            MySqlConnection con = new MySqlConnection ("MysqlConnectie");
-            MySqlDataAdapter sda = new MySqlDataAdapter();
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = con;
-            try
-            {
-                sda.SelectCommand = cmd;
-                sda.Fill(dt);
-                HardwareOverviewGrid.DataSource = dt;
-                HardwareOverviewGrid.DataBind();
-            }
-            catch (Exception ex)
-            {
-                Response.Write(ex.Message);
-            }
-            finally
-            {
-     
-                sda.Dispose();
-                con.Dispose();
-            }
-        }*/
+    
 
     }
 

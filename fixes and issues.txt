@@ -139,7 +139,7 @@ QUESTION
 4|add-license| Assign to people? 
 5|*|Scriptura DocumentFlow
 ---------------------------------------------------------------------------------------
-PREVIOUS COMMIT: eff3df96c70aa86c7efb671142cda56fdfd08be0 at ALPHA branch
+PREVIOUS COMMIT: eff3df96c70aa86c7efb671142cda56fdfd08be0 at master branch
 WORKING POINTS
 18-01-2016
 1|add-license| Need to check |Assign license to selected people. WITH Active Directory
@@ -150,10 +150,11 @@ WORKING POINTS
 6|*|Archive hardware linked people. - need people - database created.
 7|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
 8|*| Working with active directory
-
 19-01-2016
 9|manage-type| May remove TYPENR selection and use auto_increament for this
-10|*| Role provided page access
+1|*| Role provided page access
+20-01-2016
+
 
 KNOWN ISSUES
 18-01-2016
@@ -179,3 +180,46 @@ QUESTION
 3|*| Create test AD database
 4|add-license| Assign to people? 
 5|*|Scriptura DocumentFlow
+---------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 7c54dd5e212995f8f27bc6776bb396b8fb93f1e8 at ALPHA branch
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory
+2|add-license| Implement search function people. WITH Active Directory
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|*|Archive hardware linked people. - need people - database created.
+7|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+8|*| Working with active directory
+19-01-2016
+9|manage-type| May remove TYPENR selection and use auto_increament for this
+1|*| Role provided page access
+20-01-2016
+
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI
+2|hardware-overview| PageIndexChanging not handled after searching
+3|add-hardware| Type selected type index have be the same as the selected type nr.
+20-01-2016
+4|add-license| Select people not working
+5|*| Crash when not select anything
+
+ADDED
+20-01-2016
+
+FIXED
+20-01-2016
+1|*|Performance test| Listed out 1777 record in 0.484 sec with network delay.
+2|add-license| MySQL query changed
+
+QUESTION
+19-01-2016
+1|manage-type| type nr autogenerate??
+2|*| AD credentials
+3|*| Create test AD database
+4|add-license| Assign to people? 
+5|*|Scriptura DocumentFlow
+

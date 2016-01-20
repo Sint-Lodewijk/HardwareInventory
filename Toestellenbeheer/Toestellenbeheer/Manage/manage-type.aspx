@@ -6,12 +6,13 @@
     </asp:GridView>
     <asp:SqlDataSource ID="type" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT typeNr 'Type Nr', type 'Type name' FROM type"></asp:SqlDataSource>
     <div class="form-group">
+        <!--
         <asp:Label ID="lblTypeNR" runat="server" CssClass="control-label col-sm-2" AssociatedControlID="typeNr">Type nr</asp:Label>
         <div class="col-sm-4">
             <asp:TextBox ID="typeNr" runat="server" CssClass="form-control"></asp:TextBox>
-        </div>
+        </div>-->
         <asp:Label ID="lblTypeName" runat="server" CssClass="control-label col-sm-2" AssociatedControlID="typeName">Type name</asp:Label>
-        <div class="col-sm-4">
+        <div class="col-sm-10">
 
             <asp:TextBox ID="typeName" runat="server" CssClass="form-control"></asp:TextBox>
         </div>

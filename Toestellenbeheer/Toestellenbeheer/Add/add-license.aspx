@@ -91,12 +91,21 @@
                 <Columns>
                     <asp:CommandField ShowSelectButton="True" />
                 </Columns>
+                <SelectedRowStyle BackColor="#A1DCF2" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#808080" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#383838" />
             </asp:GridView>
-            <div class="form-group col-sm-offset-2 col-sm-2">
-                <asp:Button runat="server" ID="btnAssignLicenseToPeople" OnClick="assignLicenseToPeople"/>
+            <div class="form-group col-sm-offset-4 col-sm-2">
+                <asp:Button runat="server" ID="btnAssignLicenseToPeople" OnClick="assignLicenseToPeople" CssClass="btn btn-primary margin-top-5" Text="Assign to selected person" />
             </div>
-        </asp:Panel>    
+        </asp:Panel>
 
+
+        <div class="form-group col-sm-12">
+            <asp:Label ID="testLabel" runat="server" Text=""></asp:Label>
+        </div>
     </div>
-<asp:Label ID="testLabel" runat="server" Text=""></asp:Label>
+
 </asp:Content>

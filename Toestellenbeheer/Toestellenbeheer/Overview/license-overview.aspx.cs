@@ -18,6 +18,7 @@ namespace Toestellenbeheer.Overview
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            try { 
             MySqlCommand bindToGrid = new MySqlCommand("SELECT licenseName 'License name', licenseCode 'License code', serialNr 'Serial nr', internalNr 'Internal Nr' FROM license", mysqlConnectie);
             mysqlConnectie.Open();
             MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
@@ -28,7 +29,11 @@ namespace Toestellenbeheer.Overview
             grvLicense.DataSource = ds;
             grvLicense.DataBind();
             mysqlConnectie.Close();
-
+            }
+            catch(MySqlException ex)
+            {
+                lblProblem.Text = ex.ToString();
+            }
         }
         /*trying to add remove license methode
         protected void removeSelectedLicense_Click(object sender, EventArgs e)

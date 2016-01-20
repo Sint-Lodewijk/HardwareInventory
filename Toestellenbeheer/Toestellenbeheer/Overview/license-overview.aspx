@@ -10,4 +10,5 @@
         <SortedDescendingCellStyle BackColor="#E5E5E5" />
         <SortedDescendingHeaderStyle BackColor="#242121" />
     </asp:GridView>
+    <asp:Label ID="lblProblem" runat="server"></asp:Label>
 </asp:Content>

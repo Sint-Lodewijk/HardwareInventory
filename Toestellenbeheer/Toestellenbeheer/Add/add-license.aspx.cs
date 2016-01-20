@@ -21,7 +21,7 @@ namespace Toestellenbeheer.Manage
 
         DirectoryEntry entry = new DirectoryEntry("LDAP://magnix.dc.intranet");
         // set up domain context
-  
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -286,14 +286,14 @@ namespace Toestellenbeheer.Manage
                 DataTable dt = new DataTable();
                 //dt.Columns("DisplayName", "EmailAddress", "DomainName", "Department", "Title", "Company", "memberof");
                 dt.Columns.Add(new DataColumn("Display Name", typeof(string)));
-                dt.Columns.Add(new DataColumn("Email Address", typeof(string)));
                 dt.Columns.Add(new DataColumn("Domain Name", typeof(string)));
+                dt.Columns.Add(new DataColumn("Email Address", typeof(string)));
                 dt.Columns.Add(new DataColumn("Department", typeof(string)));
                 dt.Columns.Add(new DataColumn("Title", typeof(string)));
                 dt.Columns.Add(new DataColumn("Company", typeof(string)));
                 dt.Columns.Add(new DataColumn("Member Of", typeof(string)));
 
-                dt.Rows.Add(DisplayName, EmailAddress, DomainName, Department, Title, Company, memberof);
+                dt.Rows.Add(DisplayName, DomainName, EmailAddress, Department, Title, Company, memberof);
 
                 rootDSE.Dispose();
                 licenseOverviewGridPeople.DataSource = dt;
@@ -301,20 +301,66 @@ namespace Toestellenbeheer.Manage
                 licenseOverviewGridPeople.DataBind();
             }
         }
-        
+
         protected void grvHardwareLicenseSelect_PageIndexChanged(object sender, EventArgs e)
         {
             hardwarePanel.Visible = true;
         }
-        protected void selectPeopleGridview_Click (object sender, EventArgs e)
+        protected void selectPeopleGridview_Click(object sender, EventArgs e)
         {
             peoplePanel.Visible = true;
 
         }
         protected void assignLicenseToPeople(object sender, EventArgs e)
         {
+            try
+            {
+                String nameAD = licenseOverviewGridPeople.SelectedRow.Cells[2].Text;
+                String strLicenseCode = txtLicenseCode.Text;
+                mysqlConnectie.Open();
+                MySqlCommand addNewLicense = new MySqlCommand("INSERT INTO license (licenseCode) values (@licenseCode)", mysqlConnectie);
+                addNewLicense.Parameters.AddWithValue("@licenseCode", strLicenseCode);
+                addNewLicense.ExecuteNonQuery();
+                addNewLicense.Dispose();
+                //     MySqlCommand listOutType = new MySqlCommand("INSERT INTO license (licenseName, licenseCode, serialNr, internalNr) values (@licenseName, @licenseCode, @serialNr, @internalNr)", mysqlConnectie);
+                MySqlCommand assignLicenseToPeople = new MySqlCommand("INSERT INTO people (nameAD, licenseCode) values (@nameAD, @licenseCode)", mysqlConnectie);
 
+                //using (MySqlDataAdapter data1 = new MySqlDataAdapter(listOutType))
+                //     data1.Fill(Type, "type");
+                assignLicenseToPeople.Parameters.AddWithValue("@nameAD", nameAD);
+                assignLicenseToPeople.Parameters.AddWithValue("@licenseCode", strLicenseCode);
+
+                assignLicenseToPeople.ExecuteNonQuery();
+                assignLicenseToPeople.Dispose();
+                MySqlCommand updateLicenseStatus = new MySqlCommand("UPDATE license SET nameAD=" + "'"+ nameAD + "'" + "  WHERE licenseCode=" + "'" + strLicenseCode +"'", mysqlConnectie);
+                updateLicenseStatus.ExecuteNonQuery();
+                updateLicenseStatus.Dispose();
+                mysqlConnectie.Close();
+                testLabel.Text = "Congratulations! The license code: " + "<span class=\"labelOutput\">" + txtLicenseCode.Text + "</span>" +
+                    " has been successfully assigned to " + "<span class=\"labelOutput\">" +
+                    licenseOverviewGridPeople.SelectedRow.Cells[2].Text + "</span>";
+                btnAssignLicenseToPeople.Text = "Assign to people";
+            }
+            catch (MySqlException ex)
+            {
+                if (ex.Number.ToString() == "1062")
+                {
+                    //testLabel.Text = ex.Message.ToString() + ", please check your input.";
+                    testLabel.Text = "The license code: " + "<span style=\"color:red\">" +
+                        txtLicenseCode.Text + "</span>" + " you have entered for: " + "<span style=\"color:red\">" +
+                        licenseOverviewGridPeople.SelectedRow.Cells[2].Text + "</span>" + " has been assigned to another person.";
+
+                }
+                else if (ex.Number.ToString() == "1064")
+                {
+
+                    //testLabel.Text = ex.Message.ToString() + ", please check your input.";
+                    testLabel.Text = "Apostrophe ('), quotation mark and semicolum is not allow in the searchword: " + "<span style=\"color:red\">" + txtLicenseCode.Text + "</span>" + ", please delete this marks.";
+
+                }
+                else { ShowMessage(ex.Message); }
+            }
         }
-    }
 
+    }
 }

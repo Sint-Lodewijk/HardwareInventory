@@ -84,6 +84,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.DirectoryServices.Protocols" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -215,6 +218,7 @@
     <Content Include="Manage\Default.aspx" />
     <Content Include="Overview\license-overview.aspx" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="Overview\user-overview.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
@@ -413,6 +417,7 @@
     <Compile Include="Manage\manage-type.aspx.designer.cs">
       <DependentUpon>manage-type.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\LdapAuthentication.cs" />
     <Compile Include="Overview\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -465,6 +470,13 @@
     </Compile>
     <Compile Include="Overview\license-overview.aspx.designer.cs">
       <DependentUpon>license-overview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Overview\user-overview.aspx.cs">
+      <DependentUpon>user-overview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Overview\user-overview.aspx.designer.cs">
+      <DependentUpon>user-overview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

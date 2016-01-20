@@ -86,3 +86,6 @@ input[type="select"] {
     width: 100%;
     max-width: 100%;
 }
+.hiddenField {
+           display:none;
+}

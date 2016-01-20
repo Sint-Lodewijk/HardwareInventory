@@ -7,8 +7,11 @@ using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
+using System.DirectoryServices;
+using System.DirectoryServices.AccountManagement;
+using System.DirectoryServices.Protocols;
+using System.Security.Permissions;
 
 namespace Toestellenbeheer.Manage
 {
@@ -16,6 +19,9 @@ namespace Toestellenbeheer.Manage
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
+        DirectoryEntry entry = new DirectoryEntry("LDAP://magnix.dc.intranet");
+        // set up domain context
+  
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -48,6 +54,7 @@ namespace Toestellenbeheer.Manage
             }
             hardwarePanel.Visible = true;
         }
+        //When click search button, the right panel stays appear
         protected void Search_Click(object sender, EventArgs e)
         {
             this.BindGrid();
@@ -57,13 +64,14 @@ namespace Toestellenbeheer.Manage
 
 
         }
+        //Displays the search button
         protected void display_search_button(object sender, EventArgs e)
         {
             btnAssignToSelectedHardwareSearch.Visible = true;
             hardwarePanel.Visible = true;
 
         }
-
+        //Search and bind the entrys
         private void BindGrid()
         {
             try
@@ -101,6 +109,7 @@ namespace Toestellenbeheer.Manage
             }
 
         }
+        //Function assign, used for both 
         protected void assign(String internalNr, String SerialNr)
         {
 
@@ -151,7 +160,7 @@ namespace Toestellenbeheer.Manage
             }
             //test the value - removeable
         }
-
+        //When click the button, use the assign function to assign the right hardware.
         protected void assignToSelectedHardware_Click(object sender, EventArgs e)
         {
 
@@ -160,20 +169,21 @@ namespace Toestellenbeheer.Manage
             assign(internalNr, strSerialCode);
 
         }
-
+        //Shows the error message
         void ShowMessage(string msg)
         {
             ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> An error has been occured, please check the errorcode -> ('" + msg + "');</ script > ");
         }
 
+        //Uses the assign function to assign the license to selected hardware
         protected void assignToSelectedHardwareSearch_Click(object sender, EventArgs e)
         {
             String internalNr = licenseOverviewGridSearch.SelectedRow.Cells[3].Text;
             String strSerialCode = licenseOverviewGridSearch.SelectedRow.Cells[4].Text;
             assign(internalNr, strSerialCode);
         }
-        //Expand or hide hardware grid
 
+        //Expand or hide hardware grid + change the text of it
         protected void hideShowHardware_Click(object sender, EventArgs e)
         {
             if (hideShowHardware.Text == "Assign to hardware")
@@ -199,12 +209,15 @@ namespace Toestellenbeheer.Manage
 
 
         }
+
+        //Expand or hide people grid + change the text of it
         protected void hideShowPeople_Click(object sender, EventArgs e)
         {
             if (hideShowPeople.Text == "Assign to people")
             {
                 hideShowPeople.Text = "Hide people";
                 peoplePanel.Visible = true;
+                getUserFromAD();
 
             }
             else if (hideShowPeople.Text == "Hide people")
@@ -218,9 +231,89 @@ namespace Toestellenbeheer.Manage
 
         }
 
+        //Displays the hardwarePanel when click
         protected void displayHardwarePanel(object sender, GridViewSortEventArgs e)
         {
             hardwarePanel.Visible = true;
+        }
+        //Get users from ad and display it in the gridview named licenseOverviewGridPeopleSearch
+        protected void getUserFromAD()
+        {
+            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry("LDAP://magnix.dc.intranet", "readonly@dc.intranet", "id.13542");
+
+            DirectorySearcher search = new DirectorySearcher(rootDSE);
+
+            search.PageSize = 1001;// To Pull up more than 100 records.
+
+            search.Filter = "(&(objectClass=user)(!userAccountControl:1.2.840.113556.1.4.803:=2))";//UserAccountControl will only Include Non-Disabled Users.
+            SearchResultCollection result = search.FindAll();
+            String DisplayName, EmailAddress, DomainName, Department, Title, Company, memberof, aaa;
+            DisplayName = EmailAddress = DomainName = Department = Title = Company = memberof = aaa = "";
+            foreach (SearchResult item in result)
+            {
+                if (item.Properties["cn"].Count > 0)
+                {
+                    DisplayName = item.Properties["cn"][0].ToString();
+                }
+                if (item.Properties["mail"].Count > 0)
+                {
+                    EmailAddress = item.Properties["mail"][0].ToString();
+                }
+                if (item.Properties["SamAccountName"].Count > 0)
+                {
+                    DomainName = item.Properties["SamAccountName"][0].ToString();
+                }
+                if (item.Properties["department"].Count > 0)
+                {
+                    Department = item.Properties["department"][0].ToString();
+                }
+                if (item.Properties["title"].Count > 0)
+                {
+                    Title = item.Properties["title"][0].ToString();
+                }
+                if (item.Properties["company"].Count > 0)
+                {
+                    Company = item.Properties["company"][0].ToString();
+                }
+                if (item.Properties["DistinguishedName"].Count > 0)
+                {
+                    memberof = item.Properties["DistinguishedName"][0].ToString();
+                }
+                if (item.Properties["AccountExpirationDate"].Count > 0)
+                {
+                    aaa = item.Properties["AccountExpirationDate"][0].ToString();
+                }
+                DataTable dt = new DataTable();
+                //dt.Columns("DisplayName", "EmailAddress", "DomainName", "Department", "Title", "Company", "memberof");
+                dt.Columns.Add(new DataColumn("Display Name", typeof(string)));
+                dt.Columns.Add(new DataColumn("Email Address", typeof(string)));
+                dt.Columns.Add(new DataColumn("Domain Name", typeof(string)));
+                dt.Columns.Add(new DataColumn("Department", typeof(string)));
+                dt.Columns.Add(new DataColumn("Title", typeof(string)));
+                dt.Columns.Add(new DataColumn("Company", typeof(string)));
+                dt.Columns.Add(new DataColumn("Member Of", typeof(string)));
+
+                dt.Rows.Add(DisplayName, EmailAddress, DomainName, Department, Title, Company, memberof);
+
+                rootDSE.Dispose();
+                licenseOverviewGridPeople.DataSource = dt;
+
+                licenseOverviewGridPeople.DataBind();
+            }
+        }
+        
+        protected void grvHardwareLicenseSelect_PageIndexChanged(object sender, EventArgs e)
+        {
+            hardwarePanel.Visible = true;
+        }
+        protected void selectPeopleGridview_Click (object sender, EventArgs e)
+        {
+            peoplePanel.Visible = true;
+
+        }
+        protected void assignLicenseToPeople(object sender, EventArgs e)
+        {
+
         }
     }
 

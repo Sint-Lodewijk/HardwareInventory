@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using Toestellenbeheer.Models;
+using System.Web.Security;
 
 namespace Toestellenbeheer.Account
 {

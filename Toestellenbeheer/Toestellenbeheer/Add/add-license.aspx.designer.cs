@@ -175,13 +175,22 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.Panel peoplePanel;
         
         /// <summary>
-        /// licenseOverviewGridPeopleSearch control.
+        /// licenseOverviewGridPeople control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView licenseOverviewGridPeopleSearch;
+        protected global::System.Web.UI.WebControls.GridView licenseOverviewGridPeople;
+        
+        /// <summary>
+        /// btnAssignLicenseToPeople control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAssignLicenseToPeople;
         
         /// <summary>
         /// testLabel control.

@@ -16,7 +16,7 @@
             <asp:TextBox ID="typeName" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
     </div>
-    <div class="form-group col-sm-offset-5 col-sm-7">
-        <asp:Button ID="btnAddType" runat="server" Text="Add a tyoe" CssClass="btn btn-primary col-sm-2" OnClick="btnAddType_Click" />
+    <div class="form-group col-sm-offset-5 col-sm-7 margin-top-15">
+        <asp:Button ID="btnAddType" runat="server" Text="Add a type" CssClass="btn btn-primary col-sm-2" OnClick="btnAddType_Click" />
     </div>
 </asp:Content>

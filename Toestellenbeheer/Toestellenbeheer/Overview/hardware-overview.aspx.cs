@@ -102,8 +102,6 @@ namespace Toestellenbeheer
                 HardwareOverviewGridSearch.DataSource = ds;
                 HardwareOverviewGridSearch.DataBind();
 
-                
-
                 int intTotalResultReturned = HardwareOverviewGridSearch.Rows.Count;
                 if (intTotalResultReturned == 0)
                 {
@@ -133,8 +131,24 @@ namespace Toestellenbeheer
             HardwareOverviewGrid.PageIndex = e.NewPageIndex;
             this.BindGrid();
         }
-    
 
+        protected void lnkShowMoreInfo_Click(object sender, EventArgs e)
+        {
+            mysqlConnectie.Open();
+
+            MySqlCommand viewDetails = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation FROM hardware WHERE internalNr " +
+                "LIKE '"+HardwareOverviewGrid.SelectedRow.Cells[2].Text+"'", mysqlConnectie);
+           
+
+            MySqlDataAdapter adpa = new MySqlDataAdapter(viewDetails);
+            viewDetails.ExecuteNonQuery();
+            viewDetails.Dispose();
+            DataSet ds = new DataSet();
+            adpa.Fill(ds);
+            selectedRow.DataSource = ds;
+            selectedRow.DataBind();
+            HardwareOverviewGrid.Visible = false;
+        }
     }
 
 

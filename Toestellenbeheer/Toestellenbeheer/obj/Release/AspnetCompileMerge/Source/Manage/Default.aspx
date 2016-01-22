@@ -18,10 +18,10 @@
         <div class="col-md-6">
             <h2></h2>
             <p>
-               Reserved
+               Assign hardware to person
             </p>
             <p>
-                <a class="btn btn-default" href="license-overview">Reserved &raquo;</a>
+                <a class="btn btn-default" href="manage-hardware">Assign hardware to person &raquo;</a>
             </p>
         </div>
         

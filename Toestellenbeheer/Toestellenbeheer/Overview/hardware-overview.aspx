@@ -26,7 +26,7 @@
     </div>
 
 
-    <asp:GridView ID="HardwareOverviewGridSearch" CssClass="table table-hover table-striped gridview" DataKeyNames="pictureLocation,attachmentLocation" runat="server">
+    <asp:GridView ID="HardwareOverviewGridSearch" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" DataKeyNames="pictureLocation,attachmentLocation" runat="server">
         <Columns>
 
             <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
@@ -88,15 +88,22 @@
         <SortedDescendingCellStyle BackColor="#FFFDF8" />
         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
-    <asp:GridView ID="selectedRow" CssClass="table table-hover table-striped gridview" runat="server">
+    <asp:GridView ID="selectedRow" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
         <Columns>
             <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
                 NullDisplayText="No image associated." ControlStyle-CssClass="picutureGrid" ReadOnly="True">
                 <ControlStyle CssClass="picutureGrid"></ControlStyle>
             </asp:ImageField>
+            <asp:BoundField DataField="Purchase date" HeaderText="Purchase date" />
+                        <asp:BoundField DataField="Type nr" HeaderText="Type Nr" />
+            <asp:BoundField DataField="Manufacturer" HeaderText="Manufacturer" />
+            <asp:BoundField DataField="Serial Nr" HeaderText="Serial Nr" />
+            <asp:BoundField DataField="Internal Nr" HeaderText="Internal Nr" />
+            <asp:BoundField DataField="Warranty" HeaderText="Warranty" />
 
         </Columns>
     </asp:GridView>
+
     <!--
     <link rel="stylesheet" href="../../Scripts/jquery-ui.css">
     <script src="../../Scripts/jquery-2.2.0.js"></script>

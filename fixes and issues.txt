@@ -282,7 +282,7 @@ WORKING POINTS
 1|*| Role provided page access
 20-01-2016
 21-01-2016
-1|hardware-overview| Details by click - Adding
+1|hardware-overview| Details by click - Adding - ADDED
 2|add-hardware| Show a overview on the added hardware
 22-01-2016
 1|*| Archive function
@@ -311,4 +311,84 @@ FIXED
 2|add-license| License can added into unlimited hardware and person - FIXING - UPGRADING MYSQL DATABASE + QUERY + FIXED
 3|add-license| Archicture improvement
 4|hardware-overview| Get details without selecting the row first
+---------------------------------------------------------------------------------------
+PREVIOUS COMMIT: d2df6a5cff6191a6429a5f7b63c16f503f06496e at V0.6ALPHA branch
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory
+2|add-license| Implement search function people. WITH Active Directory
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|*|Archive hardware linked people. - need people - database created.
+7|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+8|*| Working with active directory
+19-01-2016
+9|manage-type| May remove TYPENR selection and use auto_increament for this
+1|*| Role provided page access
+20-01-2016
+21-01-2016
+1|add-hardware| Show a overview on the added hardware
+22-01-2016
+1|*| Archive function
+2|hardware-overview| License overview| Delete and update license function
 
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI - FIXING
+2|hardware-overview| PageIndexChanging not handled after searching
+3|add-hardware| Type selected type index have be the same as the selected type nr.
+20-01-2016
+4|add-license| Select people not working
+5|*| Crash when not select something
+6|*| License key is temporary not a primary key (select internalNr )
+7|*| Add type => same type name can added multiple time (primary key to type name, but type-id has to deleted) 
+8|*| A hardware can only have one license instead of a license can only assigned to one device
+22-01-2016
+9|hardware-overview| Gridview sort failed
+
+ADDED
+22-01-2016
+1|manage-hardware| MySQL table upgrade, one hardware only to one person
+2|manage-hardware| Only list out the unassigned hardware (to people)
+3|*gridview| AutoGenerateColumns="false", create the necessary columns by hand
+-----------------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: d2df6a5cff6191a6429a5f7b63c16f503f06496e at V0.6ALPHA branch
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory
+2|add-license| Implement search function people. WITH Active Directory
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|*|Archive hardware linked people. - need people - database created.
+7|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+8|*| Working with active directory
+19-01-2016
+9|manage-type| May remove TYPENR selection and use auto_increament for this
+1|*| Role provided page access
+20-01-2016
+21-01-2016
+1|add-hardware| Show a overview on the added hardware
+22-01-2016
+1|*| Archive function
+2|hardware-overview| License overview| Delete and update license function
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI - FIXING
+2|hardware-overview| PageIndexChanging not handled after searching
+3|add-hardware| Type selected type index have be the same as the selected type nr.
+20-01-2016
+4|add-license| Select people not working
+5|*| Crash when not select something
+6|*| License key is temporary not a primary key (select internalNr )
+7|*| Add type => same type name can added multiple time (primary key to type name, but type-id has to deleted) 
+8|*| A hardware can only have one license instead of a license can only assigned to one device
+22-01-2016
+9|hardware-overview| Gridview sort failed
+
+ADDED 
+22-01-2016
+1|manage-hardware| List out all unassigned hardware 
+2|manage-hardware| Assign the unassigned hardware with person.

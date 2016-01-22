@@ -69,8 +69,7 @@ namespace Toestellenbeheer
                 String strSearchText = txtSearch.Text.Trim();
                 // string bindToGridCmd = "SELECT * FROM hardware WHERE @searchItem LIKE '%@searchText%'";
                 MySqlCommand bindToGrid = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation FROM hardware WHERE " + strSearchItem + " LIKE '%" + strSearchText + "%';", mysqlConnectie);
-                bindToGrid.Parameters.AddWithValue("@searchItem", strSearchItem);
-                bindToGrid.Parameters.AddWithValue("@searchText", strSearchText);
+               
 
                 MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
                 bindToGrid.ExecuteNonQuery();

@@ -22,7 +22,8 @@ CREATE TABLE `hardware`
   `pictureLocation` Varchar(150),
   `typeNr` Int,
   `attachmentLocation` Varchar(150),
-  `licenseCode` Varchar(150)
+  `licenseCode` Varchar(150),
+  `eventID` Int
 )
 ;
 
@@ -30,6 +31,9 @@ CREATE INDEX `IX_Relationship22` ON `hardware` (`typeNr`)
 ;
 
 CREATE INDEX `IX_Relationship1` ON `hardware` (`licenseCode`)
+;
+
+CREATE INDEX `hHt` ON `hardware` (`eventID`)
 ;
 
 ALTER TABLE `hardware` ADD  PRIMARY KEY (`serialNr`,`internalNr`)
@@ -40,19 +44,13 @@ ALTER TABLE `hardware` ADD  PRIMARY KEY (`serialNr`,`internalNr`)
 CREATE TABLE `people`
 (
   `nameAD` Varchar(100) NOT NULL,
-  `serialNr` Varchar(30),
-  `internalNr` Varchar(30),
-  `licenseCode` Varchar(150)
+  `licenseCode` Varchar(150),
+  `eventID` Int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`eventID`)
 )
 ;
 
-CREATE INDEX `IX_Relationship29` ON `people` (`serialNr`,`internalNr`)
-;
-
 CREATE INDEX `IX_Relationship7` ON `people` (`licenseCode`)
-;
-
-ALTER TABLE `people` ADD  PRIMARY KEY (`nameAD`)
 ;
 
 -- Table type
@@ -101,12 +99,12 @@ ALTER TABLE `archive` ADD UNIQUE `id` (`id`)
 ALTER TABLE `hardware` ADD CONSTRAINT `hHT` FOREIGN KEY (`typeNr`) REFERENCES `type` (`typeNr`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ;
 
-ALTER TABLE `people` ADD CONSTRAINT `hWp` FOREIGN KEY (`serialNr`, `internalNr`) REFERENCES `hardware` (`serialNr`, `internalNr`) ON DELETE RESTRICT ON UPDATE RESTRICT
-;
-
 ALTER TABLE `people` ADD CONSTRAINT `peopleLicenseCode` FOREIGN KEY (`licenseCode`) REFERENCES `license` (`licenseCode`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ;
 
 ALTER TABLE `hardware` ADD CONSTRAINT `hardwareLicense` FOREIGN KEY (`licenseCode`) REFERENCES `license` (`licenseCode`) ON DELETE RESTRICT ON UPDATE RESTRICT
+;
+
+ALTER TABLE `hardware` ADD CONSTRAINT `hHp` FOREIGN KEY (`eventID`) REFERENCES `people` (`eventID`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ;
 

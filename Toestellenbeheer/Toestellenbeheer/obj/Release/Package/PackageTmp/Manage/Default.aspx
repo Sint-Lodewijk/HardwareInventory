@@ -16,7 +16,7 @@
             </p>
         </div>
         <div class="col-md-6">
-            <h2>Reserved</h2>
+            <h2></h2>
             <p>
                Reserved
             </p>

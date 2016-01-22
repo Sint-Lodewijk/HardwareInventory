@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="jumbotron">
+    <div class="jumbotron invStyle">
         <h1>Inventive Designers</h1>
         <p class="lead">Manage the hardware, users, licenses and more...</p>
     </div>

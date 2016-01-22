@@ -26,9 +26,9 @@
             </p>
         </div>
         <div class="col-md-4">
-            <h2>Add a licence</h2>
+            <h2>Add a license</h2>
             <p>
-                Add a licence and assign it to the hardware or people. 
+                Add a license and assign it to the hardware or people. 
             </p>
             <p>
                 <a class="btn btn-default" href="./add-license">Add now &raquo;</a>

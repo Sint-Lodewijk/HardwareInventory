@@ -64,10 +64,10 @@
         <div class="form-group">
             <asp:Label AssociatedControlID="PictureUpload" CssClass="control-label col-sm-2" runat="server">Picture</asp:Label>
             <div class="col-sm-8">
-                <asp:FileUpload ID="PictureUpload" CssClass="btn btn-info form-control" runat="server" />
+                <asp:FileUpload ID="PictureUpload" CssClass="btn btn-default form-control" runat="server" />
             </div>
             <div class="col-sm-2">
-                <asp:Button ID="Upload" runat="server" Text="Upload" CssClass="btn btn-default margin-top-6-2" OnClick="Upload_Click" />
+                <asp:Button ID="Upload" runat="server" Text="Upload" CssClass="btn btn-info margin-top-6-2" OnClick="Upload_Click" />
             </div>
         </div>
         <div class="form-group col-sm-10 col-sm-offset-2">

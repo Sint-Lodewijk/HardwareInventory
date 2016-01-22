@@ -13,12 +13,14 @@
             <asp:TextBox ID="typeName" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
         <div class="col-sm-2">
-        <asp:Button ID="btnAddType" runat="server" Text="Add a type" CssClass="btn btn-primary" OnClick="btnAddType_Click" />
+        <asp:Button ID="btnAddType" runat="server" Text="Add a type" CssClass="btn btn-primary margin-top-5" OnClick="btnAddType_Click" />
     </div>
+        <div class="form-group">
+            <asp:Label runat="server" ID="lblProblem" Text=""></asp:Label>
+        </div>
     </div>
-    <asp:GridView ID="typeSelect" runat="server" DataSourceID="type" CssClass="table table-hover table-striped gridview">
+    <asp:GridView ID="typeSelect" runat="server"  CssClass="table table-hover table-striped gridview">
     </asp:GridView>
-    <asp:SqlDataSource ID="type" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT typeNr 'Type Nr', type 'Type name' FROM type"></asp:SqlDataSource>
     
     
 </asp:Content>

@@ -13,6 +13,7 @@ using System.Net;
 using System.Net.Mail;
 using System.IO;
 using System.Web.Security;
+using System.Drawing;
 
 namespace Toestellenbeheer
 {
@@ -24,20 +25,15 @@ namespace Toestellenbeheer
         {
             if (!IsPostBack)
             {
-                /* ConnectionMethode 1
                 mysqlConnectie.Open();
-                MySqlCommand cmd = new MySqlCommand("Select * from hardware", mysqlConnectie);
-                MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
+                MySqlCommand bindToGrid = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, warranty, extraInfo, DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation FROM hardware", mysqlConnectie);
+                MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
+                bindToGrid.ExecuteNonQuery();
+                bindToGrid.Dispose();
                 DataSet ds = new DataSet();
-                adp.Fill(ds);
+                adpa.Fill(ds);
                 HardwareOverviewGrid.DataSource = ds;
                 HardwareOverviewGrid.DataBind();
-                lblSearch.Text = HardwareOverviewGrid.Rows.Count.ToString();
-                mysqlConnectie.Close();
-                */
-
             }
         }
 
@@ -66,25 +62,7 @@ namespace Toestellenbeheer
         {
             try
             {
-                /*
-                MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-                mysqlConnectie.Open();
-                string bindToGridCmd = "SELECT * FROM hardware WHERE 'internalNr' LIKE '%d%'";
-                MySqlCommand bindToGrid = new MySqlCommand(bindToGridCmd, mysqlConnectie);
-                bindToGrid.Parameters.AddWithValue("@searchItem", drpSearchItem.SelectedValue);
-                bindToGrid.Parameters.AddWithValue("@searchText", txtSearch.Text.Trim());
-                lblSearch.Text = drpSearchItem.SelectedValue;
-                DataTable dt = new DataTable();
-                using (MySqlDataAdapter sda = new MySqlDataAdapter(bindToGrid))
-                {
-                    sda.Fill(dt);
-                    HardwareOverviewGrid.DataSource = dt;
-                    HardwareOverviewGrid.DataBind();
-                    mysqlConnectie.Close();
-
-                }
-                */
-
+               
                 mysqlConnectie.Open();
                 //GetImagePaths();
                 String strSearchItem = drpSearchItem.SelectedValue.ToString();
@@ -131,14 +109,24 @@ namespace Toestellenbeheer
             HardwareOverviewGrid.PageIndex = e.NewPageIndex;
             this.BindGrid();
         }
-
+        protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(HardwareOverviewGrid, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to select this row.";
+            }
+        }
+        #region Not used
         protected void lnkShowMoreInfo_Click(object sender, EventArgs e)
         {
+
             mysqlConnectie.Open();
+            String strInternalNr = HardwareOverviewGrid.SelectedRow.Cells[2].ToString();
 
             MySqlCommand viewDetails = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation FROM hardware WHERE internalNr " +
-                "LIKE '"+HardwareOverviewGrid.SelectedRow.Cells[2].Text+"'", mysqlConnectie);
-           
+                "LIKE '" + HardwareOverviewGrid.SelectedRow.Cells[2].Text + "'", mysqlConnectie);
+
 
             MySqlDataAdapter adpa = new MySqlDataAdapter(viewDetails);
             viewDetails.ExecuteNonQuery();
@@ -148,7 +136,38 @@ namespace Toestellenbeheer
             selectedRow.DataSource = ds;
             selectedRow.DataBind();
             HardwareOverviewGrid.Visible = false;
+
+
         }
+        #endregion
+        //DeleteEvent is used for the datakey - to get details without selecting the rows
+        protected void details(object sender, GridViewDeleteEventArgs e)
+        {
+            try { 
+            mysqlConnectie.Open();
+            String strInternalNr = HardwareOverviewGrid.DataKeys[e.RowIndex].Value.ToString();
+
+            MySqlCommand viewDetails = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation FROM hardware WHERE internalNr " +
+                "LIKE '" + strInternalNr + "'", mysqlConnectie);
+            MySqlCommand f = new MySqlCommand("Delete hardware From hardware where licenseCode LIKE 'test'",mysqlConnectie);
+            f.ExecuteNonQuery();
+            f.Dispose();
+            MySqlDataAdapter adpa = new MySqlDataAdapter(viewDetails);
+            viewDetails.ExecuteNonQuery();
+            viewDetails.Dispose();
+            DataSet ds = new DataSet();
+            adpa.Fill(ds);
+            selectedRow.DataSource = ds;
+            selectedRow.DataBind();
+            HardwareOverviewGrid.Visible = false;
+        }
+            catch(MySqlException ex)
+            {
+                ShowMessage(ex.ToString());
+            }
+            }
+
+
     }
 
 

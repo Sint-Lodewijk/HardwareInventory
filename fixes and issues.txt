@@ -251,8 +251,8 @@ KNOWN ISSUES
 3|add-hardware| Type selected type index have be the same as the selected type nr.
 20-01-2016
 4|add-license| Select people not working
-5|*| Crash when not select anything
-6|*| License key is temporary not a primary key
+5|*| Crash when not select something
+6|*| License key is temporary not a primary key (select internalNr )
 
 ADDED
 21-01-2016
@@ -263,11 +263,52 @@ FIXED
 1|*|Performance test| Listed out 1777 record in 0.484 sec with network delay.
 2|add-license| MySQL query changed
 
-QUESTION
+
+
+---------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 7c54dd5e212995f8f27bc6776bb396b8fb93f1e8 at V0.6ALPHA branch
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory
+2|add-license| Implement search function people. WITH Active Directory
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|*|Archive hardware linked people. - need people - database created.
+7|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+8|*| Working with active directory
 19-01-2016
-1|manage-type| type nr autogenerate??
-2|*| AD credentials
-3|*| Create test AD database
-4|add-license| Assign to people? 
-5|*|Scriptura DocumentFlow
+9|manage-type| May remove TYPENR selection and use auto_increament for this
+1|*| Role provided page access
+20-01-2016
+21-01-2016
+1|hardware-overview| Details by click - Adding
+2|add-hardware| Show a overview on the added hardware
+22-01-2016
+1|*| Archive function
+2|hardware-overview| License overview| Delete and update license function
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI - FIXING
+2|hardware-overview| PageIndexChanging not handled after searching
+3|add-hardware| Type selected type index have be the same as the selected type nr.
+20-01-2016
+4|add-license| Select people not working
+5|*| Crash when not select something
+6|*| License key is temporary not a primary key (select internalNr )
+7|*| Add type => same type name can added multiple time (primary key to type name, but type-id has to deleted) 
+8|*| A hardware can only have one license instead of a license can only assigned to one device
+ADDED
+21-01-2016
+1|add-license| Add license only button added
+2|add-license| Error handling duplicate key
+22-01-2016
+1|add-license| Click to delete
+FIXED
+21-01-2016
+1|manage-type| Update automatically the list with type in to the grid
+2|add-license| License can added into unlimited hardware and person - FIXING - UPGRADING MYSQL DATABASE + QUERY + FIXED
+3|add-license| Archicture improvement
+4|hardware-overview| Get details without selecting the row first
 

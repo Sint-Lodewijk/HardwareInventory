@@ -18,42 +18,70 @@ namespace Toestellenbeheer.Overview
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            try { 
-            MySqlCommand bindToGrid = new MySqlCommand("SELECT licenseName 'License name', licenseCode 'License code', serialNr 'Serial nr', internalNr 'Internal Nr' FROM license", mysqlConnectie);
-            mysqlConnectie.Open();
-            MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
-            bindToGrid.ExecuteNonQuery();
-            bindToGrid.Dispose();
-            DataSet ds = new DataSet();
-            adpa.Fill(ds);
-            grvLicense.DataSource = ds;
-            grvLicense.DataBind();
-            mysqlConnectie.Close();
+            if (!IsPostBack)
+            {
+                bindLicenseGRVLicense();
             }
-            catch(MySqlException ex)
+        }
+        protected void bindLicenseGRVLicense()
+        {
+            try
+            {
+                MySqlCommand bindToGrid = new MySqlCommand("SELECT licenseName 'License name', licenseCode 'License code' FROM license", mysqlConnectie);
+                mysqlConnectie.Open();
+                MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
+                bindToGrid.ExecuteNonQuery();
+                bindToGrid.Dispose();
+                DataSet ds = new DataSet();
+                adpa.Fill(ds);
+                grvLicense.DataSource = ds;
+                grvLicense.DataBind();
+                mysqlConnectie.Close();
+            }
+            catch (MySqlException ex)
             {
                 lblProblem.Text = ex.ToString();
             }
         }
-        /*trying to add remove license methode
-        protected void removeSelectedLicense_Click(object sender, EventArgs e)
+        protected void grvLicense_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
             {
                 mysqlConnectie.Open();
-                String strSearchItem = drpSearchItem.SelectedValue.ToString();
-                String strSearchText = txtSearch.Text.Trim();
-                MySqlCommand removeSelectedLicense = new MySqlCommand("DELETE FROM hardware WHERE serialNr=" + +" and `internalNr`='')" + strSearchText + " %';", mysqlConnectie);
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT * FROM hardware WHERE " + strSearchItem + " LIKE '%" + strSearchText + "%';", mysqlConnectie);
+                // String strLicenseCode = grvLicense.DataKeys[e.RowIndex].Value.ToString();
+                String strLicenseCode = grvLicense.DataKeys[e.RowIndex].Value.ToString();
 
-                removeSelectedLicense.ExecuteNonQuery();
-                removeSelectedLicense.Dispose();
+                MySqlCommand deleteLicense = new MySqlCommand("Delete From license where licenseCode='" + strLicenseCode + "'", mysqlConnectie);
+                deleteLicense.ExecuteNonQuery();
+                deleteLicense.Dispose();
+                grvLicense.EditIndex = -1;
+                mysqlConnectie.Close();
+                bindLicenseGRVLicense();
+
             }
             catch (MySqlException ex)
             {
                 ShowMessage(ex.Message);
             }
-        }*/
+
+        }
+        void ShowMessage(string msg)
+        {
+            ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript' > alert('" + msg + "');</ script > ");
+        }
+        protected void grvLicense_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow row = grvLicense.SelectedRow;
+          
+        }
+        protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvLicense, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to select this row.";
+            }
+        }
     }
 
 

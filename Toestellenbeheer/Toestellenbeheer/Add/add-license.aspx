@@ -102,7 +102,9 @@
             </div>
         </asp:Panel>
 
-
+        <div class="form-group col-sm-12">
+            <asp:Button runat="server" Text="Add license only" ID="btnAddLicense" CssClass="btn btn-primary col-sm-12 margin-top-5" OnClick="btnAddLicense_click" />
+        </div>
         <div class="form-group col-sm-12">
             <asp:Label ID="testLabel" runat="server" Text=""></asp:Label>
         </div>

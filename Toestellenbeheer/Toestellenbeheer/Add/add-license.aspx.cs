@@ -109,43 +109,65 @@ namespace Toestellenbeheer.Manage
             }
 
         }
-        //Function assign, used for both 
-        protected void assign(String internalNr, String SerialNr)
+
+        //Function for add license key into the database
+        protected void addLicense()
         {
 
-            String strLicenseCode = txtLicenseCode.Text;
+            try
+            {
+                
+                mysqlConnectie.Open();
+                MySqlCommand addLicense = new MySqlCommand("INSERT INTO license (licenseName, licenseCode) values (@licenseName, @licenseCode)", mysqlConnectie);
+                addLicense.Parameters.AddWithValue("@licenseName", txtLicenseName.Text.Trim());
+                addLicense.Parameters.AddWithValue("@licenseCode", txtLicenseCode.Text.Trim());
+                addLicense.ExecuteNonQuery();
+                addLicense.Dispose();
+                mysqlConnectie.Close();
+    // testLabel.Text = licenseCode.Text + " has been assigned to device with a internal number: " + internalNr + " and a serial code " + SerialNr;
+            }
+            catch (MySqlException ex)
+            {
+                if (ex.Number.ToString() == "1062")
+                {
+               testLabel.Text = "The license code: " + "<span style=\"color:red\">" + txtLicenseCode.Text + "</span>" + " you have entered, already exists in de database!";
 
-            String strLicenseName = txtLicenseName.Text;
+                }
+                else if (ex.Number.ToString() == "1064")
+                {
 
-            //Accessing TemplateField Column controls
+                    //testLabel.Text = ex.Message.ToString() + ", please check your input.";
+                    testLabel.Text = "Apostrophe ('), quotation mark and semicolum is not allow in the searchword: " + "<span style=\"color:red\">" + txtSearch + "</span>" + ", please delete this marks.";
+
+                }
+                else { ShowMessage(ex.Message); }
+
+            }
+            //test the value - removeable
+        }
+        protected void btnAddLicense_click(object sender, EventArgs e)
+        {
+
             try
             {
 
-
-
                 mysqlConnectie.Open();
-                //     MySqlCommand listOutType = new MySqlCommand("INSERT INTO license (licenseName, licenseCode, serialNr, internalNr) values (@licenseName, @licenseCode, @serialNr, @internalNr)", mysqlConnectie);
-                MySqlCommand listOutType = new MySqlCommand("INSERT INTO license (licenseName, licenseCode, serialNr, internalNr) values (@licenseName, @licenseCode, @serialNr, @internalNr)", mysqlConnectie);
-
-                //using (MySqlDataAdapter data1 = new MySqlDataAdapter(listOutType))
-                //     data1.Fill(Type, "type");
-                listOutType.Parameters.AddWithValue("@licenseName", strLicenseName);
-                listOutType.Parameters.AddWithValue("@licenseCode", strLicenseCode);
-                listOutType.Parameters.AddWithValue("@serialNr", SerialNr);
-                listOutType.Parameters.AddWithValue("@internalNr", internalNr);
-                listOutType.ExecuteNonQuery();
-                listOutType.Dispose();
+                MySqlCommand addLicense = new MySqlCommand("INSERT INTO license (licenseName, licenseCode) values (@licenseName, @licenseCode)", mysqlConnectie);
+                addLicense.Parameters.AddWithValue("@licenseName", txtLicenseName.Text.Trim());
+                addLicense.Parameters.AddWithValue("@licenseCode", txtLicenseCode.Text.Trim());
+                addLicense.ExecuteNonQuery();
+                addLicense.Dispose();
                 mysqlConnectie.Close();
-
-
-                testLabel.Text = strLicenseCode + " has been assigned to device with a internal number: " + internalNr + " and a serial code " + SerialNr;
+                testLabel.Text = "Congratulations! The licensecode:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text + "</span>" + " you have entered, has been successfully added into the database. If want want assign this license to any hardware or people, please not use this page!";
+                // testLabel.Text = licenseCode.Text + " has been assigned to device with a internal number: " + internalNr + " and a serial code " + SerialNr;
             }
             catch (MySqlException ex)
             {
                 if (ex.Number.ToString() == "1062")
                 {
                     //testLabel.Text = ex.Message.ToString() + ", please check your input.";
-                    testLabel.Text = "The license code: " + "<span style=\"color:red\">" + strLicenseCode + "</span>" + " you have entered for internal number: " + "<span style=\"color:red\">" + internalNr + "</span>" + " has been assigned to another device.";
+                    //        testLabel.Text = "The license code: " + "<span style=\"color:red\">" + txtLicenseCode.Text + "</span>" + " you have entered for internal number: " + "<span style=\"color:red\">" + internalNr + "</span>" + " has been assigned to another device.";
+                    testLabel.Text = "The license code: " + "<span style=\"color:red\">" + txtLicenseCode.Text + "</span>" + " you have entered, already exists in de database!";
 
                 }
                 else if (ex.Number.ToString() == "1064")
@@ -163,11 +185,18 @@ namespace Toestellenbeheer.Manage
         //When click the button, use the assign function to assign the right hardware.
         protected void assignToSelectedHardware_Click(object sender, EventArgs e)
         {
+            String strLicenseCode = txtLicenseCode.Text;
 
+            String strLicenseName = txtLicenseName.Text;
             String internalNr = grvHardwareLicenseSelect.SelectedRow.Cells[3].Text;
             String strSerialCode = grvHardwareLicenseSelect.SelectedRow.Cells[4].Text;
-            assign(internalNr, strSerialCode);
-
+            addLicense();
+            mysqlConnectie.Open();
+            MySqlCommand addLicenseCommand = new MySqlCommand("UPDATE hardware SET licenseCode= '" + strLicenseCode + "' WHERE serialNr= '" +
+                strSerialCode + "' and internalNr='"+ internalNr +"'", mysqlConnectie);
+            addLicenseCommand.ExecuteNonQuery();
+            addLicenseCommand.Dispose();
+            mysqlConnectie.Close();
         }
         //Shows the error message
         void ShowMessage(string msg)
@@ -180,7 +209,6 @@ namespace Toestellenbeheer.Manage
         {
             String internalNr = licenseOverviewGridSearch.SelectedRow.Cells[3].Text;
             String strSerialCode = licenseOverviewGridSearch.SelectedRow.Cells[4].Text;
-            assign(internalNr, strSerialCode);
         }
 
         //Expand or hide hardware grid + change the text of it
@@ -306,8 +334,10 @@ namespace Toestellenbeheer.Manage
                 String nameAD = licenseOverviewGridPeople.SelectedRow.Cells[2].Text;
                 String strLicenseCode = txtLicenseCode.Text;
                 mysqlConnectie.Open();
-                MySqlCommand addNewLicense = new MySqlCommand("INSERT INTO license (licenseCode) values (@licenseCode)", mysqlConnectie);
+                MySqlCommand addNewLicense = new MySqlCommand("INSERT INTO license (licenseName, licenseCode) values (@licenseName, @licenseCode)", mysqlConnectie);
                 addNewLicense.Parameters.AddWithValue("@licenseCode", strLicenseCode);
+                addNewLicense.Parameters.AddWithValue("@licenseName", txtLicenseName.Text);
+
                 addNewLicense.ExecuteNonQuery();
                 addNewLicense.Dispose();
                 //     MySqlCommand listOutType = new MySqlCommand("INSERT INTO license (licenseName, licenseCode, serialNr, internalNr) values (@licenseName, @licenseCode, @serialNr, @internalNr)", mysqlConnectie);

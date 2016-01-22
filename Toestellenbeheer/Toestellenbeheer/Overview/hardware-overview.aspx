@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Hardware overview" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="hardware-overview.aspx.cs" Inherits="Toestellenbeheer.hardware_overview" %>
+﻿<%@ Page Title="Hardware overview" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="hardware-overview.aspx.cs" EnableEventValidation="false" Inherits="Toestellenbeheer.hardware_overview" %>
 
 <asp:Content ID="hardwareOverview" ContentPlaceHolderID="MainContent" runat="server">
     <div id="search" class="form-group">
@@ -50,8 +50,8 @@
         <SortedDescendingCellStyle BackColor="#E5E5E5" />
         <SortedDescendingHeaderStyle BackColor="#242121" />
     </asp:GridView>
-    <asp:GridView ID="HardwareOverviewGrid" CssClass="table table-hover table-striped gridview" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="serialNr,internalNr" AllowPaging="True" DataSourceID="HardwareDS">
 
+    <asp:GridView ID="HardwareOverviewGrid" OnRowDeleting="details" OnRowDataBound="OnRowDataBound" CssClass="table table-hover table-striped gridview" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="internalNr" AllowPaging="True">
         <Columns>
 
             <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
@@ -65,17 +65,17 @@
 
             <asp:TemplateField HeaderText="Attachment">
                 <ItemTemplate>
-                    <asp:LinkButton ID="lnkDownload" CommandArgument='<%# Eval("attachmentLocation") %>' runat="server" OnClick="DownloadFile" Text='<%# Convert.ToString(Eval("attachmentLocation")).Length < 1 ? "" : Convert.ToString(Eval("attachmentLocation")) %>'>Download</asp:LinkButton>
+                    <asp:LinkButton ID="lnkDownload" CommandName="Select" CommandArgument='<%# Eval("attachmentLocation") %>' runat="server" OnClick="DownloadFile" Text='<%# Convert.ToString(Eval("attachmentLocation")).Length < 1 ? "" : Convert.ToString(Eval("attachmentLocation")) %>'>Download</asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField>
+
+
+            <asp:TemplateField HeaderText="">
                 <ItemTemplate>
-                    <asp:LinkButton Text="Details" ID="lnkShowMoreInfo" runat="server" OnClick="lnkShowMoreInfo_Click" />
-
+                    <asp:LinkButton ID="lnkShowMoreInfo" runat="server" CommandName="Delete" Text="Details"></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
 
-            <asp:CommandField ShowSelectButton="True" />
 
         </Columns>
 
@@ -90,64 +90,12 @@
     </asp:GridView>
     <asp:GridView ID="selectedRow" CssClass="table table-hover table-striped gridview" runat="server">
         <Columns>
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <table>
-                        <tr>
-                            <td>
-                                <asp:Label ID="lblPDate" runat="server" Text='<%#Eval("Purchase date")%>'>
-                                </asp:Label></td>
-                        </tr>
-                        <tr>
-                            <asp:Label ID="lblManu" runat="server" Text='<%#Eval("Manufacturer")%>'>
-                            </asp:Label><td></td>
-                            <tr>
-                                <td>
-                                    <asp:Label ID="lblSeri" runat="server" Text='<%#Eval("Serial Nr")%>'>
-                                    </asp:Label></td>
-                            </tr>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Label ID="lblType" runat="server" Text='<%#Eval("Type nr") %>'>
+            <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
+                NullDisplayText="No image associated." ControlStyle-CssClass="picutureGrid" ReadOnly="True">
+                <ControlStyle CssClass="picutureGrid"></ControlStyle>
+            </asp:ImageField>
 
-                                </asp:Label></td>
-                        </tr>
-                         <tr>
-                            <td>
-                                <asp:Label ID="lblInternal" runat="server" Text='<%#Eval("Internal Nr") %>'>
-
-                                </asp:Label></td>
-                        </tr>
-                         <tr>
-                            <td>
-                                <asp:Label ID="lblWarr" runat="server" Text='<%#Eval("Warranty") %>'>
-
-                                </asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Label ID="lblExtra" runat="server" Text='<%#Eval("Extra info") %>'>
-
-                                </asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Label ID="lblAdded" runat="server" Text='<%#Eval("Added date") %>'>
-
-                                </asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Label ID="lblAtt" runat="server" Text='<%#Eval("attachmentLocation") %>'>
-
-                                </asp:Label></td>
-                        </tr>
-                        <table>
-                </ItemTemplate>
-            </asp:TemplateField>
         </Columns>
-
     </asp:GridView>
     <!--
     <link rel="stylesheet" href="../../Scripts/jquery-ui.css">
@@ -182,7 +130,6 @@
         <b>manufacturerName:</b> <span id="manufacturerName"></span>
     </div>
     -->
-    <asp:SqlDataSource ID="HardwareDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, warranty, extraInfo, DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation FROM hardware"></asp:SqlDataSource>
     <asp:Label ID="lblTotalQuery" runat="server" Text=""></asp:Label>
     <!-- <asp:SqlDataSource ID="HardwareOverviewGridView" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT * FROM hardware;"></asp:SqlDataSource>
     -->

@@ -19,7 +19,31 @@ namespace Toestellenbeheer.Manage
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack) { 
+            mysqlConnectie.Open();
 
+            bindTypeToGrid();
+            mysqlConnectie.Close();
+            }
+        }
+
+        protected void bindTypeToGrid()
+        {
+            try
+            {
+                MySqlCommand bindToGrid = new MySqlCommand("SELECT * FROM type", mysqlConnectie);
+                MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
+                bindToGrid.ExecuteNonQuery();
+                bindToGrid.Dispose();
+                DataSet ds = new DataSet();
+                adpa.Fill(ds);
+                typeSelect.DataSource = ds;
+                typeSelect.DataBind();
+            }
+            catch (MySqlException ex)
+            {
+                lblProblem.Text = ex.ToString();
+            }
         }
 
         protected void btnAddType_Click(object sender, EventArgs e)
@@ -27,38 +51,38 @@ namespace Toestellenbeheer.Manage
 
             try
             {
-                String strTypeNr = typeNr.Text.ToString();
                 String strType = typeName.Text.ToString();
 
-                    mysqlConnectie.Open();
-                    MySqlCommand addType = new MySqlCommand("Insert into type (typeNr, type) values (@typeNr, @type)", mysqlConnectie);
+                mysqlConnectie.Open();
+                MySqlCommand addType = new MySqlCommand("Insert into type (type) values (@Type)", mysqlConnectie);
 
-                    //add parameters (assaign the values to the column.)
-                    addType.Parameters.AddWithValue("@typeNr", strTypeNr);
-                    addType.Parameters.AddWithValue("@type", strType);
+                //add parameters (assaign the values to the column.)
+                addType.Parameters.AddWithValue("@Type", strType);
 
 
-                    addType.ExecuteNonQuery();
-                    addType.Dispose();
-                    mysqlConnectie.Close();
-                    //txtResultUpload.Text = "Congratulations! The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
-                    // " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " successfully added to the database.";
-                }
-            
+                addType.ExecuteNonQuery();
+                addType.Dispose();
+                mysqlConnectie.Close();
+
+                bindTypeToGrid();
+                //txtResultUpload.Text = "Congratulations! The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
+                // " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " successfully added to the database.";
+            }
+
             catch (MySqlException ex)
             {
                 if (ex.Number.ToString() == "1062")
                 {
                     //testLabel.Text = ex.Message.ToString() + ", please check your input.";
-                 //   txtResultUpload.Text = "The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
-                 //       " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " already exist in de database.";
+                    //   txtResultUpload.Text = "The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
+                    //       " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " already exist in de database.";
 
                 }
-                else { ShowMessage(ex.Message); }
+                else {
+                    ShowMessage(ex.Message); }
 
 
             }
-            //test the value - removeable
         }
 
         void ShowMessage(string msg)
@@ -66,6 +90,6 @@ namespace Toestellenbeheer.Manage
             ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> alert('" + msg + "');</ script > ");
         }
     }
-    
-    
+
+
 }

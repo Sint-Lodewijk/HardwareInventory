@@ -5,8 +5,6 @@
 
 
     <div id="hardwareGrides">
-
-
         <div class="form-group">
             <asp:Label ID="licenseName" runat="server" AssociatedControlID="txtLicenseName" CssClass="control-label col-sm-2">License name</asp:Label>
             <div class="col-sm-4">
@@ -41,7 +39,7 @@
                     </asp:DropDownList>
                 </div>
                 <div class="col-sm-2">
-                    <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-default margin-top-5" OnClick="Search_Click" /> 
+                    <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-default margin-top-5" OnClick="Search_Click" />
                 </div>
             </div>
             <asp:GridView ID="licenseOverviewGridSearch" OnSelectedIndexChanged="display_search_button" CssClass="table table-hover table-striped gridview" runat="server">
@@ -56,7 +54,7 @@
                 <SortedDescendingHeaderStyle BackColor="#383838" />
             </asp:GridView>
             <asp:SqlDataSource ID="HardwareLicense" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT typeNr, manufacturerName, internalNr, serialNr  FROM hardware;"></asp:SqlDataSource>
-            <asp:GridView ID="grvHardwareLicenseSelect" CssClass="table table-hover table-striped gridview" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="internalNr,serialNr" OnSelectedIndexChanged="hardwareLicenseSelection_Click" DataSourceID="HardwareLicense" OnSorting="displayHardwarePanel">
+            <asp:GridView ID="grvHardwareLicenseSelect" CssClass="table table-hover table-striped gridview" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="internalNr,serialNr" OnSelectedIndexChanged="hardwareLicenseSelection_Click" OnPageIndexChanged="grvHardwareLicenseSelect_PageIndexChanged" DataSourceID="HardwareLicense" OnSorting="displayHardwarePanel">
                 <Columns>
                     <asp:CommandField ShowSelectButton="True" />
                     <asp:BoundField DataField="typeNr" HeaderText="Type nr" SortExpression="typeNr" />
@@ -85,17 +83,31 @@
         <div class="form-group">
             <div class="col-sm-12">
                 <asp:Button ID="hideShowPeople" runat="server" Text="Assign to people" OnClick="hideShowPeople_Click" CssClass="btn btn-info form-control" />
-                <asp:Panel ID="peoplePanel" CssClass="table table-hover table-striped gridview" GridLines="None" runat="server">
-                    <asp:GridView ID="licenseOverviewGridPeopleSearch" runat="server">
-                        <Columns>
-                            <asp:CommandField ShowSelectButton="True" />
-                        </Columns>
-
-                    </asp:GridView>
-                </asp:Panel>
             </div>
+        </div>
+
+        <asp:Panel ID="peoplePanel" CssClass="table table-hover table-striped gridview" GridLines="None" runat="server">
+            <asp:GridView ID="licenseOverviewGridPeople" CssClass="table table-hover table-striped gridview" runat="server" OnSelectedIndexChanged="selectPeopleGridview_Click">
+                <Columns>
+                    <asp:CommandField ShowSelectButton="True" />
+                </Columns>
+                <SelectedRowStyle BackColor="#A1DCF2" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#808080" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#383838" />
+            </asp:GridView>
+            <div class="form-group col-sm-offset-4 col-sm-2">
+                <asp:Button runat="server" ID="btnAssignLicenseToPeople" OnClick="assignLicenseToPeople" CssClass="btn btn-primary margin-top-5" Text="Assign to selected person" />
+            </div>
+        </asp:Panel>
+
+        <div class="form-group col-sm-12">
+            <asp:Button runat="server" Text="Add license only" ID="btnAddLicense" CssClass="btn btn-primary col-sm-12 margin-top-5" OnClick="btnAddLicense_click" />
+        </div>
+        <div class="form-group col-sm-12">
+            <asp:Label ID="testLabel" runat="server" Text=""></asp:Label>
         </div>
     </div>
 
-    <asp:Label ID="testLabel" runat="server" Text=""></asp:Label>
 </asp:Content>

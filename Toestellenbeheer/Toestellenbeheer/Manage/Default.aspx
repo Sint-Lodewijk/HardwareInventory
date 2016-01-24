@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Manage" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Toestellenbeheer.Manage.Default1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<div class="jumbotron">
+    <div class="jumbotron">
         <h1>Manage</h1>
         <p class="lead">Manage the settings and parameters.</p>
     </div>
@@ -16,15 +17,16 @@
             </p>
         </div>
         <div class="col-md-6">
-            <h2></h2>
+            <h2>Assign hardware to person
+            </h2>
             <p>
-               Assign hardware to person
+                Assign a hardware to person
             </p>
             <p>
                 <a class="btn btn-default" href="manage-hardware">Assign hardware to person &raquo;</a>
             </p>
         </div>
-        
+
     </div>
 
 </asp:Content>

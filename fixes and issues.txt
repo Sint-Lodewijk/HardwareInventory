@@ -392,3 +392,16 @@ ADDED
 22-01-2016
 1|manage-hardware| List out all unassigned hardware 
 2|manage-hardware| Assign the unassigned hardware with person.
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 8049a4a799ef0b9f38dba7a2df175ecf4ea0f24c at V0.6ALPHA branch
+
+WORKING POINTS
+SEE PREVIOUS COMMIT
+
+KNOWN ISSUES
+SEE PREVIOUS COMMIT
+
+
+ADDED 
+24-01-2016
+1|manage-hardware| XML document create

@@ -10,6 +10,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.DirectoryServices;
+using System.Xml;
 
 namespace Toestellenbeheer.Manage
 {
@@ -27,21 +28,23 @@ namespace Toestellenbeheer.Manage
         }
         protected void getUnassignedHardware()
         {
-            try { 
-            mysqlConnectie.Open();
-            MySqlCommand bindToGrid = new MySqlCommand("SELECT  DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, pictureLocation FROM hardware WHERE eventID IS NULL or eventID=''", mysqlConnectie);
-            MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
-            bindToGrid.ExecuteNonQuery();
-            bindToGrid.Dispose();
-            DataSet ds = new DataSet();
-            adpa.Fill(ds);
-            grvHardwarePoolUnassigned.DataSource = ds;
-            grvHardwarePoolUnassigned.DataBind();
+            try
+            {
+                mysqlConnectie.Open();
+                MySqlCommand bindToGrid = new MySqlCommand("SELECT  DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, pictureLocation FROM hardware WHERE eventID IS NULL or eventID=''", mysqlConnectie);
+                MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
+                bindToGrid.ExecuteNonQuery();
+                bindToGrid.Dispose();
+                DataSet ds = new DataSet();
+                adpa.Fill(ds);
+                grvHardwarePoolUnassigned.DataSource = ds;
+                grvHardwarePoolUnassigned.DataBind();
                 mysqlConnectie.Close();
             }
             catch (MySqlException ex)
             {
-                lblResult.Text = ex.ToString();            }
+                lblResult.Text = ex.ToString();
+            }
         }
         protected void grvHardwarePoolUnassigned_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -143,7 +146,52 @@ namespace Toestellenbeheer.Manage
             bindEventIDWithHardware.Dispose();
             mysqlConnectie.Close();
             getUnassignedHardware();
+            String strManufacturer = "";
+            String strModelNr = "";
+            createXML(strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr);
         }
+        
+        private void createXML(String serialNr, String internalNr, String manufacturer, String nameAD, String userName, String modelNr)
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlNode docNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+            doc.AppendChild(docNode);
 
+            XmlNode AssignedNodes = doc.CreateElement("AssignedHardware");
+            doc.AppendChild(AssignedNodes);
+
+            XmlNode xmlHardwareNode = doc.CreateElement("Hardware");
+            AssignedNodes.AppendChild(xmlHardwareNode);
+
+            XmlNode xmlPersonNode = doc.CreateElement("person");
+            AssignedNodes.AppendChild(xmlPersonNode);
+
+            XmlNode xmlInternalNrNode = doc.CreateElement("InternalNr");
+            xmlInternalNrNode.AppendChild(doc.CreateTextNode(internalNr));
+            xmlHardwareNode.AppendChild(xmlInternalNrNode);
+
+            XmlNode xmlSerialNr = doc.CreateElement("SerialNr");
+            xmlSerialNr.AppendChild(doc.CreateTextNode(serialNr));
+            xmlHardwareNode.AppendChild(xmlSerialNr);
+
+            XmlNode xmlManufacturer = doc.CreateElement("Manufacturer");
+            xmlManufacturer.AppendChild(doc.CreateTextNode(manufacturer));
+            xmlHardwareNode.AppendChild(xmlManufacturer);
+
+
+            XmlNode xmlModelNr = doc.CreateElement("ModelNr");
+            xmlModelNr.AppendChild(doc.CreateTextNode(modelNr));
+            xmlHardwareNode.AppendChild(xmlModelNr);
+
+            XmlNode xmlUserId = doc.CreateElement("UserID");
+            xmlUserId.AppendChild(doc.CreateTextNode(nameAD));
+            xmlPersonNode.AppendChild(xmlUserId);
+
+            XmlNode xmlUserName = doc.CreateElement("UserName");
+            xmlUserName.AppendChild(doc.CreateTextNode(userName));
+            xmlPersonNode.AppendChild(xmlUserName);
+
+            doc.Save("C:/Users/Jianing/Documents/UserUploads/Attachments/GeneratedAssignedHardware.xml");
+        }
     }
 }

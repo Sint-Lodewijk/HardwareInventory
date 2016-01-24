@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Manage hardware" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="manage-hardware.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_hardware" %>
+﻿<%@ Page Title="Assign hardware to people" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="assign-hardware.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_hardware" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -21,6 +21,6 @@
         <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
 
     </asp:GridView>
-    <asp:Button ID="assignHardwarePeople" runat="server" Text="Assign the selected hardware with selected person" CssClass="btn btn-primary margin-top-5 col-centered" OnClick="assignHardwarePeople_Click"/>
+    <asp:Button ID="btnAssignHardwarePeople" runat="server" Text="Assign the selected hardware with selected person" CssClass="btn btn-primary margin-top-5 col-centered" OnClick="assignHardwarePeople_Click"/>
     <asp:Label ID="lblResult" runat="server"></asp:Label>
 </asp:Content>

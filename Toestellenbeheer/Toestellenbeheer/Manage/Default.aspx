@@ -7,7 +7,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <h2>Add a type</h2>
             <p>
                 Add a type.
@@ -16,17 +16,26 @@
                 <a class="btn btn-default" href="manage-type">Add type &raquo;</a>
             </p>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <h2>Assign hardware to person
             </h2>
             <p>
                 Assign a hardware to person
             </p>
             <p>
-                <a class="btn btn-default" href="manage-hardware">Assign hardware to person &raquo;</a>
+                <a class="btn btn-default" href="assign-hardware">Assign hardware to person &raquo;</a>
             </p>
         </div>
-
+        <div class="col-md-4">
+            <h2>Get the returned hardware
+            </h2>
+            <p>
+                Get the returned hardware
+            </p>
+            <p>
+                <a class="btn btn-default" href="return-hardware">Return hardware &raquo;</a>
+            </p>
+        </div>
     </div>
 
 </asp:Content>

@@ -209,8 +209,9 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\toestellenbeheer - Web Deploy.pubxml" />
     <Content Include="favicon.ico" />
-    <Content Include="Manage\manage-hardware.aspx" />
+    <Content Include="Manage\assign-hardware.aspx" />
     <Content Include="Manage\manage-type.aspx" />
+    <Content Include="Manage\return-hardware.aspx" />
     <Content Include="Overview\Default.aspx" />
     <Content Include="Overview\hardware-overview.aspx" />
     <Content Include="Add\add-hardware.aspx" />
@@ -411,12 +412,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Manage\manage-hardware.aspx.cs">
-      <DependentUpon>manage-hardware.aspx</DependentUpon>
+    <Compile Include="Manage\assign-hardware.aspx.cs">
+      <DependentUpon>assign-hardware.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Manage\manage-hardware.aspx.designer.cs">
-      <DependentUpon>manage-hardware.aspx</DependentUpon>
+    <Compile Include="Manage\assign-hardware.aspx.designer.cs">
+      <DependentUpon>assign-hardware.aspx</DependentUpon>
     </Compile>
     <Compile Include="Manage\manage-type.aspx.cs">
       <DependentUpon>manage-type.aspx</DependentUpon>
@@ -424,6 +425,13 @@
     </Compile>
     <Compile Include="Manage\manage-type.aspx.designer.cs">
       <DependentUpon>manage-type.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manage\return-hardware.aspx.cs">
+      <DependentUpon>return-hardware.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manage\return-hardware.aspx.designer.cs">
+      <DependentUpon>return-hardware.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\LdapAuthentication.cs" />
     <Compile Include="Overview\Default.aspx.cs">

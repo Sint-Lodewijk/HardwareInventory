@@ -1,6 +1,6 @@
 ﻿/*
 Created: 13/01/2016
-Modified: 21/01/2016
+Modified: 25/01/2016
 Model: MySQL 5.6
 Database: MySQL 5.6
 */
@@ -13,9 +13,9 @@ Database: MySQL 5.6
 CREATE TABLE `hardware`
 (
   `purchaseDate` Date,
-  `serialNr` Varchar(30) NOT NULL,
+  `serialNr` Varchar(40) NOT NULL,
   `internalNr` Varchar(30) NOT NULL,
-  `warranty` Char(20) NOT NULL,
+  `warranty` Varchar(50),
   `extraInfo` Varchar(128),
   `manufacturerName` Varchar(30),
   `addedDate` Date,
@@ -23,7 +23,8 @@ CREATE TABLE `hardware`
   `typeNr` Int,
   `attachmentLocation` Varchar(150),
   `licenseCode` Varchar(150),
-  `eventID` Int
+  `eventID` Int,
+  `modelNr` Varchar(50)
 )
 ;
 
@@ -82,10 +83,19 @@ ALTER TABLE `license` ADD  PRIMARY KEY (`licenseCode`)
 CREATE TABLE `archive`
 (
   `person` Varchar(20),
-  `internaNr` Varchar(30) NOT NULL,
-  `serialNr` Varchar(20) NOT NULL,
-  `id` Int NOT NULL
+  `id` Int NOT NULL,
+  `serialNr` Varchar(40),
+  `internalNr` Varchar(30),
+  `eventID` Int,
+  `assignedDate` Char(20),
+  `addedDate` Char(20)
 )
+;
+
+CREATE INDEX `IX_Relationship1` ON `archive` (`serialNr`,`internalNr`)
+;
+
+CREATE INDEX `IX_Relationship2` ON `archive` (`eventID`)
 ;
 
 ALTER TABLE `archive` ADD  PRIMARY KEY (`id`)
@@ -106,5 +116,11 @@ ALTER TABLE `hardware` ADD CONSTRAINT `hardwareLicense` FOREIGN KEY (`licenseCod
 ;
 
 ALTER TABLE `hardware` ADD CONSTRAINT `hHp` FOREIGN KEY (`eventID`) REFERENCES `people` (`eventID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+;
+
+ALTER TABLE `archive` ADD CONSTRAINT `hardwareArchive` FOREIGN KEY (`serialNr`, `internalNr`) REFERENCES `hardware` (`serialNr`, `internalNr`) ON DELETE RESTRICT ON UPDATE RESTRICT
+;
+
+ALTER TABLE `archive` ADD CONSTRAINT `peopleArchive` FOREIGN KEY (`eventID`) REFERENCES `people` (`eventID`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ;
 

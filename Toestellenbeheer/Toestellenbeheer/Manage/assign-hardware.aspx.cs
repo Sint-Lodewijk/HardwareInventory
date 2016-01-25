@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Text;
 using System.DirectoryServices;
 using System.Xml;
+using System.Globalization;
 
 namespace Toestellenbeheer.Manage
 {
@@ -119,38 +120,48 @@ namespace Toestellenbeheer.Manage
         }
         protected void assignHardwarePeople_Click(object sender, EventArgs e)
         {
-            String strSerialNr = grvHardwarePoolUnassigned.SelectedRow.Cells[1].Text.ToString();
-            String strInternalNr = grvHardwarePoolUnassigned.SelectedRow.Cells[2].Text.ToString();
-            String strNameAD = grvPeopleAD.SelectedRow.Cells[1].Text.ToString();
+            if (grvHardwarePoolUnassigned.SelectedRow != null && grvPeopleAD.SelectedRow != null)
+            {
+                String strSerialNr = grvHardwarePoolUnassigned.SelectedRow.Cells[1].Text.ToString();
+                String strInternalNr = grvHardwarePoolUnassigned.SelectedRow.Cells[2].Text.ToString();
+                String strNameAD = grvPeopleAD.SelectedRow.Cells[1].Text.ToString();
 
-            mysqlConnectie.Open();
-            MySqlCommand addPeople = new MySqlCommand("INSERT INTO people (nameAd) values (@nameAD)", mysqlConnectie);
-            addPeople.Parameters.AddWithValue("@nameAd", strNameAD);
-            addPeople.ExecuteNonQuery();
-            addPeople.Dispose();
 
-            MySqlCommand getMaxIndex = new MySqlCommand("SELECT eventID FROM people WHERE eventID = (SELECT MAX(eventID) FROM people)", mysqlConnectie);
-            MySqlDataAdapter adpa = new MySqlDataAdapter(getMaxIndex);
+                mysqlConnectie.Open();
+                MySqlCommand addPeople = new MySqlCommand("INSERT INTO people (nameAd) values (@nameAD)", mysqlConnectie);
+                addPeople.Parameters.AddWithValue("@nameAd", strNameAD);
+                addPeople.ExecuteNonQuery();
+                addPeople.Dispose();
 
-            getMaxIndex.ExecuteNonQuery();
-            getMaxIndex.Dispose();
+                MySqlCommand getMaxIndex = new MySqlCommand("SELECT eventID FROM people WHERE eventID = (SELECT MAX(eventID) FROM people)", mysqlConnectie);
+                MySqlDataAdapter adpa = new MySqlDataAdapter(getMaxIndex);
 
-            DataSet ds = new DataSet();
-            adpa.Fill(ds);
+                getMaxIndex.ExecuteNonQuery();
+                getMaxIndex.Dispose();
 
-            int maxIndex = Convert.ToInt32(ds.Tables[0].Rows[0][0].ToString()); ;
+                DataSet ds = new DataSet();
+                adpa.Fill(ds);
 
-            MySqlCommand bindEventIDWithHardware = new MySqlCommand("UPDATE hardware SET eventID = '" + maxIndex + "' WHERE internalNr LIKE '" +
-                strInternalNr + "'", mysqlConnectie);
-            bindEventIDWithHardware.ExecuteNonQuery();
-            bindEventIDWithHardware.Dispose();
-            mysqlConnectie.Close();
-            getUnassignedHardware();
-            String strManufacturer = "";
-            String strModelNr = "";
-            createXML(strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr);
+                int maxIndex = Convert.ToInt32(ds.Tables[0].Rows[0][0].ToString()); ;
+
+                MySqlCommand bindEventIDWithHardware = new MySqlCommand("UPDATE hardware SET eventID = '" + maxIndex + "' WHERE internalNr LIKE '" +
+                    strInternalNr + "'", mysqlConnectie);
+                bindEventIDWithHardware.ExecuteNonQuery();
+                bindEventIDWithHardware.Dispose();
+                mysqlConnectie.Close();
+                getUnassignedHardware();
+                String strManufacturer = "";
+                String strModelNr = "";
+                archiveAssignedHardware(strSerialNr, strInternalNr, maxIndex); //Archive the assigned hardware
+
+                createXML(strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please select a hardware or people to continue!');", true);
+            }
         }
-        
+
         private void createXML(String serialNr, String internalNr, String manufacturer, String nameAD, String userName, String modelNr)
         {
             XmlDocument doc = new XmlDocument();
@@ -192,6 +203,21 @@ namespace Toestellenbeheer.Manage
             xmlPersonNode.AppendChild(xmlUserName);
 
             doc.Save("C:/Users/Jianing/Documents/UserUploads/Attachments/GeneratedAssignedHardware.xml");
+        }
+        //Archive the assigned hardware into the database
+        private void archiveAssignedHardware(String strSerialNr, String strInternalNr, int intEventID)
+        {
+            String dteAssignedDate  = DateTime.Today.ToString("yyyy-MM-dd");
+            mysqlConnectie.Open();
+            MySqlCommand archiveAssigned = new MySqlCommand("Insert into archive ( assignedDate, serialNr, internalNr, eventID ) values (@assignedDate, @serialNr, @internalNr, @eventID)", mysqlConnectie);
+            archiveAssigned.Parameters.AddWithValue("@assignedDate", dteAssignedDate);
+            archiveAssigned.Parameters.AddWithValue("@serialNr", strSerialNr);
+            archiveAssigned.Parameters.AddWithValue("@internalNr", strInternalNr);
+            archiveAssigned.Parameters.AddWithValue("@eventID", intEventID);
+
+            archiveAssigned.ExecuteNonQuery();
+            archiveAssigned.Dispose();
+            mysqlConnectie.Close();
         }
     }
 }

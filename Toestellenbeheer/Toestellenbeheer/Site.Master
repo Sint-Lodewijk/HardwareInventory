@@ -11,7 +11,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
@@ -53,6 +53,8 @@
                         <li><a runat="server" href="~/Overview">Overview</a></li>
                         <li><a runat="server" href="~/Add">Add</a></li>
                         <li><a runat="server" href="~/Manage">Manage</a></li>
+                        <li><a runat="server" href="~/Archive">Archive</a></li>
+
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>

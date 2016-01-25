@@ -401,7 +401,27 @@ SEE PREVIOUS COMMIT
 KNOWN ISSUES
 SEE PREVIOUS COMMIT
 
-
 ADDED 
 24-01-2016
 1|manage-hardware| XML document create
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 8049a4a799ef0b9f38dba7a2df175ecf4ea0f24c at V0.6ALPHA branch
+
+WORKING POINTS
+SEE PREVIOUS COMMIT
+1|*| Archive function
+
+KNOWN ISSUES
+SEE PREVIOUS COMMIT
+25-01-2016
+1|hardware-overview| Details page
+2|hardware-overview| Attachment and preview image not necessary
+3|*| Alter temporary using Javascript
+
+FIXED
+25-01-2016
+1|* gridview| 
+
+ADDED 
+25-01-2016
+1|*| Archive function

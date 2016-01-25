@@ -40,13 +40,22 @@ namespace Toestellenbeheer.Archive
             getPeopleLinked.Dispose();
             DataSet ds = new DataSet();
             adpa.Fill(ds);
-            grvHardware.DataSource = ds;
-            grvHardware.DataBind();
+            grvPeopleLinked.DataSource = ds;
+            grvPeopleLinked.DataBind();
+            int intTotalResult = grvPeopleLinked.Rows.Count;
+            if (intTotalResult == 0)
+            {
+                lblResult.Text = "The hardware with internal Nr: " + strInternalNr + " has never been assigned to a person before!";
+            }
+            else
+            {
+                lblResult.Text = "The hardware with internal Nr: " + strInternalNr + "has been assigned " + intTotalResult + " times";
+            }
         }
         protected void getHardware()
         {
             mysqlConnectie.Open();
-            MySqlCommand getHardware = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, warranty, extraInfo, DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation FROM hardware", mysqlConnectie);
+            MySqlCommand getHardware = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, warranty, extraInfo, DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation, eventID FROM hardware WHERE eventID NOT LIKE 0 ", mysqlConnectie);
             MySqlDataAdapter adpa = new MySqlDataAdapter(getHardware);
             getHardware.ExecuteNonQuery();
             getHardware.Dispose();

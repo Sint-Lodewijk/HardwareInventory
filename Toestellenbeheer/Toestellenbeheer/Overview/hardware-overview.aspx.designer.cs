@@ -13,6 +13,15 @@ namespace Toestellenbeheer {
     public partial class hardware_overview {
         
         /// <summary>
+        /// searchPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel searchPanel;
+        
+        /// <summary>
         /// lblSearch control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView selectedRow;
+        
+        /// <summary>
+        /// btnReturn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReturn;
         
         /// <summary>
         /// lblTotalQuery control.

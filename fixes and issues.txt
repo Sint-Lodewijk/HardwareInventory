@@ -430,3 +430,8 @@ PREVIOUS COMMIT: 882ad2d4d623c24caf5fdde377728df995bb2e8a at V0.7ALPHA branch
 ADDED 
 25-01-2016
 1|*| When click on a person or hardware, the related hardware or person will show
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 50b5b96f85ad5d5fa61ecf3f1e2a39144b6d085b at V0.7ALPHA branch
+ADDED 
+25-01-2016
+1|hardware-overview| Improved design + details page

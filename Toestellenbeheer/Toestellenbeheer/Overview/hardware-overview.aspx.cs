@@ -34,12 +34,14 @@ namespace Toestellenbeheer
                 adpa.Fill(ds);
                 HardwareOverviewGrid.DataSource = ds;
                 HardwareOverviewGrid.DataBind();
+                btnReturn.Visible = false;
             }
         }
 
         protected void Search(object sender, EventArgs e)
         {
             this.BindGrid();
+            searchPanel.Visible = false;
         }
         protected void DownloadFile(object sender, EventArgs e)
         {
@@ -135,7 +137,7 @@ namespace Toestellenbeheer
             selectedRow.DataSource = ds;
             selectedRow.DataBind();
             HardwareOverviewGrid.Visible = false;
-
+            btnReturn.Visible = true;
 
         }
         #endregion
@@ -159,6 +161,7 @@ namespace Toestellenbeheer
             selectedRow.DataSource = ds;
             selectedRow.DataBind();
             HardwareOverviewGrid.Visible = false;
+                btnReturn.Visible = true;
         }
             catch(MySqlException ex)
             {
@@ -166,7 +169,12 @@ namespace Toestellenbeheer
             }
             }
 
+        protected void btnReturn_Click(object sender, EventArgs e)
+        {
+            btnReturn.Visible = false;
+            Server.Transfer("./hardware-overview.aspx");
 
+        }
     }
 
 

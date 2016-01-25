@@ -24,7 +24,7 @@
                 Get a historical overview of the people who accessed some hardware
             </p>
             <p>
-                <a class="btn btn-default" href="./add-person">Add now &raquo;</a>
+                <a class="btn btn-default" href="./people-history">Get &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">

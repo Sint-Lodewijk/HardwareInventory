@@ -425,3 +425,8 @@ FIXED
 ADDED 
 25-01-2016
 1|*| Archive function
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 882ad2d4d623c24caf5fdde377728df995bb2e8a at V0.7ALPHA branch
+ADDED 
+25-01-2016
+1|*| When click on a person or hardware, the related hardware or person will show

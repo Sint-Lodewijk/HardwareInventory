@@ -13,12 +13,21 @@ namespace Toestellenbeheer.Archive {
     public partial class hardware_history {
         
         /// <summary>
-        /// GridView1 control.
+        /// grvHardware control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView grvHardware;
+        
+        /// <summary>
+        /// grvPeopleLinked control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grvPeopleLinked;
     }
 }

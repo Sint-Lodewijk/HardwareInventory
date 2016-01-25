@@ -191,6 +191,8 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Archive\Default.aspx" />
+    <Content Include="Archive\hardware-history.aspx" />
+    <Content Include="Archive\people-history.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -402,6 +404,20 @@
     </Compile>
     <Compile Include="Archive\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Archive\hardware-history.aspx.cs">
+      <DependentUpon>hardware-history.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Archive\hardware-history.aspx.designer.cs">
+      <DependentUpon>hardware-history.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Archive\people-history.aspx.cs">
+      <DependentUpon>people-history.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Archive\people-history.aspx.designer.cs">
+      <DependentUpon>people-history.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>

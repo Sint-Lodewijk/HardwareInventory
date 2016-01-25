@@ -1,16 +1,43 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Toestellenbeheer.Archive.Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Toestellenbeheer.Archive.Default" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    
+
+    <div class="jumbotron">
+        <h1>Inventive Designers</h1>
+        <p class="lead">Manage the hardware, users, licenses and more...</p>
     </div>
-    </form>
-</body>
-</html>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Hardware history</h2>
+            <p>
+                Get a historical overview of the hardware, get a list who accessed the hardware
+            </p>
+            <p>
+                <a class="btn btn-default" href="./hardware-history">Add now &raquo;</a>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>People history</h2>
+            <p>
+                Get a historical overview of the people who accessed some hardware
+            </p>
+            <p>
+                <a class="btn btn-default" href="./add-person">Add now &raquo;</a>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Add a license</h2>
+            <p>
+                Add a license and assign it to the hardware or people. 
+            </p>
+            <p>
+                <a class="btn btn-default" href="./add-license">Add now &raquo;</a>
+            </p>
+        </div>
+    </div>
+
+
+
+</asp:Content>

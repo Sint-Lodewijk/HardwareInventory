@@ -22,11 +22,25 @@
         <SortedDescendingCellStyle BackColor="#E5E5E5" />
         <SortedDescendingHeaderStyle BackColor="#242121" />
     </asp:GridView>
-    <asp:GridView ID="grvLicenseAssignedPeople" OnSelectedIndexChanged="grvLicenseAssignedPeople_SelectedIndexChanged" CssClass="table table-hover table-striped gridview" runat="server">
-
+    <asp:GridView ID="grvLicenseAssignedPeople" OnSelectedIndexChanged="grvLicenseAssignedPeople_SelectedIndexChanged" CssClass="table table-hover table-striped gridview" OnRowDeleting="grvLicenseAssignedPeople_RowDeleting" DataKeyNames="licenseEventID" runat="server">
+        <Columns>
+            <asp:TemplateField HeaderText="">
+                <ItemTemplate>
+                    <asp:LinkButton ID="lnkUnassign" runat="server" CommandName="Delete" Text="Unassign"></asp:LinkButton>
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
     </asp:GridView>
 
-    <asp:GridView ID="grvLicenseAssignedHardware" CssClass="table table-hover table-striped gridview" runat="server"></asp:GridView>
+    <asp:GridView ID="grvLicenseAssignedHardware" CssClass="table table-hover table-striped gridview" OnRowDeleting="grvLicenseAssignedHardware_RowDeleting" DataKeyNames="internalNr" runat="server">
+        <Columns>
+            <asp:TemplateField HeaderText="">
+                <ItemTemplate>
+                    <asp:LinkButton ID="lnkUnassign" runat="server" CommandName="Delete" Text="Unassign"></asp:LinkButton>
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
 
     <asp:Label ID="lblProblem" runat="server"></asp:Label>
 </asp:Content>

@@ -489,7 +489,7 @@ WORKING POINTS
 5|add-hardware| Show a overview on the added hardware 
 22-01-2016
 6|hardware-overview| License overview| Delete and update license function 
-7|add-license| Unassign the assigned license 
+7|add-license| Unassign hardware and people from the assigned license (when clicking unassign button)
 
 KNOWN ISSUES
 18-01-2016
@@ -502,3 +502,10 @@ KNOWN ISSUES
 ADDED
 26-01-2016
 1|license-overview| List out the hardware and people assigned (license)
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 42fe35779d924660d1ad4f02cdc363ce2d212f9b at V0.8ALPHA branch
+
+ADDED
+26-01-2016
+1|license-overview| Unassign the people with the selected license
+2|license-overview| Unassign the hardware with the selected license

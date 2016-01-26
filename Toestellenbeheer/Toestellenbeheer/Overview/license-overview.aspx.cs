@@ -27,7 +27,7 @@ namespace Toestellenbeheer.Overview
         {
             try
             {
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT licenseName 'License name', licenseCode 'License code' FROM license", mysqlConnectie);
+                MySqlCommand bindToGrid = new MySqlCommand("SELECT  licenseName 'License name', licenseCode 'License code' FROM license", mysqlConnectie);
                 mysqlConnectie.Open();
                 MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
                 bindToGrid.ExecuteNonQuery();
@@ -75,13 +75,13 @@ namespace Toestellenbeheer.Overview
             String strLicenseCode = grvLicense.SelectedDataKey.Value.ToString();
             getCorrespondingPeople(strLicenseCode);
             getCorrespondingHardware(strLicenseCode);
-           
+
         }
 
         protected void getCorrespondingPeople(String strLicenseCode)
         {
             mysqlConnectie.Open();
-            MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT licenseHandler.licenseCode, nameAD from licenseHandler join people on licenseHandler.eventID = people.eventID where licenseHandler.licenseCode = '" + strLicenseCode + "'", mysqlConnectie);
+            MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT licenseEventID, licenseHandler.licenseCode, nameAD from licenseHandler join people on licenseHandler.eventID = people.eventID where licenseHandler.licenseCode = '" + strLicenseCode + "'", mysqlConnectie);
             MySqlDataAdapter adpa = new MySqlDataAdapter(getCorrespondingPeople);
             getCorrespondingPeople.ExecuteNonQuery();
             getCorrespondingPeople.Dispose();
@@ -124,11 +124,62 @@ namespace Toestellenbeheer.Overview
             try
             {
                 mysqlConnectie.Open();
-                MySqlCommand getLicenseCorresponding = new MySqlCommand("SELECT * FROM hardware where license" , mysqlConnectie);
+                MySqlCommand getLicenseCorresponding = new MySqlCommand("SELECT * FROM hardware where license", mysqlConnectie);
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 lblProblem.Text = ex.ToString();
+            }
+        }
+        protected void grvLicenseAssignedPeople_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            if (IsPostBack)
+            {
+                try
+                {
+                    mysqlConnectie.Open();
+                    // String strLicenseCode = grvLicense.DataKeys[e.RowIndex].Value.ToString();
+                    String strLicenseCode = grvLicense.SelectedDataKey.Value.ToString();
+
+                    String strLicenseEventID = grvLicenseAssignedPeople.DataKeys[e.RowIndex].Value.ToString();
+
+                    MySqlCommand deleteLicenseAPeople = new MySqlCommand("Delete From licenseHandler where licenseEventID='" + strLicenseEventID + "'", mysqlConnectie);
+                    deleteLicenseAPeople.ExecuteNonQuery();
+                    deleteLicenseAPeople.Dispose();
+                    mysqlConnectie.Close();
+                    bindLicenseGRVLicense();
+                    getCorrespondingPeople(strLicenseCode);
+                }
+                catch (MySqlException ex)
+                {
+                    ShowMessage(ex.Message);
+                }
+            }
+        }
+        protected void grvLicenseAssignedHardware_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            if (IsPostBack)
+            {
+                try
+                {
+                    mysqlConnectie.Open();
+                    // String strLicenseCode = grvLicense.DataKeys[e.RowIndex].Value.ToString();
+                    String strLicenseCode = grvLicense.SelectedDataKey.Value.ToString();
+
+                    String strInternalNr = grvLicenseAssignedHardware.DataKeys[e.RowIndex].Value.ToString();
+
+                    MySqlCommand deleteLicenseAHardware = new MySqlCommand("Delete From licenseHandler where internalNr='" +
+                        strInternalNr + "' AND licenseCode = '" + strLicenseCode + "'", mysqlConnectie);
+                    deleteLicenseAHardware.ExecuteNonQuery();
+                    deleteLicenseAHardware.Dispose();
+                    mysqlConnectie.Close();
+                    bindLicenseGRVLicense();
+                    getCorrespondingHardware(strLicenseCode);
+                }
+                catch (MySqlException ex)
+                {
+                    ShowMessage(ex.Message);
+                }
             }
         }
     }

@@ -72,8 +72,39 @@ namespace Toestellenbeheer.Overview
         protected void grvLicense_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow row = grvLicense.SelectedRow;
-          
+            String strLicenseCode = grvLicense.SelectedDataKey.Value.ToString();
+            getCorrespondingPeople(strLicenseCode);
+            getCorrespondingHardware(strLicenseCode);
+           
         }
+
+        protected void getCorrespondingPeople(String strLicenseCode)
+        {
+            mysqlConnectie.Open();
+            MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT licenseHandler.licenseCode, nameAD from licenseHandler join people on licenseHandler.eventID = people.eventID where licenseHandler.licenseCode = '" + strLicenseCode + "'", mysqlConnectie);
+            MySqlDataAdapter adpa = new MySqlDataAdapter(getCorrespondingPeople);
+            getCorrespondingPeople.ExecuteNonQuery();
+            getCorrespondingPeople.Dispose();
+            DataSet ds = new DataSet();
+            adpa.Fill(ds);
+            grvLicenseAssignedPeople.DataSource = ds;
+            grvLicenseAssignedPeople.DataBind();
+            mysqlConnectie.Close();
+        }
+        protected void getCorrespondingHardware(String strLicenseCode)
+        {
+            mysqlConnectie.Open();
+            MySqlCommand getCorrespondingHardware = new MySqlCommand("SELECT serialNr, internalNr, licenseCode FROM licenseHandler WHERE serialNr IS NOT NULL AND internalNr IS NOT NULL AND licenseCode ='" + strLicenseCode + "'", mysqlConnectie);
+            MySqlDataAdapter adpa = new MySqlDataAdapter(getCorrespondingHardware);
+            getCorrespondingHardware.ExecuteNonQuery();
+            getCorrespondingHardware.Dispose();
+            DataSet ds = new DataSet();
+            adpa.Fill(ds);
+            grvLicenseAssignedHardware.DataSource = ds;
+            grvLicenseAssignedHardware.DataBind();
+            mysqlConnectie.Close();
+        }
+
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)

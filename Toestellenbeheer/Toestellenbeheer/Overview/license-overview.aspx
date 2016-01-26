@@ -22,9 +22,11 @@
         <SortedDescendingCellStyle BackColor="#E5E5E5" />
         <SortedDescendingHeaderStyle BackColor="#242121" />
     </asp:GridView>
-    <asp:GridView ID="grvLicenseAssignedPeople" OnSelectedIndexChanged="grvLicenseAssignedPeople_SelectedIndexChanged" DataKeyNames="License code" runat="server"></asp:GridView>
+    <asp:GridView ID="grvLicenseAssignedPeople" OnSelectedIndexChanged="grvLicenseAssignedPeople_SelectedIndexChanged" CssClass="table table-hover table-striped gridview" runat="server">
 
-    <asp:GridView ID="grvLicenseAssignedHardware" runat="server"></asp:GridView>
+    </asp:GridView>
+
+    <asp:GridView ID="grvLicenseAssignedHardware" CssClass="table table-hover table-striped gridview" runat="server"></asp:GridView>
 
     <asp:Label ID="lblProblem" runat="server"></asp:Label>
 </asp:Content>

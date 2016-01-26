@@ -437,7 +437,68 @@ ADDED
 1|hardware-overview| Improved design + details page
 --------------------------------------------------------------------------------------------
 PREVIOUS COMMIT: 98e5a59f81ff718c96feefea9f811d5d49f8870b at V0.7ALPHA branch
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory - ADDED
+2|add-license| Implement search function people. WITH Active Directory 
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware. - ADDED
+6|*|Archive hardware linked people. - need people - database created. - ADDED
+7|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO - ADDED
+8|*| Working with active directory - ADDED
+19-01-2016
+9|manage-type| May remove TYPENR selection and use auto_increament for this - ADDED
+1|*| Role provided page access
+20-01-2016
+21-01-2016
+1|add-hardware| Show a overview on the added hardware 
+22-01-2016
+1|*| Archive function - ADDED
+2|hardware-overview| License overview| Delete and update license function 
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI - FIXING - FIXED
+2|hardware-overview| PageIndexChanging not handled after searching
+3|add-hardware| Type selected type index have be the same as the selected type nr. - FIXED
+20-01-2016
+4|add-license| Select people not working -FIXED
+5|*| Crash when not select something -FIXED
+6|*| License key is temporary not a primary key (select internalNr ) - FIXED
+7|*| Add type => same type name can added multiple time (primary key to type name, but type-id has to deleted) 
+8|*| A hardware can only have one license instead of a license can only assigned to one device - FIXED
+22-01-2016
+9|hardware-overview| Gridview sort failed
+
 FIXED
 26-01-2016
 1|license-overview| License can assigned to unlimited people and hardware => a person can ha
 		    ve unlimited license 
+
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 42fe35779d924660d1ad4f02cdc363ce2d212f9b at V0.8ALPHA branch
+WORKING POINTS
+18-01-2016
+1|add-license| Implement search function people. WITH Active Directory 
+2|add-license| Listed below KNOWN ISSUES
+3|*|not necessary| Highlight the searchword
+19-01-2016
+4|*| Role provided page access
+21-01-2016
+5|add-hardware| Show a overview on the added hardware 
+22-01-2016
+6|hardware-overview| License overview| Delete and update license function 
+7|add-license| Unassign the assigned license 
+
+KNOWN ISSUES
+18-01-2016
+1|hardware-overview| PageIndexChanging not handled after searching
+20-01-2016
+2|*| Add type => same type name can added multiple time (primary key to type name, but type-id has to deleted) 
+22-01-2016
+3|hardware-overview| Gridview sort failed
+
+ADDED
+26-01-2016
+1|license-overview| List out the hardware and people assigned (license)

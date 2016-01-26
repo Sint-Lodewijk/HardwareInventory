@@ -94,6 +94,24 @@ namespace Toestellenbeheer {
         protected global::System.Web.UI.WebControls.GridView selectedRow;
         
         /// <summary>
+        /// lblResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResult;
+        
+        /// <summary>
+        /// grvPeopleLinked control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grvPeopleLinked;
+        
+        /// <summary>
         /// btnReturn control.
         /// </summary>
         /// <remarks>
@@ -110,14 +128,5 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalQuery;
-        
-        /// <summary>
-        /// HardwareOverviewGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource HardwareOverviewGridView;
     }
 }

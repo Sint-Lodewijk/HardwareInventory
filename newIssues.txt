@@ -1,0 +1,18 @@
+add-license
+
+Naam leverancier
+File
+Geldigheidsdatum
+Extra info
+
+Acties naar rechts
+
+add-hardware
+
+Type alphabetisch sorteren
+
+return-hardware
+
+Input voor status 
+
+*| disabled hardware

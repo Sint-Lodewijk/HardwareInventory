@@ -19,11 +19,10 @@ namespace Toestellenbeheer.Manage
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) { 
-            mysqlConnectie.Open();
+            if (!IsPostBack)
+            {
 
-            bindTypeToGrid();
-            mysqlConnectie.Close();
+                bindTypeToGrid();
             }
         }
 
@@ -31,6 +30,8 @@ namespace Toestellenbeheer.Manage
         {
             try
             {
+                mysqlConnectie.Open();
+
                 MySqlCommand bindToGrid = new MySqlCommand("SELECT * FROM type", mysqlConnectie);
                 MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
                 bindToGrid.ExecuteNonQuery();
@@ -39,6 +40,8 @@ namespace Toestellenbeheer.Manage
                 adpa.Fill(ds);
                 typeSelect.DataSource = ds;
                 typeSelect.DataBind();
+                mysqlConnectie.Close();
+
             }
             catch (MySqlException ex)
             {
@@ -56,7 +59,6 @@ namespace Toestellenbeheer.Manage
                 mysqlConnectie.Open();
                 MySqlCommand addType = new MySqlCommand("Insert into type (type) values (@Type)", mysqlConnectie);
 
-                //add parameters (assaign the values to the column.)
                 addType.Parameters.AddWithValue("@Type", strType);
 
 
@@ -65,24 +67,14 @@ namespace Toestellenbeheer.Manage
                 mysqlConnectie.Close();
 
                 bindTypeToGrid();
-                //txtResultUpload.Text = "Congratulations! The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
-                // " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " successfully added to the database.";
             }
 
             catch (MySqlException ex)
             {
-                if (ex.Number.ToString() == "1062")
-                {
-                    //testLabel.Text = ex.Message.ToString() + ", please check your input.";
-                    //   txtResultUpload.Text = "The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
-                    //       " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " already exist in de database.";
 
-                }
-                else {
-                    ShowMessage(ex.Message); }
-
-
+                ShowMessage(ex.Message);
             }
+
         }
 
         void ShowMessage(string msg)
@@ -90,6 +82,5 @@ namespace Toestellenbeheer.Manage
             ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> alert('" + msg + "');</ script > ");
         }
     }
-
 
 }

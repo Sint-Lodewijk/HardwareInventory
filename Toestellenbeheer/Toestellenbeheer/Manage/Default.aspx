@@ -7,7 +7,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <h2>Add a type</h2>
             <p>
                 Add a type.
@@ -16,18 +16,28 @@
                 <a class="btn btn-default" href="manage-type">Add type &raquo;</a>
             </p>
         </div>
-        <div class="col-md-4">
-            <h2>Assign hardware to person
+          <div class="col-md-3">
+            <h2>Assign license</h2>
+            <p>
+                Assign a license to a hardware or a people.
+            </p>
+            <p>
+                <a class="btn btn-default" href="assign-license">Assign &raquo;</a>
+            </p>
+        </div>
+
+        <div class="col-md-3">
+            <h2>Assign hardware
             </h2>
             <p>
-                Assign a hardware to person
+                Assign a hardware to a person
             </p>
             <p>
                 <a class="btn btn-default" href="assign-hardware">Assign hardware to person &raquo;</a>
             </p>
         </div>
-        <div class="col-md-4">
-            <h2>Get the returned hardware
+        <div class="col-md-3">
+            <h2>Return hardware
             </h2>
             <p>
                 Get the returned hardware

@@ -36,6 +36,7 @@ namespace Toestellenbeheer
                 HardwareOverviewGrid.DataBind();
                 btnReturn.Visible = false;
                 searchPanel.Visible = true;
+                
             }
         }
 
@@ -46,7 +47,7 @@ namespace Toestellenbeheer
         }
         protected void DownloadFile(object sender, EventArgs e)
         {
-            //try { 
+            try { 
             string path = "../UserUploads/Attachments/";
 
             string filePath = (sender as LinkButton).CommandArgument;
@@ -55,22 +56,41 @@ namespace Toestellenbeheer
             Response.WriteFile(path + Path.GetFileName(filePath));
             Response.End();
             }
-          //  catch (Exception ex)
-            //{
-           //     lblTotalQuery.Text = "Problem with downloading, please check if you added a attachment to the hardware.";
-            //}
-            //}
-       
+            catch (Exception ex)
+            {
+               lblTotalQuery.Text = "Problem with downloading, please check if you added a attachment to the hardware." + ex.ToString();
+            }
+            }
+       private void dd()
+        {
+            String strInternalNr = HardwareOverviewGrid.SelectedDataKey.Value.ToString();
+            mysqlConnectie.Open();
+            MySqlCommand getPeopleLinked = new MySqlCommand("SELECT nameAD, serialNr, internalNr, DATE_FORMAT(assignedDate, '%Y-%m-%d') 'assignedDate',DATE_FORMAT(returnedDate, '%Y-%m-%d') 'returnedDate' FROM archive JOIN people on archive.eventID = people.eventID where internalNr = '" + strInternalNr + "'", mysqlConnectie);
+            MySqlDataAdapter adpa = new MySqlDataAdapter(getPeopleLinked);
+            getPeopleLinked.ExecuteNonQuery();
+            getPeopleLinked.Dispose();
+            DataSet ds = new DataSet();
+            adpa.Fill(ds);
+            grvPeopleLinked.DataSource = ds;
+            grvPeopleLinked.DataBind();
+            int intTotalResult = grvPeopleLinked.Rows.Count;
+            if (intTotalResult == 0)
+            {
+                lblResult.Text = "The hardware with internal Nr: " + strInternalNr + " has never been assigned to a person before!";
+            }
+            else
+            {
+                lblResult.Text = "The hardware with internal Nr: " + strInternalNr + " has been assigned " + intTotalResult + " times";
+            }
+        }
         private void BindGrid()
         {
             try
             {
                
                 mysqlConnectie.Open();
-                //GetImagePaths();
                 String strSearchItem = drpSearchItem.SelectedValue.ToString();
                 String strSearchText = txtSearch.Text.Trim();
-                // string bindToGridCmd = "SELECT * FROM hardware WHERE @searchItem LIKE '%@searchText%'";
                 MySqlCommand bindToGrid = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation FROM hardware WHERE " + strSearchItem + " LIKE '%" + strSearchText + "%';", mysqlConnectie);
                
 
@@ -164,6 +184,7 @@ namespace Toestellenbeheer
             HardwareOverviewGrid.Visible = false;
                 btnReturn.Visible = true;
                 searchPanel.Visible = false;
+                dd();
         }
             catch(MySqlException ex)
             {

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="return-hardware.aspx.cs" EnableEventValidation="false" Inherits="Toestellenbeheer.Manage.return_hardware" %>
+﻿<%@ Page Title="Return hardware" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="return-hardware.aspx.cs" EnableEventValidation="false" Inherits="Toestellenbeheer.Manage.return_hardware" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:GridView ID="grvHardwarePoolAssigned" AutoGenerateColumns="false" OnRowDataBound="grvHardwarePoolAssigned_OnRowDataBound" runat="server" CssClass="table table-hover table-striped gridview" DataKeyNames="internalNr">

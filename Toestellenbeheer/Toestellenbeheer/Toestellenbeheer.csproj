@@ -213,6 +213,7 @@
     <None Include="Properties\PublishProfiles\toestellenbeheer - Web Deploy.pubxml" />
     <Content Include="favicon.ico" />
     <Content Include="Manage\assign-hardware.aspx" />
+    <Content Include="Manage\assign-license.aspx" />
     <Content Include="Manage\manage-type.aspx" />
     <Content Include="Manage\return-hardware.aspx" />
     <Content Include="Overview\Default.aspx" />
@@ -446,6 +447,13 @@
     </Compile>
     <Compile Include="Manage\assign-hardware.aspx.designer.cs">
       <DependentUpon>assign-hardware.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manage\assign-license.aspx.cs">
+      <DependentUpon>assign-license.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manage\assign-license.aspx.designer.cs">
+      <DependentUpon>assign-license.aspx</DependentUpon>
     </Compile>
     <Compile Include="Manage\manage-type.aspx.cs">
       <DependentUpon>manage-type.aspx</DependentUpon>

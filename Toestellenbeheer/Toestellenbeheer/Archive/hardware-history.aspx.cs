@@ -34,7 +34,7 @@ namespace Toestellenbeheer.Archive
         {
             String strInternalNr = grvHardware.SelectedDataKey.Value.ToString();
             mysqlConnectie.Open();
-            MySqlCommand getPeopleLinked = new MySqlCommand("SELECT * FROM archive JOIN people on archive.eventID = people.eventID where internalNr = '" + strInternalNr + "'", mysqlConnectie);
+            MySqlCommand getPeopleLinked = new MySqlCommand("SELECT nameAD, serialNr, internalNr, DATE_FORMAT(assignedDate, '%Y-%m-%d') 'assignedDate',DATE_FORMAT(returnedDate, '%Y-%m-%d') 'returnedDate' FROM archive JOIN people on archive.eventID = people.eventID where internalNr = '" + strInternalNr + "'", mysqlConnectie);
             MySqlDataAdapter adpa = new MySqlDataAdapter(getPeopleLinked);
             getPeopleLinked.ExecuteNonQuery();
             getPeopleLinked.Dispose();
@@ -49,13 +49,13 @@ namespace Toestellenbeheer.Archive
             }
             else
             {
-                lblResult.Text = "The hardware with internal Nr: " + strInternalNr + "has been assigned " + intTotalResult + " times";
+                lblResult.Text = "The hardware with internal Nr: " + strInternalNr + " has been assigned " + intTotalResult + " times";
             }
         }
         protected void getHardware()
         {
             mysqlConnectie.Open();
-            MySqlCommand getHardware = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, warranty, extraInfo, DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation, eventID FROM hardware WHERE eventID NOT LIKE 0 ", mysqlConnectie);
+            MySqlCommand getHardware = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, warranty, extraInfo, DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation, eventID FROM hardware ", mysqlConnectie);
             MySqlDataAdapter adpa = new MySqlDataAdapter(getHardware);
             getHardware.ExecuteNonQuery();
             getHardware.Dispose();

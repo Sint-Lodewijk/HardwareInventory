@@ -22,6 +22,24 @@ namespace Toestellenbeheer.Overview {
         protected global::System.Web.UI.WebControls.GridView grvLicense;
         
         /// <summary>
+        /// grvLicenseAssignedPeople control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grvLicenseAssignedPeople;
+        
+        /// <summary>
+        /// grvLicenseAssignedHardware control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grvLicenseAssignedHardware;
+        
+        /// <summary>
         /// lblProblem control.
         /// </summary>
         /// <remarks>

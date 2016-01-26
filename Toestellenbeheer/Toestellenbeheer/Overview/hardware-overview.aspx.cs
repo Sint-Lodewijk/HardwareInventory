@@ -35,6 +35,7 @@ namespace Toestellenbeheer
                 HardwareOverviewGrid.DataSource = ds;
                 HardwareOverviewGrid.DataBind();
                 btnReturn.Visible = false;
+                searchPanel.Visible = true;
             }
         }
 
@@ -162,6 +163,7 @@ namespace Toestellenbeheer
             selectedRow.DataBind();
             HardwareOverviewGrid.Visible = false;
                 btnReturn.Visible = true;
+                searchPanel.Visible = false;
         }
             catch(MySqlException ex)
             {

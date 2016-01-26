@@ -82,6 +82,24 @@ namespace Toestellenbeheer.Overview
                 e.Row.ToolTip = "Click to select this row.";
             }
         }
+
+        protected void grvLicenseAssignedPeople_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        protected void getLicenseCorresponding()
+        {
+            String strLicenseCode = grvLicense.SelectedDataKey.Value.ToString();
+            try
+            {
+                mysqlConnectie.Open();
+                MySqlCommand getLicenseCorresponding = new MySqlCommand("SELECT * FROM hardware where license" , mysqlConnectie);
+            }
+            catch(MySqlException ex)
+            {
+                lblProblem.Text = ex.ToString();
+            }
+        }
     }
 
 

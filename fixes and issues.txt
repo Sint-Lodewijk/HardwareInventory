@@ -435,3 +435,9 @@ PREVIOUS COMMIT: 50b5b96f85ad5d5fa61ecf3f1e2a39144b6d085b at V0.7ALPHA branch
 ADDED 
 25-01-2016
 1|hardware-overview| Improved design + details page
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 98e5a59f81ff718c96feefea9f811d5d49f8870b at V0.7ALPHA branch
+FIXED
+26-01-2016
+1|license-overview| License can assigned to unlimited people and hardware => a person can ha
+		    ve unlimited license 

@@ -1,6 +1,6 @@
 ﻿/*
 Created: 13/01/2016
-Modified: 25/01/2016
+Modified: 26/01/2016
 Model: MySQL 5.6
 Database: MySQL 5.6
 */
@@ -22,16 +22,12 @@ CREATE TABLE `hardware`
   `pictureLocation` Varchar(150),
   `typeNr` Int,
   `attachmentLocation` Varchar(150),
-  `licenseCode` Varchar(150),
   `eventID` Int,
   `modelNr` Varchar(50)
 )
 ;
 
 CREATE INDEX `IX_Relationship22` ON `hardware` (`typeNr`)
-;
-
-CREATE INDEX `IX_Relationship1` ON `hardware` (`licenseCode`)
 ;
 
 CREATE INDEX `hHt` ON `hardware` (`eventID`)
@@ -45,13 +41,9 @@ ALTER TABLE `hardware` ADD  PRIMARY KEY (`serialNr`,`internalNr`)
 CREATE TABLE `people`
 (
   `nameAD` Varchar(100) NOT NULL,
-  `licenseCode` Varchar(150),
   `eventID` Int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`eventID`)
 )
-;
-
-CREATE INDEX `IX_Relationship7` ON `people` (`licenseCode`)
 ;
 
 -- Table type
@@ -83,12 +75,15 @@ ALTER TABLE `license` ADD  PRIMARY KEY (`licenseCode`)
 CREATE TABLE `archive`
 (
   `person` Varchar(20),
-  `id` Int NOT NULL,
+  `id` Int NOT NULL AUTO_INCREMENT,
   `serialNr` Varchar(40),
   `internalNr` Varchar(30),
   `eventID` Int,
-  `assignedDate` Char(20),
-  `addedDate` Char(20)
+  `assignedDate` Date,
+  `returnedDate` Date,
+  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`),
+ UNIQUE `id` (`id`)
 )
 ;
 
@@ -98,21 +93,31 @@ CREATE INDEX `IX_Relationship1` ON `archive` (`serialNr`,`internalNr`)
 CREATE INDEX `IX_Relationship2` ON `archive` (`eventID`)
 ;
 
-ALTER TABLE `archive` ADD  PRIMARY KEY (`id`)
+-- Table licenseHandler
+
+CREATE TABLE `licenseHandler`
+(
+  `licenseEventID` Int NOT NULL AUTO_INCREMENT,
+  `serialNr` Varchar(40),
+  `internalNr` Varchar(30),
+  `licenseCode` Varchar(150),
+  `eventID` Int,
+  PRIMARY KEY (`licenseEventID`)
+)
 ;
 
-ALTER TABLE `archive` ADD UNIQUE `id` (`id`)
+CREATE INDEX `IX_Relationship1` ON `licenseHandler` (`serialNr`,`internalNr`)
+;
+
+CREATE INDEX `IX_Relationship2` ON `licenseHandler` (`licenseCode`)
+;
+
+CREATE INDEX `IX_Relationship3` ON `licenseHandler` (`eventID`)
 ;
 
 -- Create relationships section ------------------------------------------------- 
 
-ALTER TABLE `hardware` ADD CONSTRAINT `hHT` FOREIGN KEY (`typeNr`) REFERENCES `type` (`typeNr`) ON DELETE RESTRICT ON UPDATE RESTRICT
-;
-
-ALTER TABLE `people` ADD CONSTRAINT `peopleLicenseCode` FOREIGN KEY (`licenseCode`) REFERENCES `license` (`licenseCode`) ON DELETE RESTRICT ON UPDATE RESTRICT
-;
-
-ALTER TABLE `hardware` ADD CONSTRAINT `hardwareLicense` FOREIGN KEY (`licenseCode`) REFERENCES `license` (`licenseCode`) ON DELETE RESTRICT ON UPDATE RESTRICT
+ALTER TABLE `hardware` ADD CONSTRAINT `hardwareWithType` FOREIGN KEY (`typeNr`) REFERENCES `type` (`typeNr`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ;
 
 ALTER TABLE `hardware` ADD CONSTRAINT `hHp` FOREIGN KEY (`eventID`) REFERENCES `people` (`eventID`) ON DELETE RESTRICT ON UPDATE RESTRICT
@@ -122,5 +127,14 @@ ALTER TABLE `archive` ADD CONSTRAINT `hardwareArchive` FOREIGN KEY (`serialNr`, 
 ;
 
 ALTER TABLE `archive` ADD CONSTRAINT `peopleArchive` FOREIGN KEY (`eventID`) REFERENCES `people` (`eventID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+;
+
+ALTER TABLE `licenseHandler` ADD CONSTRAINT `licenseSaveHardware` FOREIGN KEY (`serialNr`, `internalNr`) REFERENCES `hardware` (`serialNr`, `internalNr`) ON DELETE RESTRICT ON UPDATE RESTRICT
+;
+
+ALTER TABLE `licenseHandler` ADD CONSTRAINT `Relationship2` FOREIGN KEY (`licenseCode`) REFERENCES `license` (`licenseCode`) ON DELETE RESTRICT ON UPDATE RESTRICT
+;
+
+ALTER TABLE `licenseHandler` ADD CONSTRAINT `licenseSavePeople` FOREIGN KEY (`eventID`) REFERENCES `people` (`eventID`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ;
 

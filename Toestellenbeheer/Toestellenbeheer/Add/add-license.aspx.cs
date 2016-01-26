@@ -19,8 +19,7 @@ namespace Toestellenbeheer.Manage
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
-        DirectoryEntry entry = new DirectoryEntry("LDAP://magnix.dc.intranet");
-        // set up domain context
+        DirectoryEntry entry = new DirectoryEntry("LDAP://magnix.dc.intranet"); // set up domain context
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -113,41 +112,6 @@ namespace Toestellenbeheer.Manage
         //Function for add license key into the database
         protected void addLicense()
         {
-
-            try
-            {
-                
-                mysqlConnectie.Open();
-                MySqlCommand addLicense = new MySqlCommand("INSERT INTO license (licenseName, licenseCode) values (@licenseName, @licenseCode)", mysqlConnectie);
-                addLicense.Parameters.AddWithValue("@licenseName", txtLicenseName.Text.Trim());
-                addLicense.Parameters.AddWithValue("@licenseCode", txtLicenseCode.Text.Trim());
-                addLicense.ExecuteNonQuery();
-                addLicense.Dispose();
-                mysqlConnectie.Close();
-    // testLabel.Text = licenseCode.Text + " has been assigned to device with a internal number: " + internalNr + " and a serial code " + SerialNr;
-            }
-            catch (MySqlException ex)
-            {
-                if (ex.Number.ToString() == "1062")
-                {
-               testLabel.Text = "The license code: " + "<span style=\"color:red\">" + txtLicenseCode.Text + "</span>" + " you have entered, already exists in de database!";
-
-                }
-                else if (ex.Number.ToString() == "1064")
-                {
-
-                    //testLabel.Text = ex.Message.ToString() + ", please check your input.";
-                    testLabel.Text = "Apostrophe ('), quotation mark and semicolum is not allow in the searchword: " + "<span style=\"color:red\">" + txtSearch + "</span>" + ", please delete this marks.";
-
-                }
-                else { ShowMessage(ex.Message); }
-
-            }
-            //test the value - removeable
-        }
-        protected void btnAddLicense_click(object sender, EventArgs e)
-        {
-
             try
             {
 
@@ -180,7 +144,10 @@ namespace Toestellenbeheer.Manage
                 else { ShowMessage(ex.Message); }
 
             }
-            //test the value - removeable
+        }   
+        protected void btnAddLicense_click(object sender, EventArgs e)
+        {
+            addLicense();
         }
         //When click the button, use the assign function to assign the right hardware.
         protected void assignToSelectedHardware_Click(object sender, EventArgs e)
@@ -188,12 +155,15 @@ namespace Toestellenbeheer.Manage
             String strLicenseCode = txtLicenseCode.Text;
 
             String strLicenseName = txtLicenseName.Text;
-            String internalNr = grvHardwareLicenseSelect.SelectedRow.Cells[3].Text;
+            String strInternalNr = grvHardwareLicenseSelect.SelectedRow.Cells[3].Text;
             String strSerialCode = grvHardwareLicenseSelect.SelectedRow.Cells[4].Text;
             addLicense();
             mysqlConnectie.Open();
-            MySqlCommand addLicenseCommand = new MySqlCommand("UPDATE hardware SET licenseCode= '" + strLicenseCode + "' WHERE serialNr= '" +
-                strSerialCode + "' and internalNr='"+ internalNr +"'", mysqlConnectie);
+            MySqlCommand addLicenseCommand = new MySqlCommand("INSERT INTO licenseHandler (internalNr, serialNr, licenseCode) values (@internalNr, @serialNr, @licenseCode)", mysqlConnectie);
+            addLicenseCommand.Parameters.AddWithValue("@internalNr", strInternalNr);
+            addLicenseCommand.Parameters.AddWithValue("@serialNr", strSerialCode);
+            addLicenseCommand.Parameters.AddWithValue("@licenseCode", strLicenseCode);
+
             addLicenseCommand.ExecuteNonQuery();
             addLicenseCommand.Dispose();
             mysqlConnectie.Close();
@@ -283,7 +253,7 @@ namespace Toestellenbeheer.Manage
                 {
                     DisplayName = item.Properties["cn"][0].ToString();
                 }
-      
+
                 if (item.Properties["SamAccountName"].Count > 0)
                 {
                     DomainName = item.Properties["SamAccountName"][0].ToString();
@@ -296,12 +266,12 @@ namespace Toestellenbeheer.Manage
                 {
                     Title = item.Properties["title"][0].ToString();
                 }
-         
+
                 if (item.Properties["DistinguishedName"].Count > 0)
                 {
                     memberof = item.Properties["DistinguishedName"][0].ToString();
                 }
-                
+
                 DataTable dt = new DataTable();
                 dt.Columns.Add(new DataColumn("Display Name", typeof(string)));
                 dt.Columns.Add(new DataColumn("Domain Name", typeof(string)));
@@ -333,27 +303,20 @@ namespace Toestellenbeheer.Manage
             {
                 String nameAD = licenseOverviewGridPeople.SelectedRow.Cells[2].Text;
                 String strLicenseCode = txtLicenseCode.Text;
+                addLicense();
                 mysqlConnectie.Open();
-                MySqlCommand addNewLicense = new MySqlCommand("INSERT INTO license (licenseName, licenseCode) values (@licenseName, @licenseCode)", mysqlConnectie);
-                addNewLicense.Parameters.AddWithValue("@licenseCode", strLicenseCode);
-                addNewLicense.Parameters.AddWithValue("@licenseName", txtLicenseName.Text);
-
-                addNewLicense.ExecuteNonQuery();
-                addNewLicense.Dispose();
+                
                 //     MySqlCommand listOutType = new MySqlCommand("INSERT INTO license (licenseName, licenseCode, serialNr, internalNr) values (@licenseName, @licenseCode, @serialNr, @internalNr)", mysqlConnectie);
-                MySqlCommand assignLicenseToPeople = new MySqlCommand("INSERT INTO people (nameAD, licenseCode) values (@nameAD, @licenseCode)", mysqlConnectie);
+                MySqlCommand assignLicenseToPeople = new MySqlCommand("INSERT INTO licenseHandler (eventID, licenseCode) values ((SELECT DISTINCT eventID FROM people where nameAD = '"+ 
+                    nameAD+"' LIMIT 0,1), @licenseCode)", mysqlConnectie);
 
                 //using (MySqlDataAdapter data1 = new MySqlDataAdapter(listOutType))
                 //     data1.Fill(Type, "type");
-                assignLicenseToPeople.Parameters.AddWithValue("@nameAD", nameAD);
                 assignLicenseToPeople.Parameters.AddWithValue("@licenseCode", strLicenseCode);
 
                 assignLicenseToPeople.ExecuteNonQuery();
                 assignLicenseToPeople.Dispose();
-                MySqlCommand updateLicenseStatus = new MySqlCommand("UPDATE license SET nameAD=" + "'"+ nameAD + "'" + "  WHERE licenseCode=" + "'" + strLicenseCode +"'", mysqlConnectie);
-                updateLicenseStatus.ExecuteNonQuery();
-                updateLicenseStatus.Dispose();
-                mysqlConnectie.Close();
+                
                 testLabel.Text = "Congratulations! The license code: " + "<span class=\"labelOutput\">" + txtLicenseCode.Text + "</span>" +
                     " has been successfully assigned to " + "<span class=\"labelOutput\">" +
                     licenseOverviewGridPeople.SelectedRow.Cells[2].Text + "</span>";

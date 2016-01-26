@@ -32,7 +32,7 @@ namespace Toestellenbeheer.Archive
             try
             {
                 mysqlConnectie.Open();
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT * FROM archive JOIN people on archive.eventID = people.eventID WHERE nameAD = '" + nameAD + "'" , mysqlConnectie);
+                MySqlCommand bindToGrid = new MySqlCommand("SELECT serialNr, internalNr, DATE_FORMAT(assignedDate, '%Y-%m-%d') 'assignedDate',DATE_FORMAT(returnedDate, '%Y-%m-%d') 'returnedDate' FROM archive JOIN people on archive.eventID = people.eventID WHERE nameAD = '" + nameAD + "'" , mysqlConnectie);
                 MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
                 bindToGrid.ExecuteNonQuery();
                 bindToGrid.Dispose();

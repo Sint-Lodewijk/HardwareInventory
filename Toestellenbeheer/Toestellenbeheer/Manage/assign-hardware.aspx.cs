@@ -220,4 +220,5 @@ namespace Toestellenbeheer.Manage
             mysqlConnectie.Close();
         }
     }
+    //WebRequest request = WebRequest.Create("http://scriptix:13542/web/ontvangstbewijs/generate-pdf");
 }

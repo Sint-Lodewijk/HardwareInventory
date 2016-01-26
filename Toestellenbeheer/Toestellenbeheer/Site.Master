@@ -79,7 +79,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; Toestellenbeheer - Jianing - <%: DateTime.Now.Year %> </p>
+                <p>&copy; Hardware inventory management software - Jianing - <%: DateTime.Now.Year %> </p>
             </footer>
         </div>
     </form>

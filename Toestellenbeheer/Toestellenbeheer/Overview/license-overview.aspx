@@ -26,7 +26,7 @@
         <Columns>
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
-                    <asp:LinkButton ID="lnkUnassign" runat="server" CommandName="Delete" Text="Unassign"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkUnassign" runat="server" CommandName="Delete" OnClientClick="if (!confirm('Are you sure to unassign selected people with the license?')) return false;" Text="Unassign"></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
@@ -36,11 +36,18 @@
         <Columns>
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
-                    <asp:LinkButton ID="lnkUnassign" runat="server" CommandName="Delete" Text="Unassign"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkUnassign" runat="server" OnClientClick="if (!confirm('Are you sure to unassign selected people with the license?')) return false;" CommandName="Delete" Text="Unassign"></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <asp:Label ID="lblCountPeople" runat="server" Text=""></asp:Label>
+            <asp:Label ID="lblCountHardware" runat="server" Text=""></asp:Label>
 
+        </div>
+    </div>
     <asp:Label ID="lblProblem" runat="server"></asp:Label>
+
 </asp:Content>

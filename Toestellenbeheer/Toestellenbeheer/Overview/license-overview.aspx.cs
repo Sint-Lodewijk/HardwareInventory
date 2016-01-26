@@ -75,6 +75,9 @@ namespace Toestellenbeheer.Overview
             String strLicenseCode = grvLicense.SelectedDataKey.Value.ToString();
             getCorrespondingPeople(strLicenseCode);
             getCorrespondingHardware(strLicenseCode);
+            lblCountPeople.Text = "This license has been assigned to: " + grvLicenseAssignedPeople.Rows.Count.ToString() + " people and ";
+            lblCountHardware.Text = grvLicenseAssignedHardware.Rows.Count.ToString() + " hardware";
+
 
         }
 
@@ -90,6 +93,7 @@ namespace Toestellenbeheer.Overview
             grvLicenseAssignedPeople.DataSource = ds;
             grvLicenseAssignedPeople.DataBind();
             mysqlConnectie.Close();
+
         }
         protected void getCorrespondingHardware(String strLicenseCode)
         {
@@ -103,6 +107,7 @@ namespace Toestellenbeheer.Overview
             grvLicenseAssignedHardware.DataSource = ds;
             grvLicenseAssignedHardware.DataBind();
             mysqlConnectie.Close();
+
         }
 
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)

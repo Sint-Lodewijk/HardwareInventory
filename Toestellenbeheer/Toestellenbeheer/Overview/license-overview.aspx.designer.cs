@@ -40,6 +40,24 @@ namespace Toestellenbeheer.Overview {
         protected global::System.Web.UI.WebControls.GridView grvLicenseAssignedHardware;
         
         /// <summary>
+        /// lblCountPeople control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCountPeople;
+        
+        /// <summary>
+        /// lblCountHardware control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCountHardware;
+        
+        /// <summary>
         /// lblProblem control.
         /// </summary>
         /// <remarks>

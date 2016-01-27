@@ -77,7 +77,6 @@ CREATE TABLE `archive`
   `assignedDate` Date,
   `returnedDate` Date,
   PRIMARY KEY (`id`),
-  PRIMARY KEY (`id`),
  UNIQUE `id` (`id`)
 )
 ;

@@ -203,6 +203,7 @@
     <Content Include="Manage\assign-license.aspx" />
     <Content Include="Manage\manage-type.aspx" />
     <Content Include="Manage\return-hardware.aspx" />
+    <Content Include="NoAccess.aspx" />
     <Content Include="Overview\Default.aspx" />
     <Content Include="Overview\hardware-overview.aspx" />
     <Content Include="Add\add-hardware.aspx" />
@@ -366,7 +367,15 @@
     <Compile Include="Manage\return-hardware.aspx.designer.cs">
       <DependentUpon>return-hardware.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LdapAuthentication.cs" />
+    <Compile Include="NoAccess.aspx.cs">
+      <DependentUpon>NoAccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NoAccess.aspx.designer.cs">
+      <DependentUpon>NoAccess.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Overview\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -409,9 +418,7 @@
     <Compile Include="Manage\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MySqlConfiguration.cs" />
-    <Compile Include="Models\MySqlHistoryContext.cs" />
     <Compile Include="Models\MySqlInitializer.cs" />
     <Compile Include="Overview\license-overview.aspx.cs">
       <DependentUpon>license-overview.aspx</DependentUpon>

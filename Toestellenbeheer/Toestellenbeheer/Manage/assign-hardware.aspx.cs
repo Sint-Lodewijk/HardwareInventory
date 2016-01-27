@@ -67,12 +67,12 @@ namespace Toestellenbeheer.Manage
         protected void getUserFromAD()
         {
             DirectoryEntry rootDSE = rootDSE = new DirectoryEntry("LDAP://magnix.dc.intranet", "readonly@dc.intranet", "id.13542");
-
+            
             DirectorySearcher search = new DirectorySearcher(rootDSE);
 
             search.PageSize = 1001;// To Pull up more than 100 records.
 
-            search.Filter = "(&(objectClass=user)(!userAccountControl:1.2.840.113556.1.4.803:=2))";//UserAccountControl will only Include Non-Disabled Users.
+            search.Filter = "(&(objectCategory=person)(objectClass=user))";
             SearchResultCollection result = search.FindAll();
             String DisplayName, EmailAddress, DomainName, Department, Title, Company, memberof, aaa;
             DisplayName = EmailAddress = DomainName = Department = Title = Company = memberof = aaa = "";

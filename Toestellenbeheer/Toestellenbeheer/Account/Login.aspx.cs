@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using Toestellenbeheer.Models;
 using System.Web.Security;
+using FormsAuth;
 
 namespace Toestellenbeheer.Account
 {
@@ -13,49 +14,47 @@ namespace Toestellenbeheer.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            RegisterHyperLink.NavigateUrl = "Register";
-            // Enable this once you have account confirmation enabled for password reset functionality
-            //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
-            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
-            var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-            if (!String.IsNullOrEmpty(returnUrl))
-            {
-                RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
-            }
+
         }
 
-        protected void LogIn(object sender, EventArgs e)
+        protected void Login_Click(Object sender, EventArgs e)
         {
-            if (IsValid)
+            String adPath = "LDAP://magnix.dc.intranet"; //Fully-qualified Domain Name
+            LdapAuthentication adAuth = new LdapAuthentication(adPath);
+            try
             {
-                // Validate the user password
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
-
-                // This doen't count login failures towards account lockout
-                // To enable password failures to trigger lockout, change to shouldLockout: true
-                var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
-
-                switch (result)
+                if (true == adAuth.IsAuthenticated(UserName.Text, Password.Text))
                 {
-                    case SignInStatus.Success:
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-                        break;
-                    case SignInStatus.LockedOut:
-                        Response.Redirect("/Account/Lockout");
-                        break;
-                    case SignInStatus.RequiresVerification:
-                        Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}", 
-                                                        Request.QueryString["ReturnUrl"],
-                                                        RememberMe.Checked),
-                                          true);
-                        break;
-                    case SignInStatus.Failure:
-                    default:
-                        FailureText.Text = "Invalid login attempt";
-                        ErrorMessage.Visible = true;
-                        break;
+                    String groups = adAuth.GetGroups();
+
+                    //Create the ticket, and add the groups.
+                    bool isCookiePersistent = RememberMe.Checked;
+                    FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, UserName.Text,
+                  DateTime.Now, DateTime.Now.AddMinutes(60), isCookiePersistent, groups);
+
+                    //Encrypt the ticket.
+                    String encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+
+                    //Create a cookie, and then add the encrypted ticket to the cookie as data.
+                    HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+
+                    if (true == isCookiePersistent)
+                        authCookie.Expires = authTicket.Expiration;
+
+                    //Add the cookie to the outgoing cookies collection.
+                    Response.Cookies.Add(authCookie);
+
+                    //You can redirect now.
+                    Response.Redirect(FormsAuthentication.GetRedirectUrl(UserName.Text, false));
                 }
+                else
+                {
+                    errorLabel.Text = "Authentication did not succeed. Check user name and password.";
+                }
+            }
+            catch (Exception ex)
+            {
+                errorLabel.Text = "Error authenticating. " + ex.Message;
             }
         }
     }

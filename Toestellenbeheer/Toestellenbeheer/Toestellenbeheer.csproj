@@ -197,6 +197,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\Server.pubxml" />
     <None Include="Properties\PublishProfiles\toestellenbeheer - Web Deploy.pubxml" />
     <Content Include="favicon.ico" />
     <Content Include="Manage\assign-hardware.aspx" />

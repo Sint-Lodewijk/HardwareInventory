@@ -12,8 +12,7 @@
 
             </div>
 
-            <!-- <asp:SqlDataSource ID="TypeListDB" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT type FROM type;"></asp:SqlDataSource>
-           -->
+       
             <div class="form-group">
 
                 <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="manufacturerList">Manufacturer</asp:Label>

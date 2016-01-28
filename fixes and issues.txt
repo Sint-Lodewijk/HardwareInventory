@@ -515,3 +515,7 @@ PREVIOUS COMMIT: 42fe35779d924660d1ad4f02cdc363ce2d212f9b at V0.8ALPHA branch
 ADDED
 26-01-2016
 1|license-overview| Javascript if desired Unassigne
+-------------------
+ADDED
+26-01-2016
+1|*| Role based page access

@@ -53,24 +53,10 @@
 
     <asp:GridView ID="HardwareOverviewGrid" OnRowDeleting="details" OnRowDataBound="OnRowDataBound" CssClass="table table-hover table-striped gridview" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="internalNr" AllowPaging="True">
         <Columns>
-            <%-- 
-            <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
-                NullDisplayText="No image associated." ControlStyle-CssClass="picutureGrid" ReadOnly="True">
-            </asp:ImageField> --%>
-
             <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
             <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />
             <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="manufacturerName" />
             <asp:BoundField DataField="typeNr" HeaderText="Type nr" SortExpression="typeNr" />
-
-            <%--             <asp:TemplateField HeaderText="Attachment">
-                <ItemTemplate>
-                    <asp:LinkButton ID="lnkDownload" CommandName="Select" CommandArgument='<%# Eval("attachmentLocation") %>' runat="server" OnClick="DownloadFile" Text='<%# Convert.ToString(Eval("attachmentLocation")).Length < 1 ? "" : Convert.ToString(Eval("attachmentLocation")) %>'>Download</asp:LinkButton>
-                </ItemTemplate>
-            </asp:TemplateField>
-            --%>
-
-
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
                     <asp:LinkButton ID="lnkShowMoreInfo" runat="server" CommandName="Delete" Text="Details"></asp:LinkButton>
@@ -91,16 +77,7 @@
     </asp:GridView>
     <asp:GridView ID="selectedRow" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
         <Columns>
-            <%--<asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
-                NullDisplayText="No image associated." ControlStyle-CssClass="picutureGrid" ReadOnly="True">
-                <ControlStyle CssClass="picutureGrid"></ControlStyle>
-            </asp:ImageField>
-            <asp:BoundField DataField="Purchase date" HeaderText="Purchase date" />
-            <asp:BoundField DataField="Type nr" HeaderText="Type Nr" />
-            <asp:BoundField DataField="Manufacturer" HeaderText="Manufacturer" />
-            <asp:BoundField DataField="Serial Nr" HeaderText="Serial Nr" />
-            <asp:BoundField DataField="Internal Nr" HeaderText="Internal Nr" />
-            <asp:BoundField DataField="Warranty" HeaderText="Warranty" /> --%>
+          
             <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
                 NullDisplayText="No image associated." ControlStyle-CssClass="picutureGrid" ReadOnly="True">
                 <ControlStyle CssClass="picutureGrid"></ControlStyle>
@@ -194,51 +171,25 @@
                     </table>
                 </ItemTemplate>
             </asp:TemplateField>
-            <%-- 
-            <asp:TemplateField HeaderText="Attachment">
-                <ItemTemplate>
-                    <asp:LinkButton ID="lnkDownload" CommandArgument='<%# Eval("attachmentLocation") %>' runat="server" OnClick="DownloadFile" Text='<%# Convert.ToString(Eval("attachmentLocation")).Length < 1 ? "" : Convert.ToString(Eval("attachmentLocation")) %>'>Download</asp:LinkButton>
-                </ItemTemplate>
-            </asp:TemplateField>--%>
+
+            
         </Columns>
     </asp:GridView>
-    <asp:Button ID="btnReturn" runat="server" Text="Return to the overview page" OnClick="btnReturn_Click" CssClass="btn btn-primary"/>
-    <!--
-    <link rel="stylesheet" href="../../Scripts/jquery-ui.css">
-    <script src="../../Scripts/jquery-2.2.0.js"></script>
-    <script src="../../Scripts/jquery-ui.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
-    <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css"
-        rel="stylesheet" type="text/css" />
-    <script type="text/javascript">
-        $(document).on("click", "[id*=lnkShowMoreInfo]", function () {
-            $("#serialNr").html($(".serialNr", $(this).closest("tr")).html());
-            $("#internalNr").html($(".internalNr", $(this).closest("tr")).html());
-            $("#manufacturerName").html($(".manufacturerName", $(this).closest("tr")).html());
-            $("#dialog").dialog({
-                title: "View Details",
-                buttons: {
-                    Ok: function () {
-                        $(this).dialog('close');
-                    }
-                },
-                modal: true
-            });
-            return false;
-        });
-    </script>
-    <div id="dialog" style="display: none">
-        <b>serialNr:</b> <span id="serialNr"></span>
-        <br />
-        <b>internalNr:</b> <span id="internalNr"></span>
-        <br />
-        <b>manufacturerName:</b> <span id="manufacturerName"></span>
-    </div>
-    -->
-    <asp:Label ID="lblTotalQuery" runat="server" Text=""></asp:Label>
-    <!-- <asp:SqlDataSource ID="HardwareOverviewGridView" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT * FROM hardware;"></asp:SqlDataSource>
-    -->
+    <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
 
+    <asp:GridView ID="grvPeopleLinked" CssClass="table table-hover table-striped gridview" AutoGenerateColumns="false" runat="server">
+        <Columns>
+            <asp:BoundField DataField="serialNr" HeaderText="Serial Nr" />
+            <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" />
+            <asp:BoundField DataField="nameAD" HeaderText="Domain Name" />
+            <asp:BoundField DataField="assignedDate" HeaderText="Assigned Date" />
+            <asp:BoundField DataField="returnedDate" HeaderText="Returned Date" NullDisplayText="Not returned yet" />
+
+        </Columns>
+    </asp:GridView>
+    <asp:Button ID="btnReturn" runat="server" Text="Return to the overview page" OnClick="btnReturn_Click" CssClass="btn btn-primary" />
+    
+    <asp:Label ID="lblTotalQuery" runat="server" Text=""></asp:Label>
+ 
 </asp:Content>
 

@@ -1,5 +1,11 @@
--- Please using the following script to make the tables in mysql ---------
--- Copy and paste this directly into the workbench -----------------------
+﻿/*
+Created: 13/01/2016
+Modified: 26/01/2016
+Model: MySQL 5.6
+Database: MySQL 5.6
+*/
+
+
 
 -- Create tables section -------------------------------------------------
 
@@ -45,12 +51,10 @@ CREATE TABLE `people`
 
 CREATE TABLE `type`
 (
-  `typeNr` Int NOT NULL,
-  `type` Varchar(50)
+  `typeNr` Int NOT NULL AUTO_INCREMENT,
+  `type` Varchar(50),
+  PRIMARY KEY (`typeNr`)
 )
-;
-
-ALTER TABLE `type` ADD  PRIMARY KEY (`typeNr`)
 ;
 
 -- Table license
@@ -77,6 +81,7 @@ CREATE TABLE `archive`
   `assignedDate` Date,
   `returnedDate` Date,
   PRIMARY KEY (`id`),
+
  UNIQUE `id` (`id`)
 )
 ;
@@ -131,3 +136,5 @@ ALTER TABLE `licenseHandler` ADD CONSTRAINT `Relationship2` FOREIGN KEY (`licens
 
 ALTER TABLE `licenseHandler` ADD CONSTRAINT `licenseSavePeople` FOREIGN KEY (`eventID`) REFERENCES `people` (`eventID`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ;
+
+ALTER TABLE type AUTO_INCREMENT = 0;

@@ -2,7 +2,7 @@
 2. CHANGE the MYSQL connectionstring in web.config by replacing the content in Line #12 
    such as connectionString="Server=6ib.eu;Port=3306;Database=Toestellenbeheer;Uid=toestellenbeheer;Pwd=JIANINg****520"
 3. CHANGE the active directory usercredentials in 
-4. Deploy whole website into IIS server root directory
+4. Deploy using CMD.exe (first using cd to the right path) |Toestellenbeheer.deploy.cmd /y /U:jli /P:xkpSb91|
 5. That's it!
 
 Er worden nog updates gegarandeert tot april - mei om functies die nog ontbreken te voorzien.

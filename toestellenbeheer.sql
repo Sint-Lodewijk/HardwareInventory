@@ -50,12 +50,10 @@ CREATE TABLE `people`
 
 CREATE TABLE `type`
 (
-  `typeNr` Int NOT NULL,
-  `type` Varchar(50)
+  `typeNr` Int NOT NULL AUTO_INCREMENT,
+  `type` Varchar(50),
+  PRIMARY KEY (`typeNr`)
 )
-;
-
-ALTER TABLE `type` ADD  PRIMARY KEY (`typeNr`)
 ;
 
 -- Table license

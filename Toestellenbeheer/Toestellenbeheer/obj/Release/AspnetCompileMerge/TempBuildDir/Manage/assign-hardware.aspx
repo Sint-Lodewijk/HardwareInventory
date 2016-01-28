@@ -17,7 +17,7 @@
         </Columns>
         <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
     </asp:GridView>
-    <asp:GridView ID="grvPeopleAD" runat="server"  OnRowDataBound="grvPeopleAD_OnRowDataBound" CssClass="table table-hover table-striped gridview">
+    <asp:GridView ID="grvPeopleAD" runat="server" allowPaging="true" OnPageIndexChanging="gridView_PageIndexChanging" OnRowDataBound="grvPeopleAD_OnRowDataBound" CssClass="table table-hover table-striped gridview">
         <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
 
     </asp:GridView>

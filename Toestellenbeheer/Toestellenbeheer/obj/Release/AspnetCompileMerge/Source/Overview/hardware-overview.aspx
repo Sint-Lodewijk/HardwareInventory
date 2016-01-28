@@ -75,9 +75,9 @@
         <SortedDescendingCellStyle BackColor="#FFFDF8" />
         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
-    <asp:GridView ID="selectedRow" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
+    <asp:GridView ID="selectedRow" DataKeyNames="Internal Nr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
         <Columns>
-          
+
             <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
                 NullDisplayText="No image associated." ControlStyle-CssClass="picutureGrid" ReadOnly="True">
                 <ControlStyle CssClass="picutureGrid"></ControlStyle>
@@ -95,6 +95,15 @@
                             </td>
                             <td class="col-sm-6">
                                 <asp:Label ID="lblPDate" runat="server" Text='<%#Eval("Purchase date")%>'>
+                                </asp:Label></td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-6">
+                                <asp:Label ID="Label4" runat="server" Text="Model Nr: ">
+                                </asp:Label>
+                            </td>
+                            <td class="col-sm-6">
+                                <asp:Label ID="Label17" runat="server" Text='<%#Eval("modelNr")%>'>
                                 </asp:Label></td>
                         </tr>
                         <tr>
@@ -130,7 +139,7 @@
                                 </asp:Label>
                             </td>
                             <td>
-                                <asp:Label ID="Label4" runat="server" Text='<%#Eval("Internal Nr")%>'>
+                                <asp:Label ID="lblInternalNr" runat="server" Text='<%#Eval("Internal Nr")%>'>
                                 </asp:Label></td>
                         </tr>
                         <tr>
@@ -172,15 +181,14 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-            
         </Columns>
     </asp:GridView>
     <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
 
     <asp:GridView ID="grvPeopleLinked" CssClass="table table-hover table-striped gridview" AutoGenerateColumns="false" runat="server">
         <Columns>
-            <asp:BoundField DataField="serialNr" HeaderText="Serial Nr" />
-            <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" />
+            <asp:BoundField DataField="Serial Nr" HeaderText="Serial Nr" />
+            <asp:BoundField DataField="Internal Nr" HeaderText="Internal Nr" />
             <asp:BoundField DataField="nameAD" HeaderText="Domain Name" />
             <asp:BoundField DataField="assignedDate" HeaderText="Assigned Date" />
             <asp:BoundField DataField="returnedDate" HeaderText="Returned Date" NullDisplayText="Not returned yet" />
@@ -188,8 +196,85 @@
         </Columns>
     </asp:GridView>
     <asp:Button ID="btnReturn" runat="server" Text="Return to the overview page" OnClick="btnReturn_Click" CssClass="btn btn-primary" />
-    
+    <asp:Button ID="btnModifying" runat="server" OnClick="btnModifying_Click" Visible="false" Text="Modify" CssClass="btn btn-info" />
     <asp:Label ID="lblTotalQuery" runat="server" Text=""></asp:Label>
- 
+    <asp:Label ID="lblInternalNr" Visible="false" runat="server" Text='<%#Eval("Internal Nr")%>' />
+    <asp:Label ID="lblProblem" runat="server" ></asp:Label>
+    <asp:Panel ID="modifyPanel" Visible="false" runat="server">
+        <fieldset class="hardware-modify-item">
+            <div class="form-group">
+                <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="typeList">Type</asp:Label>
+                <div class="col-sm-10"> 
+                    <asp:DropDownList ID="typeList" OnSelectedIndexChanged="typeList_SelectedIndexChanged" CssClass="form-control" runat="server" EnableViewState="true" AutoPostBack="true" />
+                </div>
+            </div>
+
+       
+            <div class="form-group">
+
+                <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="manufacturerList">Manufacturer</asp:Label>
+                <div class="col-sm-10">
+                    <asp:DropDownList ID="manufacturerList" OnSelectedIndexChanged="manufacturerList_SelectedIndexChanged" CssClass="form-control normal-height" runat="server" AutoPostBack="True" Height="34px">
+                        <asp:ListItem>Apple</asp:ListItem>
+                        <asp:ListItem>Lenovo</asp:ListItem>
+                        <asp:ListItem>HP</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <asp:Label AssociatedControlID="txtDatepicker" CssClass="control-label col-sm-2" runat="server">Purchasedate</asp:Label>
+
+                <div class="col-sm-10">
+                    <link rel="stylesheet" href="../../Scripts/jquery-ui.css">
+                    <script src="../../Scripts/jquery-2.2.0.js"></script>
+                    <script src="../../Scripts/jquery-ui.js"></script>
+
+                    <script>
+                        $(function () {
+                            $("[id$=txtDatepicker]").datepicker();
+                        });
+                    </script>
+                    <asp:TextBox runat="server" ID="txtDatepicker" CssClass="form-control" />
+                </div>
+            </div>
+
+           
+            <div class="form-group">
+                <asp:Label runat="server" CssClass="control-label col-sm-2" AssociatedControlID="modelNr">Model nr</asp:Label>
+                <div class="col-sm-10">
+                    <asp:TextBox runat="server" ID="modelNr" CssClass="form-control" placeholder="model number of the hardware" />
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+
+                <asp:Label AssociatedControlID="warrantyInfo" CssClass="control-label col-sm-2" runat="server">Warranty</asp:Label>
+                <div class="col-sm-10">
+                    <asp:TextBox ID="warrantyInfo" runat="server" CssClass="form-control" placeholder="warranty information" />
+                </div>
+            </div>
+            <div class="form-group">
+
+                <asp:Label AssociatedControlID="extraInfo" runat="server" CssClass="control-label col-sm-2">Extra info</asp:Label>
+                <div class="col-sm-10">
+                    <asp:TextBox runat="server" ID="extraInfo" CssClass="form-control" placeholder="additional info related to this hardware" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-7">
+                    <asp:Button ID="Submit" runat="server" Text="Confirm modify" CssClass="btn btn-primary margin-top-15" OnClick="Conform_Click" />
+                    <!--<asp:Label ID="testSelected" runat="server" Text="testSelected"></asp:Label>
+                <asp:TextBox ID="test" CssClass="form-control" runat="server"></asp:TextBox>-->
+                </div>
+
+            </div>
+
+        </fieldset>
+    </asp:Panel>
 </asp:Content>
 

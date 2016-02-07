@@ -36,7 +36,7 @@
 
                     <script>
                         $(function () {
-                            $("[id$=txtDatepicker]").datepicker();
+                            $("[id$=txtDatepicker]").datepicker({ dateFormat: 'dd-mm-yy' }).val();
                         });
                     </script>
                     <asp:TextBox runat="server" ID="txtDatepicker" CssClass="form-control" />
@@ -91,9 +91,9 @@
                     <asp:Button ID="Upload" runat="server" Text="Upload" CssClass="btn btn-info margin-top-6-2" OnClick="Upload_Click" />
                 </div>
             </div>
-            <div class="form-group col-sm-10 col-sm-offset-2">
-                <asp:Label ID="ResultUploadImg" runat="server" Text=""></asp:Label>
-                <asp:Label ID="Testlocation" runat="server" Text=""></asp:Label>
+            <div class="form-group col-sm-10 col-sm-offset-2 hint-block">
+                <asp:Label ID="ResultUploadImg" runat="server" Text="" CssClass="hint-block"></asp:Label>
+                <asp:Label ID="Testlocation" runat="server" Text="" CssClass="hint-block"></asp:Label>
             </div>
             <div class="form-group">
 
@@ -108,11 +108,11 @@
 
                 </div>
             </div>
-            <div class="form-group col-sm-10 col-sm-offset-2">
+            <div class="form-group col-sm-10 col-sm-offset-2 hint-block">
 
-                <asp:Label ID="ResultUploadAtta" runat="server" Text=""></asp:Label>
+                <asp:Label ID="ResultUploadAtta" runat="server" Text="" CssClass="hint-block"></asp:Label>
 
-                <asp:Label ID="TestlocationAtt" runat="server" Text=""></asp:Label>
+                <asp:Label ID="TestlocationAtt" runat="server" Text="" CssClass="hint-block"></asp:Label>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-5 col-sm-7">

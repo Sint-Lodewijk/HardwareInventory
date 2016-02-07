@@ -76,6 +76,15 @@ namespace Toestellenbeheer {
         protected global::System.Web.UI.WebControls.GridView HardwareOverviewGridSearch;
         
         /// <summary>
+        /// lblGridTotalResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGridTotalResult;
+        
+        /// <summary>
         /// HardwareOverviewGrid control.
         /// </summary>
         /// <remarks>
@@ -175,6 +184,15 @@ namespace Toestellenbeheer {
         protected global::System.Web.UI.WebControls.DropDownList typeList;
         
         /// <summary>
+        /// lblModifiedType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModifiedType;
+        
+        /// <summary>
         /// manufacturerList control.
         /// </summary>
         /// <remarks>
@@ -182,6 +200,15 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList manufacturerList;
+        
+        /// <summary>
+        /// lblModifiedManufacturer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModifiedManufacturer;
         
         /// <summary>
         /// txtDatepicker control.

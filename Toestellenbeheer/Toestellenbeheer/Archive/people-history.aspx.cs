@@ -32,7 +32,7 @@ namespace Toestellenbeheer.Archive
             try
             {
                 mysqlConnectie.Open();
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT serialNr, internalNr, DATE_FORMAT(assignedDate, '%Y-%m-%d') 'assignedDate',DATE_FORMAT(returnedDate, '%Y-%m-%d') 'returnedDate' FROM archive JOIN people on archive.eventID = people.eventID WHERE nameAD = '" + nameAD + "'" , mysqlConnectie);
+                MySqlCommand bindToGrid = new MySqlCommand("SELECT serialNr, internalNr, DATE_FORMAT(assignedDate, '%Y-%m-%d') 'assignedDate',DATE_FORMAT(returnedDate, '%Y-%m-%d') 'returnedDate' FROM archive JOIN people on archive.eventID = people.eventID WHERE nameAD = '" + nameAD + "'", mysqlConnectie);
                 MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
                 bindToGrid.ExecuteNonQuery();
                 bindToGrid.Dispose();
@@ -50,15 +50,16 @@ namespace Toestellenbeheer.Archive
 
         protected void getUserFromAD()
         {
-            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry("LDAP://magnix.dc.intranet/OU=Employees,DC=dc,DC=intranet", "readonly@dc.intranet", "id.13542");
+            try { 
+            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry("LDAP://dc.6ib.eu/OU=Employees,DC=dc,DC=intranet", "readonly@dc.intranet", "id.13542");
 
             DirectorySearcher search = new DirectorySearcher(rootDSE);
 
             search.PageSize = 1001;// To Pull up more than 100 records.
-          search.Filter = "(&(objectClass=user)(objectCategory=person))";//UserAccountControl will only Include Non-Disabled Users.
+            search.Filter = "(&(objectClass=user)(objectCategory=person))";//UserAccountControl will only Include Non-Disabled Users.
             SearchResultCollection result = search.FindAll();
             String DisplayName, EmailAddress, DomainName, Department, Title, Company, aaa;
-            DisplayName = EmailAddress = DomainName = Department = Title = Company  = aaa = "";
+            DisplayName = EmailAddress = DomainName = Department = Title = Company = aaa = "";
             DataTable dt = new DataTable();
             dt.Columns.Add(new DataColumn("Display Name", typeof(string)));
             dt.Columns.Add(new DataColumn("Email Address", typeof(string)));
@@ -108,7 +109,7 @@ namespace Toestellenbeheer.Archive
                 {
                     Company = "";
                 }
-                
+
                 if (item.Properties["AccountExpirationDate"].Count > 0)
                 {
                     aaa = item.Properties["AccountExpirationDate"][0].ToString();
@@ -124,15 +125,19 @@ namespace Toestellenbeheer.Archive
             grvPeopleAD.DataSource = dt;
 
             grvPeopleAD.DataBind();
-
+            }
+            catch(Exception ex)
+            {
+                lblProblem.Text = "An problem has occured, due: " + ex.Message;
+            }
         }
         protected void gridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             grvPeopleAD.PageIndex = e.NewPageIndex;
             grvPeopleAD.DataBind();
         }
-    
-    protected void grvPeopleAD_OnRowDataBound(object sender, GridViewRowEventArgs e)
+
+        protected void grvPeopleAD_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {

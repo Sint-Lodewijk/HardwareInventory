@@ -106,3 +106,9 @@ input[type="select"] {
 .labelOutput{
     color:red;
 }
+.margin-top-20{
+    margin-top:20px;
+}
+.footer{
+    display:inline-block;
+}

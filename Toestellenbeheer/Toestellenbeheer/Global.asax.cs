@@ -37,8 +37,10 @@ namespace Toestellenbeheer
             }
             catch (Exception ex)
             {
+               
                 //Write the exception to the Event Log.
                 return;
+
             }
 
             if (null == authTicket)
@@ -59,5 +61,7 @@ namespace Toestellenbeheer
             Context.User = principal;
 
         }
+       
+
     }
 }

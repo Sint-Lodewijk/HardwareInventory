@@ -38,10 +38,14 @@ namespace Toestellenbeheer
                     HardwareOverviewGrid.DataBind();
                     btnReturn.Visible = false;
                     searchPanel.Visible = true;
+                    if (HardwareOverviewGrid.Rows.Count == 0)
+                    {
+                        lblGridTotalResult.Text = "No result found in the database.";
+                    }
                 }
                 catch (MySqlException ex)
                 {
-
+                    ShowMessage(ex.ToString());
                 }
             }
         }
@@ -240,6 +244,7 @@ namespace Toestellenbeheer
             getTypeList();
         }
 
+    
         protected void updateInfo(String parameter, String value)
         {
             try
@@ -279,15 +284,23 @@ namespace Toestellenbeheer
             mysqlConnectie.Open();
             updateInfo("typeNr", typeList.SelectedIndex.ToString());
             mysqlConnectie.Close();
+            lblModifiedType.Text = "The type has been updated!";
         }
 
         protected void manufacturerList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (manufacturerList.SelectedIndex != 0) { 
             mysqlConnectie.Open();
 
             updateInfo("manufacturerName", manufacturerList.SelectedValue.ToString());
             mysqlConnectie.Close();
+            lblModifiedManufacturer.Text = "The manufacturer has been updated!";
+        }
+            else
+            {
+                lblModifiedManufacturer.Text = "When you select a manufacturer, this will update automatically into the database.";
 
+            }
         }
     }
 

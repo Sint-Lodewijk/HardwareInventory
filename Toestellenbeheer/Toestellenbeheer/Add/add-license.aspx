@@ -15,12 +15,56 @@
             <div class="col-sm-4">
                 <asp:TextBox ID="txtLicenseCode" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
+
+            <div class="form-group">
+                <asp:Label AssociatedControlID="txtDatepickerExpire" CssClass="control-label col-sm-2" runat="server" Text="Expire Date:"></asp:Label>
+
+                <div class="col-sm-10">
+                    <link rel="stylesheet" href="../../Scripts/jquery-ui.css">
+                    <script src="../../Scripts/jquery-2.2.0.js"></script>
+                    <script src="../../Scripts/jquery-ui.js"></script>
+
+                    <script>
+                        $(function () {
+                            $("[id$=txtDatepickerExpire]").datepicker({ dateFormat: 'dd-mm-yy' }).val();
+                        });
+                    </script>
+                    <asp:TextBox runat="server" ID="txtDatepickerExpire" CssClass="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <asp:Label AssociatedControlID="txtExtraInfoLicense" runat="server" CssClass="control-label col-sm-2" Text="Extra info:"></asp:Label>
+                <div class="col-sm-10">
+                    <asp:TextBox ID="txtExtraInfoLicense" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+            </div>
+            <div class="form-group">
+
+                <asp:Label AssociatedControlID="LicenseFileUpload" runat="server" CssClass="control-label col-sm-2">License File:</asp:Label>
+
+                <div class="col-sm-8">
+                    <asp:FileUpload ID="LicenseFileUpload" CssClass="btn btn-default form-control" runat="server" />
+                </div>
+
+                <div class="col-sm-2">
+                    <asp:Button ID="btnUploadLicense" runat="server" CssClass="btn btn-info margin-top-6-2 col-sm-12" Text="Upload" OnClick="btnUploadLicense_Click" />
+                </div>
+                <div class="col-sm-10 col-sm-offset-2 form-group hint-block">
+
+                    <asp:Label ID="ResultUploadAtta" runat="server" Text="" CssClass="hint-block"></asp:Label>
+
+                    <asp:Label ID="TestlocationAtt" runat="server" Text="" CssClass="hint-block"></asp:Label>
+                </div>
+            </div>
+
         </div>
+
         <div class="form-group">
             <div class="col-sm-12">
                 <asp:Button ID="hideShowHardware" runat="server" Text="Assign to hardware" OnClick="hideShowHardware_Click" CssClass="btn btn-info form-control" />
             </div>
         </div>
+
         <asp:Panel ID="hardwarePanel" runat="server">
             <div id="search" class="form-group">
 

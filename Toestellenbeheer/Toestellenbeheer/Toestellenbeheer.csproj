@@ -177,6 +177,7 @@
     <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Manage.aspx" />
+    <Content Include="Add\add-person.aspx" />
     <Content Include="Archive\Default.aspx" />
     <Content Include="Archive\hardware-history.aspx" />
     <Content Include="Archive\people-history.aspx" />
@@ -290,6 +291,13 @@
     <Compile Include="Account\Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Add\add-person.aspx.cs">
+      <DependentUpon>add-person.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Add\add-person.aspx.designer.cs">
+      <DependentUpon>add-person.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -339,7 +347,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="LdapAuthentication.cs" />
+    <Compile Include="Models\LdapAuthentication.cs" />
     <Compile Include="Manage\assign-hardware.aspx.cs">
       <DependentUpon>assign-hardware.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -369,7 +377,6 @@
       <DependentUpon>return-hardware.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\LdapAuthentication.cs" />
     <Compile Include="NoAccess.aspx.cs">
       <DependentUpon>NoAccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -465,6 +472,10 @@
     <Folder Include="Scripts\images\" />
     <Folder Include="UserUploads\Attachments\" />
     <Folder Include="UserUploads\Images\" />
+    <Folder Include="UserUploads\License\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

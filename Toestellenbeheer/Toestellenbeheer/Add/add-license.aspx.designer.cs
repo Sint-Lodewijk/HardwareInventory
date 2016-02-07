@@ -49,6 +49,60 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.TextBox txtLicenseCode;
         
         /// <summary>
+        /// txtDatepickerExpire control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDatepickerExpire;
+        
+        /// <summary>
+        /// txtExtraInfoLicense control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtExtraInfoLicense;
+        
+        /// <summary>
+        /// LicenseFileUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload LicenseFileUpload;
+        
+        /// <summary>
+        /// btnUploadLicense control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUploadLicense;
+        
+        /// <summary>
+        /// ResultUploadAtta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ResultUploadAtta;
+        
+        /// <summary>
+        /// TestlocationAtt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TestlocationAtt;
+        
+        /// <summary>
         /// hideShowHardware control.
         /// </summary>
         /// <remarks>

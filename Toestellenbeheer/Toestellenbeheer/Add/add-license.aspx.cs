@@ -19,7 +19,7 @@ namespace Toestellenbeheer.Manage
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
-        DirectoryEntry entry = new DirectoryEntry("LDAP://magnix.dc.intranet"); // set up domain context
+        DirectoryEntry entry = new DirectoryEntry("LDAP://dc.6ib.eu"); // set up domain context
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -237,7 +237,7 @@ namespace Toestellenbeheer.Manage
         //Get users from ad and display it in the gridview named licenseOverviewGridPeopleSearch
         protected void getUserFromAD()
         {
-            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry("LDAP://magnix.dc.intranet", "readonly@dc.intranet", "id.13542");
+            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry("LDAP://dc.6ib.eu", "readonly@dc.intranet", "id.13542");
 
             DirectorySearcher search = new DirectorySearcher(rootDSE);
 
@@ -342,6 +342,40 @@ namespace Toestellenbeheer.Manage
                 else { ShowMessage(ex.Message); }
             }
         }
+        protected void btnUploadLicense_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (IsPostBack)
+                {
+                    String path = Server.MapPath("~/UserUploads/License/");
+                    if (LicenseFileUpload.HasFile)
+                    {
+                        try
+                        {
+                            LicenseFileUpload.PostedFile.SaveAs(path
+                                + LicenseFileUpload.FileName);
+                            String mAttachPath = LicenseFileUpload.FileName.ToString();
+                            TestlocationAtt.Text = LicenseFileUpload.FileName.ToString();
+                            ResultUploadAtta.Text = "License file uploaded!";
 
+
+                        }
+                        catch (Exception ex)
+                        {
+                            ResultUploadAtta.Text = "License file could not be uploaded. Because: " + ex.ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    ResultUploadAtta.Text = "Do you not want to add a license?";
+                }
+            }
+            catch (MySqlException ex)
+            {
+                ShowMessage(ex.ToString());
+            }
+        }
     }
 }

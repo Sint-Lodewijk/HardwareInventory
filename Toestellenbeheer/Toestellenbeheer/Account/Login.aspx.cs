@@ -18,7 +18,10 @@ namespace Toestellenbeheer.Account
 
         protected void Login_Click(Object sender, EventArgs e)
         {
-            String adPath = "LDAP://magnix.dc.intranet"; //Fully-qualified Domain Name
+            String adPathtemp = "LDAP://dc.6ib.eu"; //Not necessary
+            
+            LdapAuthentication adAuthtemp = new LdapAuthentication(adPathtemp);
+            String adPath = adAuthtemp.LDAPPath(); //get AD path from class
             LdapAuthentication adAuth = new LdapAuthentication(adPath);
             try
             {

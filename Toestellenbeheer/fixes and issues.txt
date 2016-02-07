@@ -1,0 +1,521 @@
+PREVIOUS COMMIT: aa8792c74fbf32769a9601e713a74c9d12b1d03a at master branch
+
+WORKING POINTS
+18-01-2016
+1|add-license| Assign license to selected people.
+2|add-license| Implement search function people.
+3|add-license| Listed below KNOWN ISSUES
+
+ADDED
+18-01-2016
+1|add-license| MySQL exeption 1064 (syntax error) handling.
+2|add-license| Expand or hide hardware section.
+3|*|	       Improved design for all gridviews - Using Bootstrap table design
+
+FIXED
+18-01-2016
+1|add-license| Display button after selecting on searchGrid.
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page don't display proberly - UI
+
+---------------------------------------------------------------------------------------
+PREVIOUS COMMIT: f3f4c6d63bb287a5860650161208972d713e80b4 at master branch
+
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people.
+2|add-license| Implement search function people.
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|*| Picture overview from the location in database
+7|add-hardware| The purchase date can not be later than today.
+8|*|Archive hardware linked people. - need people - database created.
+9|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI
+2|add-hardware| Attachmentlocation not added into the database.
+3|*| Title not set
+4|hardware-overview| PageIndexChanging not handled after searching
+
+ADDED
+18-01-2016
+1|Manage| Manage default page
+2|manage-type| Manage type page
+3|manage-type| Add type by type typeNr and type name on manage-type page
+
+FIXED
+18-01-2016
+1|add-license| Panel not visible on selecting and sorting hardware
+2|add-license| Hide/ Show People function
+3|add-license| Button Hide/ Show people and hardware -> to btn-info 
+4|*| Use-on-mobile supported
+5|hardware-overview|temporary solution| AllowPaging="true" disabled 
+
+---------------------------------------------------------------------------------------
+PREVIOUS COMMIT: c90b3c38e7f45f59c53717f6bbafa3f62a574a8b at master branch
+
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory
+2|add-license| Implement search function people. WITH Active Directory
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|*| Picture overview from the location in database - FINISHED
+7|add-hardware| The purchase date can not be later than today.
+8|*|Archive hardware linked people. - need people - database created.
+9|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+10|*| Working with active directory
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI
+2|add-hardware| Attachmentlocation not added into the database.
+3|*| Title not set
+4|hardware-overview| PageIndexChanging not handled after searching
+5|hardware-overview| Type change failed - FIXED 
+6|add-hardware| Type selected type index have be the same as the selected type nr.
+
+ADDED
+19-01-2016
+1|hardware-overview| Image display added and optimalized
+
+FIXED
+19-01-2016
+1|hardware-overview|*5* known issues| Type change failed |AutoPostBack and ViewState
+
+QUESTION
+19-01-2016
+1|manage-type| type nr autogenerate??
+---------------------------------------------------------------------------------------
+PREVIOUS COMMIT: bedaab60a0d40cb9a01db039042ad6136100df05 at master branch
+
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory
+2|add-license| Implement search function people. WITH Active Directory
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|add-hardware| The purchase date can not be later than today. - FIXED - greater = today
+7|*|Archive hardware linked people. - need people - database created.
+8|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+9|*| Working with active directory
+19-01-2016
+10|manage-type| May remove TYPENR selection and use auto_increament for this
+11|*| Role provided page access
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI
+2|add-hardware| Attachmentlocation not added into the database. - FIXING - FIXED
+3|*| Title not set - FIXED
+4|hardware-overview| PageIndexChanging not handled after searching
+5|hardware-overview| Type change failed - FIXED 
+6|add-hardware| Type selected type index have be the same as the selected type nr.
+7|add-hardware| Database issue - table change needed - FIXED
+
+ADDED
+19-01-2016
+1|hardware-overview| Attachment download methode
+2|hardware-overview| Download only appear when there is a attachment
+
+FIXED
+19-01-2016
+1|add-hardware| KNOWN ISSUES 2| Attachmentlocation not added into the database.
+2|*| Title not set 
+3|add-hardware| Attachment location not added, in insert into command
+
+QUESTION
+19-01-2016
+1|manage-type| type nr autogenerate??
+2|*| AD credentials
+3|*| Create test AD database
+4|add-license| Assign to people? 
+5|*|Scriptura DocumentFlow
+---------------------------------------------------------------------------------------
+PREVIOUS COMMIT: eff3df96c70aa86c7efb671142cda56fdfd08be0 at master branch
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory
+2|add-license| Implement search function people. WITH Active Directory
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|*|Archive hardware linked people. - need people - database created.
+7|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+8|*| Working with active directory
+19-01-2016
+9|manage-type| May remove TYPENR selection and use auto_increament for this
+1|*| Role provided page access
+20-01-2016
+
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI
+2|hardware-overview| PageIndexChanging not handled after searching
+3|add-hardware| Type selected type index have be the same as the selected type nr.
+20-01-2016
+4|add-license| Select people not working
+
+ADDED
+20-01-2016
+1|user-overview| List out the user and the displayname in the Active Directory
+2|add-license| Get users from AD and displaying on the add-license page
+
+FIXED
+20-01-2016
+1|license-overview| hardwarePanel not visible after changing page index
+
+QUESTION
+19-01-2016
+1|manage-type| type nr autogenerate??
+2|*| AD credentials
+3|*| Create test AD database
+4|add-license| Assign to people? 
+5|*|Scriptura DocumentFlow
+---------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 7c54dd5e212995f8f27bc6776bb396b8fb93f1e8 at ALPHA branch
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory
+2|add-license| Implement search function people. WITH Active Directory
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|*|Archive hardware linked people. - need people - database created.
+7|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+8|*| Working with active directory
+19-01-2016
+9|manage-type| May remove TYPENR selection and use auto_increament for this
+1|*| Role provided page access
+20-01-2016
+
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI
+2|hardware-overview| PageIndexChanging not handled after searching
+3|add-hardware| Type selected type index have be the same as the selected type nr.
+20-01-2016
+4|add-license| Select people not working
+5|*| Crash when not select anything
+
+ADDED
+20-01-2016
+
+FIXED
+20-01-2016
+1|*|Performance test| Listed out 1777 record in 0.484 sec with network delay.
+2|add-license| MySQL query changed
+
+QUESTION
+19-01-2016
+1|manage-type| type nr autogenerate??
+2|*| AD credentials
+3|*| Create test AD database
+4|add-license| Assign to people? 
+5|*|Scriptura DocumentFlow
+
+
+---------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 7c54dd5e212995f8f27bc6776bb396b8fb93f1e8 at V0.6ALPHA branch
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory
+2|add-license| Implement search function people. WITH Active Directory
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|*|Archive hardware linked people. - need people - database created.
+7|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+8|*| Working with active directory
+19-01-2016
+9|manage-type| May remove TYPENR selection and use auto_increament for this
+1|*| Role provided page access
+20-01-2016
+21-01-2016
+1|hardware-overview| Details by click - Adding
+
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI
+2|hardware-overview| PageIndexChanging not handled after searching
+3|add-hardware| Type selected type index have be the same as the selected type nr.
+20-01-2016
+4|add-license| Select people not working
+5|*| Crash when not select something
+6|*| License key is temporary not a primary key (select internalNr )
+
+ADDED
+21-01-2016
+1|hardware-overview| Details by click - Adding - now by select
+
+FIXED
+20-01-2016
+1|*|Performance test| Listed out 1777 record in 0.484 sec with network delay.
+2|add-license| MySQL query changed
+
+
+
+---------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 7c54dd5e212995f8f27bc6776bb396b8fb93f1e8 at V0.6ALPHA branch
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory
+2|add-license| Implement search function people. WITH Active Directory
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|*|Archive hardware linked people. - need people - database created.
+7|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+8|*| Working with active directory
+19-01-2016
+9|manage-type| May remove TYPENR selection and use auto_increament for this
+1|*| Role provided page access
+20-01-2016
+21-01-2016
+1|hardware-overview| Details by click - Adding - ADDED
+2|add-hardware| Show a overview on the added hardware
+22-01-2016
+1|*| Archive function
+2|hardware-overview| License overview| Delete and update license function
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI - FIXING
+2|hardware-overview| PageIndexChanging not handled after searching
+3|add-hardware| Type selected type index have be the same as the selected type nr.
+20-01-2016
+4|add-license| Select people not working
+5|*| Crash when not select something
+6|*| License key is temporary not a primary key (select internalNr )
+7|*| Add type => same type name can added multiple time (primary key to type name, but type-id has to deleted) 
+8|*| A hardware can only have one license instead of a license can only assigned to one device
+ADDED
+21-01-2016
+1|add-license| Add license only button added
+2|add-license| Error handling duplicate key
+22-01-2016
+1|add-license| Click to delete
+FIXED
+21-01-2016
+1|manage-type| Update automatically the list with type in to the grid
+2|add-license| License can added into unlimited hardware and person - FIXING - UPGRADING MYSQL DATABASE + QUERY + FIXED
+3|add-license| Archicture improvement
+4|hardware-overview| Get details without selecting the row first
+---------------------------------------------------------------------------------------
+PREVIOUS COMMIT: d2df6a5cff6191a6429a5f7b63c16f503f06496e at V0.6ALPHA branch
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory
+2|add-license| Implement search function people. WITH Active Directory
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|*|Archive hardware linked people. - need people - database created.
+7|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+8|*| Working with active directory
+19-01-2016
+9|manage-type| May remove TYPENR selection and use auto_increament for this
+1|*| Role provided page access
+20-01-2016
+21-01-2016
+1|add-hardware| Show a overview on the added hardware
+22-01-2016
+1|*| Archive function
+2|hardware-overview| License overview| Delete and update license function
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI - FIXING
+2|hardware-overview| PageIndexChanging not handled after searching
+3|add-hardware| Type selected type index have be the same as the selected type nr.
+20-01-2016
+4|add-license| Select people not working
+5|*| Crash when not select something
+6|*| License key is temporary not a primary key (select internalNr )
+7|*| Add type => same type name can added multiple time (primary key to type name, but type-id has to deleted) 
+8|*| A hardware can only have one license instead of a license can only assigned to one device
+22-01-2016
+9|hardware-overview| Gridview sort failed
+
+ADDED
+22-01-2016
+1|manage-hardware| MySQL table upgrade, one hardware only to one person
+2|manage-hardware| Only list out the unassigned hardware (to people)
+3|*gridview| AutoGenerateColumns="false", create the necessary columns by hand
+-----------------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: d2df6a5cff6191a6429a5f7b63c16f503f06496e at V0.6ALPHA branch
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory
+2|add-license| Implement search function people. WITH Active Directory
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware.
+6|*|Archive hardware linked people. - need people - database created.
+7|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO
+8|*| Working with active directory
+19-01-2016
+9|manage-type| May remove TYPENR selection and use auto_increament for this
+1|*| Role provided page access
+20-01-2016
+21-01-2016
+1|add-hardware| Show a overview on the added hardware
+22-01-2016
+1|*| Archive function
+2|hardware-overview| License overview| Delete and update license function
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI - FIXING
+2|hardware-overview| PageIndexChanging not handled after searching
+3|add-hardware| Type selected type index have be the same as the selected type nr.
+20-01-2016
+4|add-license| Select people not working
+5|*| Crash when not select something
+6|*| License key is temporary not a primary key (select internalNr )
+7|*| Add type => same type name can added multiple time (primary key to type name, but type-id has to deleted) 
+8|*| A hardware can only have one license instead of a license can only assigned to one device
+22-01-2016
+9|hardware-overview| Gridview sort failed
+
+ADDED 
+22-01-2016
+1|manage-hardware| List out all unassigned hardware 
+2|manage-hardware| Assign the unassigned hardware with person.
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 8049a4a799ef0b9f38dba7a2df175ecf4ea0f24c at V0.6ALPHA branch
+
+WORKING POINTS
+SEE PREVIOUS COMMIT
+
+KNOWN ISSUES
+SEE PREVIOUS COMMIT
+
+ADDED 
+24-01-2016
+1|manage-hardware| XML document create
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 8049a4a799ef0b9f38dba7a2df175ecf4ea0f24c at V0.6ALPHA branch
+
+WORKING POINTS
+SEE PREVIOUS COMMIT
+1|*| Archive function
+
+KNOWN ISSUES
+SEE PREVIOUS COMMIT
+25-01-2016
+1|hardware-overview| Details page
+2|hardware-overview| Attachment and preview image not necessary
+3|*| Alter temporary using Javascript
+
+FIXED
+25-01-2016
+1|* gridview| 
+
+ADDED 
+25-01-2016
+1|*| Archive function
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 882ad2d4d623c24caf5fdde377728df995bb2e8a at V0.7ALPHA branch
+ADDED 
+25-01-2016
+1|*| When click on a person or hardware, the related hardware or person will show
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 50b5b96f85ad5d5fa61ecf3f1e2a39144b6d085b at V0.7ALPHA branch
+ADDED 
+25-01-2016
+1|hardware-overview| Improved design + details page
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 98e5a59f81ff718c96feefea9f811d5d49f8870b at V0.7ALPHA branch
+WORKING POINTS
+18-01-2016
+1|add-license| Need to check |Assign license to selected people. WITH Active Directory - ADDED
+2|add-license| Implement search function people. WITH Active Directory 
+3|add-license| Listed below KNOWN ISSUES
+4|*|not necessary| Highlight the searchword
+5|hardware-overview| Add a list with assigned hardware and a list unassigned hardware. - ADDED
+6|*|Archive hardware linked people. - need people - database created. - ADDED
+7|*| Create XML file using Scriptura DocumentFlow* ASK FOR MORE INFO - ADDED
+8|*| Working with active directory - ADDED
+19-01-2016
+9|manage-type| May remove TYPENR selection and use auto_increament for this - ADDED
+1|*| Role provided page access
+20-01-2016
+21-01-2016
+1|add-hardware| Show a overview on the added hardware 
+22-01-2016
+1|*| Archive function - ADDED
+2|hardware-overview| License overview| Delete and update license function 
+
+KNOWN ISSUES
+18-01-2016
+1|add-license| Page doesn't display proberly - UI - FIXING - FIXED
+2|hardware-overview| PageIndexChanging not handled after searching
+3|add-hardware| Type selected type index have be the same as the selected type nr. - FIXED
+20-01-2016
+4|add-license| Select people not working -FIXED
+5|*| Crash when not select something -FIXED
+6|*| License key is temporary not a primary key (select internalNr ) - FIXED
+7|*| Add type => same type name can added multiple time (primary key to type name, but type-id has to deleted) 
+8|*| A hardware can only have one license instead of a license can only assigned to one device - FIXED
+22-01-2016
+9|hardware-overview| Gridview sort failed
+
+FIXED
+26-01-2016
+1|license-overview| License can assigned to unlimited people and hardware => a person can ha
+		    ve unlimited license 
+
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 42fe35779d924660d1ad4f02cdc363ce2d212f9b at V0.8ALPHA branch
+WORKING POINTS
+18-01-2016
+1|add-license| Implement search function people. WITH Active Directory 
+2|add-license| Listed below KNOWN ISSUES
+3|*|not necessary| Highlight the searchword
+19-01-2016
+4|*| Role provided page access
+21-01-2016
+5|add-hardware| Show a overview on the added hardware 
+22-01-2016
+6|hardware-overview| License overview| Delete and update license function 
+7|add-license| Unassign hardware and people from the assigned license (when clicking unassign button)
+
+KNOWN ISSUES
+18-01-2016
+1|hardware-overview| PageIndexChanging not handled after searching
+20-01-2016
+2|*| Add type => same type name can added multiple time (primary key to type name, but type-id has to deleted) 
+22-01-2016
+3|hardware-overview| Gridview sort failed
+
+ADDED
+26-01-2016
+1|license-overview| List out the hardware and people assigned (license)
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 42fe35779d924660d1ad4f02cdc363ce2d212f9b at V0.8ALPHA branch
+
+ADDED
+26-01-2016
+1|license-overview| Unassign the people with the selected license
+2|license-overview| Unassign the hardware with the selected license
+--------------------------------------------------------------------------------------------
+PREVIOUS COMMIT: 42fe35779d924660d1ad4f02cdc363ce2d212f9b at V0.8ALPHA branch
+
+ADDED
+26-01-2016
+1|license-overview| Javascript if desired Unassigne
+-------------------
+ADDED
+26-01-2016
+1|*| Role based page access

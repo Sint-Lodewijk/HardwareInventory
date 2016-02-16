@@ -59,7 +59,7 @@ namespace Toestellenbeheer.Manage
             String mImagePath = Testlocation.Text.ToString();
             String mAttPath = TestlocationAtt.Text;
             String strModel = modelNr.Text;
-            int intSelectedTypeIndex = typeList.SelectedIndex;
+            int intSelectedTypeIndex = typeList.SelectedIndex + 1;
             String strSelectedManufacturer = manufacturerList.SelectedItem.ToString();
             //testSelected.Text = strSelectedType;
             String dtePurchaseYear = txtDatepicker.Text.Substring(6);
@@ -113,10 +113,13 @@ namespace Toestellenbeheer.Manage
 
 
                     mysqlConnectie.Close();
+                    viewJustAddedHardware();
+
                 }
             }
             catch (MySqlException ex)
             {
+
                 if (ex.Number.ToString() == "1062")
                 {
                     //testLabel.Text = ex.Message.ToString() + ", please check your input.";
@@ -126,18 +129,17 @@ namespace Toestellenbeheer.Manage
                 }
                 else { ShowMessage(ex.Message); }
 
-
             }
             //test the value - removeable
             test.Text = dtePurchaseDate.ToString();
             addHardwarePanel.Visible = false;
             addResultPanel.Visible = true;
 
-            viewJustAddedHardware();
         }
 
         protected void viewJustAddedHardware()
         {
+            try { 
             String strInternalNr = internalNr.Text.ToString();
             mysqlConnectie.Open();
             MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation FROM hardware WHERE internalNr = '" + strInternalNr + "'", mysqlConnectie);
@@ -149,7 +151,21 @@ namespace Toestellenbeheer.Manage
             grvJustAddedHardware.DataSource = ds;
             grvJustAddedHardware.DataBind();
             mysqlConnectie.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MysqlExeptionhandler(ex);
+            }
+        }
+        private void MysqlExeptionhandler(MySqlException ex)
+        {
+            if (ex.Number.ToString() == "1062")
+            {
+                //testLabel.Text = ex.Message.ToString() + ", please check your input.";
+                txtResultUpload.Text = "This device already exist in de database.";
 
+            }
+            else { ShowMessage(ex.Message); }
         }
         protected void DownloadFile(object sender, EventArgs e)
         {

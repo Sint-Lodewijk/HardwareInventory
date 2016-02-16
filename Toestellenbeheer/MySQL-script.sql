@@ -6,7 +6,7 @@ Database: MySQL 5.6
 */
 
 
-
+CREATE DATABASE HardwareInventory
 -- Create tables section -------------------------------------------------
 
 -- Table hardware

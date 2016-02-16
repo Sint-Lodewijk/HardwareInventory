@@ -52,7 +52,7 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <h4 class="hint-block">Do not have a account?
+                    <h4 class="hint-block">Do not have an account?
                     </h4>
                     <hr />
                     <p>

@@ -21,7 +21,7 @@
                             <div class="col-md-10">
                                 <asp:DropDownList ID="drpRoleSelect" CssClass="form-control" runat="server">
                                     <asp:ListItem Value="noneSelect" Selected="True">*** Please select a role ***</asp:ListItem>
-                                    <asp:ListItem>gg_hardware_administraton</asp:ListItem>
+                                    <asp:ListItem>gg_hardware_administration</asp:ListItem>
                                     <asp:ListItem>gg_hardware_admin</asp:ListItem>
                                     <asp:ListItem>gg_hardware_user</asp:ListItem>
                                 </asp:DropDownList>

@@ -12,7 +12,7 @@ using System.DirectoryServices;
 using System.DirectoryServices.AccountManagement;
 using System.DirectoryServices.Protocols;
 using System.Security.Permissions;
-
+using Toestellenbeheer.Models;
 namespace Toestellenbeheer.Manage
 {
     public partial class add_license : System.Web.UI.Page
@@ -116,13 +116,18 @@ namespace Toestellenbeheer.Manage
             {
 
                 mysqlConnectie.Open();
-                MySqlCommand addLicense = new MySqlCommand("INSERT INTO license (licenseName, licenseCode) values (@licenseName, @licenseCode)", mysqlConnectie);
+                MySqlCommand addLicense = new MySqlCommand("INSERT INTO license (licenseName, licenseCode, expireDate, extraInfo, licenseFileLocation) values (@licenseName, @licenseCode, @expireDate, @extraInfo, @licenseFileLocation)", mysqlConnectie);
                 addLicense.Parameters.AddWithValue("@licenseName", txtLicenseName.Text.Trim());
-                addLicense.Parameters.AddWithValue("@licenseCode", txtLicenseCode.Text.Trim());
+                addLicense.Parameters.AddWithValue("@expireDate", txtDatepickerExpire.Text.Trim());
+                addLicense.Parameters.AddWithValue("@extraInfo", txtExtraInfoLicense.Text.Trim());
+                addLicense.Parameters.AddWithValue("@licenseFileLocation", TestlocationAtt.Text.Trim());
+
+
                 addLicense.ExecuteNonQuery();
                 addLicense.Dispose();
                 mysqlConnectie.Close();
-                testLabel.Text = "Congratulations! The licensecode:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text + "</span>" + " you have entered, has been successfully added into the database. If want want assign this license to any hardware or people, please not use this page!";
+                testLabel.Text = "Congratulations! The licensecode:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
+                    + "</span>" + " you have entered, has been successfully added into the database. If want want assign this license to any hardware or people, please not use this page!";
                 // testLabel.Text = licenseCode.Text + " has been assigned to device with a internal number: " + internalNr + " and a serial code " + SerialNr;
             }
             catch (MySqlException ex)
@@ -144,7 +149,7 @@ namespace Toestellenbeheer.Manage
                 else { ShowMessage(ex.Message); }
 
             }
-        }   
+        }
         protected void btnAddLicense_click(object sender, EventArgs e)
         {
             addLicense();
@@ -155,8 +160,8 @@ namespace Toestellenbeheer.Manage
             String strLicenseCode = txtLicenseCode.Text;
 
             String strLicenseName = txtLicenseName.Text;
-            String strInternalNr = grvHardwareLicenseSelect.SelectedRow.Cells[3].Text;
-            String strSerialCode = grvHardwareLicenseSelect.SelectedRow.Cells[4].Text;
+            String strInternalNr = grvHardwareLicenseSelect.SelectedRow.Cells[2].Text;
+            String strSerialCode = grvHardwareLicenseSelect.SelectedRow.Cells[3].Text;
             addLicense();
             mysqlConnectie.Open();
             MySqlCommand addLicenseCommand = new MySqlCommand("INSERT INTO licenseHandler (internalNr, serialNr, licenseCode) values (@internalNr, @serialNr, @licenseCode)", mysqlConnectie);
@@ -202,12 +207,18 @@ namespace Toestellenbeheer.Manage
                 hardwarePanel.Visible = true;
 
             }
-
-
-
+            this.HardwarePanelPopUP.Show();
 
         }
 
+        protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvHardwareLicenseSelect, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to select this row.";
+            }
+        }
         //Expand or hide people grid + change the text of it
         protected void hideShowPeople_Click(object sender, EventArgs e)
         {
@@ -237,7 +248,7 @@ namespace Toestellenbeheer.Manage
         //Get users from ad and display it in the gridview named licenseOverviewGridPeopleSearch
         protected void getUserFromAD()
         {
-            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry("LDAP://dc.6ib.eu", "readonly@dc.intranet", "id.13542");
+            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.GlobalVar.ADConnectionPrefix, SetupFile.GlobalVar.ADUserName, SetupFile.GlobalVar.ADUserPassword);
 
             DirectorySearcher search = new DirectorySearcher(rootDSE);
 
@@ -305,10 +316,10 @@ namespace Toestellenbeheer.Manage
                 String strLicenseCode = txtLicenseCode.Text;
                 addLicense();
                 mysqlConnectie.Open();
-                
+
                 //     MySqlCommand listOutType = new MySqlCommand("INSERT INTO license (licenseName, licenseCode, serialNr, internalNr) values (@licenseName, @licenseCode, @serialNr, @internalNr)", mysqlConnectie);
-                MySqlCommand assignLicenseToPeople = new MySqlCommand("INSERT INTO licenseHandler (eventID, licenseCode) values ((SELECT DISTINCT eventID FROM people where nameAD = '"+ 
-                    nameAD+"' LIMIT 0,1), @licenseCode)", mysqlConnectie);
+                MySqlCommand assignLicenseToPeople = new MySqlCommand("INSERT INTO licenseHandler (eventID, licenseCode) values ((SELECT DISTINCT eventID FROM people where nameAD = '" +
+                    nameAD + "' LIMIT 0,1), @licenseCode)", mysqlConnectie);
 
                 //using (MySqlDataAdapter data1 = new MySqlDataAdapter(listOutType))
                 //     data1.Fill(Type, "type");
@@ -316,7 +327,7 @@ namespace Toestellenbeheer.Manage
 
                 assignLicenseToPeople.ExecuteNonQuery();
                 assignLicenseToPeople.Dispose();
-                
+
                 testLabel.Text = "Congratulations! The license code: " + "<span class=\"labelOutput\">" + txtLicenseCode.Text + "</span>" +
                     " has been successfully assigned to " + "<span class=\"labelOutput\">" +
                     licenseOverviewGridPeople.SelectedRow.Cells[2].Text + "</span>";

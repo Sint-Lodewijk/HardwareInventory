@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
-using System.Text;
 using System.DirectoryServices;
 using System.Xml;
-using System.Globalization;
+using Toestellenbeheer.Models;
 
 namespace Toestellenbeheer.Manage
 {
@@ -66,7 +61,7 @@ namespace Toestellenbeheer.Manage
         }
         protected void getUserFromAD()
         {
-            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry("LDAP://magnix.dc.intranet", "readonly@dc.intranet", "id.13542");
+            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.GlobalVar.ADConnectionPrefix, SetupFile.GlobalVar.ADUserName, SetupFile.GlobalVar.ADUserPassword); //SetupFile
 
             DirectorySearcher search = new DirectorySearcher(rootDSE);
 
@@ -75,7 +70,7 @@ namespace Toestellenbeheer.Manage
             search.Filter = "(&(objectClass=user)(objectCategory=person)(!userAccountControl:1.2.840.113556.1.4.803:=2))";//UserAccountControl will only Include Non-Disabled Users.
             SearchResultCollection result = search.FindAll();
             String DisplayName, EmailAddress, DomainName, Department, Title, Company, memberof, aaa;
-            DisplayName = EmailAddress = DomainName = Department = Title = Company = memberof = aaa = "";
+            DisplayName = EmailAddress = DomainName = Department = Title = Company  = aaa = "";
             DataTable dt = new DataTable();
             dt.Columns.Add(new DataColumn("Display Name", typeof(string)));
             dt.Columns.Add(new DataColumn("Email Address", typeof(string)));
@@ -83,7 +78,7 @@ namespace Toestellenbeheer.Manage
             dt.Columns.Add(new DataColumn("Department", typeof(string)));
             dt.Columns.Add(new DataColumn("Title", typeof(string)));
             dt.Columns.Add(new DataColumn("Company", typeof(string)));
-            dt.Columns.Add(new DataColumn("Member Of", typeof(string)));
+           // dt.Columns.Add(new DataColumn("Member Of", typeof(string)));
             foreach (SearchResult item in result)
             {
                 if (item.Properties["cn"].Count > 0)
@@ -126,10 +121,10 @@ namespace Toestellenbeheer.Manage
                 {
                     Company = "";
                 }
-                if (item.Properties["DistinguishedName"].Count > 0)
+                /*if (item.Properties["DistinguishedName"].Count > 0)
                 {
                     memberof = item.Properties["DistinguishedName"][0].ToString();
-                }
+                }*/
                 if (item.Properties["AccountExpirationDate"].Count > 0)
                 {
                     aaa = item.Properties["AccountExpirationDate"][0].ToString();
@@ -137,7 +132,7 @@ namespace Toestellenbeheer.Manage
                 //dt.Columns("DisplayName", "EmailAddress", "DomainName", "Department", "Title", "Company", "memberof");
 
 
-                dt.Rows.Add(DisplayName, EmailAddress, DomainName, Department, Title, Company, memberof);
+                dt.Rows.Add(DisplayName, EmailAddress, DomainName, Department, Title, Company);
 
 
             }
@@ -159,7 +154,7 @@ namespace Toestellenbeheer.Manage
             {
                 String strSerialNr = grvHardwarePoolUnassigned.SelectedRow.Cells[1].Text.ToString();
                 String strInternalNr = grvHardwarePoolUnassigned.SelectedRow.Cells[2].Text.ToString();
-                String strNameAD = grvPeopleAD.SelectedRow.Cells[1].Text.ToString();
+                String strNameAD = grvPeopleAD.SelectedRow.Cells[2].Text.ToString();
 
 
                 mysqlConnectie.Open();
@@ -237,7 +232,7 @@ namespace Toestellenbeheer.Manage
             xmlUserName.AppendChild(doc.CreateTextNode(userName));
             xmlPersonNode.AppendChild(xmlUserName);
 
-            doc.Save("C:/Users/Jianing/Documents/UserUploads/Attachments/GeneratedAssignedHardware.xml");
+            doc.Save("./UserUploads/Attachments/GeneratedAssignedHardware.xml");
         }
         //Archive the assigned hardware into the database
         private void archiveAssignedHardware(String strSerialNr, String strInternalNr, int intEventID)
@@ -255,5 +250,5 @@ namespace Toestellenbeheer.Manage
             mysqlConnectie.Close();
         }
     }
-    //WebRequest request = WebRequest.Create("http://scriptix:13542/web/ontvangstbewijs/generate-pdf");
+    //WebRequest request = WebRequest.Create(SetupFile.GlobalVar.ScripturaPath);
 }

@@ -19,6 +19,10 @@ namespace Toestellenbeheer.Add
         {
 
         }
+        /// <summary>
+        /// Clicking button - Create a user into ActiveDirectory
+        /// </summary>
+
         protected void CreateAccount_Click(object sender, EventArgs e)
         {
             String strUserName = UserName.Text.Trim();
@@ -28,14 +32,21 @@ namespace Toestellenbeheer.Add
             String strMemberOf = drpRoleSelect.SelectedValue.ToString();
             CreateADUser(strUserName, strPassword, strGivenName, strLastName, strMemberOf);
         }
-
+        /// <summary>
+        /// Creates an user in Active Directory
+        /// </summary>
+        /// <param name="userName">Name of the user.</param>
+        /// <param name="userPassword">User password.</param>
+        /// <param name="givenName">The first name</param>
+        /// <param name="lastName">The last name.</param>
+        /// <param name="memberOf">Group name - hardware admin(istration) or user from dropdownlist.</param>
         private void CreateADUser(String userName, String userPassword, String givenName, String lastName, String memberOf)
         {
 
-            using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "dc", "OU=Employees,DC=6ib,DC=eu", "jli@6ib.eu", "1234QWEr"))
+            PrincipalContext pc = new PrincipalContext(ContextType.Domain, "dc", "OU=Employees,DC=6ib,DC=eu", "jli@6ib.eu", "1234QWEr");
 
-            using (UserPrincipal up = new UserPrincipal(pc))
-            {
+            UserPrincipal up = new UserPrincipal(pc);
+            
                 try
                 {
                     up.GivenName = givenName;
@@ -69,15 +80,19 @@ namespace Toestellenbeheer.Add
                 {
                     errorLabel.Text = "An exeption occured " + ex.InnerException.ToString();
                 }
-            }
+            
         }
 
-
+        /// <summary>
+        /// Adds the user to group.
+        /// </summary>
+        /// <param name="ADUserPrincipalName">Userprincipalname from Active Directory</param>
+        /// <param name="groupName">Name of the group. (gg_hardware_admin(istration), user)</param>
         public void AddUserToGroup(string ADUserPrincipalName, string groupName)
         {
             try
             {
-                using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "dc", "OU=Employees,DC=6ib,DC=eu", "jli@6ib.eu", "1234QWEr"))
+                PrincipalContext pc = new PrincipalContext(ContextType.Domain, "dc", "OU=Employees,DC=6ib,DC=eu", "jli@6ib.eu", "1234QWEr");
                 {
                     GroupPrincipal group = GroupPrincipal.FindByIdentity(pc, groupName);
                     group.Members.Add(pc, IdentityType.UserPrincipalName, ADUserPrincipalName);

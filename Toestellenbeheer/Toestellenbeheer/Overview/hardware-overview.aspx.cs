@@ -21,6 +21,11 @@ namespace Toestellenbeheer
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
+        /// <summary>
+        /// Page Load - Bind the hardware immediately with gridview - HardwareOverviewGrid when page loads, do not change after postback pageload
+        /// </summary>
+        /// <param name="sender">Page Load</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -190,7 +195,7 @@ namespace Toestellenbeheer
 
         }
 
-        protected void Conform_Click(object sender, EventArgs e)
+        protected void Confirm_Click(object sender, EventArgs e)
         {
             mysqlConnectie.Open();
 

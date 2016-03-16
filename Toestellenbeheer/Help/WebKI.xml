@@ -1,0 +1,599 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="About class">
+    <HelpKINode Title="About Class" Url="html/632399447.htm" />
+    <HelpKINode Title="About Members" Url="html/1032446403.htm" />
+    <HelpKINode Title="about About class" Url="html/632399447.htm" />
+    <HelpKINode Title="all members" Url="html/1032446403.htm" />
+    <HelpKINode Title="events" Url="html/1229793820.htm" />
+    <HelpKINode Title="methods" Url="html/1662119828.htm" />
+    <HelpKINode Title="properties" Url="html/1552720838.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ADConnectionPrefix field" Url="html/275471189.htm" />
+  <HelpKINode Title="AddUserToGroup method" Url="html/1272553406.htm" />
+  <HelpKINode Title="add_hardware class">
+    <HelpKINode Title="add_hardware Class" Url="html/672603773.htm" />
+    <HelpKINode Title="add_hardware Members" Url="html/1111644931.htm" />
+    <HelpKINode Title="about add_hardware class" Url="html/672603773.htm" />
+    <HelpKINode Title="all members" Url="html/1111644931.htm" />
+    <HelpKINode Title="events" Url="html/738442573.htm" />
+    <HelpKINode Title="methods" Url="html/42971475.htm" />
+    <HelpKINode Title="properties" Url="html/1105441898.htm" />
+  </HelpKINode>
+  <HelpKINode Title="add_hardware.Upload_Click method" Url="html/99634476.htm" />
+  <HelpKINode Title="add_license class">
+    <HelpKINode Title="add_license Class" Url="html/1135201450.htm" />
+    <HelpKINode Title="add_license Members" Url="html/1453003037.htm" />
+    <HelpKINode Title="about add_license class" Url="html/1135201450.htm" />
+    <HelpKINode Title="all members" Url="html/1453003037.htm" />
+    <HelpKINode Title="events" Url="html/391589133.htm" />
+    <HelpKINode Title="methods" Url="html/1166373268.htm" />
+    <HelpKINode Title="properties" Url="html/2003295066.htm" />
+  </HelpKINode>
+  <HelpKINode Title="add_person class">
+    <HelpKINode Title="add_person Class" Url="html/750221502.htm" />
+    <HelpKINode Title="add_person Members" Url="html/241672518.htm" />
+    <HelpKINode Title="about add_person class" Url="html/750221502.htm" />
+    <HelpKINode Title="all members" Url="html/241672518.htm" />
+    <HelpKINode Title="events" Url="html/1763479878.htm" />
+    <HelpKINode Title="methods" Url="html/1224214036.htm" />
+    <HelpKINode Title="properties" Url="html/658689988.htm" />
+  </HelpKINode>
+  <HelpKINode Title="add_person.AddUserToGroup method" Url="html/1272553406.htm" />
+  <HelpKINode Title="ADUserName field" Url="html/1826820005.htm" />
+  <HelpKINode Title="ADUserPassword field" Url="html/1388877088.htm" />
+  <HelpKINode Title="ApplicationDbContext class">
+    <HelpKINode Title="ApplicationDbContext Class" Url="html/821284278.htm" />
+    <HelpKINode Title="ApplicationDbContext Members" Url="html/1206662555.htm" />
+    <HelpKINode Title="about ApplicationDbContext class" Url="html/821284278.htm" />
+    <HelpKINode Title="all members" Url="html/1206662555.htm" />
+    <HelpKINode Title="methods" Url="html/575444505.htm" />
+    <HelpKINode Title="properties" Url="html/1028900372.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ApplicationDbContext.Create method" Url="html/1486006031.htm" />
+  <HelpKINode Title="ApplicationDbContext.DemoContext class">
+    <HelpKINode Title="ApplicationDbContext.DemoContext Class" Url="html/819666768.htm" />
+    <HelpKINode Title="ApplicationDbContext.DemoContext Members" Url="html/443138764.htm" />
+    <HelpKINode Title="about ApplicationDbContext.DemoContext class" Url="html/819666768.htm" />
+    <HelpKINode Title="all members" Url="html/443138764.htm" />
+    <HelpKINode Title="methods" Url="html/931278646.htm" />
+    <HelpKINode Title="properties" Url="html/1737829223.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ApplicationSignInManager class">
+    <HelpKINode Title="ApplicationSignInManager Class" Url="html/63413734.htm" />
+    <HelpKINode Title="ApplicationSignInManager Members" Url="html/651638562.htm" />
+    <HelpKINode Title="about ApplicationSignInManager class" Url="html/63413734.htm" />
+    <HelpKINode Title="all members" Url="html/651638562.htm" />
+    <HelpKINode Title="constructor" Url="html/639090045.htm" />
+    <HelpKINode Title="methods" Url="html/754852589.htm" />
+    <HelpKINode Title="properties" Url="html/2135912674.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ApplicationSignInManager.ApplicationSignInManager constructor" Url="html/639090045.htm" />
+  <HelpKINode Title="ApplicationSignInManager.Create method" Url="html/687210270.htm" />
+  <HelpKINode Title="ApplicationSignInManager.CreateUserIdentityAsync method">
+    <HelpKINode Title="CreateUserIdentityAsync Method " Url="html/738656282.htm" />
+    <HelpKINode Title="CreateUserIdentityAsync Method " Url="html/285320006.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ApplicationUser class">
+    <HelpKINode Title="ApplicationUser Class" Url="html/652572816.htm" />
+    <HelpKINode Title="ApplicationUser Members" Url="html/798265323.htm" />
+    <HelpKINode Title="about ApplicationUser class" Url="html/652572816.htm" />
+    <HelpKINode Title="all members" Url="html/798265323.htm" />
+    <HelpKINode Title="methods" Url="html/2009636944.htm" />
+    <HelpKINode Title="properties" Url="html/705533867.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ApplicationUser.GenerateUserIdentity method" Url="html/224194410.htm" />
+  <HelpKINode Title="ApplicationUser.GenerateUserIdentityAsync method" Url="html/1996252721.htm" />
+  <HelpKINode Title="ApplicationUserManager class">
+    <HelpKINode Title="ApplicationUserManager Class" Url="html/1305486448.htm" />
+    <HelpKINode Title="ApplicationUserManager Members" Url="html/1490870531.htm" />
+    <HelpKINode Title="about ApplicationUserManager class" Url="html/1305486448.htm" />
+    <HelpKINode Title="all members" Url="html/1490870531.htm" />
+    <HelpKINode Title="constructor" Url="html/1940029343.htm" />
+    <HelpKINode Title="methods" Url="html/241048134.htm" />
+    <HelpKINode Title="properties" Url="html/1775636310.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ApplicationUserManager.ApplicationUserManager constructor" Url="html/1940029343.htm" />
+  <HelpKINode Title="ApplicationUserManager.Create method" Url="html/566582716.htm" />
+  <HelpKINode Title="assign_license class">
+    <HelpKINode Title="assign_license Class" Url="html/1211153441.htm" />
+    <HelpKINode Title="assign_license Members" Url="html/780553078.htm" />
+    <HelpKINode Title="about assign_license class" Url="html/1211153441.htm" />
+    <HelpKINode Title="all members" Url="html/780553078.htm" />
+    <HelpKINode Title="events" Url="html/265952662.htm" />
+    <HelpKINode Title="methods" Url="html/293203351.htm" />
+    <HelpKINode Title="properties" Url="html/349040976.htm" />
+  </HelpKINode>
+  <HelpKINode Title="BundleConfig class">
+    <HelpKINode Title="BundleConfig Class" Url="html/1829340096.htm" />
+    <HelpKINode Title="BundleConfig Members" Url="html/1365294813.htm" />
+    <HelpKINode Title="about BundleConfig class" Url="html/1829340096.htm" />
+    <HelpKINode Title="all members" Url="html/1365294813.htm" />
+    <HelpKINode Title="methods" Url="html/970797740.htm" />
+  </HelpKINode>
+  <HelpKINode Title="BundleConfig.RegisterBundles method" Url="html/1588435583.htm" />
+  <HelpKINode Title="CodeKey field" Url="html/1762127961.htm" />
+  <HelpKINode Title="Configuration method" Url="html/82584493.htm" />
+  <HelpKINode Title="ConfigureAuth method" Url="html/577479321.htm" />
+  <HelpKINode Title="Contact class">
+    <HelpKINode Title="Contact Class" Url="html/1569424809.htm" />
+    <HelpKINode Title="Contact Members" Url="html/1475164904.htm" />
+    <HelpKINode Title="about Contact class" Url="html/1569424809.htm" />
+    <HelpKINode Title="all members" Url="html/1475164904.htm" />
+    <HelpKINode Title="events" Url="html/1310426277.htm" />
+    <HelpKINode Title="methods" Url="html/1676044185.htm" />
+    <HelpKINode Title="properties" Url="html/1036252553.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Create method">
+    <HelpKINode Title="Create Method " Url="html/687210270.htm" />
+    <HelpKINode Title="Create Method " Url="html/1486006031.htm" />
+    <HelpKINode Title="Create Method " Url="html/566582716.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CreateUserIdentityAsync method">
+    <HelpKINode Title="CreateUserIdentityAsync Method " Url="html/285320006.htm" />
+    <HelpKINode Title="CreateUserIdentityAsync Method " Url="html/738656282.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Default class">
+    <HelpKINode Title="Default Class" Url="html/1904688375.htm" />
+    <HelpKINode Title="Default Class" Url="html/1756728786.htm" />
+    <HelpKINode Title="Default Class" Url="html/660343189.htm" />
+    <HelpKINode Title="Default Members" Url="html/155308430.htm" />
+    <HelpKINode Title="Default Members" Url="html/606500387.htm" />
+    <HelpKINode Title="Default Members" Url="html/1892813183.htm" />
+    <HelpKINode Title="about Default class" Url="html/1756728786.htm" />
+    <HelpKINode Title="about Default class" Url="html/1904688375.htm" />
+    <HelpKINode Title="about Default class" Url="html/660343189.htm" />
+    <HelpKINode Title="all members" Url="html/155308430.htm" />
+    <HelpKINode Title="all members" Url="html/1892813183.htm" />
+    <HelpKINode Title="all members" Url="html/606500387.htm" />
+    <HelpKINode Title="events" Url="html/1299263372.htm" />
+    <HelpKINode Title="events" Url="html/1113883799.htm" />
+    <HelpKINode Title="events" Url="html/1923460002.htm" />
+    <HelpKINode Title="methods" Url="html/1600887229.htm" />
+    <HelpKINode Title="methods" Url="html/1439710314.htm" />
+    <HelpKINode Title="methods" Url="html/431965053.htm" />
+    <HelpKINode Title="properties" Url="html/1545209538.htm" />
+    <HelpKINode Title="properties" Url="html/1652917668.htm" />
+    <HelpKINode Title="properties" Url="html/2118252805.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Default1 class">
+    <HelpKINode Title="Default1 Class" Url="html/1753648594.htm" />
+    <HelpKINode Title="Default1 Members" Url="html/1176936050.htm" />
+    <HelpKINode Title="about Default1 class" Url="html/1753648594.htm" />
+    <HelpKINode Title="all members" Url="html/1176936050.htm" />
+    <HelpKINode Title="events" Url="html/1608140306.htm" />
+    <HelpKINode Title="methods" Url="html/430850941.htm" />
+    <HelpKINode Title="properties" Url="html/1843876948.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EmailService class">
+    <HelpKINode Title="EmailService Class" Url="html/1782593451.htm" />
+    <HelpKINode Title="EmailService Members" Url="html/2057616547.htm" />
+    <HelpKINode Title="about EmailService class" Url="html/1782593451.htm" />
+    <HelpKINode Title="all members" Url="html/2057616547.htm" />
+    <HelpKINode Title="methods" Url="html/185844715.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EmailService.SendAsync method" Url="html/179699977.htm" />
+  <HelpKINode Title="FormsAuth namespace" Url="html/1883270900.htm" />
+  <HelpKINode Title="FormsAuth.LdapAuthentication class">
+    <HelpKINode Title="LdapAuthentication Class" Url="html/1077607175.htm" />
+    <HelpKINode Title="LdapAuthentication Members" Url="html/1291275081.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GenerateUserIdentity method" Url="html/224194410.htm" />
+  <HelpKINode Title="GenerateUserIdentityAsync method" Url="html/1996252721.htm" />
+  <HelpKINode Title="GetCodeFromRequest method" Url="html/1605817800.htm" />
+  <HelpKINode Title="GetGroups method" Url="html/1466187783.htm" />
+  <HelpKINode Title="getPath method" Url="html/204254728.htm" />
+  <HelpKINode Title="GetProviderNameFromRequest method" Url="html/626813260.htm" />
+  <HelpKINode Title="GetResetPasswordRedirectUrl method" Url="html/583213038.htm" />
+  <HelpKINode Title="GetUserConfirmationRedirectUrl method" Url="html/1957467638.htm" />
+  <HelpKINode Title="GetUserIdFromRequest method" Url="html/1915802068.htm" />
+  <HelpKINode Title="Global class">
+    <HelpKINode Title="Global Class" Url="html/2005961697.htm" />
+    <HelpKINode Title="Global Members" Url="html/1923939830.htm" />
+    <HelpKINode Title="about Global class" Url="html/2005961697.htm" />
+    <HelpKINode Title="all members" Url="html/1923939830.htm" />
+    <HelpKINode Title="events" Url="html/2097833213.htm" />
+    <HelpKINode Title="methods" Url="html/684705703.htm" />
+    <HelpKINode Title="properties" Url="html/703726565.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GlobalVar.ADConnectionPrefix field" Url="html/275471189.htm" />
+  <HelpKINode Title="GlobalVar.ADUserName field" Url="html/1826820005.htm" />
+  <HelpKINode Title="GlobalVar.ADUserPassword field" Url="html/1388877088.htm" />
+  <HelpKINode Title="GlobalVar.ScripturaPath field" Url="html/978477835.htm" />
+  <HelpKINode Title="hardware_history class">
+    <HelpKINode Title="hardware_history Class" Url="html/2031445318.htm" />
+    <HelpKINode Title="hardware_history Members" Url="html/1160631459.htm" />
+    <HelpKINode Title="about hardware_history class" Url="html/2031445318.htm" />
+    <HelpKINode Title="all members" Url="html/1160631459.htm" />
+    <HelpKINode Title="events" Url="html/593885540.htm" />
+    <HelpKINode Title="methods" Url="html/171718983.htm" />
+    <HelpKINode Title="properties" Url="html/363017987.htm" />
+  </HelpKINode>
+  <HelpKINode Title="hardware_overview class">
+    <HelpKINode Title="hardware_overview Class" Url="html/1283348272.htm" />
+    <HelpKINode Title="hardware_overview Members" Url="html/875610648.htm" />
+    <HelpKINode Title="about hardware_overview class" Url="html/1283348272.htm" />
+    <HelpKINode Title="all members" Url="html/875610648.htm" />
+    <HelpKINode Title="events" Url="html/1486797848.htm" />
+    <HelpKINode Title="methods" Url="html/1299340654.htm" />
+    <HelpKINode Title="properties" Url="html/58820632.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IdentityHelper class">
+    <HelpKINode Title="IdentityHelper Class" Url="html/605322493.htm" />
+    <HelpKINode Title="IdentityHelper Members" Url="html/1589525306.htm" />
+    <HelpKINode Title="about IdentityHelper class" Url="html/605322493.htm" />
+    <HelpKINode Title="all members" Url="html/1589525306.htm" />
+    <HelpKINode Title="fields" Url="html/451245130.htm" />
+    <HelpKINode Title="methods" Url="html/311352767.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IdentityHelper.CodeKey field" Url="html/1762127961.htm" />
+  <HelpKINode Title="IdentityHelper.GetCodeFromRequest method" Url="html/1605817800.htm" />
+  <HelpKINode Title="IdentityHelper.GetProviderNameFromRequest method" Url="html/626813260.htm" />
+  <HelpKINode Title="IdentityHelper.GetResetPasswordRedirectUrl method" Url="html/583213038.htm" />
+  <HelpKINode Title="IdentityHelper.GetUserConfirmationRedirectUrl method" Url="html/1957467638.htm" />
+  <HelpKINode Title="IdentityHelper.GetUserIdFromRequest method" Url="html/1915802068.htm" />
+  <HelpKINode Title="IdentityHelper.ProviderNameKey field" Url="html/346755215.htm" />
+  <HelpKINode Title="IdentityHelper.RedirectToReturnUrl method" Url="html/2023091191.htm" />
+  <HelpKINode Title="IdentityHelper.UserIdKey field" Url="html/154362010.htm" />
+  <HelpKINode Title="IdentityHelper.XsrfKey field" Url="html/1062208448.htm" />
+  <HelpKINode Title="InitializeDatabase method" Url="html/2027483456.htm" />
+  <HelpKINode Title="IsAuthenticated method" Url="html/1887929186.htm" />
+  <HelpKINode Title="LdapAuthentication class">
+    <HelpKINode Title="LdapAuthentication Class" Url="html/1077607175.htm" />
+    <HelpKINode Title="LdapAuthentication Members" Url="html/1291275081.htm" />
+    <HelpKINode Title="about LdapAuthentication class" Url="html/1077607175.htm" />
+    <HelpKINode Title="all members" Url="html/1291275081.htm" />
+    <HelpKINode Title="constructor" Url="html/891657362.htm" />
+    <HelpKINode Title="methods" Url="html/104390008.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LdapAuthentication.GetGroups method" Url="html/1466187783.htm" />
+  <HelpKINode Title="LdapAuthentication.getPath method" Url="html/204254728.htm" />
+  <HelpKINode Title="LdapAuthentication.IsAuthenticated method" Url="html/1887929186.htm" />
+  <HelpKINode Title="LdapAuthentication.LdapAuthentication constructor" Url="html/891657362.htm" />
+  <HelpKINode Title="LdapAuthentication.LDAPPath method" Url="html/1399234537.htm" />
+  <HelpKINode Title="LDAPPath method" Url="html/1399234537.htm" />
+  <HelpKINode Title="license_overview class">
+    <HelpKINode Title="license_overview Class" Url="html/225680790.htm" />
+    <HelpKINode Title="license_overview Members" Url="html/1270022712.htm" />
+    <HelpKINode Title="about license_overview class" Url="html/225680790.htm" />
+    <HelpKINode Title="all members" Url="html/1270022712.htm" />
+    <HelpKINode Title="events" Url="html/165909632.htm" />
+    <HelpKINode Title="methods" Url="html/1813884022.htm" />
+    <HelpKINode Title="properties" Url="html/189271793.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Login class">
+    <HelpKINode Title="Login Class" Url="html/1614955447.htm" />
+    <HelpKINode Title="Login Members" Url="html/1000698585.htm" />
+    <HelpKINode Title="about Login class" Url="html/1614955447.htm" />
+    <HelpKINode Title="all members" Url="html/1000698585.htm" />
+    <HelpKINode Title="events" Url="html/1457446567.htm" />
+    <HelpKINode Title="methods" Url="html/1458741265.htm" />
+    <HelpKINode Title="properties" Url="html/7422493.htm" />
+  </HelpKINode>
+  <HelpKINode Title="manage_hardware class">
+    <HelpKINode Title="manage_hardware Class" Url="html/1570149505.htm" />
+    <HelpKINode Title="manage_hardware Members" Url="html/357350824.htm" />
+    <HelpKINode Title="about manage_hardware class" Url="html/1570149505.htm" />
+    <HelpKINode Title="all members" Url="html/357350824.htm" />
+    <HelpKINode Title="events" Url="html/124645223.htm" />
+    <HelpKINode Title="methods" Url="html/1564264230.htm" />
+    <HelpKINode Title="properties" Url="html/1780996690.htm" />
+  </HelpKINode>
+  <HelpKINode Title="manage_type class">
+    <HelpKINode Title="manage_type Class" Url="html/1059715602.htm" />
+    <HelpKINode Title="manage_type Members" Url="html/634606942.htm" />
+    <HelpKINode Title="about manage_type class" Url="html/1059715602.htm" />
+    <HelpKINode Title="all members" Url="html/634606942.htm" />
+    <HelpKINode Title="events" Url="html/1745740362.htm" />
+    <HelpKINode Title="methods" Url="html/612960257.htm" />
+    <HelpKINode Title="properties" Url="html/857893672.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MySqlConfiguration class">
+    <HelpKINode Title="MySqlConfiguration Class" Url="html/1475966073.htm" />
+    <HelpKINode Title="MySqlConfiguration Members" Url="html/107945011.htm" />
+    <HelpKINode Title="about MySqlConfiguration class" Url="html/1475966073.htm" />
+    <HelpKINode Title="all members" Url="html/107945011.htm" />
+    <HelpKINode Title="constructor" Url="html/327693894.htm" />
+    <HelpKINode Title="methods" Url="html/885032947.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MySqlConfiguration.MySqlConfiguration constructor" Url="html/327693894.htm" />
+  <HelpKINode Title="MySqlInitializer class">
+    <HelpKINode Title="MySqlInitializer Class" Url="html/1640408654.htm" />
+    <HelpKINode Title="MySqlInitializer Members" Url="html/1765126943.htm" />
+    <HelpKINode Title="about MySqlInitializer class" Url="html/1640408654.htm" />
+    <HelpKINode Title="all members" Url="html/1765126943.htm" />
+    <HelpKINode Title="methods" Url="html/1598780777.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MySqlInitializer.InitializeDatabase method" Url="html/2027483456.htm" />
+  <HelpKINode Title="NoAccess class">
+    <HelpKINode Title="NoAccess Class" Url="html/540494791.htm" />
+    <HelpKINode Title="NoAccess Members" Url="html/1251344917.htm" />
+    <HelpKINode Title="about NoAccess class" Url="html/540494791.htm" />
+    <HelpKINode Title="all members" Url="html/1251344917.htm" />
+    <HelpKINode Title="events" Url="html/921994812.htm" />
+    <HelpKINode Title="methods" Url="html/1674361312.htm" />
+    <HelpKINode Title="properties" Url="html/216352350.htm" />
+  </HelpKINode>
+  <HelpKINode Title="people_history class">
+    <HelpKINode Title="people_history Class" Url="html/1936041013.htm" />
+    <HelpKINode Title="people_history Members" Url="html/1839014247.htm" />
+    <HelpKINode Title="about people_history class" Url="html/1936041013.htm" />
+    <HelpKINode Title="all members" Url="html/1839014247.htm" />
+    <HelpKINode Title="events" Url="html/1611314980.htm" />
+    <HelpKINode Title="methods" Url="html/1275239981.htm" />
+    <HelpKINode Title="properties" Url="html/1927380791.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ProviderNameKey field" Url="html/346755215.htm" />
+  <HelpKINode Title="RedirectToReturnUrl method" Url="html/2023091191.htm" />
+  <HelpKINode Title="RegisterBundles method" Url="html/1588435583.htm" />
+  <HelpKINode Title="RegisterRoutes method" Url="html/1997916190.htm" />
+  <HelpKINode Title="return_hardware class">
+    <HelpKINode Title="return_hardware Class" Url="html/49771724.htm" />
+    <HelpKINode Title="return_hardware Members" Url="html/380863472.htm" />
+    <HelpKINode Title="about return_hardware class" Url="html/49771724.htm" />
+    <HelpKINode Title="all members" Url="html/380863472.htm" />
+    <HelpKINode Title="events" Url="html/1692729691.htm" />
+    <HelpKINode Title="methods" Url="html/1370970747.htm" />
+    <HelpKINode Title="properties" Url="html/413992316.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RouteConfig class">
+    <HelpKINode Title="RouteConfig Class" Url="html/222249772.htm" />
+    <HelpKINode Title="RouteConfig Members" Url="html/947010623.htm" />
+    <HelpKINode Title="about RouteConfig class" Url="html/222249772.htm" />
+    <HelpKINode Title="all members" Url="html/947010623.htm" />
+    <HelpKINode Title="methods" Url="html/120532585.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RouteConfig.RegisterRoutes method" Url="html/1997916190.htm" />
+  <HelpKINode Title="ScripturaPath field" Url="html/978477835.htm" />
+  <HelpKINode Title="SendAsync method">
+    <HelpKINode Title="SendAsync Method " Url="html/277083558.htm" />
+    <HelpKINode Title="SendAsync Method " Url="html/179699977.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SetupFile class">
+    <HelpKINode Title="SetupFile Class" Url="html/1973600439.htm" />
+    <HelpKINode Title="SetupFile Members" Url="html/1949803969.htm" />
+    <HelpKINode Title="about SetupFile class" Url="html/1973600439.htm" />
+    <HelpKINode Title="all members" Url="html/1949803969.htm" />
+    <HelpKINode Title="methods" Url="html/2085660306.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SetupFile.GlobalVar class">
+    <HelpKINode Title="SetupFile.GlobalVar Class" Url="html/1843768876.htm" />
+    <HelpKINode Title="SetupFile.GlobalVar Members" Url="html/481507581.htm" />
+    <HelpKINode Title="about SetupFile.GlobalVar class" Url="html/1843768876.htm" />
+    <HelpKINode Title="all members" Url="html/481507581.htm" />
+    <HelpKINode Title="fields" Url="html/997026755.htm" />
+    <HelpKINode Title="methods" Url="html/1055226221.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SiteMaster class">
+    <HelpKINode Title="SiteMaster Class" Url="html/296766682.htm" />
+    <HelpKINode Title="SiteMaster Members" Url="html/2117701680.htm" />
+    <HelpKINode Title="about SiteMaster class" Url="html/296766682.htm" />
+    <HelpKINode Title="all members" Url="html/2117701680.htm" />
+    <HelpKINode Title="events" Url="html/478346736.htm" />
+    <HelpKINode Title="methods" Url="html/24265517.htm" />
+    <HelpKINode Title="properties" Url="html/781550160.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Site_Mobile class">
+    <HelpKINode Title="Site_Mobile Class" Url="html/1262817098.htm" />
+    <HelpKINode Title="Site_Mobile Members" Url="html/205329284.htm" />
+    <HelpKINode Title="about Site_Mobile class" Url="html/1262817098.htm" />
+    <HelpKINode Title="all members" Url="html/205329284.htm" />
+    <HelpKINode Title="events" Url="html/65556830.htm" />
+    <HelpKINode Title="methods" Url="html/693392931.htm" />
+    <HelpKINode Title="properties" Url="html/1295309872.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SmsService class">
+    <HelpKINode Title="SmsService Class" Url="html/1340250837.htm" />
+    <HelpKINode Title="SmsService Members" Url="html/1858445606.htm" />
+    <HelpKINode Title="about SmsService class" Url="html/1340250837.htm" />
+    <HelpKINode Title="all members" Url="html/1858445606.htm" />
+    <HelpKINode Title="methods" Url="html/2014702800.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SmsService.SendAsync method" Url="html/277083558.htm" />
+  <HelpKINode Title="Startup class">
+    <HelpKINode Title="Startup Class" Url="html/1340588480.htm" />
+    <HelpKINode Title="Startup Members" Url="html/1995538470.htm" />
+    <HelpKINode Title="about Startup class" Url="html/1340588480.htm" />
+    <HelpKINode Title="all members" Url="html/1995538470.htm" />
+    <HelpKINode Title="methods" Url="html/849312502.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Startup.Configuration method" Url="html/82584493.htm" />
+  <HelpKINode Title="Startup.ConfigureAuth method" Url="html/577479321.htm" />
+  <HelpKINode Title="Toestellenbeheer namespace" Url="html/1483329241.htm" />
+  <HelpKINode Title="Toestellenbeheer.About class">
+    <HelpKINode Title="About Class" Url="html/632399447.htm" />
+    <HelpKINode Title="About Members" Url="html/1032446403.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Account namespace" Url="html/918189049.htm" />
+  <HelpKINode Title="Toestellenbeheer.Account.Login class">
+    <HelpKINode Title="Login Class" Url="html/1614955447.htm" />
+    <HelpKINode Title="Login Members" Url="html/1000698585.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Add namespace" Url="html/1760393366.htm" />
+  <HelpKINode Title="Toestellenbeheer.Add.add_person class">
+    <HelpKINode Title="add_person Class" Url="html/750221502.htm" />
+    <HelpKINode Title="add_person Members" Url="html/241672518.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.ApplicationSignInManager class">
+    <HelpKINode Title="ApplicationSignInManager Class" Url="html/63413734.htm" />
+    <HelpKINode Title="ApplicationSignInManager Members" Url="html/651638562.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.ApplicationUserManager class">
+    <HelpKINode Title="ApplicationUserManager Class" Url="html/1305486448.htm" />
+    <HelpKINode Title="ApplicationUserManager Members" Url="html/1490870531.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Archive namespace" Url="html/848893917.htm" />
+  <HelpKINode Title="Toestellenbeheer.Archive.Default class">
+    <HelpKINode Title="Default Class" Url="html/1904688375.htm" />
+    <HelpKINode Title="Default Members" Url="html/606500387.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Archive.hardware_history class">
+    <HelpKINode Title="hardware_history Class" Url="html/2031445318.htm" />
+    <HelpKINode Title="hardware_history Members" Url="html/1160631459.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Archive.people_history class">
+    <HelpKINode Title="people_history Class" Url="html/1936041013.htm" />
+    <HelpKINode Title="people_history Members" Url="html/1839014247.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.BundleConfig class">
+    <HelpKINode Title="BundleConfig Class" Url="html/1829340096.htm" />
+    <HelpKINode Title="BundleConfig Members" Url="html/1365294813.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Contact class">
+    <HelpKINode Title="Contact Class" Url="html/1569424809.htm" />
+    <HelpKINode Title="Contact Members" Url="html/1475164904.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.EmailService class">
+    <HelpKINode Title="EmailService Class" Url="html/1782593451.htm" />
+    <HelpKINode Title="EmailService Members" Url="html/2057616547.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Global class">
+    <HelpKINode Title="Global Class" Url="html/2005961697.htm" />
+    <HelpKINode Title="Global Members" Url="html/1923939830.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.hardware_overview class">
+    <HelpKINode Title="hardware_overview Class" Url="html/1283348272.htm" />
+    <HelpKINode Title="hardware_overview Members" Url="html/875610648.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.IdentityHelper class">
+    <HelpKINode Title="IdentityHelper Class" Url="html/605322493.htm" />
+    <HelpKINode Title="IdentityHelper Members" Url="html/1589525306.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Manage namespace" Url="html/1096227422.htm" />
+  <HelpKINode Title="Toestellenbeheer.Manage.add_hardware class">
+    <HelpKINode Title="add_hardware Class" Url="html/672603773.htm" />
+    <HelpKINode Title="add_hardware Members" Url="html/1111644931.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Manage.add_license class">
+    <HelpKINode Title="add_license Class" Url="html/1135201450.htm" />
+    <HelpKINode Title="add_license Members" Url="html/1453003037.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Manage.assign_license class">
+    <HelpKINode Title="assign_license Class" Url="html/1211153441.htm" />
+    <HelpKINode Title="assign_license Members" Url="html/780553078.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Manage.Default class">
+    <HelpKINode Title="Default Class" Url="html/1756728786.htm" />
+    <HelpKINode Title="Default Members" Url="html/155308430.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Manage.Default1 class">
+    <HelpKINode Title="Default1 Class" Url="html/1753648594.htm" />
+    <HelpKINode Title="Default1 Members" Url="html/1176936050.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Manage.manage_hardware class">
+    <HelpKINode Title="manage_hardware Class" Url="html/1570149505.htm" />
+    <HelpKINode Title="manage_hardware Members" Url="html/357350824.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Manage.manage_type class">
+    <HelpKINode Title="manage_type Class" Url="html/1059715602.htm" />
+    <HelpKINode Title="manage_type Members" Url="html/634606942.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Manage.return_hardware class">
+    <HelpKINode Title="return_hardware Class" Url="html/49771724.htm" />
+    <HelpKINode Title="return_hardware Members" Url="html/380863472.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Models namespace" Url="html/2060302030.htm" />
+  <HelpKINode Title="Toestellenbeheer.Models.ApplicationDbContext class">
+    <HelpKINode Title="ApplicationDbContext Class" Url="html/821284278.htm" />
+    <HelpKINode Title="ApplicationDbContext Members" Url="html/1206662555.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Models.ApplicationDbContext.DemoContext class">
+    <HelpKINode Title="ApplicationDbContext.DemoContext Class" Url="html/819666768.htm" />
+    <HelpKINode Title="ApplicationDbContext.DemoContext Members" Url="html/443138764.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Models.ApplicationUser class">
+    <HelpKINode Title="ApplicationUser Class" Url="html/652572816.htm" />
+    <HelpKINode Title="ApplicationUser Members" Url="html/798265323.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Models.SetupFile class">
+    <HelpKINode Title="SetupFile Class" Url="html/1973600439.htm" />
+    <HelpKINode Title="SetupFile Members" Url="html/1949803969.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Models.SetupFile.GlobalVar class">
+    <HelpKINode Title="SetupFile.GlobalVar Class" Url="html/1843768876.htm" />
+    <HelpKINode Title="SetupFile.GlobalVar Members" Url="html/481507581.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.MySqlConfiguration class">
+    <HelpKINode Title="MySqlConfiguration Class" Url="html/1475966073.htm" />
+    <HelpKINode Title="MySqlConfiguration Members" Url="html/107945011.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.MySqlInitializer class">
+    <HelpKINode Title="MySqlInitializer Class" Url="html/1640408654.htm" />
+    <HelpKINode Title="MySqlInitializer Members" Url="html/1765126943.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.NoAccess class">
+    <HelpKINode Title="NoAccess Class" Url="html/540494791.htm" />
+    <HelpKINode Title="NoAccess Members" Url="html/1251344917.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Overview namespace" Url="html/1706875159.htm" />
+  <HelpKINode Title="Toestellenbeheer.Overview.Default class">
+    <HelpKINode Title="Default Class" Url="html/660343189.htm" />
+    <HelpKINode Title="Default Members" Url="html/1892813183.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Overview.license_overview class">
+    <HelpKINode Title="license_overview Class" Url="html/225680790.htm" />
+    <HelpKINode Title="license_overview Members" Url="html/1270022712.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Overview.user_overview class">
+    <HelpKINode Title="user_overview Class" Url="html/2110913193.htm" />
+    <HelpKINode Title="user_overview Members" Url="html/325181915.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.RouteConfig class">
+    <HelpKINode Title="RouteConfig Class" Url="html/222249772.htm" />
+    <HelpKINode Title="RouteConfig Members" Url="html/947010623.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.SiteMaster class">
+    <HelpKINode Title="SiteMaster Class" Url="html/296766682.htm" />
+    <HelpKINode Title="SiteMaster Members" Url="html/2117701680.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Site_Mobile class">
+    <HelpKINode Title="Site_Mobile Class" Url="html/1262817098.htm" />
+    <HelpKINode Title="Site_Mobile Members" Url="html/205329284.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.SmsService class">
+    <HelpKINode Title="SmsService Class" Url="html/1340250837.htm" />
+    <HelpKINode Title="SmsService Members" Url="html/1858445606.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.Startup class">
+    <HelpKINode Title="Startup Class" Url="html/1340588480.htm" />
+    <HelpKINode Title="Startup Members" Url="html/1995538470.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer.ViewSwitcher class">
+    <HelpKINode Title="ViewSwitcher Class" Url="html/2096777812.htm" />
+    <HelpKINode Title="ViewSwitcher Members" Url="html/581114927.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Toestellenbeheer._Default class">
+    <HelpKINode Title="_Default Class" Url="html/1990780202.htm" />
+    <HelpKINode Title="_Default Members" Url="html/1837999521.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Upload_Click method" Url="html/99634476.htm" />
+  <HelpKINode Title="UserIdKey field" Url="html/154362010.htm" />
+  <HelpKINode Title="user_overview class">
+    <HelpKINode Title="user_overview Class" Url="html/2110913193.htm" />
+    <HelpKINode Title="user_overview Members" Url="html/325181915.htm" />
+    <HelpKINode Title="about user_overview class" Url="html/2110913193.htm" />
+    <HelpKINode Title="all members" Url="html/325181915.htm" />
+    <HelpKINode Title="events" Url="html/595271542.htm" />
+    <HelpKINode Title="methods" Url="html/2026911094.htm" />
+    <HelpKINode Title="properties" Url="html/61358437.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ViewSwitcher class">
+    <HelpKINode Title="ViewSwitcher Class" Url="html/2096777812.htm" />
+    <HelpKINode Title="ViewSwitcher Members" Url="html/581114927.htm" />
+    <HelpKINode Title="about ViewSwitcher class" Url="html/2096777812.htm" />
+    <HelpKINode Title="all members" Url="html/581114927.htm" />
+    <HelpKINode Title="events" Url="html/1673355403.htm" />
+    <HelpKINode Title="methods" Url="html/941265946.htm" />
+    <HelpKINode Title="properties" Url="html/520784878.htm" />
+  </HelpKINode>
+  <HelpKINode Title="XsrfKey field" Url="html/1062208448.htm" />
+  <HelpKINode Title="_Default class">
+    <HelpKINode Title="_Default Class" Url="html/1990780202.htm" />
+    <HelpKINode Title="_Default Members" Url="html/1837999521.htm" />
+    <HelpKINode Title="about _Default class" Url="html/1990780202.htm" />
+    <HelpKINode Title="all members" Url="html/1837999521.htm" />
+    <HelpKINode Title="events" Url="html/1297867614.htm" />
+    <HelpKINode Title="methods" Url="html/387086866.htm" />
+    <HelpKINode Title="properties" Url="html/98915266.htm" />
+  </HelpKINode>
+</HelpKI>

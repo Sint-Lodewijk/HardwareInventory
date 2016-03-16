@@ -20,6 +20,11 @@ namespace Toestellenbeheer.Manage
             if (!IsPostBack)
             {
                 getAssignedHardware();
+                if (grvHardwarePoolAssigned.Rows.Count == 0)
+                {
+                    btnReturnHardware.Visible = false;
+                    lblResult.Text = "There are no assigned hardware currently.";
+                }
             }
         }
         protected void getAssignedHardware()
@@ -57,7 +62,7 @@ namespace Toestellenbeheer.Manage
             archiveReturnedHardware(strInternalNr, getCorrespondingEventID(strInternalNr));
 
             mysqlConnectie.Open();
-            MySqlCommand unassignHardware = new MySqlCommand("UPDATE hardware SET eventID='' WHERE internalNr='" + strInternalNr + "'", mysqlConnectie);
+            MySqlCommand unassignHardware = new MySqlCommand("UPDATE hardware SET eventID = NULL WHERE internalNr='" + strInternalNr + "'", mysqlConnectie);
             unassignHardware.ExecuteNonQuery();
             unassignHardware.Dispose();
             mysqlConnectie.Close();

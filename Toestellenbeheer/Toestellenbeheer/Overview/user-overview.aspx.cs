@@ -6,14 +6,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using Toestellenbeheer.Models;
 namespace Toestellenbeheer.Overview
 {
     public partial class user_overview : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry("LDAP://magnix.dc.intranet", "readonly@dc.intranet", "id.13542");
+            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.GlobalVar.ADConnectionPrefix, SetupFile.GlobalVar.ADUserName,SetupFile.GlobalVar.ADUserPassword);
 
             DirectorySearcher search = new DirectorySearcher(rootDSE);
 

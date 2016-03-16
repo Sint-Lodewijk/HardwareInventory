@@ -77,7 +77,7 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer>
+            <footer class="footer">
                 <p>&copy; Hardware inventory management software - Jianing - <%: DateTime.Now.Year %> </p>
             </footer>
         </div>

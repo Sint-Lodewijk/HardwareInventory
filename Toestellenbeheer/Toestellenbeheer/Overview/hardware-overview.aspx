@@ -253,7 +253,7 @@
             <div class="form-group">
                 <asp:Label runat="server" CssClass="control-label col-sm-2" AssociatedControlID="modelNr">Model nr</asp:Label>
                 <div class="col-sm-10">
-                    <asp:TextBox runat="server" ID="modelNr" CssClass="form-control" placeholder="model number of the hardware" />
+                    <asp:TextBox runat="server" ID="modelNr" CssClass="form-control" placeholder="model number of the hardware" /> 
                 </div>
             </div>
 
@@ -275,7 +275,7 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-5 col-sm-7">
-                    <asp:Button ID="Submit" runat="server" Text="Confirm modify" CssClass="btn btn-primary margin-top-15" OnClick="Conform_Click" />
+                    <asp:Button ID="Submit" runat="server" Text="Confirm modify" CssClass="btn btn-primary margin-top-15" OnClick="Confirm_Click" />
                     <!--<asp:Label ID="testSelected" runat="server" Text="testSelected"></asp:Label>
                 <asp:TextBox ID="test" CssClass="form-control" runat="server"></asp:TextBox>-->
                 </div>

@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="becfda13-d1ca-431a-9012-565d41915839" Title="FormsAuth Namespace" Url="html/1883270900.htm">
+    <HelpTOCNode Id="62cd71b7-98e5-44b3-b220-d13a61df8c98" Title="LdapAuthentication Class" Url="html/1077607175.htm">
+      <HelpTOCNode Title="LdapAuthentication Members" Url="html/1291275081.htm" />
+      <HelpTOCNode Title="LdapAuthentication Constructor " Url="html/891657362.htm" />
+      <HelpTOCNode Id="e9b725bc-bd9b-4323-8265-3654761e5982" Title="LdapAuthentication Methods" Url="html/104390008.htm">
+        <HelpTOCNode Title="GetGroups Method " Url="html/1466187783.htm" />
+        <HelpTOCNode Title="getPath Method " Url="html/204254728.htm" />
+        <HelpTOCNode Title="IsAuthenticated Method " Url="html/1887929186.htm" />
+        <HelpTOCNode Title="LDAPPath Method " Url="html/1399234537.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="15165c79-329e-4c56-9441-40f92946d622" Title="Toestellenbeheer Namespace" Url="html/1483329241.htm">
+    <HelpTOCNode Id="b7c22ef8-551e-462d-ac7e-53c78bc55903" Title="_Default Class" Url="html/1990780202.htm">
+      <HelpTOCNode Title="_Default Members" Url="html/1837999521.htm" />
+      <HelpTOCNode Title="_Default Methods" Url="html/387086866.htm" />
+      <HelpTOCNode Title="_Default Properties" Url="html/98915266.htm" />
+      <HelpTOCNode Title="_Default Events" Url="html/1297867614.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="3c316d76-f325-4f10-a29c-deab488406f8" Title="About Class" Url="html/632399447.htm">
+      <HelpTOCNode Title="About Members" Url="html/1032446403.htm" />
+      <HelpTOCNode Title="About Methods" Url="html/1662119828.htm" />
+      <HelpTOCNode Title="About Properties" Url="html/1552720838.htm" />
+      <HelpTOCNode Title="About Events" Url="html/1229793820.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="93c41848-f556-4855-a814-5e10d79b8e3d" Title="ApplicationSignInManager Class" Url="html/63413734.htm">
+      <HelpTOCNode Title="ApplicationSignInManager Members" Url="html/651638562.htm" />
+      <HelpTOCNode Title="ApplicationSignInManager Constructor " Url="html/639090045.htm" />
+      <HelpTOCNode Id="cd1bdcf2-03a5-4947-a376-ead809cc19ae" Title="ApplicationSignInManager Methods" Url="html/754852589.htm">
+        <HelpTOCNode Title="Create Method " Url="html/687210270.htm" />
+        <HelpTOCNode Id="3d61ec90-81bc-4106-94c6-955583496603" Title="CreateUserIdentityAsync Method " Url="html/285320006.htm">
+          <HelpTOCNode Title="CreateUserIdentityAsync Method " Url="html/738656282.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Title="ApplicationSignInManager Properties" Url="html/2135912674.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="40230262-8d37-446d-84e0-f48a6653d6fe" Title="ApplicationUserManager Class" Url="html/1305486448.htm">
+      <HelpTOCNode Title="ApplicationUserManager Members" Url="html/1490870531.htm" />
+      <HelpTOCNode Title="ApplicationUserManager Constructor " Url="html/1940029343.htm" />
+      <HelpTOCNode Id="471bc30b-f630-4bf5-8699-3c0e291edc07" Title="ApplicationUserManager Methods" Url="html/241048134.htm">
+        <HelpTOCNode Title="Create Method " Url="html/566582716.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ApplicationUserManager Properties" Url="html/1775636310.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="3c526cf7-5944-47f4-8e62-cc0b01c9504c" Title="BundleConfig Class" Url="html/1829340096.htm">
+      <HelpTOCNode Title="BundleConfig Members" Url="html/1365294813.htm" />
+      <HelpTOCNode Id="2fcb64ad-8cdf-4fe4-88e5-0bf1d9c39d98" Title="BundleConfig Methods" Url="html/970797740.htm">
+        <HelpTOCNode Title="RegisterBundles Method " Url="html/1588435583.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="ba743499-f012-44bb-a63e-42e387036908" Title="Contact Class" Url="html/1569424809.htm">
+      <HelpTOCNode Title="Contact Members" Url="html/1475164904.htm" />
+      <HelpTOCNode Title="Contact Methods" Url="html/1676044185.htm" />
+      <HelpTOCNode Title="Contact Properties" Url="html/1036252553.htm" />
+      <HelpTOCNode Title="Contact Events" Url="html/1310426277.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="6130fa87-7749-4303-a2ce-7d788699f539" Title="EmailService Class" Url="html/1782593451.htm">
+      <HelpTOCNode Title="EmailService Members" Url="html/2057616547.htm" />
+      <HelpTOCNode Id="7a7100f0-5bfb-4508-b3e0-cb581c2936ee" Title="EmailService Methods" Url="html/185844715.htm">
+        <HelpTOCNode Title="SendAsync Method " Url="html/179699977.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="0392da40-1bdb-474f-80de-47db804bd9ad" Title="Global Class" Url="html/2005961697.htm">
+      <HelpTOCNode Title="Global Members" Url="html/1923939830.htm" />
+      <HelpTOCNode Title="Global Methods" Url="html/684705703.htm" />
+      <HelpTOCNode Title="Global Properties" Url="html/703726565.htm" />
+      <HelpTOCNode Title="Global Events" Url="html/2097833213.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="1d8d1c60-a1fa-4663-817b-f9af37f4acc5" Title="hardware_overview Class" Url="html/1283348272.htm">
+      <HelpTOCNode Title="hardware_overview Members" Url="html/875610648.htm" />
+      <HelpTOCNode Title="hardware_overview Methods" Url="html/1299340654.htm" />
+      <HelpTOCNode Title="hardware_overview Properties" Url="html/58820632.htm" />
+      <HelpTOCNode Title="hardware_overview Events" Url="html/1486797848.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="e6ad31fb-952a-48ec-871c-ed7a9862d044" Title="IdentityHelper Class" Url="html/605322493.htm">
+      <HelpTOCNode Title="IdentityHelper Members" Url="html/1589525306.htm" />
+      <HelpTOCNode Id="b8e90bb0-d947-419d-97ac-e04a9a71907b" Title="IdentityHelper Fields" Url="html/451245130.htm">
+        <HelpTOCNode Title="CodeKey Field" Url="html/1762127961.htm" />
+        <HelpTOCNode Title="ProviderNameKey Field" Url="html/346755215.htm" />
+        <HelpTOCNode Title="UserIdKey Field" Url="html/154362010.htm" />
+        <HelpTOCNode Title="XsrfKey Field" Url="html/1062208448.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="c3cb2590-df6a-4dd5-97a0-f5548af7c16c" Title="IdentityHelper Methods" Url="html/311352767.htm">
+        <HelpTOCNode Title="GetCodeFromRequest Method " Url="html/1605817800.htm" />
+        <HelpTOCNode Title="GetProviderNameFromRequest Method " Url="html/626813260.htm" />
+        <HelpTOCNode Title="GetResetPasswordRedirectUrl Method " Url="html/583213038.htm" />
+        <HelpTOCNode Title="GetUserConfirmationRedirectUrl Method " Url="html/1957467638.htm" />
+        <HelpTOCNode Title="GetUserIdFromRequest Method " Url="html/1915802068.htm" />
+        <HelpTOCNode Title="RedirectToReturnUrl Method " Url="html/2023091191.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="e9d29d58-820e-40f2-8944-6ea87642a7b6" Title="MySqlConfiguration Class" Url="html/1475966073.htm">
+      <HelpTOCNode Title="MySqlConfiguration Members" Url="html/107945011.htm" />
+      <HelpTOCNode Title="MySqlConfiguration Constructor " Url="html/327693894.htm" />
+      <HelpTOCNode Title="MySqlConfiguration Methods" Url="html/885032947.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="26fb2581-0bd5-4abf-8a3d-e5f8a00a8f63" Title="MySqlInitializer Class" Url="html/1640408654.htm">
+      <HelpTOCNode Title="MySqlInitializer Members" Url="html/1765126943.htm" />
+      <HelpTOCNode Id="e4477390-cd6d-4c8d-88d9-57aa563db8b0" Title="MySqlInitializer Methods" Url="html/1598780777.htm">
+        <HelpTOCNode Title="InitializeDatabase Method " Url="html/2027483456.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="5859867f-852b-4ea7-b21d-0fd9f81b08bb" Title="NoAccess Class" Url="html/540494791.htm">
+      <HelpTOCNode Title="NoAccess Members" Url="html/1251344917.htm" />
+      <HelpTOCNode Title="NoAccess Methods" Url="html/1674361312.htm" />
+      <HelpTOCNode Title="NoAccess Properties" Url="html/216352350.htm" />
+      <HelpTOCNode Title="NoAccess Events" Url="html/921994812.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="c7be45f9-8b69-405c-835a-b360c683ec40" Title="RouteConfig Class" Url="html/222249772.htm">
+      <HelpTOCNode Title="RouteConfig Members" Url="html/947010623.htm" />
+      <HelpTOCNode Id="6beaf630-c8d8-450b-836a-cc948740ee4e" Title="RouteConfig Methods" Url="html/120532585.htm">
+        <HelpTOCNode Title="RegisterRoutes Method " Url="html/1997916190.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="a74d4988-569f-47eb-bcad-30794a7f7932" Title="Site_Mobile Class" Url="html/1262817098.htm">
+      <HelpTOCNode Title="Site_Mobile Members" Url="html/205329284.htm" />
+      <HelpTOCNode Title="Site_Mobile Methods" Url="html/693392931.htm" />
+      <HelpTOCNode Title="Site_Mobile Properties" Url="html/1295309872.htm" />
+      <HelpTOCNode Title="Site_Mobile Events" Url="html/65556830.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="02cfe312-30d2-4aa8-802e-aed062e26e7d" Title="SiteMaster Class" Url="html/296766682.htm">
+      <HelpTOCNode Title="SiteMaster Members" Url="html/2117701680.htm" />
+      <HelpTOCNode Title="SiteMaster Methods" Url="html/24265517.htm" />
+      <HelpTOCNode Title="SiteMaster Properties" Url="html/781550160.htm" />
+      <HelpTOCNode Title="SiteMaster Events" Url="html/478346736.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="5b79d5e9-210c-467c-a2ed-a33d2c3d5ae0" Title="SmsService Class" Url="html/1340250837.htm">
+      <HelpTOCNode Title="SmsService Members" Url="html/1858445606.htm" />
+      <HelpTOCNode Id="ab2b8245-86d1-4258-b861-7ad04579fc90" Title="SmsService Methods" Url="html/2014702800.htm">
+        <HelpTOCNode Title="SendAsync Method " Url="html/277083558.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="381d0ea0-60db-4050-bcff-57eaa415404f" Title="Startup Class" Url="html/1340588480.htm">
+      <HelpTOCNode Title="Startup Members" Url="html/1995538470.htm" />
+      <HelpTOCNode Id="f76423c2-3c62-432e-80ef-fa0a31e1d372" Title="Startup Methods" Url="html/849312502.htm">
+        <HelpTOCNode Title="Configuration Method " Url="html/82584493.htm" />
+        <HelpTOCNode Title="ConfigureAuth Method " Url="html/577479321.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="11997f38-1ff8-4205-b5e5-3146f47cb983" Title="ViewSwitcher Class" Url="html/2096777812.htm">
+      <HelpTOCNode Title="ViewSwitcher Members" Url="html/581114927.htm" />
+      <HelpTOCNode Title="ViewSwitcher Methods" Url="html/941265946.htm" />
+      <HelpTOCNode Title="ViewSwitcher Properties" Url="html/520784878.htm" />
+      <HelpTOCNode Title="ViewSwitcher Events" Url="html/1673355403.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="77331cf9-3a96-4012-8a19-4098f2bdae44" Title="Toestellenbeheer.Account Namespace" Url="html/918189049.htm">
+    <HelpTOCNode Id="af4d46ff-e3cb-406d-98b5-680c29f8e3fc" Title="Login Class" Url="html/1614955447.htm">
+      <HelpTOCNode Title="Login Members" Url="html/1000698585.htm" />
+      <HelpTOCNode Title="Login Methods" Url="html/1458741265.htm" />
+      <HelpTOCNode Title="Login Properties" Url="html/7422493.htm" />
+      <HelpTOCNode Title="Login Events" Url="html/1457446567.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="b545f3da-8d3b-418a-ac3d-6a3b68354efc" Title="Toestellenbeheer.Add Namespace" Url="html/1760393366.htm">
+    <HelpTOCNode Id="900d2018-68c6-41dd-a8c1-dd494530e8b3" Title="add_person Class" Url="html/750221502.htm">
+      <HelpTOCNode Title="add_person Members" Url="html/241672518.htm" />
+      <HelpTOCNode Id="8eca1ce5-a9df-45af-a0fc-e130f3901474" Title="add_person Methods" Url="html/1224214036.htm">
+        <HelpTOCNode Title="AddUserToGroup Method " Url="html/1272553406.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="add_person Properties" Url="html/658689988.htm" />
+      <HelpTOCNode Title="add_person Events" Url="html/1763479878.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="7f695824-6f90-4ef2-98e9-574384fb1a83" Title="Toestellenbeheer.Archive Namespace" Url="html/848893917.htm">
+    <HelpTOCNode Id="98175c68-ce61-4b35-9c9a-5a9cdc73ce6e" Title="Default Class" Url="html/1904688375.htm">
+      <HelpTOCNode Title="Default Members" Url="html/606500387.htm" />
+      <HelpTOCNode Title="Default Methods" Url="html/1600887229.htm" />
+      <HelpTOCNode Title="Default Properties" Url="html/2118252805.htm" />
+      <HelpTOCNode Title="Default Events" Url="html/1923460002.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="029d33c9-3bce-40e2-acfd-5f4a1063e84f" Title="hardware_history Class" Url="html/2031445318.htm">
+      <HelpTOCNode Title="hardware_history Members" Url="html/1160631459.htm" />
+      <HelpTOCNode Title="hardware_history Methods" Url="html/171718983.htm" />
+      <HelpTOCNode Title="hardware_history Properties" Url="html/363017987.htm" />
+      <HelpTOCNode Title="hardware_history Events" Url="html/593885540.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="6810aa00-fd78-4417-b039-ad3d74bc9d74" Title="people_history Class" Url="html/1936041013.htm">
+      <HelpTOCNode Title="people_history Members" Url="html/1839014247.htm" />
+      <HelpTOCNode Title="people_history Methods" Url="html/1275239981.htm" />
+      <HelpTOCNode Title="people_history Properties" Url="html/1927380791.htm" />
+      <HelpTOCNode Title="people_history Events" Url="html/1611314980.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="191638d1-e1fd-4977-ac12-eb7d9c485b08" Title="Toestellenbeheer.Manage Namespace" Url="html/1096227422.htm">
+    <HelpTOCNode Id="fda7af42-b54e-4745-bf42-d0312f445c3a" Title="add_hardware Class" Url="html/672603773.htm">
+      <HelpTOCNode Title="add_hardware Members" Url="html/1111644931.htm" />
+      <HelpTOCNode Id="ca63fa6e-65d2-4440-b161-992362229438" Title="add_hardware Methods" Url="html/42971475.htm">
+        <HelpTOCNode Title="Upload_Click Method " Url="html/99634476.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="add_hardware Properties" Url="html/1105441898.htm" />
+      <HelpTOCNode Title="add_hardware Events" Url="html/738442573.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="08804592-965b-463e-809b-34b4134f3c5f" Title="add_license Class" Url="html/1135201450.htm">
+      <HelpTOCNode Title="add_license Members" Url="html/1453003037.htm" />
+      <HelpTOCNode Title="add_license Methods" Url="html/1166373268.htm" />
+      <HelpTOCNode Title="add_license Properties" Url="html/2003295066.htm" />
+      <HelpTOCNode Title="add_license Events" Url="html/391589133.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="2acab071-fa8b-463b-8093-8bc06f8445dd" Title="assign_license Class" Url="html/1211153441.htm">
+      <HelpTOCNode Title="assign_license Members" Url="html/780553078.htm" />
+      <HelpTOCNode Title="assign_license Methods" Url="html/293203351.htm" />
+      <HelpTOCNode Title="assign_license Properties" Url="html/349040976.htm" />
+      <HelpTOCNode Title="assign_license Events" Url="html/265952662.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="12f77652-1400-4bcc-818e-1fc6de47f277" Title="Default Class" Url="html/1756728786.htm">
+      <HelpTOCNode Title="Default Members" Url="html/155308430.htm" />
+      <HelpTOCNode Title="Default Methods" Url="html/431965053.htm" />
+      <HelpTOCNode Title="Default Properties" Url="html/1545209538.htm" />
+      <HelpTOCNode Title="Default Events" Url="html/1113883799.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="968963e5-9eba-435f-bd2d-acdf66fb4af8" Title="Default1 Class" Url="html/1753648594.htm">
+      <HelpTOCNode Title="Default1 Members" Url="html/1176936050.htm" />
+      <HelpTOCNode Title="Default1 Methods" Url="html/430850941.htm" />
+      <HelpTOCNode Title="Default1 Properties" Url="html/1843876948.htm" />
+      <HelpTOCNode Title="Default1 Events" Url="html/1608140306.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="e0043625-775b-4388-9574-8c3f7de0dd82" Title="manage_hardware Class" Url="html/1570149505.htm">
+      <HelpTOCNode Title="manage_hardware Members" Url="html/357350824.htm" />
+      <HelpTOCNode Title="manage_hardware Methods" Url="html/1564264230.htm" />
+      <HelpTOCNode Title="manage_hardware Properties" Url="html/1780996690.htm" />
+      <HelpTOCNode Title="manage_hardware Events" Url="html/124645223.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="4c4c105b-5388-4056-8d88-0c3a496f0f1c" Title="manage_type Class" Url="html/1059715602.htm">
+      <HelpTOCNode Title="manage_type Members" Url="html/634606942.htm" />
+      <HelpTOCNode Title="manage_type Methods" Url="html/612960257.htm" />
+      <HelpTOCNode Title="manage_type Properties" Url="html/857893672.htm" />
+      <HelpTOCNode Title="manage_type Events" Url="html/1745740362.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="304b4b75-21a3-489f-ab85-b95d917e5126" Title="return_hardware Class" Url="html/49771724.htm">
+      <HelpTOCNode Title="return_hardware Members" Url="html/380863472.htm" />
+      <HelpTOCNode Title="return_hardware Methods" Url="html/1370970747.htm" />
+      <HelpTOCNode Title="return_hardware Properties" Url="html/413992316.htm" />
+      <HelpTOCNode Title="return_hardware Events" Url="html/1692729691.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="baec8eb4-3353-4092-b2d8-32dd899c1787" Title="Toestellenbeheer.Models Namespace" Url="html/2060302030.htm">
+    <HelpTOCNode Id="4ee1ce12-fb9a-4293-a667-4b184efc1cf5" Title="ApplicationDbContext Class" Url="html/821284278.htm">
+      <HelpTOCNode Title="ApplicationDbContext Members" Url="html/1206662555.htm" />
+      <HelpTOCNode Title="ApplicationDbContext Constructor " Url="html/216834619.htm" />
+      <HelpTOCNode Id="18f47d2e-4657-4c15-817e-24fdf7c1507d" Title="ApplicationDbContext Methods" Url="html/575444505.htm">
+        <HelpTOCNode Title="Create Method " Url="html/1486006031.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ApplicationDbContext Properties" Url="html/1028900372.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="8017fa61-9720-4884-aa2a-0ab9b43c6a30" Title="ApplicationDbContext.DemoContext Class" Url="html/819666768.htm">
+      <HelpTOCNode Title="ApplicationDbContext.DemoContext Methods" Url="html/931278646.htm" />
+      <HelpTOCNode Title="ApplicationDbContext.DemoContext Properties" Url="html/1737829223.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="c9671fec-2ffb-4d0b-a678-a330fa6a8c92" Title="ApplicationUser Class" Url="html/652572816.htm">
+      <HelpTOCNode Title="ApplicationUser Members" Url="html/798265323.htm" />
+      <HelpTOCNode Id="258716c3-37b3-4104-b188-7f3210f7d4d9" Title="ApplicationUser Methods" Url="html/2009636944.htm">
+        <HelpTOCNode Title="GenerateUserIdentity Method " Url="html/224194410.htm" />
+        <HelpTOCNode Title="GenerateUserIdentityAsync Method " Url="html/1996252721.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ApplicationUser Properties" Url="html/705533867.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="fae6749c-795d-4f11-b5f3-765cc5b311e5" Title="SetupFile Class" Url="html/1973600439.htm">
+      <HelpTOCNode Title="SetupFile Methods" Url="html/2085660306.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="8caee10e-3b12-4bd6-afa8-7efe0989b9d2" Title="SetupFile.GlobalVar Class" Url="html/1843768876.htm">
+      <HelpTOCNode Title="SetupFile.GlobalVar Members" Url="html/481507581.htm" />
+      <HelpTOCNode Id="69067d0a-0e52-4b1d-a5d1-ebec1faed9f1" Title="SetupFile.GlobalVar Fields" Url="html/997026755.htm">
+        <HelpTOCNode Title="ADConnectionPrefix Field" Url="html/275471189.htm" />
+        <HelpTOCNode Title="ADUserName Field" Url="html/1826820005.htm" />
+        <HelpTOCNode Title="ADUserPassword Field" Url="html/1388877088.htm" />
+        <HelpTOCNode Title="ScripturaPath Field" Url="html/978477835.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="SetupFile.GlobalVar Methods" Url="html/1055226221.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="60bfaa95-6a39-42a1-b611-61100819fc49" Title="Toestellenbeheer.Overview Namespace" Url="html/1706875159.htm">
+    <HelpTOCNode Id="e46bea0c-5bb6-43c4-80dd-df089d42c9ed" Title="Default Class" Url="html/660343189.htm">
+      <HelpTOCNode Title="Default Members" Url="html/1892813183.htm" />
+      <HelpTOCNode Title="Default Methods" Url="html/1439710314.htm" />
+      <HelpTOCNode Title="Default Properties" Url="html/1652917668.htm" />
+      <HelpTOCNode Title="Default Events" Url="html/1299263372.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="f12b0614-23a2-4045-87ae-1b08243c43ff" Title="license_overview Class" Url="html/225680790.htm">
+      <HelpTOCNode Title="license_overview Members" Url="html/1270022712.htm" />
+      <HelpTOCNode Title="license_overview Methods" Url="html/1813884022.htm" />
+      <HelpTOCNode Title="license_overview Properties" Url="html/189271793.htm" />
+      <HelpTOCNode Title="license_overview Events" Url="html/165909632.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="5f1df0ea-e83c-49dd-98b1-a825c70d9884" Title="user_overview Class" Url="html/2110913193.htm">
+      <HelpTOCNode Title="user_overview Members" Url="html/325181915.htm" />
+      <HelpTOCNode Title="user_overview Methods" Url="html/2026911094.htm" />
+      <HelpTOCNode Title="user_overview Properties" Url="html/61358437.htm" />
+      <HelpTOCNode Title="user_overview Events" Url="html/595271542.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>

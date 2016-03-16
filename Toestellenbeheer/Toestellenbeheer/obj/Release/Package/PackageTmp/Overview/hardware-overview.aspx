@@ -50,7 +50,9 @@
         <SortedDescendingCellStyle BackColor="#E5E5E5" />
         <SortedDescendingHeaderStyle BackColor="#242121" />
     </asp:GridView>
-
+    <div class="form-group">
+        <asp:Label ID="lblGridTotalResult" CssClass="col-sm-12" runat="server"></asp:Label>
+    </div>
     <asp:GridView ID="HardwareOverviewGrid" OnRowDeleting="details" OnRowDataBound="OnRowDataBound" CssClass="table table-hover table-striped gridview" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="internalNr" AllowPaging="True">
         <Columns>
             <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
@@ -199,29 +201,37 @@
     <asp:Button ID="btnModifying" runat="server" OnClick="btnModifying_Click" Visible="false" Text="Modify" CssClass="btn btn-info" />
     <asp:Label ID="lblTotalQuery" runat="server" Text=""></asp:Label>
     <asp:Label ID="lblInternalNr" Visible="false" runat="server" Text='<%#Eval("Internal Nr")%>' />
-    <asp:Label ID="lblProblem" runat="server" ></asp:Label>
+    <asp:Label ID="lblProblem" runat="server"></asp:Label>
     <asp:Panel ID="modifyPanel" Visible="false" runat="server">
         <fieldset class="hardware-modify-item">
             <div class="form-group">
                 <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="typeList">Type</asp:Label>
-                <div class="col-sm-10"> 
-                    <asp:DropDownList ID="typeList" OnSelectedIndexChanged="typeList_SelectedIndexChanged" CssClass="form-control" runat="server" EnableViewState="true" AutoPostBack="true" />
+                <div class="col-sm-10">
+                    <asp:DropDownList ID="typeList" OnSelectedIndexChanged="typeList_SelectedIndexChanged" CssClass="form-control" runat="server" EnableViewState="true" AutoPostBack="true">
+                        <asp:ListItem>** Please select a type **</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <div id="typeHelp" class="col-sm-12 col-sm-offset-2">
+                    <asp:Label ID="lblModifiedType" Text="When you select a type, this will update automatically into the database." CssClass="help-block" runat="server"></asp:Label>
                 </div>
             </div>
 
-       
             <div class="form-group">
 
                 <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="manufacturerList">Manufacturer</asp:Label>
                 <div class="col-sm-10">
-                    <asp:DropDownList ID="manufacturerList" OnSelectedIndexChanged="manufacturerList_SelectedIndexChanged" CssClass="form-control normal-height" runat="server" AutoPostBack="True" Height="34px">
+                    <asp:DropDownList ID="manufacturerList" OnSelectedIndexChanged="manufacturerList_SelectedIndexChanged" CssClass="form-control normal-height" runat="server" AutoPostBack="True">
+                        <asp:ListItem>** Please select a manufacturer **</asp:ListItem>
                         <asp:ListItem>Apple</asp:ListItem>
                         <asp:ListItem>Lenovo</asp:ListItem>
                         <asp:ListItem>HP</asp:ListItem>
                     </asp:DropDownList>
                 </div>
-            </div>
+                <div id="ManufacturerHelp" class="col-sm-12 col-sm-offset-2">
 
+                    <asp:Label ID="lblModifiedManufacturer" Text="When you select a manufacturer, this will update automatically into the database." class="help-block" runat="server"></asp:Label>
+                </div>
+            </div>
 
             <div class="form-group">
                 <asp:Label AssociatedControlID="txtDatepicker" CssClass="control-label col-sm-2" runat="server">Purchasedate</asp:Label>
@@ -240,15 +250,12 @@
                 </div>
             </div>
 
-           
             <div class="form-group">
                 <asp:Label runat="server" CssClass="control-label col-sm-2" AssociatedControlID="modelNr">Model nr</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox runat="server" ID="modelNr" CssClass="form-control" placeholder="model number of the hardware" />
                 </div>
             </div>
-
-
 
             <div class="form-group">
 
@@ -257,6 +264,7 @@
                     <asp:TextBox ID="warrantyInfo" runat="server" CssClass="form-control" placeholder="warranty information" />
                 </div>
             </div>
+
             <div class="form-group">
 
                 <asp:Label AssociatedControlID="extraInfo" runat="server" CssClass="control-label col-sm-2">Extra info</asp:Label>
@@ -264,7 +272,7 @@
                     <asp:TextBox runat="server" ID="extraInfo" CssClass="form-control" placeholder="additional info related to this hardware" />
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <div class="col-sm-offset-5 col-sm-7">
                     <asp:Button ID="Submit" runat="server" Text="Confirm modify" CssClass="btn btn-primary margin-top-15" OnClick="Conform_Click" />

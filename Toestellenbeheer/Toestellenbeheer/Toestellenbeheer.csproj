@@ -178,7 +178,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Add\add-person.aspx" />
     <Content Include="Archive\Default.aspx" />
@@ -206,6 +205,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Manage\assign-hardware.aspx" />
     <Content Include="Manage\assign-license.aspx" />
+    <Content Include="Manage\manage-requests.aspx" />
     <Content Include="Manage\manage-type.aspx" />
     <Content Include="Manage\return-hardware.aspx" />
     <Content Include="User\Default.aspx" />
@@ -298,13 +298,6 @@
       <DependentUpon>add-person.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -345,6 +338,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Manage\manage-requests.aspx.cs">
+      <DependentUpon>manage-requests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manage\manage-requests.aspx.designer.cs">
+      <DependentUpon>manage-requests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\LdapAuthentication.cs" />
     <Compile Include="Manage\assign-hardware.aspx.cs">

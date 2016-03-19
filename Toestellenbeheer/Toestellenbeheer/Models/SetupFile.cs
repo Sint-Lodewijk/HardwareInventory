@@ -10,16 +10,35 @@ namespace Toestellenbeheer.Models
         /// <summary>
         /// Contains global variables for project.
         /// </summary>
-        public static class GlobalVar
+        public static class AD
         {
             /// <summary>
             /// Global variable that is constant.
             /// </summary>
-            public const string ADConnectionPrefix= "LDAP://dc.6ib.eu/OU=Employees,DC=6ib,DC=eu";
-            public const string ADUserName = "jli@6ib.eu";
-            public const string ADUserPassword = "1234QWEr";
-            public const string ScripturaPath = "http://scriptix:13542/web/ontvangstbewijs/generate-pdf";
+            public const String ADConnectionPrefix = "LDAP://dc.6ib.eu/OU=Employees,DC=6ib,DC=eu";
+            public const String ADUserName = "jli@6ib.eu";
+            public const String ADUserPassword = "1234QWEr";
+            
 
+        }
+        public static class XML
+        {
+            public const String ScripturaPath = "http://scriptix:13542/web/ontvangstbewijs/generate-pdf";
+
+        }
+        public static class Email
+        {
+            public const String EmailFrom = "hardwareinventory@outlook.com";
+            public const String EmailPassword = "JIANINg520";
+            public const String MailServer = "smtp-mail.outlook.com";
+            public const int SMTPPort = 587;
+            public const String EmailTo = "mr.jianing@hotmail.com";
+            
+        }
+        public static class Requests
+        {
+            public const int hardwareRequestChangeColorAfter = 3;
+            public const String hardwareRequestChangeColorHex = "red";
         }
     }
 }

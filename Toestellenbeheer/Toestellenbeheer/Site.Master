@@ -55,23 +55,29 @@
                         <li><a runat="server" href="~/Archive">Archive</a></li>
 
                     </ul>
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                    <asp:LoginView ID="login" runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
+                            
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Account/Login">Log in</a></li>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Manage/manage-requests">
+                                    <asp:Label ID="lblOpenRequest" runat="server" EnableViewState="True"></asp:Label>
+                                </a></li>
                                 <li><a runat="server" href="~/Manage" title="Manage">Manage, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>
                             </ul>
                         </LoggedInTemplate>
+
                     </asp:LoginView>
                 </div>
             </div>
+
         </div>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">

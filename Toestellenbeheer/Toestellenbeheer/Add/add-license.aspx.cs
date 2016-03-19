@@ -248,7 +248,7 @@ namespace Toestellenbeheer.Manage
         //Get users from ad and display it in the gridview named licenseOverviewGridPeopleSearch
         protected void getUserFromAD()
         {
-            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.GlobalVar.ADConnectionPrefix, SetupFile.GlobalVar.ADUserName, SetupFile.GlobalVar.ADUserPassword);
+            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.AD.ADConnectionPrefix, SetupFile.AD.ADUserName, SetupFile.AD.ADUserPassword);
 
             DirectorySearcher search = new DirectorySearcher(rootDSE);
 

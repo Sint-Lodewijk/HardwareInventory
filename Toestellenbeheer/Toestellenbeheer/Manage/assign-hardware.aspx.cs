@@ -22,12 +22,13 @@ namespace Toestellenbeheer.Manage
                 getUserFromAD();
             }
         }
+        
         protected void getUnassignedHardware()
         {
             try
             {
                 mysqlConnectie.Open();
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT  DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, pictureLocation FROM hardware WHERE eventID IS NULL or eventID=''", mysqlConnectie);
+                MySqlCommand bindToGrid = new MySqlCommand("SELECT DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, pictureLocation FROM hardware WHERE eventID IS NULL or eventID=''", mysqlConnectie);
                 MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
                 bindToGrid.ExecuteNonQuery();
                 bindToGrid.Dispose();
@@ -61,7 +62,7 @@ namespace Toestellenbeheer.Manage
         }
         protected void getUserFromAD()
         {
-            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.GlobalVar.ADConnectionPrefix, SetupFile.GlobalVar.ADUserName, SetupFile.GlobalVar.ADUserPassword); //SetupFile
+            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.AD.ADConnectionPrefix, SetupFile.AD.ADUserName, SetupFile.AD.ADUserPassword); //SetupFile
 
             DirectorySearcher search = new DirectorySearcher(rootDSE);
 

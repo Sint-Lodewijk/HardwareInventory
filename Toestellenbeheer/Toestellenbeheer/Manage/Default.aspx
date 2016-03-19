@@ -7,7 +7,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <h2>Add a type</h2>
             <p>
                 Add a type.
@@ -16,7 +16,7 @@
                 <a class="btn btn-default" href="manage-type">Add type &raquo;</a>
             </p>
         </div>
-          <div class="col-md-3">
+        <div class="col-md-4">
             <h2>Assign license</h2>
             <p>
                 Assign a license to a hardware or a people.
@@ -26,7 +26,7 @@
             </p>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <h2>Assign hardware
             </h2>
             <p>
@@ -36,7 +36,9 @@
                 <a class="btn btn-default" href="assign-hardware">Assign hardware to person &raquo;</a>
             </p>
         </div>
-        <div class="col-md-3">
+    </div>
+    <div class="row">
+        <div class="col-md-4">
             <h2>Return hardware
             </h2>
             <p>
@@ -46,6 +48,15 @@
                 <a class="btn btn-default" href="return-hardware">Return hardware &raquo;</a>
             </p>
         </div>
+        <div class="col-md-4">
+            <h2>Manage Requests
+            </h2>
+            <p>
+                Manage the requests
+            </p>
+            <p>
+                <a class="btn btn-default" href="manage-requests">Manage requests &raquo;</a>
+            </p>
+        </div>
     </div>
-
 </asp:Content>

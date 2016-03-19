@@ -53,7 +53,7 @@ namespace Toestellenbeheer.Archive
         {
             try
             {
-                DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.GlobalVar.ADConnectionPrefix, SetupFile.GlobalVar.ADUserName, SetupFile.GlobalVar.ADUserPassword); //SetupFile
+                DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.AD.ADConnectionPrefix, SetupFile.AD.ADUserName, SetupFile.AD.ADUserPassword); //SetupFile
 
                 DirectorySearcher search = new DirectorySearcher(rootDSE);
 

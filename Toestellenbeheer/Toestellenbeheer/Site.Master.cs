@@ -7,6 +7,9 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using MySql.Data.MySqlClient;
+using System.Configuration;
+using Toestellenbeheer.Models;
 
 namespace Toestellenbeheer
 {
@@ -15,6 +18,8 @@ namespace Toestellenbeheer
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
+
+        public object Httpcontext { get; private set; }
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -69,9 +74,38 @@ namespace Toestellenbeheer
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (HttpContext.Current.User.IsInRole("gg_hardware_admin"))
+                { 
+                getOpenRequest();
+            }
+            }
         }
+        private void getOpenRequest()
+        {
 
+            MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            mysqlConnectie.Open();
+            MySqlCommand getOpenRequest = new MySqlCommand("SELECT count(*) FROM request where requestAccepted = 0", mysqlConnectie);
+            Label lblOpenRequest = ((Label)(this.login.FindControl("lblOpenRequest")));
+
+            int intOpenRequests = Convert.ToInt32(getOpenRequest.ExecuteScalar());
+            if (intOpenRequests > SetupFile.Requests.hardwareRequestChangeColorAfter)
+            {
+                lblOpenRequest.Text = "<span style=\"color:" + SetupFile.Requests.hardwareRequestChangeColorHex + "\">" + intOpenRequests.ToString() + "</span>";
+
+            }
+            else if (intOpenRequests == 0)
+            {
+                lblOpenRequest.Text = "No open requests";
+            }
+
+            else {
+                lblOpenRequest.Text = intOpenRequests.ToString();
+            }
+            mysqlConnectie.Close();
+        }
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

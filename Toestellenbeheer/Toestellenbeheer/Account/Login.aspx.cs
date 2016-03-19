@@ -33,7 +33,7 @@ namespace Toestellenbeheer.Account
                     bool isCookiePersistent = RememberMe.Checked;
                     FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, UserName.Text,
                   DateTime.Now, DateTime.Now.AddMinutes(60), isCookiePersistent, groups);
-
+                   // Session["group"] = groups;
                     //Encrypt the ticket.
                     String encryptedTicket = FormsAuthentication.Encrypt(authTicket);
 

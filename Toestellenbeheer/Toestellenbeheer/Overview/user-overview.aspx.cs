@@ -13,7 +13,7 @@ namespace Toestellenbeheer.Overview
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.GlobalVar.ADConnectionPrefix, SetupFile.GlobalVar.ADUserName,SetupFile.GlobalVar.ADUserPassword);
+            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.AD.ADConnectionPrefix, SetupFile.AD.ADUserName,SetupFile.AD.ADUserPassword);
 
             DirectorySearcher search = new DirectorySearcher(rootDSE);
 

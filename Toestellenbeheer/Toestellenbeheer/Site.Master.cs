@@ -74,12 +74,11 @@ namespace Toestellenbeheer
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+
+            if (HttpContext.Current.User.IsInRole("gg_hardware_admin"))
             {
-                if (HttpContext.Current.User.IsInRole("gg_hardware_admin"))
-                { 
                 getOpenRequest();
-            }
+
             }
         }
         private void getOpenRequest()
@@ -93,7 +92,7 @@ namespace Toestellenbeheer
             int intOpenRequests = Convert.ToInt32(getOpenRequest.ExecuteScalar());
             if (intOpenRequests > SetupFile.Requests.hardwareRequestChangeColorAfter)
             {
-                lblOpenRequest.Text = "<span style=\"color:" + SetupFile.Requests.hardwareRequestChangeColorHex + "\">" + intOpenRequests.ToString() + "</span>";
+                lblOpenRequest.Text = "<span style=\"color:" + SetupFile.Requests.hardwareRequestChangeColorHex + "\">" + intOpenRequests.ToString() + " open requests</span>";
 
             }
             else if (intOpenRequests == 0)

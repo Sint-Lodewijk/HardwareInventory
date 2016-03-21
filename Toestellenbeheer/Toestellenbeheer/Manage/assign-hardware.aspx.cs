@@ -165,15 +165,8 @@ namespace Toestellenbeheer.Manage
                 addPeople.Dispose();
 
                 MySqlCommand getMaxIndex = new MySqlCommand("SELECT eventID FROM people WHERE eventID = (SELECT MAX(eventID) FROM people)", mysqlConnectie);
-                MySqlDataAdapter adpa = new MySqlDataAdapter(getMaxIndex);
 
-                getMaxIndex.ExecuteNonQuery();
-                getMaxIndex.Dispose();
-
-                DataSet ds = new DataSet();
-                adpa.Fill(ds);
-
-                int maxIndex = Convert.ToInt32(ds.Tables[0].Rows[0][0].ToString()); ;
+                int maxIndex = Convert.ToInt16(getMaxIndex.ExecuteScalar().ToString());
 
                 MySqlCommand bindEventIDWithHardware = new MySqlCommand("UPDATE hardware SET eventID = '" + maxIndex + "' WHERE internalNr LIKE '" +
                     strInternalNr + "'", mysqlConnectie);

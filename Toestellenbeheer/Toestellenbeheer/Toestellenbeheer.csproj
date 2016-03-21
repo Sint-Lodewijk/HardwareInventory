@@ -208,6 +208,7 @@
     <Content Include="Manage\manage-requests.aspx" />
     <Content Include="Manage\manage-type.aspx" />
     <Content Include="Manage\return-hardware.aspx" />
+    <Content Include="Success.aspx" />
     <Content Include="User\Default.aspx" />
     <Content Include="User\my-hardware.aspx" />
     <Content Include="User\request-hardware.aspx" />
@@ -377,6 +378,13 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\SetupFile.cs" />
+    <Compile Include="Success.aspx.cs">
+      <DependentUpon>Success.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Success.aspx.designer.cs">
+      <DependentUpon>Success.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -7,13 +7,12 @@ using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using Toestellenbeheer.Models;
 
 namespace Toestellenbeheer.Add
 {
     public partial class add_person : System.Web.UI.Page
     {
-        string connectionPrefix = "LDAP://dc.6ib.eu/OU=Employees,DC=6ib,DC=eu";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,7 +42,7 @@ namespace Toestellenbeheer.Add
         private void CreateADUser(String userName, String userPassword, String givenName, String lastName, String memberOf)
         {
 
-            PrincipalContext pc = new PrincipalContext(ContextType.Domain, "dc", "OU=Employees,DC=6ib,DC=eu", "jli@6ib.eu", "1234QWEr");
+            PrincipalContext pc = new PrincipalContext(ContextType.Domain,  SetupFile.AD.ADDomainControllerName, SetupFile.AD.ADPath, SetupFile.AD.ADUserName, SetupFile.AD.ADUserPassword);
 
             UserPrincipal up = new UserPrincipal(pc);
             
@@ -52,7 +51,7 @@ namespace Toestellenbeheer.Add
                     up.GivenName = givenName;
                     up.Surname = lastName;
                     up.SamAccountName = userName;
-                    up.UserPrincipalName = userName + "@6ib.eu";
+                    up.UserPrincipalName = userName + SetupFile.AD.ADSAMAccountAt;
 
                     up.SetPassword(userPassword);
                     up.Enabled = true;
@@ -78,7 +77,7 @@ namespace Toestellenbeheer.Add
                 }
                 catch (Exception ex)
                 {
-                    errorLabel.Text = "An exeption occured " + ex.InnerException.ToString();
+                    errorLabel.Text = "An exeption occured " + ex.ToString();
                 }
             
         }
@@ -92,7 +91,7 @@ namespace Toestellenbeheer.Add
         {
             try
             {
-                PrincipalContext pc = new PrincipalContext(ContextType.Domain, "dc", "OU=Employees,DC=6ib,DC=eu", "jli@6ib.eu", "1234QWEr");
+                PrincipalContext pc = new PrincipalContext(ContextType.Domain, SetupFile.AD.ADDomainControllerName, SetupFile.AD.ADPath, SetupFile.AD.ADUserName, SetupFile.AD.ADUserPassword);
                 {
                     GroupPrincipal group = GroupPrincipal.FindByIdentity(pc, groupName);
                     group.Members.Add(pc, IdentityType.UserPrincipalName, ADUserPrincipalName);

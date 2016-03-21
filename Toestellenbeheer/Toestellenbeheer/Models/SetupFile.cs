@@ -18,7 +18,9 @@ namespace Toestellenbeheer.Models
             public const String ADConnectionPrefix = "LDAP://dc.6ib.eu/OU=Employees,DC=6ib,DC=eu";
             public const String ADUserName = "jli@6ib.eu";
             public const String ADUserPassword = "1234QWEr";
-            
+            public const String ADPath = "OU=Employees,DC=6ib,DC=eu";
+            public const String ADSAMAccountAt = "@6ib.eu";
+            public const String ADDomainControllerName = "dc";
 
         }
         public static class XML

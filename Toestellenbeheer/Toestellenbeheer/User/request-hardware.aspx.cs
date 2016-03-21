@@ -53,7 +53,7 @@ namespace Toestellenbeheer.Users
             try
             {
                 mysqlConnectie.Open();
-                MySqlCommand getAssociatedHardwareFromType = new MySqlCommand("SELECT manufacturerName, serialNr, internalNr,  pictureLocation, modelNr FROM hardware JOIN type ON type.typeNr = hardware.typeNr WHERE type = '" + strType + "'", mysqlConnectie);
+                MySqlCommand getAssociatedHardwareFromType = new MySqlCommand("SELECT  manufacturerName, archive.serialNr, archive.internalNr, pictureLocation, modelNr, id  FROM hardware JOIN type ON type.typeNr = hardware.typeNr JOIN archive ON hardware.internalNr = archive.internalNr WHERE type = '"+strType + "' AND(returnedDate IS NOT null or returnedDate != '') ORDER by id DESC LIMIT 0,1", mysqlConnectie);
                 MySqlDataAdapter adpa = new MySqlDataAdapter(getAssociatedHardwareFromType);
                 getAssociatedHardwareFromType.ExecuteNonQuery();
                 getAssociatedHardwareFromType.Dispose();
@@ -100,7 +100,7 @@ namespace Toestellenbeheer.Users
             {
                 String requestDate = DateTime.Now.ToString("yyyy-MM-dd");
                 mysqlConnectie.Open();
-                MySqlCommand sendRequest = new MySqlCommand("INSERT INTO request (serialNr, internalNr,eventID, requestDate) Values (@serialNr, @internalNr, (Select DISTINCT eventID from people Where nameAD = @nameAD),@requestDate)", mysqlConnectie);
+                MySqlCommand sendRequest = new MySqlCommand("INSERT INTO request (serialNr, internalNr,eventID, requestDate) Values (@serialNr, @internalNr, (Select max(eventID) from people Where nameAD = @nameAD),@requestDate)", mysqlConnectie);
                 sendRequest.Parameters.AddWithValue("@serialNr", serialNr);
                 sendRequest.Parameters.AddWithValue("@internalNr", internalNr);
                 sendRequest.Parameters.AddWithValue("@nameAD", Context.User.Identity.GetUserName());

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
@@ -9,9 +6,6 @@ using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.DirectoryServices;
-using System.DirectoryServices.AccountManagement;
-using System.DirectoryServices.Protocols;
-using System.Security.Permissions;
 using Toestellenbeheer.Models;
 namespace Toestellenbeheer.Manage
 {
@@ -24,9 +18,18 @@ namespace Toestellenbeheer.Manage
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            btnAssignToSelectedHardwareSearch.Visible = false;
-            hardwarePanel.Visible = false;
-            peoplePanel.Visible = false;
+            if (!IsPostBack)
+            {
+                btnAssignToSelectedHardwareSearch.Visible = false;
+                hardwarePanel.Visible = false;
+                peoplePanel.Visible = false;
+                String strTimeStamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+                if (ViewState["timeStampAddedHardware"] == null)
+                {
+                    ViewState["timeStampAddedHardware"] = strTimeStamp;
+                }
+            }
+
 
         }
         //Change the color when selected
@@ -120,13 +123,13 @@ namespace Toestellenbeheer.Manage
                 addLicense.Parameters.AddWithValue("@licenseName", txtLicenseName.Text.Trim());
                 addLicense.Parameters.AddWithValue("@expireDate", txtDatepickerExpire.Text.Trim());
                 addLicense.Parameters.AddWithValue("@extraInfo", txtExtraInfoLicense.Text.Trim());
-                addLicense.Parameters.AddWithValue("@licenseFileLocation", TestlocationAtt.Text.Trim());
+                addLicense.Parameters.AddWithValue("@licenseFileLocation", ViewState["timeStampAddedHardware"]+TestlocationAtt.Text.Trim());
 
 
                 addLicense.ExecuteNonQuery();
                 addLicense.Dispose();
                 mysqlConnectie.Close();
-                testLabel.Text = "Congratulations! The licensecode:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
+                testLabel.Text = "Congratulations! The license code:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
                     + "</span>" + " you have entered, has been successfully added into the database. If want want assign this license to any hardware or people, please not use this page!";
                 // testLabel.Text = licenseCode.Text + " has been assigned to device with a internal number: " + internalNr + " and a serial code " + SerialNr;
             }
@@ -317,12 +320,10 @@ namespace Toestellenbeheer.Manage
                 addLicense();
                 mysqlConnectie.Open();
 
-                //     MySqlCommand listOutType = new MySqlCommand("INSERT INTO license (licenseName, licenseCode, serialNr, internalNr) values (@licenseName, @licenseCode, @serialNr, @internalNr)", mysqlConnectie);
                 MySqlCommand assignLicenseToPeople = new MySqlCommand("INSERT INTO licenseHandler (eventID, licenseCode) values ((SELECT DISTINCT eventID FROM people where nameAD = '" +
                     nameAD + "' LIMIT 0,1), @licenseCode)", mysqlConnectie);
 
-                //using (MySqlDataAdapter data1 = new MySqlDataAdapter(listOutType))
-                //     data1.Fill(Type, "type");
+
                 assignLicenseToPeople.Parameters.AddWithValue("@licenseCode", strLicenseCode);
 
                 assignLicenseToPeople.ExecuteNonQuery();
@@ -365,7 +366,7 @@ namespace Toestellenbeheer.Manage
                         try
                         {
                             LicenseFileUpload.PostedFile.SaveAs(path
-                                + LicenseFileUpload.FileName);
+                                + ViewState["timeStampAddedHardware"] + LicenseFileUpload.FileName);
                             String mAttachPath = LicenseFileUpload.FileName.ToString();
                             TestlocationAtt.Text = LicenseFileUpload.FileName.ToString();
                             ResultUploadAtta.Text = "License file uploaded!";

@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <asp:GridView ID="grvHardwarePoolUnassigned" OnRowDataBound="grvHardwarePoolUnassigned_OnRowDataBound" AutoGenerateColumns="False" runat="server" CssClass="table table-hover table-striped gridview">
+    <asp:GridView ID="grvHardwarePoolUnassigned" DataKeyNames="serialNr,internalNr,manufacturerName,typeNr" OnRowDataBound="grvHardwarePoolUnassigned_OnRowDataBound" AutoGenerateColumns="False" runat="server" CssClass="table table-hover table-striped gridview">
         <Columns>
             <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
                 NullDisplayText="No image associated." ControlStyle-CssClass="picutureGrid" ReadOnly="True">

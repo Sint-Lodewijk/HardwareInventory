@@ -24,12 +24,22 @@ namespace Toestellenbeheer.Manage
         /// Initialize MySqlConnection for whole file.
         /// </summary>
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 getTypeList();
                 addResultPanel.Visible = false;
+                if (!IsPostBack)
+                {
+                    String strTimeStamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+                    if (ViewState["timeStampAddedHardware"] == null)
+                    {
+                        ViewState["timeStampAddedHardware"] = strTimeStamp;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -62,7 +72,7 @@ namespace Toestellenbeheer.Manage
         ///</remarks>
         protected void Submit_Click(object sender, EventArgs e)
         {
-            
+
             String strSerialNr = Serialnr.Text.ToString();
             String strWarrantyInfo = warrantyInfo.Text.ToString();
             String strInternalNr = internalNr.Text.ToString();
@@ -81,6 +91,7 @@ namespace Toestellenbeheer.Manage
             String dteAddedDate = DateTime.Now.ToString("yyyy-MM-dd");
             DateTime addedDate = DateTime.Today;
             DateTime purchaseDate = new DateTime(int.Parse(dtePurchaseYear), int.Parse(dtePurchaseMonth), int.Parse(dtePurchaseDay), 0, 0, 0);
+
             int result = DateTime.Compare(purchaseDate, addedDate);
             if (result > 0)
             {
@@ -113,9 +124,9 @@ namespace Toestellenbeheer.Manage
                     addHIEP.Parameters.AddWithValue("@extraInfo", strExtraInfo);
                     addHIEP.Parameters.AddWithValue("@manufacturerName", strSelectedManufacturer);
                     addHIEP.Parameters.AddWithValue("@addedDate", dteAddedDate);
-                    addHIEP.Parameters.AddWithValue("@pictureLocation", mImagePath);
+                    addHIEP.Parameters.AddWithValue("@pictureLocation", ViewState["timeStampAddedHardware"] + mImagePath);
                     addHIEP.Parameters.AddWithValue("@typeNr", intSelectedTypeIndex);
-                    addHIEP.Parameters.AddWithValue("@attachmentLocation", TestlocationAtt.Text);
+                    addHIEP.Parameters.AddWithValue("@attachmentLocation", ViewState["timeStampAddedHardware"].ToString() + TestlocationAtt.Text);
                     addHIEP.Parameters.AddWithValue("@modelNr", strModel);
                     addHIEP.ExecuteNonQuery();
                     addHIEP.Dispose();
@@ -142,7 +153,7 @@ namespace Toestellenbeheer.Manage
                 else { ShowMessage(ex.Message); }
 
             }
-       
+
             addHardwarePanel.Visible = false;
             addResultPanel.Visible = true;
 
@@ -152,18 +163,19 @@ namespace Toestellenbeheer.Manage
         /// </summary>
         protected void viewJustAddedHardware()
         {
-            try { 
-            String strInternalNr = internalNr.Text.ToString();
-            mysqlConnectie.Open();
-            MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation FROM hardware WHERE internalNr = '" + strInternalNr + "'", mysqlConnectie);
-            MySqlDataAdapter adpa = new MySqlDataAdapter(getCorrespondingPeople);
-            getCorrespondingPeople.ExecuteNonQuery();
-            getCorrespondingPeople.Dispose();
-            DataSet ds = new DataSet();
-            adpa.Fill(ds);
-            grvJustAddedHardware.DataSource = ds;
-            grvJustAddedHardware.DataBind();
-            mysqlConnectie.Close();
+            try
+            {
+                String strInternalNr = internalNr.Text.ToString();
+                mysqlConnectie.Open();
+                MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation FROM hardware WHERE internalNr = '" + strInternalNr + "'", mysqlConnectie);
+                MySqlDataAdapter adpa = new MySqlDataAdapter(getCorrespondingPeople);
+                getCorrespondingPeople.ExecuteNonQuery();
+                getCorrespondingPeople.Dispose();
+                DataSet ds = new DataSet();
+                adpa.Fill(ds);
+                grvJustAddedHardware.DataSource = ds;
+                grvJustAddedHardware.DataBind();
+                mysqlConnectie.Close();
             }
             catch (MySqlException ex)
             {
@@ -187,7 +199,7 @@ namespace Toestellenbeheer.Manage
         /// <summary>
         /// Download the file in /Attachments folder when pressing the linkbutton in Gridview
         /// </summary>
-        
+
         protected void DownloadFile(object sender, EventArgs e)
         {
             string path = "../UserUploads/Attachments/";
@@ -248,7 +260,7 @@ namespace Toestellenbeheer.Manage
                     {
                         //Save the uploaded file to the predefined path
                         PictureUpload.PostedFile.SaveAs(path
-                            + PictureUpload.FileName);
+                            + ViewState["timeStampAddedHardware"].ToString() + PictureUpload.FileName);
                         String mImagePath = PictureUpload.FileName.ToString();
                         //Gets the path and return this path to ASP Label control - Testlocation
                         Testlocation.Text = mImagePath;
@@ -274,7 +286,7 @@ namespace Toestellenbeheer.Manage
         protected void btnAddAnotherHardware_Click(object sender, EventArgs e)
         {
             Server.Transfer("./add-hardware.aspx");
-        }        
+        }
         //Upload the attachment and return the path.
 
         protected void UploadAttachment_Click(object sender, EventArgs e)
@@ -288,7 +300,7 @@ namespace Toestellenbeheer.Manage
                     try
                     {
                         AttachmentUpload.PostedFile.SaveAs(path
-                            + AttachmentUpload.FileName);
+                           + ViewState["timeStampAddedHardware"].ToString() + AttachmentUpload.FileName);
                         String mAttachPath = AttachmentUpload.FileName.ToString();
                         TestlocationAtt.Text = AttachmentUpload.FileName.ToString();
                         ResultUploadAtta.Text = "File uploaded!";
@@ -306,7 +318,7 @@ namespace Toestellenbeheer.Manage
                 ResultUploadAtta.Text = "Do you not want to add a attachment?";
             }
         }
-     
+
     }
 }
 

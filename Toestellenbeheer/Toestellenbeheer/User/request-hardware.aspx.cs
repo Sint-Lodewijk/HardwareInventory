@@ -53,7 +53,7 @@ namespace Toestellenbeheer.Users
             try
             {
                 mysqlConnectie.Open();
-                MySqlCommand getAssociatedHardwareFromType = new MySqlCommand("SELECT  manufacturerName, archive.serialNr, archive.internalNr, pictureLocation, modelNr, id  FROM hardware JOIN type ON type.typeNr = hardware.typeNr JOIN archive ON hardware.internalNr = archive.internalNr WHERE type = '"+strType + "' AND(returnedDate IS NOT null or returnedDate != '') ORDER by id DESC LIMIT 0,1", mysqlConnectie);
+                MySqlCommand getAssociatedHardwareFromType = new MySqlCommand("SELECT  manufacturerName, hardware.serialNr, hardware.internalNr, pictureLocation, modelNr  FROM hardware JOIN type ON type.typeNr = hardware.typeNr WHERE type = '" + strType + "'", mysqlConnectie);
                 MySqlDataAdapter adpa = new MySqlDataAdapter(getAssociatedHardwareFromType);
                 getAssociatedHardwareFromType.ExecuteNonQuery();
                 getAssociatedHardwareFromType.Dispose();
@@ -64,7 +64,7 @@ namespace Toestellenbeheer.Users
                 int intTotalAssociatedCount = grvAvailibleHardwareType.Rows.Count;
                 if (intTotalAssociatedCount == 0)
                 {
-                    lblProblem.Text = "No availible hardware of this type of hardware";
+                    lblProblem.Text = "No available hardware of this type of hardware";
                 }
                 else
                 {
@@ -73,7 +73,7 @@ namespace Toestellenbeheer.Users
             }
             catch (MySqlException ex)
             {
-                lblProblem.Text = "MySQL exception occured: " + ex.InnerException.ToString();
+                lblProblem.Text = "MySQL exception occurred: " + ex.ToString();
             }
             catch (Exception ex)
             {
@@ -120,20 +120,32 @@ namespace Toestellenbeheer.Users
 
         private void sendEmailNotification(String internalNr)
         {
-            SmtpClient smtpClient = new SmtpClient(SetupFile.Email.MailServer, SetupFile.Email.SMTPPort);
+            try
+            {
+                SmtpClient smtpClient = new SmtpClient(SetupFile.Email.MailServer, SetupFile.Email.SMTPPort);
 
-            smtpClient.Credentials = new System.Net.NetworkCredential(SetupFile.Email.EmailFrom, SetupFile.Email.EmailPassword);
-            //smtpClient.UseDefaultCredentials = true;
-            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtpClient.EnableSsl = true;
-            MailMessage mail = new MailMessage();
-            mail.Subject = "A request has been made for " + internalNr;
-            mail.Body = "A request has been made for " + internalNr ;
-            //Setting From - To 
-            mail.From = new MailAddress(SetupFile.Email.EmailFrom, "Hardware Request");
-            mail.To.Add(new MailAddress(SetupFile.Email.EmailTo));
+                smtpClient.Credentials = new System.Net.NetworkCredential(SetupFile.Email.EmailFrom, SetupFile.Email.EmailPassword);
+                //smtpClient.UseDefaultCredentials = true;
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.EnableSsl = true;
+                MailMessage mail = new MailMessage();
+                mail.Subject = "A request has been made for " + internalNr;
+                mail.Body = "<div style=\"font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; \">"+
+                    "Dear hardware admin <br /> <br />A request has been made for hardware with the internal number: " + internalNr +
+                        "<br />Please <a href=\"" + SetupFile.Web.WebLocation + "\"> log in </a> to the application and review those requests." +
+                        "<br /><br /><br />" + "Yours sincerely, " + Context.User.Identity.Name + "</div>";
+                mail.IsBodyHtml = true;
+                //Setting From - To 
+                mail.From = new MailAddress(SetupFile.Email.EmailFrom, "Hardware Request");
+                mail.To.Add(new MailAddress(SetupFile.Email.EmailTo));
 
-           smtpClient.Send(mail);
+                smtpClient.Send(mail);
+            }
+            catch (SmtpException ex)
+            {
+                lblProblem.Text = ex.ToString();
+            }
+
         }
         protected void grvAvailibleHardwareType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -148,6 +160,10 @@ namespace Toestellenbeheer.Users
 
             requestSelectedHardware(strInternalNr, strSerialNr);
             sendEmailNotification(strInternalNr);
+
+
+            Session["SuccessInfo"] = "Congratulations, you have successfully required hardware with internal number: " + strInternalNr;
+            Server.Transfer("~/Success.aspx");
         }
     }
 }

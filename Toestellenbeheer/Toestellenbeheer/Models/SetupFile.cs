@@ -13,7 +13,7 @@ namespace Toestellenbeheer.Models
         public static class AD
         {
             /// <summary>
-            /// Global variable that is constant.
+            /// Configurationfile of Active Directory
             /// </summary>
             public const String ADConnectionPrefix = "LDAP://dc.6ib.eu/OU=Employees,DC=6ib,DC=eu";
             public const String ADUserName = "jli@6ib.eu";
@@ -21,7 +21,6 @@ namespace Toestellenbeheer.Models
             public const String ADPath = "OU=Employees,DC=6ib,DC=eu";
             public const String ADSAMAccountAt = "@6ib.eu";
             public const String ADDomainControllerName = "dc";
-
         }
         public static class XML
         {
@@ -41,6 +40,14 @@ namespace Toestellenbeheer.Models
         {
             public const int hardwareRequestChangeColorAfter = 3;
             public const String hardwareRequestChangeColorHex = "red";
+        }
+        public static class Web
+        {
+            public const String WebLocation = "jianing.xyz";
+        }
+        public static class Style
+        {
+            public const String SelectedRowColorHex = "red";
         }
     }
 }

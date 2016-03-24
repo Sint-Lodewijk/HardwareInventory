@@ -38,7 +38,7 @@ namespace Toestellenbeheer.Manage
             int intRequestID = Convert.ToInt32(grvRequests.SelectedDataKey["requestID"].ToString());
             setRequestAccept(intRequestID);
             assignHardwareToPeople();
-            Session["SuccessInfo"] = "Succesfully accepted request";
+            Session["SuccessInfo"] = "Successfully accepted request";
             Server.Transfer("~/Success.aspx");
 
         }
@@ -55,7 +55,7 @@ namespace Toestellenbeheer.Manage
             addPeople.ExecuteNonQuery();
             addPeople.Dispose();
 
-            MySqlCommand getMaxIndex = new MySqlCommand("SELECT eventID FROM people WHERE eventID = (SELECT MAX(eventID) FROM people)", mysqlConnectie);
+            MySqlCommand getMaxIndex = new MySqlCommand("SELECT MAX(eventID) FROM people)", mysqlConnectie);
 
             int maxIndex = Convert.ToInt16(getMaxIndex.ExecuteScalar().ToString());
 

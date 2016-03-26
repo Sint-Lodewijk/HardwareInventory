@@ -97,11 +97,11 @@ namespace Toestellenbeheer
             }
             else if (intOpenRequests == 0)
             {
-                lblOpenRequest.Text = "No open requests";
+                lblOpenRequest.Text = "No open request";
             }
 
             else {
-                lblOpenRequest.Text = intOpenRequests.ToString();
+                lblOpenRequest.Text = intOpenRequests.ToString() + " open requests";
             }
             mysqlConnectie.Close();
         }

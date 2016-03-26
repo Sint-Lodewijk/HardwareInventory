@@ -55,7 +55,7 @@ namespace Toestellenbeheer.Manage
             addPeople.ExecuteNonQuery();
             addPeople.Dispose();
 
-            MySqlCommand getMaxIndex = new MySqlCommand("SELECT MAX(eventID) FROM people)", mysqlConnectie);
+            MySqlCommand getMaxIndex = new MySqlCommand("SELECT MAX(eventID) FROM people", mysqlConnectie);
 
             int maxIndex = Convert.ToInt16(getMaxIndex.ExecuteScalar().ToString());
 

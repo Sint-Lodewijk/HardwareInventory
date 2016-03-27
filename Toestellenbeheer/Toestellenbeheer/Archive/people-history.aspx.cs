@@ -53,7 +53,7 @@ namespace Toestellenbeheer.Archive
         {
             try
             {
-                GetADUser get = new GetADUser;
+                GetADUser get = new GetADUser();
                 DataTable dt = get.returnDataTable();
                 grvPeopleAD.DataSource = dt;
 

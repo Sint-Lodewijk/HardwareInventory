@@ -1,14 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
-
+using Toestellenbeheer.Models;
 namespace Toestellenbeheer.Manage
 {
     public partial class return_hardware : System.Web.UI.Page
@@ -67,48 +63,8 @@ namespace Toestellenbeheer.Manage
             unassignHardware.Dispose();
             mysqlConnectie.Close();
             getAssignedHardware();
-        }
-        private void createXML(String serialNr, String internalNr, String manufacturer, String nameAD, String userName, String modelNr)
-        {
-            XmlDocument doc = new XmlDocument();
-            XmlNode docNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
-            doc.AppendChild(docNode);
-
-            XmlNode AssignedNodes = doc.CreateElement("AssignedHardware");
-            doc.AppendChild(AssignedNodes);
-
-            XmlNode xmlHardwareNode = doc.CreateElement("Hardware");
-            AssignedNodes.AppendChild(xmlHardwareNode);
-
-            XmlNode xmlPersonNode = doc.CreateElement("person");
-            AssignedNodes.AppendChild(xmlPersonNode);
-
-            XmlNode xmlInternalNrNode = doc.CreateElement("InternalNr");
-            xmlInternalNrNode.AppendChild(doc.CreateTextNode(internalNr));
-            xmlHardwareNode.AppendChild(xmlInternalNrNode);
-
-            XmlNode xmlSerialNr = doc.CreateElement("SerialNr");
-            xmlSerialNr.AppendChild(doc.CreateTextNode(serialNr));
-            xmlHardwareNode.AppendChild(xmlSerialNr);
-
-            XmlNode xmlManufacturer = doc.CreateElement("Manufacturer");
-            xmlManufacturer.AppendChild(doc.CreateTextNode(manufacturer));
-            xmlHardwareNode.AppendChild(xmlManufacturer);
-
-
-            XmlNode xmlModelNr = doc.CreateElement("ModelNr");
-            xmlModelNr.AppendChild(doc.CreateTextNode(modelNr));
-            xmlHardwareNode.AppendChild(xmlModelNr);
-
-            XmlNode xmlUserId = doc.CreateElement("UserID");
-            xmlUserId.AppendChild(doc.CreateTextNode(nameAD));
-            xmlPersonNode.AppendChild(xmlUserId);
-
-            XmlNode xmlUserName = doc.CreateElement("UserName");
-            xmlUserName.AppendChild(doc.CreateTextNode(userName));
-            xmlPersonNode.AppendChild(xmlUserName);
-
-            doc.Save("C:/Users/Jianing/Documents/UserUploads/Attachments/GeneratedAssignedHardware.xml");
+            Hardware returnedHardware = new Hardware;
+            //returnedHardware.createXML("Returned hardware",);
         }
         private void archiveReturnedHardware(String strInternalNr, int intEventID)
         {
@@ -125,15 +81,9 @@ namespace Toestellenbeheer.Manage
         {
             mysqlConnectie.Open();
             MySqlCommand getCorrespondingIndex = new MySqlCommand("SELECT eventID from hardware where internalNr = '" + internalNr +"'", mysqlConnectie);
-            MySqlDataAdapter adpa = new MySqlDataAdapter(getCorrespondingIndex);
-
-            getCorrespondingIndex.ExecuteNonQuery();
-            getCorrespondingIndex.Dispose();
-
-            DataSet ds = new DataSet();
-            adpa.Fill(ds);
-
-            int intCorrespondingIndex = Convert.ToInt32(ds.Tables[0].Rows[0][0].ToString()); ;
+            
+            int intCorrespondingIndex = (int) getCorrespondingIndex.ExecuteScalar();
+            
             mysqlConnectie.Close();
             return intCorrespondingIndex;
 

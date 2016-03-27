@@ -99,11 +99,13 @@ namespace Toestellenbeheer.Users
             try
             {
                 String requestDate = DateTime.Now.ToString("yyyy-MM-dd");
+                GetADUser getUserID = new GetADUser();
+                int intEventID = getUserID.returnEventID(Context.User.Identity.Name);
                 mysqlConnectie.Open();
-                MySqlCommand sendRequest = new MySqlCommand("INSERT INTO request (serialNr, internalNr,eventID, requestDate) Values (@serialNr, @internalNr, (Select max(eventID) from people Where nameAD = @nameAD),@requestDate)", mysqlConnectie);
+                MySqlCommand sendRequest = new MySqlCommand("INSERT INTO request (serialNr, internalNr,eventID, requestDate) Values (@serialNr, @internalNr, @eventID, @requestDate)", mysqlConnectie);
                 sendRequest.Parameters.AddWithValue("@serialNr", serialNr);
                 sendRequest.Parameters.AddWithValue("@internalNr", internalNr);
-                sendRequest.Parameters.AddWithValue("@nameAD", Context.User.Identity.GetUserName());
+                sendRequest.Parameters.AddWithValue("@eventID", intEventID);
                 sendRequest.Parameters.AddWithValue("@requestDate", requestDate);
                 sendRequest.ExecuteNonQuery();
                 sendRequest.Dispose();

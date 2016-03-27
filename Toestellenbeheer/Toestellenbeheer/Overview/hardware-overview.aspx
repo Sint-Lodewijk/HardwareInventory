@@ -185,6 +185,7 @@
 
         </Columns>
     </asp:GridView>
+    <asp:DetailsView runat="server" ></asp:DetailsView>
     <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
 
     <asp:GridView ID="grvPeopleLinked" CssClass="table table-hover table-striped gridview" AutoGenerateColumns="false" runat="server">

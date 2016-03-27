@@ -4,12 +4,41 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.DirectoryServices;
+using MySql.Data.MySqlClient;
+using System.Configuration;
 
 namespace Toestellenbeheer.Models
 {
     public class GetADUser
     {
-        public DataTable returnDataTable()
+        public int returnEventID(String strNameAD)
+        {
+            MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+            mysqlConnectie.Open();
+            MySqlCommand checkPeopleAlreadyExist = new MySqlCommand("SELECT eventID FROM people Where nameAD = '" + strNameAD + "'", mysqlConnectie);
+            object checkObj = checkPeopleAlreadyExist.ExecuteScalar();
+
+            if (checkObj == null)
+            {
+                MySqlCommand addPeople = new MySqlCommand("INSERT INTO people (nameAD) values (@nameAD)", mysqlConnectie);
+                addPeople.Parameters.AddWithValue("@nameAd", strNameAD);
+                addPeople.ExecuteNonQuery();
+                addPeople.Dispose();
+
+                MySqlCommand getMaxIndex = new MySqlCommand("SELECT eventID FROM people WHERE eventID = (SELECT MAX(eventID) FROM people)", mysqlConnectie);
+
+                int maxIndex = Convert.ToInt16(getMaxIndex.ExecuteScalar().ToString());
+                return maxIndex;
+            }
+            else
+            {
+                int maxIndex = Convert.ToInt16(checkPeopleAlreadyExist.ExecuteScalar().ToString());
+                return maxIndex;
+            }
+
+        }
+    public DataTable returnDataTable()
         {
             DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.AD.ADConnectionPrefix, SetupFile.AD.ADUserName, SetupFile.AD.ADUserPassword); //SetupFile
 

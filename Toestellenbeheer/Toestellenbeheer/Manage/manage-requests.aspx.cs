@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Toestellenbeheer.Models;
 
 namespace Toestellenbeheer.Manage
 {
@@ -47,51 +48,34 @@ namespace Toestellenbeheer.Manage
             String strNameAD = grvRequests.SelectedDataKey["nameAD"].ToString();
             String strInternalNr = grvRequests.SelectedDataKey["internalNr"].ToString();
             String strSerialNr = grvRequests.SelectedDataKey["serialNr"].ToString();
+            GetADUser getIndex = new GetADUser();
 
-
+            int userIndex = getIndex.returnEventID(strNameAD);
             mysqlConnectie.Open();
-            MySqlCommand addPeople = new MySqlCommand("INSERT INTO people (nameAd) values (@nameAD)", mysqlConnectie);
-            addPeople.Parameters.AddWithValue("@nameAd", strNameAD);
-            addPeople.ExecuteNonQuery();
-            addPeople.Dispose();
 
-            MySqlCommand getMaxIndex = new MySqlCommand("SELECT MAX(eventID) FROM people", mysqlConnectie);
-
-            int maxIndex = Convert.ToInt16(getMaxIndex.ExecuteScalar().ToString());
-
-            MySqlCommand bindEventIDWithHardware = new MySqlCommand("UPDATE hardware SET eventID = '" + maxIndex + "' WHERE internalNr LIKE '" +
+            MySqlCommand bindEventIDWithHardware = new MySqlCommand("UPDATE hardware SET eventID = '" + userIndex + "' WHERE internalNr LIKE '" +
                 strInternalNr + "'", mysqlConnectie);
             bindEventIDWithHardware.ExecuteNonQuery();
             bindEventIDWithHardware.Dispose();
             mysqlConnectie.Close();
-           
-            archiveAssignedHardware(strSerialNr, strInternalNr, maxIndex); //Archive the assigned hardware
+
+            Hardware requestedHardware = new Hardware();
+            requestedHardware.archiveAssignedHardware(strSerialNr, strInternalNr, maxIndex); //Archive the assigned hardware
+            String strModelNr = "";
+            String strManufacturer = "";
+            requestedHardware.createXML(strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
 
         }
-        private void archiveAssignedHardware(String strSerialNr, String strInternalNr, int intEventID)
-        {
-            String dteAssignedDate = DateTime.Today.ToString("yyyy-MM-dd");
-            mysqlConnectie.Open();
-            MySqlCommand archiveAssigned = new MySqlCommand("Insert into archive ( assignedDate, serialNr, internalNr, eventID ) values (@assignedDate, @serialNr, @internalNr, @eventID)", mysqlConnectie);
-            archiveAssigned.Parameters.AddWithValue("@assignedDate", dteAssignedDate);
-            archiveAssigned.Parameters.AddWithValue("@serialNr", strSerialNr);
-            archiveAssigned.Parameters.AddWithValue("@internalNr", strInternalNr);
-            archiveAssigned.Parameters.AddWithValue("@eventID", intEventID);
 
-            archiveAssigned.ExecuteNonQuery();
-            archiveAssigned.Dispose();
-            mysqlConnectie.Close();
-        }
-    
-    protected void setRequestAccept(int requestID)
+        protected void setRequestAccept(int requestID)
         {
             try
             {
                 mysqlConnectie.Open();
                 MySqlCommand setRequestAccepted = new MySqlCommand("UPDATE request SET requestAccepted = true WHERE requestID = " + requestID, mysqlConnectie);
                 setRequestAccepted.ExecuteNonQuery();
-                    }
-            catch(MySqlException ex)
+            }
+            catch (MySqlException ex)
             {
                 lblExeption.Text = ex.ToString();
             }

@@ -64,7 +64,7 @@ namespace Toestellenbeheer.Manage
         {
             GetADUser getAD = new GetADUser();
             DataTable dt = getAD.returnDataTable();
-            grvPeopleAD.DataSource = dt ;
+            grvPeopleAD.DataSource = dt;
 
             grvPeopleAD.DataBind();
 
@@ -83,46 +83,21 @@ namespace Toestellenbeheer.Manage
                 String strInternalNr = grvHardwarePoolUnassigned.SelectedRow.Cells[2].Text.ToString();
                 String strNameAD = grvPeopleAD.SelectedRow.Cells[2].Text.ToString();
 
+                GetADUser getUserID = new GetADUser();
+                int maxIndex = getUserID.returnEventID(strNameAD);
+                assignHardware(maxIndex, strInternalNr);
+                mysqlConnectie.Close();
+                getUnassignedHardware();
+                String strManufacturer = "";
+                String strModelNr = "";
+                Hardware assignedHardware = new Hardware();
+                assignedHardware.archiveAssignedHardware(strSerialNr, strInternalNr, maxIndex); //Archive the assigned hardware
 
-                mysqlConnectie.Open();
-                MySqlCommand checkPeopleAlreadyExist = new MySqlCommand("SELECT eventID FROM people Where nameAD = '" + strNameAD + "'", mysqlConnectie);
-                object checkObj = checkPeopleAlreadyExist.ExecuteScalar();
-
-                if (checkObj == null)
-                {
-                    MySqlCommand addPeople = new MySqlCommand("INSERT INTO people (nameAD) values (@nameAD)", mysqlConnectie);
-                    addPeople.Parameters.AddWithValue("@nameAd", strNameAD);
-                    addPeople.ExecuteNonQuery();
-                    addPeople.Dispose();
-
-                    MySqlCommand getMaxIndex = new MySqlCommand("SELECT eventID FROM people WHERE eventID = (SELECT MAX(eventID) FROM people)", mysqlConnectie);
-
-                    int maxIndex = Convert.ToInt16(getMaxIndex.ExecuteScalar().ToString());
-
-                    assignHardware(maxIndex, strInternalNr);
-                    mysqlConnectie.Close();
-                    getUnassignedHardware();
-                    String strManufacturer = "";
-                    String strModelNr = "";
-                    archiveAssignedHardware(strSerialNr, strInternalNr, maxIndex); //Archive the assigned hardware
-
-                    createXML(strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
-                }
-                else
-                {
-                    int userID = Convert.ToInt16(checkPeopleAlreadyExist.ExecuteScalar());
-                    assignHardware(userID, strInternalNr);
-                    mysqlConnectie.Close();
-                    getUnassignedHardware();
-                    String strManufacturer = "";
-                    String strModelNr = "";
-                    archiveAssignedHardware(strSerialNr, strInternalNr, userID); //Archive the assigned hardware
-
-                    createXML(strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
-
-                }
-
+                assignedHardware.createXML("Assigned Hardware",strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
             }
+
+
+
             else
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please select a hardware or people to continue!');", true);
@@ -135,63 +110,5 @@ namespace Toestellenbeheer.Manage
             bindEventIDWithHardware.ExecuteNonQuery();
             bindEventIDWithHardware.Dispose();
         }
-        private void createXML(String serialNr, String internalNr, String manufacturer, String nameAD, String userName, String modelNr)
-        {
-            XmlDocument doc = new XmlDocument();
-            XmlNode docNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
-            doc.AppendChild(docNode);
-
-            XmlNode AssignedNodes = doc.CreateElement("AssignedHardware");
-            doc.AppendChild(AssignedNodes);
-
-            XmlNode xmlHardwareNode = doc.CreateElement("Hardware");
-            AssignedNodes.AppendChild(xmlHardwareNode);
-
-            XmlNode xmlPersonNode = doc.CreateElement("person");
-            AssignedNodes.AppendChild(xmlPersonNode);
-
-            XmlNode xmlInternalNrNode = doc.CreateElement("InternalNr");
-            xmlInternalNrNode.AppendChild(doc.CreateTextNode(internalNr));
-            xmlHardwareNode.AppendChild(xmlInternalNrNode);
-
-            XmlNode xmlSerialNr = doc.CreateElement("SerialNr");
-            xmlSerialNr.AppendChild(doc.CreateTextNode(serialNr));
-            xmlHardwareNode.AppendChild(xmlSerialNr);
-
-            XmlNode xmlManufacturer = doc.CreateElement("Manufacturer");
-            xmlManufacturer.AppendChild(doc.CreateTextNode(manufacturer));
-            xmlHardwareNode.AppendChild(xmlManufacturer);
-
-
-            XmlNode xmlModelNr = doc.CreateElement("ModelNr");
-            xmlModelNr.AppendChild(doc.CreateTextNode(modelNr));
-            xmlHardwareNode.AppendChild(xmlModelNr);
-
-            XmlNode xmlUserId = doc.CreateElement("UserID");
-            xmlUserId.AppendChild(doc.CreateTextNode(nameAD));
-            xmlPersonNode.AppendChild(xmlUserId);
-
-            XmlNode xmlUserName = doc.CreateElement("UserName");
-            xmlUserName.AppendChild(doc.CreateTextNode(userName));
-            xmlPersonNode.AppendChild(xmlUserName);
-
-            doc.Save("./UserUploads/Attachments/GeneratedAssignedHardware.xml");
-        }
-        //Archive the assigned hardware into the database
-        private void archiveAssignedHardware(String strSerialNr, String strInternalNr, int intEventID)
-        {
-            String dteAssignedDate = DateTime.Today.ToString("yyyy-MM-dd");
-            mysqlConnectie.Open();
-            MySqlCommand archiveAssigned = new MySqlCommand("Insert into archive ( assignedDate, serialNr, internalNr, eventID ) values (@assignedDate, @serialNr, @internalNr, @eventID)", mysqlConnectie);
-            archiveAssigned.Parameters.AddWithValue("@assignedDate", dteAssignedDate);
-            archiveAssigned.Parameters.AddWithValue("@serialNr", strSerialNr);
-            archiveAssigned.Parameters.AddWithValue("@internalNr", strInternalNr);
-            archiveAssigned.Parameters.AddWithValue("@eventID", intEventID);
-
-            archiveAssigned.ExecuteNonQuery();
-            archiveAssigned.Dispose();
-            mysqlConnectie.Close();
-        }
     }
-    //WebRequest request = WebRequest.Create(SetupFile.GlobalVar.ScripturaPath);
 }

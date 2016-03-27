@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
-using System.Text;
-using System.Net;
-using System.Net.Mail;
 using System.IO;
-using System.Web.Security;
-using System.Drawing;
 
 namespace Toestellenbeheer
 {
@@ -164,6 +155,7 @@ namespace Toestellenbeheer
             {
                 mysqlConnectie.Open();
                 String strInternalNr = HardwareOverviewGrid.DataKeys[e.RowIndex].Value.ToString();
+                Session["internalNr"] = strInternalNr;
                 lblInternalNr.Text = strInternalNr;
                 MySqlCommand viewDetails = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation, modelNr FROM hardware WHERE internalNr " +
                     "LIKE '" + strInternalNr + "'", mysqlConnectie);
@@ -243,6 +235,7 @@ namespace Toestellenbeheer
         }
         protected void btnModifying_Click(object sender, EventArgs e)
         {
+            Server.Transfer("./modify-hardware.aspx");
             modifyPanel.Visible = true;
             selectedRow.Visible = false;
             btnModifying.Visible = false;

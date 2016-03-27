@@ -21,6 +21,8 @@ namespace Toestellenbeheer.Models
             public const String ADPath = "OU=Employees,DC=6ib,DC=eu";
             public const String ADSAMAccountAt = "@6ib.eu";
             public const String ADDomainControllerName = "dc";
+            public const String ADDomainName = "6IB";
+            public const String ADRootPath = "LDAP://dc.6ib.eu";
         }
         public static class XML
         {

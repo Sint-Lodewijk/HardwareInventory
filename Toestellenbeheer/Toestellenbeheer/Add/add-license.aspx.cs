@@ -13,7 +13,7 @@ namespace Toestellenbeheer.Manage
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
-        DirectoryEntry entry = new DirectoryEntry("LDAP://dc.6ib.eu"); // set up domain context
+        DirectoryEntry entry = new DirectoryEntry(SetupFile.AD.ADRootPath); // set up domain context
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -21,8 +21,8 @@ namespace Toestellenbeheer.Manage
             if (!IsPostBack)
             {
                 btnAssignToSelectedHardwareSearch.Visible = false;
-                hardwarePanel.Visible = false;
-                peoplePanel.Visible = false;
+                //hardwarePanel.Visible = false;
+                //peoplePanel.Visible = false;
                 String strTimeStamp = DateTime.Now.ToString("yyyyMMddHHmmss");
                 if (ViewState["timeStampAddedHardware"] == null)
                 {
@@ -36,15 +36,19 @@ namespace Toestellenbeheer.Manage
         protected void hardwareLicenseSelection_Click(object sender, EventArgs e)
         {
             btnAssignToSelectedHardware.Visible = true;
+            RowSelect(grvHardwareLicenseSelect);
 
-            foreach (GridViewRow row in grvHardwareLicenseSelect.Rows)
+        }
+        protected void RowSelect(GridView grvSelect)
+        {
+            foreach (GridViewRow row in grvSelect.Rows)
             {
-                if (row.RowIndex == grvHardwareLicenseSelect.SelectedIndex)
+                if (row.RowIndex == grvSelect.SelectedIndex)
                 {
                     row.BackColor = ColorTranslator.FromHtml("#A1DCF2");
                     row.ToolTip = string.Empty;
                     //Get the row
-                    GridViewRow selectedRow = grvHardwareLicenseSelect.SelectedRow;
+                    GridViewRow selectedRow = grvSelect.SelectedRow;
 
 
                 }
@@ -54,27 +58,26 @@ namespace Toestellenbeheer.Manage
                     row.ToolTip = "Click to select this row.";
                 }
             }
-            hardwarePanel.Visible = true;
         }
         //When click search button, the right panel stays appear
         protected void Search_Click(object sender, EventArgs e)
         {
-            this.BindGrid();
+            this.Search();
             btnAssignToSelectedHardwareSearch.Visible = true;
             btnAssignToSelectedHardware.Visible = false;
-            hardwarePanel.Visible = true;
+            this.HardwarePanelPopUP.Show();
 
 
         }
         //Displays the search button
         protected void display_search_button(object sender, EventArgs e)
         {
+            RowSelect(licenseOverviewGridSearch);
             btnAssignToSelectedHardwareSearch.Visible = true;
-            hardwarePanel.Visible = true;
 
         }
         //Search and bind the entrys
-        private void BindGrid()
+        private void Search()
         {
             try
             {
@@ -95,19 +98,23 @@ namespace Toestellenbeheer.Manage
                 int intTotalResultReturned = licenseOverviewGridSearch.Rows.Count;
                 if (intTotalResultReturned == 0)
                 {
-                    testLabel.Text = "No entry found, please use a different keyword or switch between the searchtypes.";
+                    testLabel.Text = "No entry found, please use a different keyword or switch between the search types.";
                 }
                 else
                 {
                     testLabel.Text = "Total result returned: " + intTotalResultReturned;
 
                 }
-                mysqlConnectie.Close();
                 grvHardwareLicenseSelect.Visible = false;
             }
             catch (MySqlException ex)
             {
                 ShowMessage(ex.Message);
+            }
+            finally
+            {
+                mysqlConnectie.Close();
+
             }
 
         }
@@ -123,12 +130,11 @@ namespace Toestellenbeheer.Manage
                 addLicense.Parameters.AddWithValue("@licenseName", txtLicenseName.Text.Trim());
                 addLicense.Parameters.AddWithValue("@expireDate", txtDatepickerExpire.Text.Trim());
                 addLicense.Parameters.AddWithValue("@extraInfo", txtExtraInfoLicense.Text.Trim());
-                addLicense.Parameters.AddWithValue("@licenseFileLocation", ViewState["timeStampAddedHardware"]+TestlocationAtt.Text.Trim());
+                addLicense.Parameters.AddWithValue("@licenseFileLocation", ViewState["timeStampAddedHardware"] + TestlocationAtt.Text.Trim());
 
 
                 addLicense.ExecuteNonQuery();
                 addLicense.Dispose();
-                mysqlConnectie.Close();
                 testLabel.Text = "Congratulations! The license code:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
                     + "</span>" + " you have entered, has been successfully added into the database. If want want assign this license to any hardware or people, please not use this page!";
                 // testLabel.Text = licenseCode.Text + " has been assigned to device with a internal number: " + internalNr + " and a serial code " + SerialNr;
@@ -152,6 +158,11 @@ namespace Toestellenbeheer.Manage
                 else { ShowMessage(ex.Message); }
 
             }
+            finally
+            {
+                mysqlConnectie.Close();
+
+            }
         }
         protected void btnAddLicense_click(object sender, EventArgs e)
         {
@@ -160,21 +171,27 @@ namespace Toestellenbeheer.Manage
         //When click the button, use the assign function to assign the right hardware.
         protected void assignToSelectedHardware_Click(object sender, EventArgs e)
         {
-            String strLicenseCode = txtLicenseCode.Text;
+            try
+            {
+                String strLicenseCode = txtLicenseCode.Text;
 
-            String strLicenseName = txtLicenseName.Text;
-            String strInternalNr = grvHardwareLicenseSelect.SelectedRow.Cells[2].Text;
-            String strSerialCode = grvHardwareLicenseSelect.SelectedRow.Cells[3].Text;
-            addLicense();
-            mysqlConnectie.Open();
-            MySqlCommand addLicenseCommand = new MySqlCommand("INSERT INTO licenseHandler (internalNr, serialNr, licenseCode) values (@internalNr, @serialNr, @licenseCode)", mysqlConnectie);
-            addLicenseCommand.Parameters.AddWithValue("@internalNr", strInternalNr);
-            addLicenseCommand.Parameters.AddWithValue("@serialNr", strSerialCode);
-            addLicenseCommand.Parameters.AddWithValue("@licenseCode", strLicenseCode);
+                String strLicenseName = txtLicenseName.Text;
+                String strInternalNr = grvHardwareLicenseSelect.SelectedRow.Cells[2].Text;
+                String strSerialCode = grvHardwareLicenseSelect.SelectedRow.Cells[3].Text;
+                addLicense();
+                mysqlConnectie.Open();
+                MySqlCommand addLicenseCommand = new MySqlCommand("INSERT INTO licenseHandler (internalNr, serialNr, licenseCode) values (@internalNr, @serialNr, @licenseCode)", mysqlConnectie);
+                addLicenseCommand.Parameters.AddWithValue("@internalNr", strInternalNr);
+                addLicenseCommand.Parameters.AddWithValue("@serialNr", strSerialCode);
+                addLicenseCommand.Parameters.AddWithValue("@licenseCode", strLicenseCode);
 
-            addLicenseCommand.ExecuteNonQuery();
-            addLicenseCommand.Dispose();
-            mysqlConnectie.Close();
+                addLicenseCommand.ExecuteNonQuery();
+                addLicenseCommand.Dispose();
+                mysqlConnectie.Close();
+            }
+            catch (MySqlException ex)
+            {
+            }
         }
         //Shows the error message
         void ShowMessage(string msg)
@@ -192,24 +209,10 @@ namespace Toestellenbeheer.Manage
         //Expand or hide hardware grid + change the text of it
         protected void hideShowHardware_Click(object sender, EventArgs e)
         {
-            if (hideShowHardware.Text == "Assign to hardware")
-            {
-                hideShowHardware.Text = "Hide hardware";
-                hardwarePanel.Visible = true;
 
-            }
-            else if (hideShowHardware.Text == "Hide hardware")
-            {
-                hideShowHardware.Text = "Assign to hardware";
-                hardwarePanel.Visible = false;
+            hardwarePanel.Visible = true;
 
-            }
-            else if (hideShowHardware.Text == "Assign to hardware")
-            {
-                hideShowHardware.Text = "Hide hardware";
-                hardwarePanel.Visible = true;
 
-            }
             this.HardwarePanelPopUP.Show();
 
         }
@@ -225,19 +228,11 @@ namespace Toestellenbeheer.Manage
         //Expand or hide people grid + change the text of it
         protected void hideShowPeople_Click(object sender, EventArgs e)
         {
-            if (hideShowPeople.Text == "Assign to people")
-            {
-                hideShowPeople.Text = "Hide people";
-                peoplePanel.Visible = true;
-                getUserFromAD();
+            peoplePanel.Visible = true;
+            getUserFromAD(licenseOverviewGridPeople);
 
-            }
-            else if (hideShowPeople.Text == "Hide people")
-            {
-                hideShowPeople.Text = "Assign to people";
-                peoplePanel.Visible = false;
+            this.PeoplePopUP.Show();
 
-            }
 
 
 
@@ -249,58 +244,15 @@ namespace Toestellenbeheer.Manage
             hardwarePanel.Visible = true;
         }
         //Get users from ad and display it in the gridview named licenseOverviewGridPeopleSearch
-        protected void getUserFromAD()
+        protected void getUserFromAD(GridView grvLicenseOverviewPeople)
         {
-            DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.AD.ADConnectionPrefix, SetupFile.AD.ADUserName, SetupFile.AD.ADUserPassword);
+            GetADUser get = new GetADUser();
+            DataTable dt = get.returnDataTable();
+            grvLicenseOverviewPeople.DataSource = dt;
 
-            DirectorySearcher search = new DirectorySearcher(rootDSE);
-
-            search.PageSize = 1001;// To Pull up more than 100 records.
-
-            search.Filter = "(&(objectClass=user)(!userAccountControl:1.2.840.113556.1.4.803:=2))";//UserAccountControl will only Include Non-Disabled Users.
-            SearchResultCollection result = search.FindAll();
-            String DisplayName, EmailAddress, DomainName, Department, Title, Company, memberof, aaa;
-            DisplayName = EmailAddress = DomainName = Department = Title = Company = memberof = aaa = "";
-            foreach (SearchResult item in result)
-            {
-                if (item.Properties["cn"].Count > 0)
-                {
-                    DisplayName = item.Properties["cn"][0].ToString();
-                }
-
-                if (item.Properties["SamAccountName"].Count > 0)
-                {
-                    DomainName = item.Properties["SamAccountName"][0].ToString();
-                }
-                if (item.Properties["department"].Count > 0)
-                {
-                    Department = item.Properties["department"][0].ToString();
-                }
-                if (item.Properties["title"].Count > 0)
-                {
-                    Title = item.Properties["title"][0].ToString();
-                }
-
-                if (item.Properties["DistinguishedName"].Count > 0)
-                {
-                    memberof = item.Properties["DistinguishedName"][0].ToString();
-                }
-
-                DataTable dt = new DataTable();
-                dt.Columns.Add(new DataColumn("Display Name", typeof(string)));
-                dt.Columns.Add(new DataColumn("Domain Name", typeof(string)));
-                dt.Columns.Add(new DataColumn("Department", typeof(string)));
-                dt.Columns.Add(new DataColumn("Title", typeof(string)));
-                dt.Columns.Add(new DataColumn("Member Of", typeof(string)));
-
-                dt.Rows.Add(DisplayName, DomainName, Department, Title, memberof);
-
-                rootDSE.Dispose();
-                licenseOverviewGridPeople.DataSource = dt;
-
-                licenseOverviewGridPeople.DataBind();
-            }
+            grvLicenseOverviewPeople.DataBind();
         }
+
 
         protected void grvHardwareLicenseSelect_PageIndexChanged(object sender, EventArgs e)
         {
@@ -348,7 +300,7 @@ namespace Toestellenbeheer.Manage
                 {
 
                     //testLabel.Text = ex.Message.ToString() + ", please check your input.";
-                    testLabel.Text = "Apostrophe ('), quotation mark and semicolum is not allow in the searchword: " + "<span style=\"color:red\">" + txtLicenseCode.Text + "</span>" + ", please delete this marks.";
+                    testLabel.Text = "Apostrophe ('), quotation mark and semicolum is not allowed in the searchword: " + "<span style=\"color:red\">" + txtLicenseCode.Text + "</span>" + ", please delete this marks.";
 
                 }
                 else { ShowMessage(ex.Message); }
@@ -388,6 +340,12 @@ namespace Toestellenbeheer.Manage
             {
                 ShowMessage(ex.ToString());
             }
+        }
+
+        protected void licenseOverviewGridPeople_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            licenseOverviewGridPeople.PageIndex = e.NewPageIndex;
+            getUserFromAD(licenseOverviewGridPeople);
         }
     }
 }

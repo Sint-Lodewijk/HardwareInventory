@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using System.Web.Security;
 using FormsAuth;
-
+using Toestellenbeheer.Models;
 namespace Toestellenbeheer.Account
 {
     public partial class Login : Page
@@ -18,8 +18,8 @@ namespace Toestellenbeheer.Account
 
         protected void Login_Click(Object sender, EventArgs e)
         {
-            String adPathtemp = "LDAP://dc.6ib.eu"; //Not necessary
-            
+            String adPathtemp = SetupFile.AD.ADRootPath; //Not necessary
+
             LdapAuthentication adAuthtemp = new LdapAuthentication(adPathtemp);
             String adPath = adAuthtemp.LDAPPath(); //get AD path from class
             LdapAuthentication adAuth = new LdapAuthentication(adPath);
@@ -33,7 +33,7 @@ namespace Toestellenbeheer.Account
                     bool isCookiePersistent = RememberMe.Checked;
                     FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, UserName.Text,
                   DateTime.Now, DateTime.Now.AddMinutes(60), isCookiePersistent, groups);
-                   // Session["group"] = groups;
+                    // Session["group"] = groups;
                     //Encrypt the ticket.
                     String encryptedTicket = FormsAuthentication.Encrypt(authTicket);
 

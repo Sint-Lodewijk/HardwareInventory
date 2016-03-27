@@ -1,8 +1,8 @@
-﻿
-using System;
+﻿using System;
 using System.Text;
 using System.Collections;
 using System.DirectoryServices;
+using Toestellenbeheer.Models;
 
 namespace FormsAuth
 {
@@ -15,10 +15,10 @@ namespace FormsAuth
         {
             _path = path;
         }
-     
-        public bool IsAuthenticated( String username, String pwd)
+
+        public bool IsAuthenticated(String username, String pwd)
         {
-            String domainAndUsername = "6IB" + @"\" + username; //Please modify 6IB to the domain name
+            String domainAndUsername = SetupFile.AD.ADDomainName + @"\" + username; //Please modify 6IB to the domain name
 
             DirectoryEntry entry = new DirectoryEntry(_path, domainAndUsername, pwd);
 
@@ -54,7 +54,7 @@ namespace FormsAuth
         }
         public String LDAPPath()
         {
-            String LDAPpath = "LDAP://dc.6ib.eu"; //Please change this path to the desired path
+            String LDAPpath = SetupFile.AD.ADRootPath; //Please change this path to the desired path
             return LDAPpath;
         }
         public String GetGroups()
@@ -101,5 +101,5 @@ namespace FormsAuth
             return groupNames.ToString();
         }
     }
-        
+
 }

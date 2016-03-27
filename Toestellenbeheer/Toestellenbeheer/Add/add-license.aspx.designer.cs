@@ -112,15 +112,6 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.Button hideShowHardware;
         
         /// <summary>
-        /// hardwarePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel hardwarePanel;
-        
-        /// <summary>
         /// HardwarePanelPopUP control.
         /// </summary>
         /// <remarks>
@@ -128,6 +119,15 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender HardwarePanelPopUP;
+        
+        /// <summary>
+        /// hardwarePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel hardwarePanel;
         
         /// <summary>
         /// lblSearch control.
@@ -220,6 +220,15 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.Button btnAssignToSelectedHardwareSearch;
         
         /// <summary>
+        /// btnCloseHardware control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCloseHardware;
+        
+        /// <summary>
         /// hideShowPeople control.
         /// </summary>
         /// <remarks>
@@ -227,6 +236,15 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button hideShowPeople;
+        
+        /// <summary>
+        /// PeoplePopUP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender PeoplePopUP;
         
         /// <summary>
         /// peoplePanel control.
@@ -254,6 +272,15 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAssignLicenseToPeople;
+        
+        /// <summary>
+        /// btnClosePeople control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClosePeople;
         
         /// <summary>
         /// btnAddLicense control.

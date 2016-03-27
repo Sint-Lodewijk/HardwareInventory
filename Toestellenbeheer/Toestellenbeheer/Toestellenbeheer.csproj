@@ -347,6 +347,7 @@
     <Compile Include="Manage\manage-requests.aspx.designer.cs">
       <DependentUpon>manage-requests.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetADUser.cs" />
     <Compile Include="Models\LdapAuthentication.cs" />
     <Compile Include="Manage\assign-hardware.aspx.cs">
       <DependentUpon>assign-hardware.aspx</DependentUpon>
@@ -455,7 +456,6 @@
     <Compile Include="Manage\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\MySqlConfiguration.cs" />
     <Compile Include="Models\MySqlInitializer.cs" />
     <Compile Include="Overview\license-overview.aspx.cs">
       <DependentUpon>license-overview.aspx</DependentUpon>

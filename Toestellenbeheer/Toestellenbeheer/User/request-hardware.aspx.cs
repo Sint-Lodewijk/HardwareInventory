@@ -26,23 +26,11 @@ namespace Toestellenbeheer.Users
         }
         protected void bindTypeToGrid()
         {
-            try
-            {
-                mysqlConnectie.Open();
+            var type = new TypeName();
+            DataTable dt = type.ReturnDatatableType();
+            drpTypeList.DataSource = dt;
+            drpTypeList.DataBind();
 
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT type FROM type", mysqlConnectie);
-                MySqlDataReader rdrGetType = bindToGrid.ExecuteReader();
-                DataTable dt = new DataTable();
-                dt.Load(rdrGetType);
-                drpTypeList.DataSource = dt;
-                drpTypeList.DataBind();
-                mysqlConnectie.Close();
-
-            }
-            catch (MySqlException ex)
-            {
-                lblProblem.Text = ex.ToString();
-            }
         }
         protected void typeList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -52,14 +40,9 @@ namespace Toestellenbeheer.Users
         {
             try
             {
-                mysqlConnectie.Open();
-                MySqlCommand getAssociatedHardwareFromType = new MySqlCommand("SELECT  manufacturerName, hardware.serialNr, hardware.internalNr, pictureLocation, modelNr  FROM hardware JOIN type ON type.typeNr = hardware.typeNr WHERE type = '" + strType + "'", mysqlConnectie);
-                MySqlDataAdapter adpa = new MySqlDataAdapter(getAssociatedHardwareFromType);
-                getAssociatedHardwareFromType.ExecuteNonQuery();
-                getAssociatedHardwareFromType.Dispose();
-                DataSet ds = new DataSet();
-                adpa.Fill(ds);
-                grvAvailibleHardwareType.DataSource = ds;
+                var type = new TypeName(strType);
+                DataTable dt = type.ReturnDatatableType();
+                grvAvailibleHardwareType.DataSource = dt;
                 grvAvailibleHardwareType.DataBind();
                 int intTotalAssociatedCount = grvAvailibleHardwareType.Rows.Count;
                 if (intTotalAssociatedCount == 0)
@@ -94,31 +77,7 @@ namespace Toestellenbeheer.Users
             }
 
         }
-        private void requestSelectedHardware(String internalNr, String serialNr)
-        {
-            try
-            {
-                String requestDate = DateTime.Now.ToString("yyyy-MM-dd");
-                GetADUser getUserID = new GetADUser();
-                int intEventID = getUserID.returnEventID(Context.User.Identity.Name);
-                mysqlConnectie.Open();
-                MySqlCommand sendRequest = new MySqlCommand("INSERT INTO request (serialNr, internalNr,eventID, requestDate) Values (@serialNr, @internalNr, @eventID, @requestDate)", mysqlConnectie);
-                sendRequest.Parameters.AddWithValue("@serialNr", serialNr);
-                sendRequest.Parameters.AddWithValue("@internalNr", internalNr);
-                sendRequest.Parameters.AddWithValue("@eventID", intEventID);
-                sendRequest.Parameters.AddWithValue("@requestDate", requestDate);
-                sendRequest.ExecuteNonQuery();
-                sendRequest.Dispose();
-            }
-            catch (MySqlException ex)
-            {
-                lblProblem.Text = ex.ToString();
-            }
-            finally
-            {
-                mysqlConnectie.Close();
-            }
-        }
+
 
         private void sendEmailNotification(String internalNr)
         {
@@ -132,7 +91,7 @@ namespace Toestellenbeheer.Users
                 smtpClient.EnableSsl = true;
                 MailMessage mail = new MailMessage();
                 mail.Subject = "A request has been made for " + internalNr;
-                mail.Body = "<div style=\"font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; \">"+
+                mail.Body = "<div style=\"font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; \">" +
                     "Dear hardware admin <br /> <br />A request has been made for hardware with the internal number: " + internalNr +
                         "<br />Please <a href=\"" + SetupFile.Web.WebLocation + "\"> log in </a> to the application and review those requests." +
                         "<br /><br /><br />" + "Yours sincerely, " + Context.User.Identity.Name + "</div>";
@@ -159,8 +118,12 @@ namespace Toestellenbeheer.Users
         {
             String strInternalNr = grvAvailibleHardwareType.SelectedDataKey["internalNr"].ToString();
             String strSerialNr = grvAvailibleHardwareType.SelectedDataKey["serialNr"].ToString();
+            String requestDate = DateTime.Now.ToString("yyyy-MM-dd");
+            var userID = new User(Context.User.Identity.Name);
+            int intEventID = userID.ReturnEventID();
+            var hardwareRequest = new Request(strInternalNr, strSerialNr, intEventID, requestDate);
+            hardwareRequest.RequestHardware();
 
-            requestSelectedHardware(strInternalNr, strSerialNr);
             sendEmailNotification(strInternalNr);
 
 

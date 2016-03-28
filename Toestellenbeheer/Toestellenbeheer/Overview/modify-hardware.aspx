@@ -3,14 +3,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:DetailsView runat="server" CssClass="gridview form-control table table-hover table-striped" AutoGenerateRows="False" DataSourceID="sqlDetail" DataKeyNames="serialNr,internalNr">
         <Fields>
-            <asp:BoundField DataField="serialNr" HeaderText="Serial nr" SortExpression="serialNr" />
-            <asp:BoundField DataField="internalNr" HeaderText="Internal nr" SortExpression="internalNr" />
+            
+            <asp:BoundField DataField="serialNr" ReadOnly="true" HeaderText="Serial nr" SortExpression="serialNr" />
+            <asp:BoundField DataField="internalNr" ReadOnly="true" HeaderText="Internal nr" SortExpression="internalNr" />
             <asp:BoundField DataField="warranty" HeaderText="Warranty" SortExpression="warranty" />
             <asp:BoundField DataField="extraInfo" HeaderText="Extra info" SortExpression="extraInfo" />
             <asp:BoundField DataField="modelNr" HeaderText="Model nr" SortExpression="modelNr" />
-            <asp:BoundField DataField="purchaseDate" HeaderText="Purchase Date" SortExpression="purchaseDate" DataFormatString="{0:yyyy-MM-dd}" />
-            <asp:BoundField DataField="type" HeaderText="Type" SortExpression="Type" />
-            <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="manufacturerName" />
+            <asp:BoundField DataField="purchaseDate" HeaderText="Purchase Date" InsertVisible="false" SortExpression="purchaseDate" DataFormatString="{0:yyyy-MM-dd}" />
+            <asp:BoundField DataField="type" HeaderText="Type" InsertVisible="false" SortExpression="Type" />
+            <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" InsertVisible="false" SortExpression="manufacturerName" />
             <asp:BoundField DataField="attachmentLocation" HeaderText="Attachment" SortExpression="attachmentLocation" InsertVisible="False" />
             <asp:BoundField DataField="pictureLocation" HeaderText="Picture file" SortExpression="pictureLocation" InsertVisible="False" />
 

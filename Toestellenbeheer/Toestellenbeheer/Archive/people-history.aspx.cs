@@ -53,8 +53,8 @@ namespace Toestellenbeheer.Archive
         {
             try
             {
-                GetADUser get = new GetADUser();
-                DataTable dt = get.returnDataTable();
+                User get = new User();
+                DataTable dt = get.ReturnDataTable();
                 grvPeopleAD.DataSource = dt;
 
                 grvPeopleAD.DataBind();

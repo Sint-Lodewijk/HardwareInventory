@@ -7,7 +7,8 @@
             <div class="form-group">
                 <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="typeList">Type</asp:Label>
                 <div class="col-sm-10">
-                    <asp:DropDownList ID="typeList" CssClass="form-control" runat="server" EnableViewState="true" AutoPostBack="true" />
+                    <asp:DropDownList ID="typeList" CssClass="form-control" runat="server" AutoPostBack="True" DataSourceID="sqlType" DataTextField="type" DataValueField="type" />
+                    <asp:SqlDataSource ID="sqlType" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT type FROM type"></asp:SqlDataSource>
                 </div>
 
             </div>
@@ -151,11 +152,11 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Label ID="Label9" runat="server" Text="Type Nr: ">
+                                    <asp:Label ID="Label9" runat="server" Text="Type: ">
                                     </asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Label ID="Label1" runat="server" Text='<%#Eval("Type nr")%>'>
+                                    <asp:Label ID="Label1" runat="server" Text='<%#Eval("type")%>'>
                                     </asp:Label></td>
                             </tr>
                             <tr>

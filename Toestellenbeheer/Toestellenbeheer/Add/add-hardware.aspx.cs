@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 using System.IO;
-
+using MySql.Data;
+using Toestellenbeheer.Models;
 namespace Toestellenbeheer.Manage
 {
     /// <summary>
@@ -30,7 +26,6 @@ namespace Toestellenbeheer.Manage
         {
             try
             {
-                getTypeList();
                 addResultPanel.Visible = false;
                 if (!IsPostBack)
                 {
@@ -46,24 +41,7 @@ namespace Toestellenbeheer.Manage
                 txtResultUpload.Text = ex.ToString();
             }
         }
-        protected void getTypeList()
-        {
-            if (!IsPostBack)
-            {
-                DataSet Type = new DataSet();
-                string listTypeOut = "select type from type";
-                MySqlCommand listOutType = new MySqlCommand(listTypeOut, mysqlConnectie);
-                using (MySqlDataAdapter data1 = new MySqlDataAdapter(listOutType))
-                    data1.Fill(Type, "type");
-                typeList.DataSource = Type.Tables["type"];
-                typeList.DataBind();
 
-                typeList.DataTextField = "type";
-                typeList.DataValueField = "type";
-                typeList.DataBind();
-                mysqlConnectie.Close();
-            }
-        }
         #endregion
         #region Insert Data
         ///<summary>Add a hardware into the database
@@ -99,46 +77,19 @@ namespace Toestellenbeheer.Manage
             }
             try
             {
-                if (strInternalNr == "")
-                {
-                    txtResultUpload.Text = "Internal number is required, please add this";
+                //Use the mysql to connect the database
+                string pictureLocation = ViewState["timeStampAddedHardware"] + mImagePath;
+                string attachmentLocation = ViewState["timeStampAddedHardware"] + TestlocationAtt.Text;
+                txtResultUpload.Text = "Congratulations! The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
+                   " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " successfully added to the database.";
 
-                }
-                else if (strSerialNr == "")
-                {
-                    txtResultUpload.Text = "Serial number is required, please add this";
-                }
+                var hardware = new Hardware(dteAddedDate, attachmentLocation, strExtraInfo, strInternalNr, strSelectedManufacturer, strModel, pictureLocation,
+                    dtePurchaseDate, strSerialNr, strWarrantyInfo, typeList.SelectedValue);
+                hardware.AddHardwareIntoDatabase();
 
-                else
-                {
-
-                    //Use the mysql to connect the database
-                    mysqlConnectie.Open();
-                    MySqlCommand addHIEP = new MySqlCommand("Insert into hardware (purchaseDate, serialNr, internalNr,  warranty, extraInfo, manufacturerName, addedDate, pictureLocation, typeNr, attachmentLocation, modelNr) values (@purchaseDate, @serialNr, @internalNr,  @warranty, @extraInfo, @manufacturerName, @addedDate, @pictureLocation, @typeNr, @attachmentLocation, @modelNr)", mysqlConnectie);
-
-                    //add parameters (assaign the values to the column.)
-                    addHIEP.Parameters.AddWithValue("@purchaseDate", dtePurchaseDate);
-                    addHIEP.Parameters.AddWithValue("@serialNr", strSerialNr);
-                    addHIEP.Parameters.AddWithValue("@internalNr", strInternalNr);
-                    addHIEP.Parameters.AddWithValue("@warranty", strWarrantyInfo);
-                    addHIEP.Parameters.AddWithValue("@extraInfo", strExtraInfo);
-                    addHIEP.Parameters.AddWithValue("@manufacturerName", strSelectedManufacturer);
-                    addHIEP.Parameters.AddWithValue("@addedDate", dteAddedDate);
-                    addHIEP.Parameters.AddWithValue("@pictureLocation", ViewState["timeStampAddedHardware"] + mImagePath);
-                    addHIEP.Parameters.AddWithValue("@typeNr", intSelectedTypeIndex);
-                    addHIEP.Parameters.AddWithValue("@attachmentLocation", ViewState["timeStampAddedHardware"].ToString() + TestlocationAtt.Text);
-                    addHIEP.Parameters.AddWithValue("@modelNr", strModel);
-                    addHIEP.ExecuteNonQuery();
-                    addHIEP.Dispose();
-
-                    txtResultUpload.Text = "Congratulations! The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
-                       " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " successfully added to the database.";
+                viewJustAddedHardware();
 
 
-                    mysqlConnectie.Close();
-                    viewJustAddedHardware();
-
-                }
             }
             catch (MySqlException ex)
             {
@@ -166,16 +117,11 @@ namespace Toestellenbeheer.Manage
             try
             {
                 String strInternalNr = internalNr.Text.ToString();
-                mysqlConnectie.Open();
-                MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation FROM hardware WHERE internalNr = '" + strInternalNr + "'", mysqlConnectie);
-                MySqlDataAdapter adpa = new MySqlDataAdapter(getCorrespondingPeople);
-                getCorrespondingPeople.ExecuteNonQuery();
-                getCorrespondingPeople.Dispose();
-                DataSet ds = new DataSet();
-                adpa.Fill(ds);
-                grvJustAddedHardware.DataSource = ds;
+                var hardware = new Hardware(strInternalNr);
+                DataTable dt = hardware.ReturnDatatableHardwareFromInternal();
+                grvJustAddedHardware.DataSource = dt;
                 grvJustAddedHardware.DataBind();
-                mysqlConnectie.Close();
+
             }
             catch (MySqlException ex)
             {

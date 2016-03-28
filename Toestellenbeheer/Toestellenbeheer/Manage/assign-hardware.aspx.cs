@@ -62,8 +62,8 @@ namespace Toestellenbeheer.Manage
         }
         protected void getUserFromAD()
         {
-            GetADUser getAD = new GetADUser();
-            DataTable dt = getAD.returnDataTable();
+            User getAD = new User();
+            DataTable dt = getAD.ReturnDataTable();
             grvPeopleAD.DataSource = dt;
 
             grvPeopleAD.DataBind();
@@ -83,17 +83,19 @@ namespace Toestellenbeheer.Manage
                 String strInternalNr = grvHardwarePoolUnassigned.SelectedRow.Cells[2].Text.ToString();
                 String strNameAD = grvPeopleAD.SelectedRow.Cells[2].Text.ToString();
 
-                GetADUser getUserID = new GetADUser();
-                int maxIndex = getUserID.returnEventID(strNameAD);
+                User getUserID = new User(strNameAD);
+                int maxIndex = getUserID.ReturnEventID();
+                mysqlConnectie.Open();
                 assignHardware(maxIndex, strInternalNr);
+
                 mysqlConnectie.Close();
                 getUnassignedHardware();
                 String strManufacturer = "";
                 String strModelNr = "";
                 Hardware assignedHardware = new Hardware();
-                assignedHardware.archiveAssignedHardware(strSerialNr, strInternalNr, maxIndex); //Archive the assigned hardware
+                assignedHardware.ArchiveAssignedHardware(strSerialNr, strInternalNr, maxIndex); //Archive the assigned hardware
 
-                assignedHardware.createXML("Assigned Hardware",strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
+                assignedHardware.CreateXML("AssignedHardware", strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
             }
 
 
@@ -105,10 +107,8 @@ namespace Toestellenbeheer.Manage
         }
         private void assignHardware(int index, String internalNr)
         {
-            MySqlCommand bindEventIDWithHardware = new MySqlCommand("UPDATE hardware SET eventID = '" + index + "' WHERE internalNr LIKE '" +
-                        internalNr + "'", mysqlConnectie);
-            bindEventIDWithHardware.ExecuteNonQuery();
-            bindEventIDWithHardware.Dispose();
+            var assignedHardware = new Hardware(index, internalNr);
+            assignedHardware.BindEventID();
         }
     }
 }

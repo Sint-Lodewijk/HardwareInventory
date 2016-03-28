@@ -176,9 +176,10 @@ namespace Toestellenbeheer.Manage
                 String strLicenseCode = txtLicenseCode.Text;
 
                 String strLicenseName = txtLicenseName.Text;
-                String strInternalNr = grvHardwareLicenseSelect.SelectedRow.Cells[2].Text;
-                String strSerialCode = grvHardwareLicenseSelect.SelectedRow.Cells[3].Text;
+                String strInternalNr = grvHardwareLicenseSelect.SelectedDataKey["internalNr"].ToString();
+                String strSerialCode = grvHardwareLicenseSelect.SelectedDataKey["serialNr"].ToString();
                 addLicense();
+
                 mysqlConnectie.Open();
                 MySqlCommand addLicenseCommand = new MySqlCommand("INSERT INTO licenseHandler (internalNr, serialNr, licenseCode) values (@internalNr, @serialNr, @licenseCode)", mysqlConnectie);
                 addLicenseCommand.Parameters.AddWithValue("@internalNr", strInternalNr);
@@ -202,8 +203,9 @@ namespace Toestellenbeheer.Manage
         //Uses the assign function to assign the license to selected hardware
         protected void assignToSelectedHardwareSearch_Click(object sender, EventArgs e)
         {
-            String internalNr = licenseOverviewGridSearch.SelectedRow.Cells[3].Text;
-            String strSerialCode = licenseOverviewGridSearch.SelectedRow.Cells[4].Text;
+            String internalNr = licenseOverviewGridSearch.SelectedDataKey["internalNr"].ToString();
+            String strSerialCode = licenseOverviewGridSearch.SelectedDataKey["serialNr"].ToString();
+
         }
 
         //Expand or hide hardware grid + change the text of it
@@ -246,8 +248,8 @@ namespace Toestellenbeheer.Manage
         //Get users from ad and display it in the gridview named licenseOverviewGridPeopleSearch
         protected void getUserFromAD(GridView grvLicenseOverviewPeople)
         {
-            GetADUser get = new GetADUser();
-            DataTable dt = get.returnDataTable();
+            User get = new User();
+            DataTable dt = get.ReturnDataTable();
             grvLicenseOverviewPeople.DataSource = dt;
 
             grvLicenseOverviewPeople.DataBind();
@@ -267,16 +269,16 @@ namespace Toestellenbeheer.Manage
         {
             try
             {
-                String nameAD = licenseOverviewGridPeople.SelectedRow.Cells[2].Text;
+                String nameAD = licenseOverviewGridPeople.SelectedDataKey["Domain Name"].ToString();
                 String strLicenseCode = txtLicenseCode.Text;
                 addLicense();
                 mysqlConnectie.Open();
 
-                MySqlCommand assignLicenseToPeople = new MySqlCommand("INSERT INTO licenseHandler (eventID, licenseCode) values ((SELECT DISTINCT eventID FROM people where nameAD = '" +
-                    nameAD + "' LIMIT 0,1), @licenseCode)", mysqlConnectie);
-
-
+                MySqlCommand assignLicenseToPeople = new MySqlCommand("INSERT INTO licenseHandler (eventID, licenseCode) values (@eventID, @licenseCode)", mysqlConnectie);
+                User getUserID = new User(nameAD);
+                int userID = getUserID.ReturnEventID();
                 assignLicenseToPeople.Parameters.AddWithValue("@licenseCode", strLicenseCode);
+                assignLicenseToPeople.Parameters.AddWithValue("@eventID", userID);
 
                 assignLicenseToPeople.ExecuteNonQuery();
                 assignLicenseToPeople.Dispose();

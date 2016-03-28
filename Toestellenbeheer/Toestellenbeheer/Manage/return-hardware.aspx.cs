@@ -63,7 +63,7 @@ namespace Toestellenbeheer.Manage
             unassignHardware.Dispose();
             mysqlConnectie.Close();
             getAssignedHardware();
-            Hardware returnedHardware = new Hardware;
+            Hardware returnedHardware = new Hardware();
             //returnedHardware.createXML("Returned hardware",);
         }
         private void archiveReturnedHardware(String strInternalNr, int intEventID)

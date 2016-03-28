@@ -30,14 +30,15 @@ namespace Toestellenbeheer.Manage
 
         protected void grvRequests_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnAcceptRequest.Visible = true;
+         btnAcceptRequest.Visible = true;
             btnDenyRequest.Visible = true;
         }
 
         protected void btnAcceptRequest_Click(object sender, EventArgs e)
         {
             int intRequestID = Convert.ToInt32(grvRequests.SelectedDataKey["requestID"].ToString());
-            setRequestAccept(intRequestID);
+            var request = new Request(intRequestID);
+            request.AcceptRequest();
             assignHardwareToPeople();
             Session["SuccessInfo"] = "Successfully accepted request";
             Server.Transfer("~/Success.aspx");
@@ -48,50 +49,29 @@ namespace Toestellenbeheer.Manage
             String strNameAD = grvRequests.SelectedDataKey["nameAD"].ToString();
             String strInternalNr = grvRequests.SelectedDataKey["internalNr"].ToString();
             String strSerialNr = grvRequests.SelectedDataKey["serialNr"].ToString();
-            GetADUser getIndex = new GetADUser();
+            User getIndex = new User(strNameAD);
 
-            int userIndex = getIndex.returnEventID(strNameAD);
-            mysqlConnectie.Open();
-
-            MySqlCommand bindEventIDWithHardware = new MySqlCommand("UPDATE hardware SET eventID = '" + userIndex + "' WHERE internalNr LIKE '" +
-                strInternalNr + "'", mysqlConnectie);
-            bindEventIDWithHardware.ExecuteNonQuery();
-            bindEventIDWithHardware.Dispose();
-            mysqlConnectie.Close();
+            int userIndex = getIndex.ReturnEventID();
+            var request = new Hardware(userIndex, strInternalNr);
+            request.BindEventID();
 
             Hardware requestedHardware = new Hardware();
-            requestedHardware.archiveAssignedHardware(strSerialNr, strInternalNr, maxIndex); //Archive the assigned hardware
+            requestedHardware.ArchiveAssignedHardware(strSerialNr, strInternalNr, userIndex); //Archive the assigned hardware
             String strModelNr = "";
             String strManufacturer = "";
-            requestedHardware.createXML(strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
+           
+            requestedHardware.CreateXML("AssignedHardware",strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
 
         }
 
-        protected void setRequestAccept(int requestID)
-        {
-            try
-            {
-                mysqlConnectie.Open();
-                MySqlCommand setRequestAccepted = new MySqlCommand("UPDATE request SET requestAccepted = true WHERE requestID = " + requestID, mysqlConnectie);
-                setRequestAccepted.ExecuteNonQuery();
-            }
-            catch (MySqlException ex)
-            {
-                lblExeption.Text = ex.ToString();
-            }
-            finally
-            {
-                mysqlConnectie.Close();
-            }
-        }
+        
         protected void btnDenyRequest_Click(object sender, EventArgs e)
         {
             try
             {
                 int intRequestID = Convert.ToInt32(grvRequests.SelectedDataKey["requestID"].ToString());
-                mysqlConnectie.Open();
-                MySqlCommand deleteSelectedRequest = new MySqlCommand("DELETE FROM request WHERE requestID = " + intRequestID, mysqlConnectie);
-                deleteSelectedRequest.ExecuteNonQuery();
+                Request deniedRequest = new Request(intRequestID);
+                deniedRequest.DenyRequest();
                 Session["SuccessInfo"] = "Succesfully deleted request";
                 Server.Transfer("~/Success.aspx");
             }

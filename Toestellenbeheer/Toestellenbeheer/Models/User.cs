@@ -9,20 +9,42 @@ using System.Configuration;
 
 namespace Toestellenbeheer.Models
 {
-    public class GetADUser
+    public class User
     {
-        public int returnEventID(String strNameAD)
+        public String NameAD { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="User"/> class.
+        /// </summary>
+        public User()
+        {
+
+        }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="User"/> class with the user principal name of AD.
+        /// </summary>
+        /// <param name="nameAD">The user principal name of active directory</param>
+        public User(string nameAD)
+        {
+            this.NameAD = nameAD;
+        }
+        /// <summary>
+        /// Checks if user already exists in the database
+        /// and create a user eventID in the database if nessesary
+        /// and returns the users eventID.
+        /// </summary>
+        /// <returns>System.Int32 the users eventID.</returns>
+        public int ReturnEventID()
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
             mysqlConnectie.Open();
-            MySqlCommand checkPeopleAlreadyExist = new MySqlCommand("SELECT eventID FROM people Where nameAD = '" + strNameAD + "'", mysqlConnectie);
+            MySqlCommand checkPeopleAlreadyExist = new MySqlCommand("SELECT eventID FROM people Where nameAD = '" + NameAD + "'", mysqlConnectie);
             object checkObj = checkPeopleAlreadyExist.ExecuteScalar();
 
             if (checkObj == null)
             {
                 MySqlCommand addPeople = new MySqlCommand("INSERT INTO people (nameAD) values (@nameAD)", mysqlConnectie);
-                addPeople.Parameters.AddWithValue("@nameAd", strNameAD);
+                addPeople.Parameters.AddWithValue("@nameAd", NameAD);
                 addPeople.ExecuteNonQuery();
                 addPeople.Dispose();
 
@@ -38,7 +60,11 @@ namespace Toestellenbeheer.Models
             }
 
         }
-    public DataTable returnDataTable()
+        /// <summary>
+        /// Returns all users in AD in specific path in the data table in a datatable.
+        /// </summary>
+        /// <returns>DataTable of all users in AD.</returns>
+        public DataTable ReturnDataTable()
         {
             DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.AD.ADConnectionPrefix, SetupFile.AD.ADUserName, SetupFile.AD.ADUserPassword); //SetupFile
 

@@ -9,6 +9,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using Toestellenbeheer.Models;
+
 
 namespace Toestellenbeheer.Manage
 {
@@ -30,17 +32,10 @@ namespace Toestellenbeheer.Manage
         {
             try
             {
-                mysqlConnectie.Open();
-
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT * FROM type", mysqlConnectie);
-                MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
-                bindToGrid.ExecuteNonQuery();
-                bindToGrid.Dispose();
-                DataSet ds = new DataSet();
-                adpa.Fill(ds);
-                typeSelect.DataSource = ds;
+                var type = new TypeName();
+                DataTable dt = type.ReturnDatatableType();
+                typeSelect.DataSource = dt;
                 typeSelect.DataBind();
-                mysqlConnectie.Close();
 
             }
             catch (MySqlException ex)
@@ -56,16 +51,8 @@ namespace Toestellenbeheer.Manage
             {
                 String strType = typeName.Text.ToString();
 
-                mysqlConnectie.Open();
-                MySqlCommand addType = new MySqlCommand("Insert into type (type) values (@Type)", mysqlConnectie);
-
-                addType.Parameters.AddWithValue("@Type", strType);
-
-
-                addType.ExecuteNonQuery();
-                addType.Dispose();
-                mysqlConnectie.Close();
-
+                var type = new TypeName(strType);
+                type.AddTypeToDatabase();
                 bindTypeToGrid();
             }
 

@@ -5,6 +5,7 @@ using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
 using System.IO;
+using Toestellenbeheer.Models;
 
 namespace Toestellenbeheer
 {
@@ -219,15 +220,9 @@ namespace Toestellenbeheer
             selectedRow.Visible = true;
             mysqlConnectie.Open();
             strInternalNr = lblInternalNr.Text;
-            MySqlCommand viewDetails = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation, modelNr FROM hardware WHERE internalNr " +
-                "LIKE '" + strInternalNr + "'", mysqlConnectie);
-
-            MySqlDataAdapter adpa = new MySqlDataAdapter(viewDetails);
-            viewDetails.ExecuteNonQuery();
-            viewDetails.Dispose();
-            DataSet ds = new DataSet();
-            adpa.Fill(ds);
-            selectedRow.DataSource = ds;
+            var getHardware = new Hardware(strInternalNr);
+            DataTable dt = getHardware.ReturnDatatableHardwareFromInternal();
+            selectedRow.DataSource = dt;
             selectedRow.DataBind();
             mysqlConnectie.Close();
             modifyPanel.Visible = false;
@@ -261,17 +256,9 @@ namespace Toestellenbeheer
         protected void getTypeList()
         {
 
-            mysqlConnectie.Open();
-            DataSet Type = new DataSet();
-            string listTypeOut = "select type from type";
-            MySqlCommand listOutType = new MySqlCommand(listTypeOut, mysqlConnectie);
-            using (MySqlDataAdapter data1 = new MySqlDataAdapter(listOutType))
-                data1.Fill(Type, "type");
-            typeList.DataSource = Type.Tables["type"];
-            typeList.DataBind();
-
-            typeList.DataTextField = "type";
-            typeList.DataValueField = "type";
+            var type = new TypeName();
+            DataTable dt = type.ReturnDatatableType();
+            typeList.DataSource = dt;
             typeList.DataBind();
             mysqlConnectie.Close();
 

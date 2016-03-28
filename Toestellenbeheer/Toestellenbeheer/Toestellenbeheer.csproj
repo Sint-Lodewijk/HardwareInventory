@@ -348,7 +348,10 @@
     <Compile Include="Manage\manage-requests.aspx.designer.cs">
       <DependentUpon>manage-requests.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetADUser.cs" />
+    <Compile Include="Models\Request.cs" />
+    <Compile Include="Models\TypeName.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Hardware.cs" />
     <Compile Include="Models\LdapAuthentication.cs" />
     <Compile Include="Manage\assign-hardware.aspx.cs">
       <DependentUpon>assign-hardware.aspx</DependentUpon>

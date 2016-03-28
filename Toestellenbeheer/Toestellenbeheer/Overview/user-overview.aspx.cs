@@ -13,8 +13,8 @@ namespace Toestellenbeheer.Overview
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            GetADUser get = new GetADUser();
-            DataTable dt = get.returnDataTable();
+            User get = new User();
+            DataTable dt = get.ReturnDataTable();
             gv.DataSource = dt;
 
             gv.DataBind();

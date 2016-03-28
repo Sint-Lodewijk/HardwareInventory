@@ -45,7 +45,9 @@
             .outerPopup {
                 background-color: transparent;
             }
-
+            .hide{
+                display:none;
+            }
             .innerPopup {
                 background-color: #DDDDDD;
                 left: 1%;
@@ -150,7 +152,7 @@
                             </div>
                         </div>
 
-                        <asp:GridView ID="licenseOverviewGridSearch" OnSelectedIndexChanged="display_search_button" CssClass="table table-hover table-striped gridview" runat="server">
+                        <asp:GridView ID="licenseOverviewGridSearch" DataKeyNames="internalNr, serialNr" OnSelectedIndexChanged="display_search_button" CssClass="table table-hover table-striped gridview" runat="server">
 
 
                             <SelectedRowStyle BackColor="#A1DCF2" Font-Bold="True" ForeColor="White" />
@@ -199,8 +201,9 @@
                     <asp:Button ID="hideShowPeople" runat="server" Text="Assign to people" OnClick="hideShowPeople_Click" CssClass="btn btn-info form-control" />
                 </div>
             </div>
+            <asp:Button runat="server" ID="target" CssClass="hide" />
         <AjaxControl:ModalPopupExtender runat="server" ID="PeoplePopUP"
-            TargetControlID="hideShowHardware"
+            TargetControlID="target"
             PopupControlID="peoplePanel"
             BackgroundCssClass="modalBackground"
             DropShadow="False"
@@ -211,7 +214,7 @@
         <asp:Panel ID="peoplePanel" CssClass="innerPopup" runat="server">
             <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <asp:GridView ID="licenseOverviewGridPeople" OnPageIndexChanging="licenseOverviewGridPeople_PageIndexChanging" CssClass="table table-hover table-striped gridview" runat="server" OnSelectedIndexChanged="selectPeopleGridview_Click" AllowPaging="True" PageSize="9">
+                    <asp:GridView ID="licenseOverviewGridPeople" DataKeyNames="Domain Name" OnPageIndexChanging="licenseOverviewGridPeople_PageIndexChanging" CssClass="table table-hover table-striped gridview" runat="server" OnSelectedIndexChanged="selectPeopleGridview_Click" AllowPaging="True" PageSize="9">
                         <Columns>
                             <asp:CommandField ShowSelectButton="True" />
                         </Columns>

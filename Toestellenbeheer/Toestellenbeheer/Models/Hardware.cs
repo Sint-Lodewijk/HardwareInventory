@@ -63,6 +63,7 @@ namespace Toestellenbeheer.Models
             this.EventID = intEventID;
             this.InternalNr = strInternalNr;
         }
+    
         public string AddedDate { get; set; }
         public string AttachmentLocation { get; set; }
         public string ExtraInfo { get; set; }
@@ -75,6 +76,7 @@ namespace Toestellenbeheer.Models
         public string SerialNr { get; set; }
         public string WarrantyInfo { get; set; }
         public string TypeName { get; set; }
+        
         /// <summary>
         /// Adds the hardware into database.
         /// </summary>
@@ -110,7 +112,7 @@ namespace Toestellenbeheer.Models
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             mysqlConnectie.Open();
-            MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', type , manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation FROM hardware WHERE internalNr = '" + InternalNr + "'", mysqlConnectie);
+            MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', type , manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation, modelNr FROM hardware WHERE internalNr = '" + InternalNr + "'", mysqlConnectie);
             var dataReader = getCorrespondingPeople.ExecuteReader();
             var dt = new DataTable();
             dt.Load(dataReader);
@@ -118,6 +120,28 @@ namespace Toestellenbeheer.Models
 
             return dt;
         }
+        /// <summary>
+        /// Returns the datatable of all hardware in the database.
+        /// </summary>
+        /// <returns>DataTable.</returns>
+        public DataTable ReturnDatatableAllHardware()
+        {
+            MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            mysqlConnectie.Open();
+            MySqlCommand getHardware = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type , manufacturerName, serialNr, internalNr, warranty, extraInfo, DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation, eventID FROM hardware ", mysqlConnectie);
+            var dataReader = getHardware.ExecuteReader();
+            var dt = new DataTable();
+            dt.Load(dataReader);
+            mysqlConnectie.Close();
+
+            return dt;
+        }
+        /// <summary>
+        /// Archives the assigned hardware.
+        /// </summary>
+        /// <param name="strSerialNr">The string serial nr.</param>
+        /// <param name="strInternalNr">The string internal nr.</param>
+        /// <param name="intEventID">The int event identifier.</param>
         public void ArchiveAssignedHardware(String strSerialNr, String strInternalNr, int intEventID)
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
@@ -190,6 +214,18 @@ namespace Toestellenbeheer.Models
             bindEventIDWithHardware.ExecuteNonQuery();
             bindEventIDWithHardware.Dispose();
             mysqlConnectie.Close();
+        }
+       public DataTable ReturnSearchDatatable(string searchType, string searchValue)
+        {
+            MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+            mysqlConnectie.Open();
+            MySqlCommand searchItem = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', type, manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation, modelNr FROM hardware WHERE " + searchType + " LIKE '%" + searchValue + "%';", mysqlConnectie);
+
+            var searchReader = searchItem.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(searchReader);
+            return dt;
         }
     }
     //WebRequest request = WebRequest.Create(SetupFile.GlobalVar.ScripturaPath);

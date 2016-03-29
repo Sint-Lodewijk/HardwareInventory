@@ -19,8 +19,19 @@
             <asp:Label runat="server" ID="lblProblem" Text=""></asp:Label>
         </div>
     </div>
-    <asp:GridView ID="typeSelect" runat="server"  CssClass="table table-hover table-striped gridview">
+    <asp:GridView ID="typeSelect" OnRowEditing="typeSelect_RowEditing" runat="server" Width="80%"  CssClass="table table-hover table-striped gridview" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="type" DataSourceID="sqlType">
+        <Columns>
+            <asp:BoundField DataField="type" HeaderText="Type" ReadOnly="False" SortExpression="type" />
+            <asp:CommandField EditText="Modify" ShowDeleteButton="True" ShowEditButton="True" />
+        </Columns>
     </asp:GridView>
+    
+    
+    <asp:SqlDataSource ID="sqlType" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT type FROM type" DeleteCommand="DELETE FROM type WHERE (type = @type)" UpdateCommand="UPDATE type SET type = @Type where type = '@typeSelected'">
+        <UpdateParameters>
+            <asp:SessionParameter Name="@typeSelected" SessionField="type" />
+        </UpdateParameters>
+    </asp:SqlDataSource>
     
     
 </asp:Content>

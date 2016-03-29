@@ -41,7 +41,7 @@ namespace Toestellenbeheer.Users
             try
             {
                 var type = new TypeName(strType);
-                DataTable dt = type.ReturnDatatableType();
+                DataTable dt = type.AssociatedDatatableHardware();
                 grvAvailibleHardwareType.DataSource = dt;
                 grvAvailibleHardwareType.DataBind();
                 int intTotalAssociatedCount = grvAvailibleHardwareType.Rows.Count;

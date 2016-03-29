@@ -24,14 +24,9 @@ namespace Toestellenbeheer
             {
                 try
                 {
-                    mysqlConnectie.Open();
-                    MySqlCommand bindToGrid = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, warranty, extraInfo, modelNr, DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation FROM hardware", mysqlConnectie);
-                    MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
-                    bindToGrid.ExecuteNonQuery();
-                    bindToGrid.Dispose();
-                    DataSet ds = new DataSet();
-                    adpa.Fill(ds);
-                    HardwareOverviewGrid.DataSource = ds;
+                    var hardware = new Hardware();
+                    DataTable dt = hardware.ReturnDatatableAllHardware();
+                    HardwareOverviewGrid.DataSource = dt;
                     HardwareOverviewGrid.DataBind();
                     btnReturn.Visible = false;
                     searchPanel.Visible = true;
@@ -49,7 +44,7 @@ namespace Toestellenbeheer
 
         protected void Search(object sender, EventArgs e)
         {
-            this.BindGrid();
+            this.Search();
             searchPanel.Visible = false;
         }
         protected void DownloadFile(object sender, EventArgs e)
@@ -70,23 +65,18 @@ namespace Toestellenbeheer
             }
         }
 
-        private void BindGrid()
+        private void Search()
         {
             try
             {
 
-                mysqlConnectie.Open();
+
                 String strSearchItem = drpSearchItem.SelectedValue.ToString();
                 String strSearchText = txtSearch.Text.Trim();
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation, modelNr FROM hardware WHERE " + strSearchItem + " LIKE '%" + strSearchText + "%';", mysqlConnectie);
+                var searchHardware = new Hardware();
+                DataTable dt = searchHardware.ReturnSearchDatatable(strSearchItem, strSearchText);
 
-
-                MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
-                bindToGrid.ExecuteNonQuery();
-                bindToGrid.Dispose();
-                DataSet ds = new DataSet();
-                adpa.Fill(ds);
-                HardwareOverviewGridSearch.DataSource = ds;
+                HardwareOverviewGridSearch.DataSource = dt;
                 HardwareOverviewGridSearch.DataBind();
 
                 int intTotalResultReturned = HardwareOverviewGridSearch.Rows.Count;
@@ -116,7 +106,7 @@ namespace Toestellenbeheer
         protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             HardwareOverviewGrid.PageIndex = e.NewPageIndex;
-            this.BindGrid();
+            this.Search();
         }
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -132,17 +122,10 @@ namespace Toestellenbeheer
 
             mysqlConnectie.Open();
             String strInternalNr = HardwareOverviewGrid.SelectedRow.Cells[2].ToString();
-
-            MySqlCommand viewDetails = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation, modelNr FROM hardware WHERE internalNr " +
-                "LIKE '" + HardwareOverviewGrid.SelectedRow.Cells[2].Text + "'", mysqlConnectie);
-
-
-            MySqlDataAdapter adpa = new MySqlDataAdapter(viewDetails);
-            viewDetails.ExecuteNonQuery();
-            viewDetails.Dispose();
-            DataSet ds = new DataSet();
-            adpa.Fill(ds);
-            selectedRow.DataSource = ds;
+            Hardware detail = new Hardware(strInternalNr);
+            DataTable dt = detail.ReturnDatatableHardwareFromInternal();
+            
+            selectedRow.DataSource = dt;
             selectedRow.DataBind();
             HardwareOverviewGrid.Visible = false;
             btnReturn.Visible = true;
@@ -158,15 +141,9 @@ namespace Toestellenbeheer
                 String strInternalNr = HardwareOverviewGrid.DataKeys[e.RowIndex].Value.ToString();
                 Session["internalNr"] = strInternalNr;
                 lblInternalNr.Text = strInternalNr;
-                MySqlCommand viewDetails = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', typeNr 'Type nr', manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation, modelNr FROM hardware WHERE internalNr " +
-                    "LIKE '" + strInternalNr + "'", mysqlConnectie);
-
-                MySqlDataAdapter adpa = new MySqlDataAdapter(viewDetails);
-                viewDetails.ExecuteNonQuery();
-                viewDetails.Dispose();
-                DataSet ds = new DataSet();
-                adpa.Fill(ds);
-                selectedRow.DataSource = ds;
+                var hardwareDetail = new Hardware(strInternalNr);
+                DataTable dt = hardwareDetail.ReturnDatatableHardwareFromInternal();
+                selectedRow.DataSource = dt;
                 selectedRow.DataBind();
                 HardwareOverviewGrid.Visible = false;
                 btnReturn.Visible = true;
@@ -237,7 +214,7 @@ namespace Toestellenbeheer
             getTypeList();
         }
 
-    
+
         protected void updateInfo(String parameter, String value)
         {
             try
@@ -274,13 +251,14 @@ namespace Toestellenbeheer
 
         protected void manufacturerList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (manufacturerList.SelectedIndex != 0) { 
-            mysqlConnectie.Open();
+            if (manufacturerList.SelectedIndex != 0)
+            {
+                mysqlConnectie.Open();
 
-            updateInfo("manufacturerName", manufacturerList.SelectedValue.ToString());
-            mysqlConnectie.Close();
-            lblModifiedManufacturer.Text = "The manufacturer has been updated!";
-        }
+                updateInfo("manufacturerName", manufacturerList.SelectedValue.ToString());
+                mysqlConnectie.Close();
+                lblModifiedManufacturer.Text = "The manufacturer has been updated!";
+            }
             else
             {
                 lblModifiedManufacturer.Text = "When you select a manufacturer, this will update automatically into the database.";

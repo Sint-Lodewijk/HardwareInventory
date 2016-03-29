@@ -17,7 +17,7 @@
                 <asp:DropDownList ID="drpSearchItem" CssClass="form-control" runat="server">
                     <asp:ListItem Value="internalNr">Internal Nr</asp:ListItem>
                     <asp:ListItem Value="manufacturerName">Manufacturer</asp:ListItem>
-                    <asp:ListItem Value="typeNr">Type Nr</asp:ListItem>
+                    <asp:ListItem Value="type">Type</asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div class="col-sm-2">
@@ -33,7 +33,7 @@
             <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
             <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />
             <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="manufacturerName" />
-            <asp:BoundField DataField="typeNr" HeaderText="Type nr" SortExpression="typeNr" />
+            <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
 
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
@@ -58,7 +58,7 @@
             <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
             <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />
             <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="manufacturerName" />
-            <asp:BoundField DataField="typeNr" HeaderText="Type nr" SortExpression="typeNr" />
+            <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
                     <asp:LinkButton ID="lnkShowMoreInfo" runat="server" CommandName="Delete" Text="Details"></asp:LinkButton>
@@ -110,11 +110,11 @@
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label ID="Label9" runat="server" Text="Type Nr: ">
+                                <asp:Label ID="Label9" runat="server" Text="Type: ">
                                 </asp:Label>
                             </td>
                             <td>
-                                <asp:Label ID="Label1" runat="server" Text='<%#Eval("Type nr")%>'>
+                                <asp:Label ID="Label1" runat="server" Text='<%#Eval("Type")%>'>
                                 </asp:Label></td>
                         </tr>
                         <tr>

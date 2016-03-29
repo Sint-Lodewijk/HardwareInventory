@@ -19,7 +19,7 @@
         </Fields>
 
     </asp:DetailsView>
-    <asp:SqlDataSource ID="sqlDetail" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT purchaseDate, serialNr, internalNr, warranty, extraInfo, manufacturerName, pictureLocation, type, attachmentLocation,  modelNr FROM hardware JOIN type ON type.typeNr = hardware.typeNr WHERE (internalNr = @internalNr)" UpdateCommand="UPDATE hardware SET purchaseDate = @purchaseDate, serialNr = @serialNr, internalNr = @internalNr, warranty = @warranty, extraInfo = @extraInfo, manufacturerName = @manufacturerName, modelNr = modelNr">
+    <asp:SqlDataSource ID="sqlDetail" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT purchaseDate, serialNr, internalNr, warranty, extraInfo, manufacturerName, pictureLocation, type, attachmentLocation,  modelNr FROM hardware  WHERE (internalNr = @internalNr)" UpdateCommand="UPDATE hardware SET purchaseDate = @purchaseDate, serialNr = @serialNr, internalNr = @internalNr, warranty = @warranty, extraInfo = @extraInfo, manufacturerName = @manufacturerName, modelNr = modelNr">
         <SelectParameters>
             <asp:SessionParameter Name="@internalNr" SessionField="internalNr" />
         </SelectParameters>

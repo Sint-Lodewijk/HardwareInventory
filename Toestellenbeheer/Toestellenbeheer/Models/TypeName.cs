@@ -50,7 +50,7 @@ namespace Toestellenbeheer.Models
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             mysqlConnectie.Open();
-            MySqlCommand getAssociatedHardwareFromType = new MySqlCommand("SELECT  manufacturerName, hardware.serialNr, hardware.internalNr, pictureLocation, modelNr  FROM hardware JOIN type ON type.typeNr = hardware.typeNr WHERE type = '" + typeName + "'", mysqlConnectie);
+            MySqlCommand getAssociatedHardwareFromType = new MySqlCommand("SELECT  manufacturerName, hardware.serialNr, hardware.internalNr, pictureLocation, modelNr, type  FROM hardware WHERE type = '" + typeName + "'", mysqlConnectie);
             var hardwareReader = getAssociatedHardwareFromType.ExecuteReader();
             var dt = new DataTable();
             dt.Load(hardwareReader);

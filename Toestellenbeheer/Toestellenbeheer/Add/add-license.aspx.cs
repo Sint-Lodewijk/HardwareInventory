@@ -72,6 +72,7 @@ namespace Toestellenbeheer.Manage
         //Displays the search button
         protected void display_search_button(object sender, EventArgs e)
         {
+            licenseOverviewGridSearch.Visible = true;
             RowSelect(licenseOverviewGridSearch);
             btnAssignToSelectedHardwareSearch.Visible = true;
 
@@ -85,7 +86,7 @@ namespace Toestellenbeheer.Manage
                 String strSearchItem = drpSearchItem.SelectedValue.ToString();
                 String strSearchText = txtSearch.Text.Trim();
                 // string bindToGridCmd = "SELECT * FROM hardware WHERE @searchItem LIKE '%@searchText%'";
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT typeNr `Type nr`,manufacturerName `Manufacturer`,internalNr 'Internal nr', serialNr 'Serial nr' FROM hardware WHERE " + strSearchItem + " LIKE '%" + strSearchText + "%';", mysqlConnectie);
+                MySqlCommand bindToGrid = new MySqlCommand("SELECT type ,manufacturerName `Manufacturer`,internalNr 'Internal nr', serialNr 'Serial nr' FROM hardware WHERE " + strSearchItem + " LIKE '%" + strSearchText + "%'", mysqlConnectie);
 
                 MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
                 bindToGrid.ExecuteNonQuery();
@@ -128,16 +129,16 @@ namespace Toestellenbeheer.Manage
                 mysqlConnectie.Open();
                 MySqlCommand addLicense = new MySqlCommand("INSERT INTO license (licenseName, licenseCode, expireDate, extraInfo, licenseFileLocation) values (@licenseName, @licenseCode, @expireDate, @extraInfo, @licenseFileLocation)", mysqlConnectie);
                 addLicense.Parameters.AddWithValue("@licenseName", txtLicenseName.Text.Trim());
-                addLicense.Parameters.AddWithValue("@expireDate", txtDatepickerExpire.Text.Trim());
-                addLicense.Parameters.AddWithValue("@extraInfo", txtExtraInfoLicense.Text.Trim());
+                addLicense.Parameters.AddWithValue("@licenseCode", txtLicenseCode.Text);
+                String strExpireDate = txtDatepickerExpire.Text.Substring(6) + "-" + txtDatepickerExpire.Text.Substring(3, 2) + "-" + txtDatepickerExpire.Text.Substring(0, 2);
+                addLicense.Parameters.AddWithValue("@expireDate", strExpireDate);
+                addLicense.Parameters.AddWithValue("@extraInfo", txtExtraInfoLicense.Text);
                 addLicense.Parameters.AddWithValue("@licenseFileLocation", ViewState["timeStampAddedHardware"] + TestlocationAtt.Text.Trim());
 
 
                 addLicense.ExecuteNonQuery();
                 addLicense.Dispose();
-                testLabel.Text = "Congratulations! The license code:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
-                    + "</span>" + " you have entered, has been successfully added into the database. If want want assign this license to any hardware or people, please not use this page!";
-                // testLabel.Text = licenseCode.Text + " has been assigned to device with a internal number: " + internalNr + " and a serial code " + SerialNr;
+                
             }
             catch (MySqlException ex)
             {
@@ -181,17 +182,24 @@ namespace Toestellenbeheer.Manage
                 addLicense();
 
                 mysqlConnectie.Open();
-                MySqlCommand addLicenseCommand = new MySqlCommand("INSERT INTO licenseHandler (internalNr, serialNr, licenseCode) values (@internalNr, @serialNr, @licenseCode)", mysqlConnectie);
+                MySqlCommand getMaxIndexLicenseID = new MySqlCommand("SELECT MAX(licenseID) FROM license", mysqlConnectie);
+                int intLicenseID = (int) getMaxIndexLicenseID.ExecuteScalar();
+                MySqlCommand addLicenseCommand = new MySqlCommand("INSERT INTO licenseHandler (internalNr, serialNr, licenseID) values (@internalNr, @serialNr, @licenseID)", mysqlConnectie);
                 addLicenseCommand.Parameters.AddWithValue("@internalNr", strInternalNr);
                 addLicenseCommand.Parameters.AddWithValue("@serialNr", strSerialCode);
-                addLicenseCommand.Parameters.AddWithValue("@licenseCode", strLicenseCode);
+                addLicenseCommand.Parameters.AddWithValue("@licenseID", intLicenseID);
 
                 addLicenseCommand.ExecuteNonQuery();
                 addLicenseCommand.Dispose();
                 mysqlConnectie.Close();
+                Session["SuccessInfo"] = "Congratulations! The license code:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
+                    + "</span>" + " you have entered, has been successfully added into the database and assigned to the hardware with internal nr: " + strInternalNr;
+                Server.Transfer("~/Success.aspx");
             }
             catch (MySqlException ex)
             {
+
+                throw new Exception(ex.ToString());
             }
         }
         //Shows the error message
@@ -203,8 +211,8 @@ namespace Toestellenbeheer.Manage
         //Uses the assign function to assign the license to selected hardware
         protected void assignToSelectedHardwareSearch_Click(object sender, EventArgs e)
         {
-            String internalNr = licenseOverviewGridSearch.SelectedDataKey["internalNr"].ToString();
-            String strSerialCode = licenseOverviewGridSearch.SelectedDataKey["serialNr"].ToString();
+            String internalNr = licenseOverviewGridSearch.Rows[2].ToString();
+            String strSerialCode = licenseOverviewGridSearch.Rows[3].ToString();
 
         }
 
@@ -272,21 +280,22 @@ namespace Toestellenbeheer.Manage
                 String nameAD = licenseOverviewGridPeople.SelectedDataKey["Domain Name"].ToString();
                 String strLicenseCode = txtLicenseCode.Text;
                 addLicense();
+                User getUserID = new User(nameAD);
+                int userID = getUserID.ReturnEventID();
                 mysqlConnectie.Open();
 
                 MySqlCommand assignLicenseToPeople = new MySqlCommand("INSERT INTO licenseHandler (eventID, licenseCode) values (@eventID, @licenseCode)", mysqlConnectie);
-                User getUserID = new User(nameAD);
-                int userID = getUserID.ReturnEventID();
+             
                 assignLicenseToPeople.Parameters.AddWithValue("@licenseCode", strLicenseCode);
                 assignLicenseToPeople.Parameters.AddWithValue("@eventID", userID);
 
                 assignLicenseToPeople.ExecuteNonQuery();
                 assignLicenseToPeople.Dispose();
 
-                testLabel.Text = "Congratulations! The license code: " + "<span class=\"labelOutput\">" + txtLicenseCode.Text + "</span>" +
+                Session["SuccessInfo"] = "Congratulations! The license code: " + "<span class=\"labelOutput\">" + txtLicenseCode.Text + "</span>" +
                     " has been successfully assigned to " + "<span class=\"labelOutput\">" +
                     licenseOverviewGridPeople.SelectedRow.Cells[2].Text + "</span>";
-                btnAssignLicenseToPeople.Text = "Assign to people";
+                Server.Transfer("~/Success.aspx");
             }
             catch (MySqlException ex)
             {

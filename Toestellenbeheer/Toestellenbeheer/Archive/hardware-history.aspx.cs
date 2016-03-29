@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Toestellenbeheer.Models;
 
 namespace Toestellenbeheer.Archive
 {
@@ -54,14 +55,9 @@ namespace Toestellenbeheer.Archive
         }
         protected void getHardware()
         {
-            mysqlConnectie.Open();
-            MySqlCommand getHardware = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, warranty, extraInfo, DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation, eventID FROM hardware ", mysqlConnectie);
-            MySqlDataAdapter adpa = new MySqlDataAdapter(getHardware);
-            getHardware.ExecuteNonQuery();
-            getHardware.Dispose();
-            DataSet ds = new DataSet();
-            adpa.Fill(ds);
-            grvHardware.DataSource = ds;
+            var hardware = new Hardware();
+            DataTable dt = hardware.ReturnDatatableAllHardware();
+            grvHardware.DataSource = dt;
             grvHardware.DataBind();
         }
     }

@@ -24,11 +24,11 @@ namespace Toestellenbeheer.Manage
             if (!IsPostBack)
             {
 
-                bindTypeToGrid();
+              //  bindTypeToGrid();
             }
         }
 
-        protected void bindTypeToGrid()
+        /*protected void bindTypeToGrid()
         {
             try
             {
@@ -43,7 +43,7 @@ namespace Toestellenbeheer.Manage
                 lblProblem.Text = ex.ToString();
             }
         }
-
+        */
         protected void btnAddType_Click(object sender, EventArgs e)
         {
 
@@ -53,7 +53,7 @@ namespace Toestellenbeheer.Manage
 
                 var type = new TypeName(strType);
                 type.AddTypeToDatabase();
-                bindTypeToGrid();
+                //bindTypeToGrid();
             }
 
             catch (MySqlException ex)
@@ -67,6 +67,14 @@ namespace Toestellenbeheer.Manage
         void ShowMessage(string msg)
         {
             ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> alert('" + msg + "');</ script > ");
+        }
+
+        protected void typeSelect_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            int editIndex = e.NewEditIndex;
+            string selectedType = typeSelect.DataKeys[editIndex].Value.ToString();
+            Session["type"] = selectedType;
+            string testsession = Session["type"].ToString();
         }
     }
 

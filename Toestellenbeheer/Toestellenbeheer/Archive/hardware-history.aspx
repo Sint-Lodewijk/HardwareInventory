@@ -5,7 +5,7 @@
             <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
             <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />
             <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="manufacturerName" />
-            <asp:BoundField DataField="typeNr" HeaderText="Type nr" SortExpression="typeNr" />
+            <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
 
             <%--             <asp:TemplateField HeaderText="Attachment">
                 <ItemTemplate>

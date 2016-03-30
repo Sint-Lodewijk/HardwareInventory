@@ -30,9 +30,9 @@
     <asp:GridView ID="HardwareOverviewGridSearch" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" DataKeyNames="pictureLocation,attachmentLocation" runat="server">
         <Columns>
 
-            <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
-            <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />
-            <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="manufacturerName" />
+            <asp:BoundField DataField="Serial Nr" HeaderText="Serial nr" ReadOnly="True" SortExpression="Serial Nr" />
+            <asp:BoundField DataField="Internal Nr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="Internal Nr" />
+            <asp:BoundField DataField="Manufacturer" HeaderText="Manufacturer name" SortExpression="Manufacturer" />
             <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
 
             <asp:TemplateField HeaderText="">

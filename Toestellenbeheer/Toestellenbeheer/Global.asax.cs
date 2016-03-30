@@ -37,9 +37,8 @@ namespace Toestellenbeheer
             }
             catch (Exception ex)
             {
-               
-                //Write the exception to the Event Log.
-                return;
+
+                throw new Exception(ex.ToString());
 
             }
 

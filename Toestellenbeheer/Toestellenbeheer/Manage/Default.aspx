@@ -8,12 +8,21 @@
 
     <div class="row">
         <div class="col-md-4">
-            <h2>Add a type</h2>
+            <h2>Manage types</h2>
             <p>
-                Add a type.
+                Manage or add a type.
             </p>
             <p>
-                <a class="btn btn-default" href="manage-type">Add type &raquo;</a>
+                <a class="btn btn-default" href="manage-type">Manage type &raquo;</a>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Manage Manufacturer</h2>
+            <p>
+                Manage or add a manufacturer.
+            </p>
+            <p>
+                <a class="btn btn-default" href="manage-manufacturer">Manage Manufacturer &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
@@ -25,7 +34,8 @@
                 <a class="btn btn-default" href="assign-license">Assign &raquo;</a>
             </p>
         </div>
-
+    </div>
+    <div class="row">
         <div class="col-md-4">
             <h2>Assign hardware
             </h2>
@@ -36,8 +46,8 @@
                 <a class="btn btn-default" href="assign-hardware">Assign hardware to person &raquo;</a>
             </p>
         </div>
-    </div>
-    <div class="row">
+
+
         <div class="col-md-4">
             <h2>Return hardware
             </h2>

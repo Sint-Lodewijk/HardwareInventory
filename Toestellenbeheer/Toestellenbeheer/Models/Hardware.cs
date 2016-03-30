@@ -56,6 +56,16 @@ namespace Toestellenbeheer.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Hardware"/> class with 2 parameters.
         /// </summary>
+        /// <param name="strInternalNr">The string internal nr.</param>
+        /// <param name="strSerialNr">The string serial nr.</param>
+        public Hardware(string strInternalNr, string strSerialNr)
+        {
+            InternalNr = strInternalNr;
+            SerialNr = strSerialNr;
+        }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Hardware"/> class with 2 parameters.
+        /// </summary>
         /// <param name="intEventID">The int user event ID.</param>
         /// <param name="strInternalNr">The string internal nr.</param>
         public Hardware(int intEventID, string strInternalNr)
@@ -158,6 +168,16 @@ namespace Toestellenbeheer.Models
             archiveAssigned.Dispose();
             mysqlConnectie.Close();
         }
+        /// <summary>
+        /// Creates the XML file.
+        /// </summary>
+        /// <param name="statusNode">The status node.</param>
+        /// <param name="serialNr">The serial nr.</param>
+        /// <param name="internalNr">The internal nr.</param>
+        /// <param name="manufacturer">The manufacturer.</param>
+        /// <param name="nameAD">The name ad.</param>
+        /// <param name="userName">Name of the user.</param>
+        /// <param name="modelNr">The model nr.</param>
         public void CreateXML(String statusNode, String serialNr, String internalNr, String manufacturer, String nameAD, String userName, String modelNr)
         {
             XmlDocument doc = new XmlDocument();
@@ -215,7 +235,13 @@ namespace Toestellenbeheer.Models
             bindEventIDWithHardware.Dispose();
             mysqlConnectie.Close();
         }
-       public DataTable ReturnSearchDatatable(string searchType, string searchValue)
+        /// <summary>
+        /// Returns the datatable of searched hardware .
+        /// </summary>
+        /// <param name="searchType">Type of the search.</param>
+        /// <param name="searchValue">The search value.</param>
+        /// <returns>System.Data.DataTable. searched hardware</returns>
+        public DataTable ReturnSearchDatatable(string searchType, string searchValue)
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 

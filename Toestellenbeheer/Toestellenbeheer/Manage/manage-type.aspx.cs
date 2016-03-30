@@ -24,11 +24,18 @@ namespace Toestellenbeheer.Manage
             if (!IsPostBack)
             {
 
-              //  bindTypeToGrid();
+                bindTypeToGrid();
             }
         }
-
-        /*protected void bindTypeToGrid()
+        protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(typeSelect, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to select this row.";
+            }
+        }
+        protected void bindTypeToGrid()
         {
             try
             {
@@ -43,7 +50,7 @@ namespace Toestellenbeheer.Manage
                 lblProblem.Text = ex.ToString();
             }
         }
-        */
+
         protected void btnAddType_Click(object sender, EventArgs e)
         {
 
@@ -53,7 +60,7 @@ namespace Toestellenbeheer.Manage
 
                 var type = new TypeName(strType);
                 type.AddTypeToDatabase();
-                //bindTypeToGrid();
+                bindTypeToGrid();
             }
 
             catch (MySqlException ex)
@@ -69,12 +76,39 @@ namespace Toestellenbeheer.Manage
             ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> alert('" + msg + "');</ script > ");
         }
 
-        protected void typeSelect_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void typeSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int editIndex = e.NewEditIndex;
-            string selectedType = typeSelect.DataKeys[editIndex].Value.ToString();
-            Session["type"] = selectedType;
-            string testsession = Session["type"].ToString();
+
+            ViewState["type"] = typeSelect.SelectedDataKey["type"].ToString();
+            ButtonPanel.Visible = true;
+
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            ModifyPanel.Visible = true;
+            txtType.Text = ViewState["type"].ToString();
+            ModifyPopUP.Show();
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            var deleteType = new TypeName(ViewState["type"].ToString());
+            if (deleteType.IsRemoved())
+            {
+                Session["SuccessInfo"] = "Successfully deleted type " + ViewState["type"].ToString();
+                Response.Redirect("~/Success.aspx");
+            }
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            var updateType = new TypeName(ViewState["type"].ToString());
+            if (updateType.IsUpdated(txtType.Text))
+            {
+                Session["SuccessInfo"] = "Successfully updated type " + txtType.Text;
+                Response.Redirect("~/Success.aspx");
+            }
         }
     }
 

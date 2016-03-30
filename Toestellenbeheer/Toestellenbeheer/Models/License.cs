@@ -1,0 +1,84 @@
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Web;
+
+namespace Toestellenbeheer.Models
+{
+    public class License
+    {
+        MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+        public License()
+        {
+
+        }
+       
+        /// <summary>
+        /// Initializes a new instance of the <see cref="License"/> class with 5 parameters.
+        /// </summary>
+        /// <param name="strLicenseCode">The string license code.</param>
+        /// <param name="strLicenseName">Name of the string license.</param>
+        /// <param name="strExpireDate">The string expire date.</param>
+        /// <param name="strLicenseFile">The string license file.</param>
+        /// <param name="strExtraInfo">The string extra information.</param>
+        public License(string strLicenseCode, string strLicenseName, string strExpireDate, string strLicenseFile, string strExtraInfo)
+        {
+            LicenseCode = strLicenseCode;
+            LicenseName = strLicenseName;
+            ExpireDate = strExpireDate;
+            ExtraInfo = strExtraInfo;
+            LicenseFile = strLicenseFile;
+        }
+        public string LicenseCode { get; set; }
+        public string LicenseName { get; set; }
+        public string ExpireDate { get; set; }
+        public string LicenseFile { get; set; }
+        public string ExtraInfo { get; set; }
+        /// <summary>
+        /// Adds the license in to the database;
+        /// </summary>
+        /// <exception cref="Exception"></exception>
+        public void AddLicense()
+        {
+            try {
+                mysqlConnectie.Open();
+                MySqlCommand addLicense = new MySqlCommand("INSERT INTO license (licenseName, licenseCode, expireDate, extraInfo, licenseFileLocation) values (@licenseName, @licenseCode, @expireDate, @extraInfo, @licenseFileLocation)", mysqlConnectie);
+                addLicense.Parameters.AddWithValue("@licenseName", LicenseName);
+                addLicense.Parameters.AddWithValue("@licenseCode", LicenseCode);
+                addLicense.Parameters.AddWithValue("@expireDate", ExpireDate);
+                addLicense.Parameters.AddWithValue("@extraInfo", ExtraInfo);
+                addLicense.Parameters.AddWithValue("@licenseFileLocation", LicenseFile);
+
+                addLicense.ExecuteNonQuery();
+                addLicense.Dispose();
+            }
+            catch(MySqlException ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+            finally
+            {
+                mysqlConnectie.Close();
+
+            }
+        }
+        public int ReturnMaxLicenseID()
+        {
+            MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+            mysqlConnectie.Open();
+            MySqlCommand getMaxIndexLicenseID = new MySqlCommand("SELECT MAX(licenseID) FROM license", mysqlConnectie);
+            int intLicenseID = (int)getMaxIndexLicenseID.ExecuteScalar();
+            mysqlConnectie.Close();
+            return intLicenseID;
+        }
+        public void AssignLicenseToHardware(string strSerialNr, string strInternalNr)
+        {
+
+        }
+    }
+
+}

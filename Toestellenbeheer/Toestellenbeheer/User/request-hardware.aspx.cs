@@ -42,9 +42,9 @@ namespace Toestellenbeheer.Users
             {
                 var type = new TypeName(strType);
                 DataTable dt = type.AssociatedDatatableHardware();
-                grvAvailibleHardwareType.DataSource = dt;
-                grvAvailibleHardwareType.DataBind();
-                int intTotalAssociatedCount = grvAvailibleHardwareType.Rows.Count;
+                grvAvailableHardwareType.DataSource = dt;
+                grvAvailableHardwareType.DataBind();
+                int intTotalAssociatedCount = grvAvailableHardwareType.Rows.Count;
                 if (intTotalAssociatedCount == 0)
                 {
                     lblProblem.Text = "No available hardware of this type of hardware";
@@ -72,7 +72,7 @@ namespace Toestellenbeheer.Users
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvAvailibleHardwareType, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvAvailableHardwareType, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
 
@@ -116,8 +116,8 @@ namespace Toestellenbeheer.Users
 
         protected void btnRequest_Click(object sender, EventArgs e)
         {
-            String strInternalNr = grvAvailibleHardwareType.SelectedDataKey["internalNr"].ToString();
-            String strSerialNr = grvAvailibleHardwareType.SelectedDataKey["serialNr"].ToString();
+            String strInternalNr = grvAvailableHardwareType.SelectedDataKey["internalNr"].ToString();
+            String strSerialNr = grvAvailableHardwareType.SelectedDataKey["serialNr"].ToString();
             String requestDate = DateTime.Now.ToString("yyyy-MM-dd");
             var userID = new User(Context.User.Identity.Name);
             int intEventID = userID.ReturnEventID();

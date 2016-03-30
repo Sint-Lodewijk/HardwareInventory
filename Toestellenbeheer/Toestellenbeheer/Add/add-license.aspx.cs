@@ -24,9 +24,9 @@ namespace Toestellenbeheer.Manage
                 //hardwarePanel.Visible = false;
                 //peoplePanel.Visible = false;
                 String strTimeStamp = DateTime.Now.ToString("yyyyMMddHHmmss");
-                if (ViewState["timeStampAddedHardware"] == null)
+                if (ViewState["timeStampAddedLicense"] == null)
                 {
-                    ViewState["timeStampAddedHardware"] = strTimeStamp;
+                    ViewState["timeStampAddedLicense"] = strTimeStamp;
                 }
             }
 
@@ -82,19 +82,14 @@ namespace Toestellenbeheer.Manage
         {
             try
             {
-                mysqlConnectie.Open();
                 String strSearchItem = drpSearchItem.SelectedValue.ToString();
                 String strSearchText = txtSearch.Text.Trim();
                 // string bindToGridCmd = "SELECT * FROM hardware WHERE @searchItem LIKE '%@searchText%'";
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT type ,manufacturerName `Manufacturer`,internalNr 'Internal nr', serialNr 'Serial nr' FROM hardware WHERE " + strSearchItem + " LIKE '%" + strSearchText + "%'", mysqlConnectie);
 
-                MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
-                bindToGrid.ExecuteNonQuery();
-                bindToGrid.Dispose();
-                DataSet ds = new DataSet();
+                var searchedHardware = new Hardware();
+                DataTable dt = searchedHardware.ReturnSearchDatatable(strSearchItem, strSearchText);
 
-                adpa.Fill(ds);
-                licenseOverviewGridSearch.DataSource = ds;
+                licenseOverviewGridSearch.DataSource = dt;
                 licenseOverviewGridSearch.DataBind();
                 int intTotalResultReturned = licenseOverviewGridSearch.Rows.Count;
                 if (intTotalResultReturned == 0)
@@ -112,58 +107,35 @@ namespace Toestellenbeheer.Manage
             {
                 ShowMessage(ex.Message);
             }
-            finally
-            {
-                mysqlConnectie.Close();
-
-            }
+            
 
         }
 
         //Function for add license key into the database
         protected void addLicense()
         {
-            try
+
+
+            string strLicenseName = txtLicenseName.Text.Trim();
+            string strLicenseCode = txtLicenseCode.Text;
+            string strExpireDate = txtDatepickerExpire.Text.Substring(6) + "-" + txtDatepickerExpire.Text.Substring(3, 2) + "-" + txtDatepickerExpire.Text.Substring(0, 2);
+            string strExtraInfo = txtExtraInfoLicense.Text;
+            if (TestlocationAtt.Text.Trim() == "" || TestlocationAtt.Text == null)
             {
-
-                mysqlConnectie.Open();
-                MySqlCommand addLicense = new MySqlCommand("INSERT INTO license (licenseName, licenseCode, expireDate, extraInfo, licenseFileLocation) values (@licenseName, @licenseCode, @expireDate, @extraInfo, @licenseFileLocation)", mysqlConnectie);
-                addLicense.Parameters.AddWithValue("@licenseName", txtLicenseName.Text.Trim());
-                addLicense.Parameters.AddWithValue("@licenseCode", txtLicenseCode.Text);
-                String strExpireDate = txtDatepickerExpire.Text.Substring(6) + "-" + txtDatepickerExpire.Text.Substring(3, 2) + "-" + txtDatepickerExpire.Text.Substring(0, 2);
-                addLicense.Parameters.AddWithValue("@expireDate", strExpireDate);
-                addLicense.Parameters.AddWithValue("@extraInfo", txtExtraInfoLicense.Text);
-                addLicense.Parameters.AddWithValue("@licenseFileLocation", ViewState["timeStampAddedHardware"] + TestlocationAtt.Text.Trim());
-
-
-                addLicense.ExecuteNonQuery();
-                addLicense.Dispose();
-                
-            }
-            catch (MySqlException ex)
-            {
-                if (ex.Number.ToString() == "1062")
-                {
-                    //testLabel.Text = ex.Message.ToString() + ", please check your input.";
-                    //        testLabel.Text = "The license code: " + "<span style=\"color:red\">" + txtLicenseCode.Text + "</span>" + " you have entered for internal number: " + "<span style=\"color:red\">" + internalNr + "</span>" + " has been assigned to another device.";
-                    testLabel.Text = "The license code: " + "<span style=\"color:red\">" + txtLicenseCode.Text + "</span>" + " you have entered, already exists in de database!";
-
-                }
-                else if (ex.Number.ToString() == "1064")
-                {
-
-                    //testLabel.Text = ex.Message.ToString() + ", please check your input.";
-                    testLabel.Text = "Apostrophe ('), quotation mark and semicolum is not allow in the searchword: " + "<span style=\"color:red\">" + txtSearch + "</span>" + ", please delete this marks.";
-
-                }
-                else { ShowMessage(ex.Message); }
+                ViewState["LocationWithTimeStamp"] = "";
 
             }
-            finally
+            else
             {
-                mysqlConnectie.Close();
 
+                ViewState["LocationWithTimeStamp"] = ViewState["timeStampAddedLicense"] + TestlocationAtt.Text.Trim();
             }
+
+            var toAddLicense = new License(strLicenseCode, strLicenseName, strExpireDate, ViewState["LocationWithTimeStamp"].ToString(), strExtraInfo);
+            toAddLicense.AddLicense();
+
+
+
         }
         protected void btnAddLicense_click(object sender, EventArgs e)
         {
@@ -183,15 +155,10 @@ namespace Toestellenbeheer.Manage
 
                 mysqlConnectie.Open();
                 MySqlCommand getMaxIndexLicenseID = new MySqlCommand("SELECT MAX(licenseID) FROM license", mysqlConnectie);
-                int intLicenseID = (int) getMaxIndexLicenseID.ExecuteScalar();
-                MySqlCommand addLicenseCommand = new MySqlCommand("INSERT INTO licenseHandler (internalNr, serialNr, licenseID) values (@internalNr, @serialNr, @licenseID)", mysqlConnectie);
-                addLicenseCommand.Parameters.AddWithValue("@internalNr", strInternalNr);
-                addLicenseCommand.Parameters.AddWithValue("@serialNr", strSerialCode);
-                addLicenseCommand.Parameters.AddWithValue("@licenseID", intLicenseID);
-
-                addLicenseCommand.ExecuteNonQuery();
-                addLicenseCommand.Dispose();
+                int intLicenseID = (int)getMaxIndexLicenseID.ExecuteScalar();
                 mysqlConnectie.Close();
+                var licenseToHardware = new LicenseHandler(strInternalNr, strSerialCode, intLicenseID);
+                licenseToHardware.AssignLicenseToHardware();
                 Session["SuccessInfo"] = "Congratulations! The license code:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
                     + "</span>" + " you have entered, has been successfully added into the database and assigned to the hardware with internal nr: " + strInternalNr;
                 Server.Transfer("~/Success.aspx");
@@ -211,9 +178,16 @@ namespace Toestellenbeheer.Manage
         //Uses the assign function to assign the license to selected hardware
         protected void assignToSelectedHardwareSearch_Click(object sender, EventArgs e)
         {
-            String internalNr = licenseOverviewGridSearch.Rows[2].ToString();
+            String strInternalNr = licenseOverviewGridSearch.Rows[2].ToString();
             String strSerialCode = licenseOverviewGridSearch.Rows[3].ToString();
 
+            var maxLicense = new License();
+            int intLicenseID = maxLicense.ReturnMaxLicenseID();
+            var licenseToHardware = new LicenseHandler(strInternalNr, strSerialCode, intLicenseID);
+            licenseToHardware.AssignLicenseToHardware();
+            Session["SuccessInfo"] = "Congratulations! The license code:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
+                    + "</span>" + " you have entered, has been successfully added into the database and assigned to the hardware with internal nr: " + strInternalNr;
+            Server.Transfer("~/Success.aspx");
         }
 
         //Expand or hide hardware grid + change the text of it
@@ -282,15 +256,10 @@ namespace Toestellenbeheer.Manage
                 addLicense();
                 User getUserID = new User(nameAD);
                 int userID = getUserID.ReturnEventID();
-                mysqlConnectie.Open();
-
-                MySqlCommand assignLicenseToPeople = new MySqlCommand("INSERT INTO licenseHandler (eventID, licenseCode) values (@eventID, @licenseCode)", mysqlConnectie);
-             
-                assignLicenseToPeople.Parameters.AddWithValue("@licenseCode", strLicenseCode);
-                assignLicenseToPeople.Parameters.AddWithValue("@eventID", userID);
-
-                assignLicenseToPeople.ExecuteNonQuery();
-                assignLicenseToPeople.Dispose();
+                var maxLicense = new License();
+                int intLicenseID = maxLicense.ReturnMaxLicenseID();
+                var assignLicenseToPeople = new LicenseHandler(userID, intLicenseID);
+                assignLicenseToPeople.AssignLicenseToPeople();
 
                 Session["SuccessInfo"] = "Congratulations! The license code: " + "<span class=\"labelOutput\">" + txtLicenseCode.Text + "</span>" +
                     " has been successfully assigned to " + "<span class=\"labelOutput\">" +
@@ -329,7 +298,7 @@ namespace Toestellenbeheer.Manage
                         try
                         {
                             LicenseFileUpload.PostedFile.SaveAs(path
-                                + ViewState["timeStampAddedHardware"] + LicenseFileUpload.FileName);
+                                + ViewState["timeStampAddedLicense"] + LicenseFileUpload.FileName);
                             String mAttachPath = LicenseFileUpload.FileName.ToString();
                             TestlocationAtt.Text = LicenseFileUpload.FileName.ToString();
                             ResultUploadAtta.Text = "License file uploaded!";

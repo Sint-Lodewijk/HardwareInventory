@@ -359,6 +359,7 @@
     <Compile Include="Models\License.cs" />
     <Compile Include="Models\LicenseHandler.cs" />
     <Compile Include="Models\Manufacturer.cs" />
+    <Compile Include="Models\MySqlExceptionHandler.cs" />
     <Compile Include="Models\Request.cs" />
     <Compile Include="Models\TypeName.cs" />
     <Compile Include="Models\User.cs" />

@@ -19,7 +19,7 @@ namespace Toestellenbeheer.Users
                     String strUserName = Context.User.Identity.GetUserName();
   
                     mysqlConnectie.Open();
-                    MySqlCommand getMyHardware = new MySqlCommand("SELECT hardware.pictureLocation, hardware.serialNr, hardware.internalNr, hardware.manufacturerName, type.type FROM hardware JOIN archive ON hardware.internalNr = archive.internalNr  JOIN people ON people.eventID = archive.eventID JOIN type ON type.typeNr = hardware.typeNr WHERE people.nameAD = '" + strUserName+"'", mysqlConnectie);
+                    MySqlCommand getMyHardware = new MySqlCommand("SELECT hardware.pictureLocation, hardware.serialNr, hardware.internalNr, hardware.manufacturerName, type FROM hardware JOIN archive ON hardware.internalNr = archive.internalNr  JOIN people ON people.eventID = archive.eventID  WHERE people.nameAD = '" + strUserName+"'", mysqlConnectie);
                     getMyHardware.Parameters.AddWithValue("@nameAD", strUserName);
                     MySqlDataReader rdrGetMyHardware = getMyHardware.ExecuteReader();
                     DataTable dt = new DataTable();

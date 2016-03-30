@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <asp:GridView ID="grvHardwarePoolUnassigned" DataKeyNames="serialNr,internalNr,manufacturerName,typeNr" OnRowDataBound="grvHardwarePoolUnassigned_OnRowDataBound" AutoGenerateColumns="False" runat="server" CssClass="table table-hover table-striped gridview">
+    <asp:GridView ID="grvHardwarePoolUnassigned" DataKeyNames="serialNr,internalNr,manufacturerName,type" OnRowDataBound="grvHardwarePoolUnassigned_OnRowDataBound" AutoGenerateColumns="False" runat="server" CssClass="table table-hover table-striped gridview">
         <Columns>
             <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
                 NullDisplayText="No image associated." ControlStyle-CssClass="picutureGrid" ReadOnly="True">
@@ -11,7 +11,7 @@
             <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
             <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />
             <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="manufacturerName" />
-            <asp:BoundField DataField="typeNr" HeaderText="Type nr" SortExpression="typeNr" />
+            <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
 
 
         </Columns>

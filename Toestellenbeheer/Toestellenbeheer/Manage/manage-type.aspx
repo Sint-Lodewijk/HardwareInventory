@@ -72,10 +72,11 @@
                 <asp:Label runat="server" ID="lblProblem" Text=""></asp:Label>
             </div>
         </div>
-        <asp:GridView ID="typeSelect" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="typeSelect_SelectedIndexChanged" runat="server" Width="80%" CssClass="table table-hover table-striped gridview" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="type">
+        <asp:GridView ID="typeSelect" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="typeSelect_SelectedIndexChanged" runat="server" CssClass="table table-hover table-striped gridview" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="type">
             <Columns>
                 <asp:BoundField DataField="type" HeaderText="Type" ReadOnly="False" SortExpression="type" />
             </Columns>
+            <SelectedRowStyle CssClass="success" />
         </asp:GridView>
         <asp:Panel ID="ButtonPanel" runat="server" Visible="false">
             <asp:Button ID="btnEdit" OnClick="btnEdit_Click" CssClass="btn btn-primary" runat="server" Text="Modify" />
@@ -91,7 +92,7 @@
             CancelControlID="btnCancel">
         </AjaxControl:ModalPopupExtender>
         <asp:Panel ID="ModifyPanel" runat="server">
-            <asp:UpdatePanel runat="server" >
+            <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <div class="form-group">
                         <asp:TextBox ID="txtType" runat="server" CssClass="form-control col-sm-12"></asp:TextBox>

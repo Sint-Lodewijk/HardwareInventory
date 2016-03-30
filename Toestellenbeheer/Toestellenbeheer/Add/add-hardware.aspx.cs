@@ -77,13 +77,28 @@ namespace Toestellenbeheer.Manage
             }
             try
             {
-                //Use the mysql to connect the database
-                string pictureLocation = ViewState["timeStampAddedHardware"] + mImagePath;
-                string attachmentLocation = ViewState["timeStampAddedHardware"] + TestlocationAtt.Text;
+                if (mImagePath == "" || mImagePath == null)
+                {
+                    ViewState["pictureLocation"] = "";
+                }
+                else
+                {
+                    ViewState["pictureLocation"] = ViewState["timeStampAddedHardware"] + mImagePath;
+                   
+                }
+                if (TestlocationAtt.Text == "" || TestlocationAtt.Text == null)
+                {
+                    ViewState["attachmentLocation"] = "";
+                }
+                else
+                {
+                    ViewState["attachmentLocation"] = ViewState["timeStampAddedHardware"] + TestlocationAtt.Text;
+
+                }
                 txtResultUpload.Text = "Congratulations! The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
                    " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " successfully added to the database.";
 
-                var hardware = new Hardware(dteAddedDate, attachmentLocation, strExtraInfo, strInternalNr, strSelectedManufacturer, strModel, pictureLocation,
+                var hardware = new Hardware(dteAddedDate, ViewState["attachmentLocation"].ToString(), strExtraInfo, strInternalNr, strSelectedManufacturer, strModel, ViewState["pictureLocation"].ToString(),
                     dtePurchaseDate, strSerialNr, strWarrantyInfo, typeList.SelectedValue);
                 hardware.AddHardwareIntoDatabase();
 

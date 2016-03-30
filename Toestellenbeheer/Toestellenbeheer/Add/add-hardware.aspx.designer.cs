@@ -49,6 +49,15 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.DropDownList manufacturerList;
         
         /// <summary>
+        /// sqlManufacturer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource sqlManufacturer;
+        
+        /// <summary>
         /// txtDatepicker control.
         /// </summary>
         /// <remarks>

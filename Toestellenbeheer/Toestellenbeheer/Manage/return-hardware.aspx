@@ -8,7 +8,7 @@
                 <ControlStyle CssClass="picutureGrid"></ControlStyle>
             </asp:ImageField>
             <asp:BoundField DataField="nameAD" HeaderText="User name" />
-            <asp:BoundField DataField="typeNr" HeaderText="Type Nr" />
+            <asp:BoundField DataField="type" HeaderText="Type" />
             <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer" />
             <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" />
 

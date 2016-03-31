@@ -27,16 +27,10 @@ namespace Toestellenbeheer.Manage
         {
             try
             {
-                mysqlConnectie.Open();
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type, manufacturerName, serialNr, internalNr, pictureLocation FROM hardware WHERE eventID IS NULL or eventID=''", mysqlConnectie);
-                MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
-                bindToGrid.ExecuteNonQuery();
-                bindToGrid.Dispose();
-                DataSet ds = new DataSet();
-                adpa.Fill(ds);
-                grvHardwarePoolUnassigned.DataSource = ds;
+                var unassigned = new Hardware();
+                DataTable dt = unassigned.ReturnUnassignedHardware();
+                grvHardwarePoolUnassigned.DataSource = dt;
                 grvHardwarePoolUnassigned.DataBind();
-                mysqlConnectie.Close();
             }
             catch (MySqlException ex)
             {
@@ -79,8 +73,8 @@ namespace Toestellenbeheer.Manage
         {
             if (grvHardwarePoolUnassigned.SelectedRow != null && grvPeopleAD.SelectedRow != null)
             {
-                String strSerialNr = grvHardwarePoolUnassigned.SelectedRow.Cells[1].Text.ToString();
-                String strInternalNr = grvHardwarePoolUnassigned.SelectedRow.Cells[2].Text.ToString();
+                String strSerialNr = grvHardwarePoolUnassigned.SelectedDataKey["serialNr"].ToString();
+                String strInternalNr = grvHardwarePoolUnassigned.SelectedDataKey["internalNr"].ToString();
                 String strNameAD = grvPeopleAD.SelectedRow.Cells[2].Text.ToString();
 
                 User getUserID = new User(strNameAD);
@@ -109,6 +103,24 @@ namespace Toestellenbeheer.Manage
         {
             var assignedHardware = new Hardware(index, internalNr);
             assignedHardware.BindEventID();
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            PeoplePopUp.Hide();
+        }
+
+        protected void btnOpenPeoplePopUp_Click(object sender, EventArgs e)
+        {
+            PeoplePanel.Visible = true;
+            PeoplePopUp.Show();
+        }
+
+        protected void grvHardwarePoolUnassigned_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnOpenPeoplePopUp.Visible = true;
+            btnAssignHardwarePeople.Text = "Assign " + grvHardwarePoolUnassigned.SelectedDataKey["internalNr"].ToString();
+
         }
     }
 }

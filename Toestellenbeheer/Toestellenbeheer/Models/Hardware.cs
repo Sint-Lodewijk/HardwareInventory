@@ -279,13 +279,31 @@ namespace Toestellenbeheer.Models
                 var searchReader = searchItem.ExecuteReader();
                 DataTable dt = new DataTable();
                 dt.Load(searchReader);
+                mysqlConnectie.Close();
+
                 return dt;
             }
             catch (MySqlException ex)
             {
                 var handler = new MySqlExceptionHandler(ex, "Hardware");
                 throw new Exception(handler.ExceptionType);
+                
             }
+            
+        }
+        public DataTable ReturnUnassignedHardware()
+        {
+            MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+            mysqlConnectie.Open();
+            MySqlCommand ReturnUnassignedHardware = new MySqlCommand("SELECT DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type, manufacturerName, serialNr, internalNr, pictureLocation FROM hardware WHERE eventID IS NULL or eventID=''", mysqlConnectie);
+            var unassignsReader = ReturnUnassignedHardware.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(unassignsReader);
+            mysqlConnectie.Close();
+
+            return dt;
+           
         }
 
     }

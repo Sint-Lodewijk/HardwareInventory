@@ -28,7 +28,7 @@ namespace Toestellenbeheer.Manage
             try
             {
                 mysqlConnectie.Open();
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT  DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', typeNr, manufacturerName, serialNr, internalNr, pictureLocation, nameAD FROM hardware JOIN people on hardware.eventID = people.eventID ", mysqlConnectie);
+                MySqlCommand bindToGrid = new MySqlCommand("SELECT  DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type, manufacturerName, serialNr, internalNr, pictureLocation, nameAD FROM hardware JOIN people on hardware.eventID = people.eventID ", mysqlConnectie);
                 MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
                 bindToGrid.ExecuteNonQuery();
                 bindToGrid.Dispose();

@@ -84,7 +84,7 @@ namespace Toestellenbeheer.Overview
         protected void getCorrespondingPeople(String strLicenseCode)
         {
             mysqlConnectie.Open();
-            MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT licenseEventID, licenseHandler.licenseCode, nameAD from licenseHandler join people on licenseHandler.eventID = people.eventID where licenseHandler.licenseCode = '" + strLicenseCode + "'", mysqlConnectie);
+            MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT licenseEventID, licenseHandler.licenseID, nameAD from licenseHandler join people on licenseHandler.eventID = people.eventID where licenseCode = '" + strLicenseCode + "'", mysqlConnectie);
             MySqlDataAdapter adpa = new MySqlDataAdapter(getCorrespondingPeople);
             getCorrespondingPeople.ExecuteNonQuery();
             getCorrespondingPeople.Dispose();

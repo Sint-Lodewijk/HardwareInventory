@@ -183,7 +183,7 @@
     <Content Include="Archive\Default.aspx" />
     <Content Include="Archive\hardware-history.aspx" />
     <Content Include="Archive\people-history.aspx" />
-    <Content Include="Contact.aspx" />
+    <Content Include="BugReport.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -201,6 +201,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\Server.pubxml" />
+    <None Include="Properties\PublishProfiles\Server2.pubxml" />
     <None Include="Properties\PublishProfiles\toestellenbeheer - Web Deploy.pubxml" />
     <Content Include="favicon.ico" />
     <Content Include="Manage\assign-hardware.aspx" />
@@ -222,6 +223,7 @@
     <Content Include="Add\Default.aspx" />
     <Content Include="Manage\Default.aspx" />
     <Content Include="Overview\license-overview.aspx" />
+    <None Include="Properties\PublishProfiles\WinServer.pubxml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Overview\user-overview.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -325,12 +327,12 @@
     <Compile Include="Archive\people-history.aspx.designer.cs">
       <DependentUpon>people-history.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="BugReport.aspx.cs">
+      <DependentUpon>BugReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="BugReport.aspx.designer.cs">
+      <DependentUpon>BugReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

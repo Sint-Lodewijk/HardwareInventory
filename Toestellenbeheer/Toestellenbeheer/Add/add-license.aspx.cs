@@ -67,7 +67,6 @@ namespace Toestellenbeheer.Manage
             btnAssignToSelectedHardware.Visible = false;
             this.HardwarePanelPopUP.Show();
 
-
         }
         //Displays the search button
         protected void display_search_button(object sender, EventArgs e)
@@ -200,7 +199,22 @@ namespace Toestellenbeheer.Manage
             this.HardwarePanelPopUP.Show();
 
         }
-
+        protected void SearchBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(licenseOverviewGridSearch, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to select this row.";
+            }
+        }
+        protected void PeopleBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(licenseOverviewGridPeople, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to select this row.";
+            }
+        }
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)

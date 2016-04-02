@@ -88,7 +88,6 @@
                             });
                         </script>
                         <asp:TextBox runat="server" ID="txtDatepickerExpire" placeholder="Click to select a expire date" CssClass="form-control" />
-                    <asp:RequiredFieldValidator ControlToValidate="txtDatepickerExpire" runat="server"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="form-group">
@@ -123,14 +122,12 @@
                     <asp:Button ID="hideShowHardware" runat="server" Text="Assign to hardware" OnClick="hideShowHardware_Click" CssClass="btn btn-info form-control" />
                 </div>
             </div>
-
+            <asp:Button ID="targets" CssClass="hide" runat="server" />
             <AjaxControl:ModalPopupExtender runat="server" ID="HardwarePanelPopUP"
                 TargetControlID="hideShowHardware"
                 PopupControlID="hardwarePanel"
                 BackgroundCssClass="modalBackground"
-                DropShadow="False"
-                OkControlID="btnAssignToSelectedHardware"
-                CancelControlID="btnCloseHardware">
+                DropShadow="False">
             </AjaxControl:ModalPopupExtender>
             <asp:Panel ID="hardwarePanel" CssClass="innerPopup" runat="server">
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
@@ -155,7 +152,13 @@
                             </div>
                         </div>
 
-                        <asp:GridView ID="licenseOverviewGridSearch" OnSelectedIndexChanged="display_search_button" CssClass="table table-hover table-striped gridview" runat="server">
+                        <asp:GridView ID="licenseOverviewGridSearch" AutoGenerateColumns="false" OnRowDataBound="SearchBound" CssClass="table table-hover table-striped gridview" runat="server">
+                             <Columns>
+                                <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
+                                <asp:BoundField DataField="Manufacturer" HeaderText="Manufacturer name" SortExpression="manufacturerName" />
+                                <asp:BoundField DataField="Internal Nr" HeaderText="Internal nr" ReadOnly="True" SortExpression="internalNr" />
+                                <asp:BoundField DataField="Serial Nr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
+                            </Columns>
 
 
                             <SelectedRowStyle BackColor="#A1DCF2" Font-Bold="True" ForeColor="White" />
@@ -165,9 +168,8 @@
                             <SortedDescendingHeaderStyle BackColor="#383838" />
                         </asp:GridView>
                         <asp:SqlDataSource ID="HardwareLicense" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT type, manufacturerName, internalNr, serialNr  FROM hardware;"></asp:SqlDataSource>
-                        <asp:GridView ID="grvHardwareLicenseSelect" CssClass="table table-hover table-striped gridview" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="internalNr,serialNr" OnSelectedIndexChanged="hardwareLicenseSelection_Click" OnPageIndexChanged="grvHardwareLicenseSelect_PageIndexChanged" DataSourceID="HardwareLicense" OnSorting="displayHardwarePanel">
+                        <asp:GridView ID="grvHardwareLicenseSelect" CssClass="table table-hover table-striped gridview" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="internalNr,serialNr" OnRowDataBound="OnRowDataBound" OnPageIndexChanged="grvHardwareLicenseSelect_PageIndexChanged" DataSourceID="HardwareLicense" OnSorting="displayHardwarePanel">
                             <Columns>
-                                <asp:CommandField ShowSelectButton="True" />
                                 <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
                                 <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="manufacturerName" />
                                 <asp:BoundField DataField="internalNr" HeaderText="Internal nr" ReadOnly="True" SortExpression="internalNr" />
@@ -190,16 +192,19 @@
 
                             <div class="col-sm-offset-5 col-sm-7">
 
-                                <asp:Button ID="btnAssignToSelectedHardwareSearch" runat="server" Text="Assign" CssClass="btn btn-primary margin-top-5" OnClick="assignToSelectedHardwareSearch_Click" />
+                                <asp:Button ID="btnAssignToSelectedHardwareSearch" runat="server" Text="Assign" CssClass="btn btn-primary " OnClick="assignToSelectedHardwareSearch_Click" />
                                 <asp:Button ID="btnCloseHardware" runat="server" Text="Cancel" CssClass="btn btn-info" />
                             </div>
                         </div>
                     </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
-                        <asp:PostBackTrigger ControlID="btnCloseHardware"/>
+                        <asp:PostBackTrigger ControlID="btnCloseHardware" />
                         <asp:PostBackTrigger ControlID="btnAssignToSelectedHardware" />
                         <asp:PostBackTrigger ControlID="btnAssignToSelectedHardwareSearch" />
+
+                        <asp:AsyncPostBackTrigger ControlID="licenseOverviewGridSearch" EventName="SelectedIndexChanged" />
+                        <asp:AsyncPostBackTrigger ControlID="grvHardwareLicenseSelect" EventName="SelectedIndexChanged" />
 
                     </Triggers>
                 </asp:UpdatePanel>
@@ -222,10 +227,8 @@
             <asp:Panel ID="peoplePanel" CssClass="innerPopup" runat="server">
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <asp:GridView ID="licenseOverviewGridPeople" DataKeyNames="Domain Name" OnPageIndexChanging="licenseOverviewGridPeople_PageIndexChanging" CssClass="table table-hover table-striped gridview" runat="server" OnSelectedIndexChanged="selectPeopleGridview_Click" AllowPaging="True" PageSize="9">
-                            <Columns>
-                                <asp:CommandField ShowSelectButton="True" />
-                            </Columns>
+                        <asp:GridView ID="licenseOverviewGridPeople" DataKeyNames="Domain Name" OnPageIndexChanging="licenseOverviewGridPeople_PageIndexChanging" CssClass="table table-hover table-striped gridview" runat="server" OnRowDataBound="PeopleBound" AllowPaging="True" PageSize="9">
+                            
                             <SelectedRowStyle BackColor="#A1DCF2" Font-Bold="True" ForeColor="White" />
                             <SortedAscendingCellStyle BackColor="#F1F1F1" />
                             <SortedAscendingHeaderStyle BackColor="#808080" />
@@ -233,14 +236,14 @@
                             <SortedDescendingHeaderStyle BackColor="#383838" />
                         </asp:GridView>
                         <div class="form-group col-sm-offset-4 col-sm-2">
-                            <asp:Button runat="server" ID="btnAssignLicenseToPeople" OnClick="assignLicenseToPeople" CssClass="btn btn-primary margin-top-5" Text="Assign to selected person" />
+                            <asp:Button runat="server" ID="btnAssignLicenseToPeople" OnClick="assignLicenseToPeople" CssClass="btn btn-primary " Text="Assign to selected person" />
                             <asp:Button ID="btnClosePeople" runat="server" Text="Cancel" CssClass="btn btn-info" />
 
                         </div>
                     </ContentTemplate>
                     <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="btnAssignLicenseToPeople" EventName="click" />
-                        <asp:AsyncPostBackTrigger ControlID="btnClosePeople" EventName="click" />
+                        <asp:PostBackTrigger ControlID="btnAssignLicenseToPeople" />
+                        <asp:PostBackTrigger ControlID="btnClosePeople" />
                     </Triggers>
                 </asp:UpdatePanel>
             </asp:Panel>

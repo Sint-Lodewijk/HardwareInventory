@@ -17,7 +17,7 @@
                 <asp:DropDownList ID="drpSearchItem" CssClass="form-control" runat="server">
                     <asp:ListItem Value="internalNr">Internal Nr</asp:ListItem>
                     <asp:ListItem Value="manufacturerName">Manufacturer</asp:ListItem>
-                    <asp:ListItem Value="typeNr">Type Nr</asp:ListItem>
+                    <asp:ListItem Value="type">Type</asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div class="col-sm-2">
@@ -30,10 +30,10 @@
     <asp:GridView ID="HardwareOverviewGridSearch" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" DataKeyNames="pictureLocation,attachmentLocation" runat="server">
         <Columns>
 
-            <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
-            <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />
-            <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="manufacturerName" />
-            <asp:BoundField DataField="typeNr" HeaderText="Type nr" SortExpression="typeNr" />
+            <asp:BoundField DataField="Serial Nr" HeaderText="Serial nr" ReadOnly="True" SortExpression="Serial Nr" />
+            <asp:BoundField DataField="Internal Nr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="Internal Nr" />
+            <asp:BoundField DataField="Manufacturer" HeaderText="Manufacturer name" SortExpression="Manufacturer" />
+            <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
 
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
@@ -58,7 +58,7 @@
             <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
             <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />
             <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="manufacturerName" />
-            <asp:BoundField DataField="typeNr" HeaderText="Type nr" SortExpression="typeNr" />
+            <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
                     <asp:LinkButton ID="lnkShowMoreInfo" runat="server" CommandName="Delete" Text="Details"></asp:LinkButton>
@@ -110,11 +110,11 @@
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label ID="Label9" runat="server" Text="Type Nr: ">
+                                <asp:Label ID="Label9" runat="server" Text="Type: ">
                                 </asp:Label>
                             </td>
                             <td>
-                                <asp:Label ID="Label1" runat="server" Text='<%#Eval("Type nr")%>'>
+                                <asp:Label ID="Label1" runat="server" Text='<%#Eval("Type")%>'>
                                 </asp:Label></td>
                         </tr>
                         <tr>
@@ -185,6 +185,7 @@
 
         </Columns>
     </asp:GridView>
+    <asp:DetailsView runat="server" ></asp:DetailsView>
     <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
 
     <asp:GridView ID="grvPeopleLinked" CssClass="table table-hover table-striped gridview" AutoGenerateColumns="false" runat="server">
@@ -253,7 +254,7 @@
             <div class="form-group">
                 <asp:Label runat="server" CssClass="control-label col-sm-2" AssociatedControlID="modelNr">Model nr</asp:Label>
                 <div class="col-sm-10">
-                    <asp:TextBox runat="server" ID="modelNr" CssClass="form-control" placeholder="model number of the hardware" />
+                    <asp:TextBox runat="server" ID="modelNr" CssClass="form-control" placeholder="model number of the hardware" /> 
                 </div>
             </div>
 
@@ -275,7 +276,7 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-5 col-sm-7">
-                    <asp:Button ID="Submit" runat="server" Text="Confirm modify" CssClass="btn btn-primary margin-top-15" OnClick="Conform_Click" />
+                    <asp:Button ID="Submit" runat="server" Text="Confirm modify" CssClass="btn btn-primary margin-top-15" OnClick="Confirm_Click" />
                     <!--<asp:Label ID="testSelected" runat="server" Text="testSelected"></asp:Label>
                 <asp:TextBox ID="test" CssClass="form-control" runat="server"></asp:TextBox>-->
                 </div>

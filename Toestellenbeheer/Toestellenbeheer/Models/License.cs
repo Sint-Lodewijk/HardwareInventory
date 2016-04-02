@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
+using System.Data;
 
 namespace Toestellenbeheer.Models
 {
@@ -78,6 +79,11 @@ namespace Toestellenbeheer.Models
         public void AssignLicenseToHardware(string strSerialNr, string strInternalNr)
         {
 
+        }
+        public DataTable ReturnLicenseCHardware()
+        {
+            DataTable dt = new DataTable();
+            return dt;  
         }
     }
 

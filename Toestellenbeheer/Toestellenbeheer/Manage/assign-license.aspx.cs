@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-
+using Toestellenbeheer.Models;
 namespace Toestellenbeheer.Manage
 {
     public partial class assign_license : System.Web.UI.Page
@@ -19,6 +19,10 @@ namespace Toestellenbeheer.Manage
         {
             if (!IsPostBack)
             {
+                var people = new User();
+                DataTable dt = people.ReturnDataTable();
+                grvLicenseUnassignedPeople.DataSource = dt;
+                grvLicenseUnassignedPeople.DataBind();
                 bindLicenseGRVLicense();
             }
         }
@@ -44,6 +48,7 @@ namespace Toestellenbeheer.Manage
         }
         protected void grvLicense_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ShowPanel.Visible = true;
         }
         protected void grvLicenseUnassignedHardware_RowDeleting(object sender, EventArgs e)
         {
@@ -62,5 +67,20 @@ namespace Toestellenbeheer.Manage
             
         }
 
+        protected void grvLicenseUnassignedPeople_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAPeople_Click(object sender, EventArgs e)
+        {
+            PeoplePanel.Visible = true;
+            PeoplePopUP.Show();
+        }
+
+        protected void btnAHardware_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

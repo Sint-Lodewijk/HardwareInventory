@@ -12,7 +12,4 @@
   <parameter name="Toestellenbeheer.Models.ApplicationDbContext+DemoContext-Web.config Connection String" description="Toestellenbeheer.Models.ApplicationDbContext+DemoContext Connection String used in web.config by the application to access the database." defaultValue="Toestellenbeheer.Models.ApplicationDbContext+DemoContext_ConnectionString" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\Jianing\\Documents\\toestellenbeheer\\Toestellenbeheer\\Toestellenbeheer\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Toestellenbeheer.Models.ApplicationDbContext+DemoContext']/@connectionString" />
   </parameter>
-  <parameter name="Toestellenbeheer.MySqlHistoryContext-Web.config Connection String" description="Toestellenbeheer.MySqlHistoryContext Connection String used in web.config by the application to access the database." defaultValue="Toestellenbeheer.MySqlHistoryContext_ConnectionString" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Jianing\\Documents\\toestellenbeheer\\Toestellenbeheer\\Toestellenbeheer\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Toestellenbeheer.MySqlHistoryContext']/@connectionString" />
-  </parameter>
 </parameters>

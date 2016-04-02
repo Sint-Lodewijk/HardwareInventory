@@ -22,6 +22,51 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.GridView grvLicense;
         
         /// <summary>
+        /// ShowPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ShowPanel;
+        
+        /// <summary>
+        /// btnAPeople control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAPeople;
+        
+        /// <summary>
+        /// btnAHardware control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAHardware;
+        
+        /// <summary>
+        /// PeoplePopUP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender PeoplePopUP;
+        
+        /// <summary>
+        /// PeoplePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PeoplePanel;
+        
+        /// <summary>
         /// grvLicenseUnassignedPeople control.
         /// </summary>
         /// <remarks>

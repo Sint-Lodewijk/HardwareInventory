@@ -3,11 +3,12 @@
 <asp:Content ID="addHardware" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Panel ID="addHardwarePanel" runat="server">
         <fieldset class="hardware-add-item">
-            <legend>Voer de nodige gegevens in.</legend>
+            <legend>Please fill those info to add a hardware into the database.</legend>
             <div class="form-group">
                 <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="typeList">Type</asp:Label>
                 <div class="col-sm-10">
-                    <asp:DropDownList ID="typeList" CssClass="form-control" runat="server" EnableViewState="true" AutoPostBack="true" />
+                    <asp:DropDownList ID="typeList" CssClass="form-control" runat="server" AutoPostBack="True" DataSourceID="sqlType" DataTextField="type" DataValueField="type" />
+                    <asp:SqlDataSource ID="sqlType" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT type FROM type"></asp:SqlDataSource>
                 </div>
 
             </div>
@@ -17,11 +18,10 @@
 
                 <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="manufacturerList">Manufacturer</asp:Label>
                 <div class="col-sm-10">
-                    <asp:DropDownList ID="manufacturerList" CssClass="form-control normal-height" runat="server" AutoPostBack="True" Height="34px">
-                        <asp:ListItem>Apple</asp:ListItem>
-                        <asp:ListItem>Lenovo</asp:ListItem>
-                        <asp:ListItem>HP</asp:ListItem>
+                    <asp:DropDownList ID="manufacturerList" CssClass="form-control normal-height" runat="server" AutoPostBack="True" Height="34px" DataSourceID="sqlManufacturer" DataTextField="manufacturerName" DataValueField="manufacturerName">
+                        
                     </asp:DropDownList>
+                    <asp:SqlDataSource ID="sqlManufacturer" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT manufacturerName FROM manufacturer"></asp:SqlDataSource>
                 </div>
             </div>
 
@@ -39,7 +39,7 @@
                             $("[id$=txtDatepicker]").datepicker({ dateFormat: 'dd-mm-yy' }).val();
                         });
                     </script>
-                    <asp:TextBox runat="server" ID="txtDatepicker" CssClass="form-control" />
+                    <asp:TextBox runat="server" ID="txtDatepicker" placeholder="Click to select a date." CssClass="form-control" />
                 </div>
             </div>
 
@@ -151,11 +151,11 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Label ID="Label9" runat="server" Text="Type Nr: ">
+                                    <asp:Label ID="Label9" runat="server" Text="Type: ">
                                     </asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Label ID="Label1" runat="server" Text='<%#Eval("Type nr")%>'>
+                                    <asp:Label ID="Label1" runat="server" Text='<%#Eval("type")%>'>
                                     </asp:Label></td>
                             </tr>
                             <tr>

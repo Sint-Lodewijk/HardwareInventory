@@ -30,7 +30,7 @@ namespace Toestellenbeheer.Users
             DataTable dt = type.ReturnDatatableType();
             drpTypeList.DataSource = dt;
             drpTypeList.DataBind();
-
+            
         }
         protected void typeList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -119,7 +119,7 @@ namespace Toestellenbeheer.Users
             String strInternalNr = grvAvailableHardwareType.SelectedDataKey["internalNr"].ToString();
             String strSerialNr = grvAvailableHardwareType.SelectedDataKey["serialNr"].ToString();
             String requestDate = DateTime.Now.ToString("yyyy-MM-dd");
-            var userID = new User(Context.User.Identity.Name);
+            var userID = new Models.User(base.Context.User.Identity.Name);
             int intEventID = userID.ReturnEventID();
             var hardwareRequest = new Request(strInternalNr, strSerialNr, intEventID, requestDate);
             hardwareRequest.RequestHardware();

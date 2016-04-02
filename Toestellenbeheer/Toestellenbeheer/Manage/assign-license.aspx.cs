@@ -19,7 +19,7 @@ namespace Toestellenbeheer.Manage
         {
             if (!IsPostBack)
             {
-                var people = new User();
+                var people = new Models.User();
                 DataTable dt = people.ReturnDataTable();
                 grvLicenseUnassignedPeople.DataSource = dt;
                 grvLicenseUnassignedPeople.DataBind();

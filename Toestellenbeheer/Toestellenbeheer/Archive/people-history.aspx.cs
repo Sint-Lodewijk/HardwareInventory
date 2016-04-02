@@ -53,7 +53,7 @@ namespace Toestellenbeheer.Archive
         {
             try
             {
-                User get = new User();
+                Models.User get = new Models.User();
                 DataTable dt = get.ReturnDataTable();
                 grvPeopleAD.DataSource = dt;
 

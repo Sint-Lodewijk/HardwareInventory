@@ -214,6 +214,7 @@
     <Content Include="Success.aspx" />
     <Content Include="User\Default.aspx" />
     <Content Include="User\my-hardware.aspx" />
+    <Content Include="User\my-license.aspx" />
     <Content Include="User\request-hardware.aspx" />
     <Content Include="NoAccess.aspx" />
     <Content Include="Overview\Default.aspx" />
@@ -424,6 +425,13 @@
     </Compile>
     <Compile Include="User\my-hardware.aspx.designer.cs">
       <DependentUpon>my-hardware.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\my-license.aspx.cs">
+      <DependentUpon>my-license.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\my-license.aspx.designer.cs">
+      <DependentUpon>my-license.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\request-hardware.aspx.cs">
       <DependentUpon>request-hardware.aspx</DependentUpon>

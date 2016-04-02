@@ -170,3 +170,7 @@ input[type="select"] {
     left: 1%;
     right: 1%;
 }
+.half-width {
+    width: 50%;
+    display: block;
+}

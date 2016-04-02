@@ -56,7 +56,7 @@ namespace Toestellenbeheer.Manage
         }
         protected void getUserFromAD()
         {
-            User getAD = new User();
+            Models.User getAD = new Models.User();
             DataTable dt = getAD.ReturnDataTable();
             grvPeopleAD.DataSource = dt;
 
@@ -77,7 +77,7 @@ namespace Toestellenbeheer.Manage
                 String strInternalNr = grvHardwarePoolUnassigned.SelectedDataKey["internalNr"].ToString();
                 String strNameAD = grvPeopleAD.SelectedRow.Cells[2].Text.ToString();
 
-                User getUserID = new User(strNameAD);
+                Models.User getUserID = new Models.User(strNameAD);
                 int maxIndex = getUserID.ReturnEventID();
                 mysqlConnectie.Open();
                 assignHardware(maxIndex, strInternalNr);

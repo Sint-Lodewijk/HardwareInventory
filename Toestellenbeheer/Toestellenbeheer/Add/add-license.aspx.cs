@@ -244,7 +244,7 @@ namespace Toestellenbeheer.Manage
         //Get users from ad and display it in the gridview named licenseOverviewGridPeopleSearch
         protected void getUserFromAD(GridView grvLicenseOverviewPeople)
         {
-            User get = new User();
+            Models.User get = new Models.User();
             DataTable dt = get.ReturnDataTable();
             grvLicenseOverviewPeople.DataSource = dt;
 
@@ -268,7 +268,7 @@ namespace Toestellenbeheer.Manage
                 String nameAD = licenseOverviewGridPeople.SelectedDataKey["Domain Name"].ToString();
                 String strLicenseCode = txtLicenseCode.Text;
                 addLicense();
-                User getUserID = new User(nameAD);
+                Models.User getUserID = new Models.User(nameAD);
                 int userID = getUserID.ReturnEventID();
                 var maxLicense = new License();
                 int intLicenseID = maxLicense.ReturnMaxLicenseID();

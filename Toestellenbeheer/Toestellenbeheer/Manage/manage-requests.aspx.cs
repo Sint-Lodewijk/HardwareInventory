@@ -49,7 +49,7 @@ namespace Toestellenbeheer.Manage
             String strNameAD = grvRequests.SelectedDataKey["nameAD"].ToString();
             String strInternalNr = grvRequests.SelectedDataKey["internalNr"].ToString();
             String strSerialNr = grvRequests.SelectedDataKey["serialNr"].ToString();
-            User getIndex = new User(strNameAD);
+            Models.User getIndex = new Models.User(strNameAD);
 
             int userIndex = getIndex.ReturnEventID();
             var request = new Hardware(userIndex, strInternalNr);

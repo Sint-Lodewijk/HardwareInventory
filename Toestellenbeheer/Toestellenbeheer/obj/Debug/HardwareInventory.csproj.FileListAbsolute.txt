@@ -1,13 +1,12 @@
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\csc.exe
-C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\VBCSCompiler.exe
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\csc.exe.config
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\csc.rsp
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\csi.exe
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\csi.rsp
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\Microsoft.CSharp.Core.targets
@@ -24,6 +23,7 @@ C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bi
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\vbc.exe
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\vbc.exe.config
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\vbc.rsp
+C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\VBCSCompiler.exe
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\Toestellenbeheer.dll.config
 C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\Toestellenbeheer.dll

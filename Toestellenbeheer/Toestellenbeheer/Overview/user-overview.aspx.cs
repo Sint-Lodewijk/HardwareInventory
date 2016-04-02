@@ -13,7 +13,7 @@ namespace Toestellenbeheer.Overview
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            User get = new User();
+            Models.User get = new Models.User();
             DataTable dt = get.ReturnDataTable();
             gv.DataSource = dt;
 

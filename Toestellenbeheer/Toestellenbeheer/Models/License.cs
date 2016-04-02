@@ -85,6 +85,15 @@ namespace Toestellenbeheer.Models
             DataTable dt = new DataTable();
             return dt;  
         }
+        /// <summary>
+        /// Returns the Datatable license code of the current user.
+        /// </summary>
+        /// <param name="UserID">The user identifier.</param>
+        /// <returns>DataTable license code.</returns>
+      //  public DataTable ReturnDTLCodeCurrentUser(int UserID)
+        //{
+            
+       // }
     }
 
 }

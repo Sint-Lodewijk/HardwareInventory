@@ -222,3 +222,19 @@ input[type="select"] {
 .no-border{
     border: none !important;
 }
+.blue-title{
+    background-color: rgba(18, 130, 251, 0.78);
+}
+.center-image{
+        margin: 0 auto !important;
+        max-width: 20%;
+}
+.green-title{
+    background-color:rgba(0, 254, 91, 0.82) !important;
+}
+.purple-title{
+    background-color: rgba(154, 0, 248, 0.81);
+}
+.red-title{
+    background-color: rgba(235, 30, 30, 0.81);
+}

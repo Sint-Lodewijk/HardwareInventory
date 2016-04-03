@@ -194,36 +194,31 @@ input[type="select"] {
 }
 
 
-html {
-    height: 100%;
-}
-
-body {
-    height: 100%;
-}
-
-form {
-    height: 100%;
-}
 
 .vcenter {
     display: inline-block;
     vertical-align: middle;
     float: none;
 }
-.p6-margin{
-    top: 24%;
+
+.p6-margin {
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
-.title-container{
-    height: 100%;
-}
-.margin-top-20{
+
+
+.margin-top-20 {
     margin-top: 20px;
 }
-.max-p80{
+
+.max-p80 {
     max-width: 30% !important;
 }
-.no-15{
+
+.no-15 {
     margin-left: 0px;
     margin-right: 0px;
+}
+.no-border{
+    border: none !important;
 }

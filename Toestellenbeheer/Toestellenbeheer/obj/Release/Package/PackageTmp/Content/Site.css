@@ -221,5 +221,9 @@ form {
     margin-top: 20px;
 }
 .max-p80{
-    max-width: 80% !important;
+    max-width: 30% !important;
+}
+.no-15{
+    margin-left: 0px;
+    margin-right: 0px;
 }

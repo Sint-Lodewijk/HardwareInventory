@@ -16,8 +16,11 @@
 
     <div class="container margin-top-20">
         <div class="row no-15">
-            <div class="col-md-4 text-center thumbnail">
-                <img src="~/Images/overview-icon.png" runat="server" alt="Overview" class="img-responsive max-p80">
+            <div class="col-md-4 text-center thumbnail no-border">
+                <a href="Overview">
+
+                    <img src="~/Images/overview-icon.png" runat="server" alt="Overview" class="img-responsive max-p80">
+                </a>
                 <div class="caption">
 
                     <p>
@@ -28,8 +31,11 @@
                     </p>
                 </div>
             </div>
-            <div class="col-md-4 text-center thumbnail">
-                <img src="~/Images/add-icon.png" runat="server" alt="Add" class="img-responsive max-p80">
+            <div class="col-md-4 text-center thumbnail no-border">
+                <a href="Add">
+
+                    <img src="~/Images/add-icon.png" runat="server" alt="Add" class="img-responsive max-p80">
+                </a>
                 <div class="caption">
 
                     <p>
@@ -40,8 +46,12 @@
                     </p>
                 </div>
             </div>
-            <div class="col-md-4 text-center thumbnail">
-                <img src="~/Images/settings-icon.png" runat="server" alt="Manage" class="img-responsive max-p80">
+            <div class="col-md-4 text-center thumbnail no-border">
+                <a href="Manage">
+
+                    <img src="~/Images/settings-icon.png" runat="server" alt="Manage" class="img-responsive max-p80">
+                </a>
+
                 <div class="caption">
 
                     <p>
@@ -52,6 +62,7 @@
                     </p>
                 </div>
             </div>
+
         </div>
     </div>
 </asp:Content>

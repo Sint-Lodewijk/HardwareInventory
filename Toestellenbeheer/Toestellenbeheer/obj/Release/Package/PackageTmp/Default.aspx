@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Manage" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Toestellenbeheer._Default" %>
 
 <asp:Content ID="HeadCon" ContentPlaceHolderID="HeadContent" runat="server">
-    <div class="row title-bar">
+    <div class="row title-bar no-15">
         <div class="container title-container">
 
             <div class="col-lg-12 p6-margin">
@@ -15,7 +15,7 @@
 
 
     <div class="container margin-top-20">
-        <div class="row">
+        <div class="row no-15">
             <div class="col-md-4 text-center thumbnail">
                 <img src="~/Images/overview-icon.png" runat="server" alt="Overview" class="img-responsive max-p80">
                 <div class="caption">

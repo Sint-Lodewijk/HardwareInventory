@@ -204,6 +204,7 @@
     <None Include="Properties\PublishProfiles\Server2.pubxml" />
     <None Include="Properties\PublishProfiles\toestellenbeheer - Web Deploy.pubxml" />
     <Content Include="favicon.ico" />
+    <Content Include="Images\brand-image.png" />
     <Content Include="Manage\assign-hardware.aspx" />
     <Content Include="Manage\assign-license.aspx" />
     <Content Include="Manage\manage-manufacturer.aspx" />

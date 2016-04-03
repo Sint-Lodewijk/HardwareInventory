@@ -174,3 +174,9 @@ input[type="select"] {
     width: 50%;
     display: block;
 }
+.brand-image{
+    max-width: 40px;
+    padding-top: 5px;
+    margin-left: 15px;
+    margin-right: 25px;
+}

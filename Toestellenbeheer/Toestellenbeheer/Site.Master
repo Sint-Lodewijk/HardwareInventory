@@ -37,8 +37,28 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
+        <script type="text/javascript">
+            $(function () {
+                function stripTrailingSlash(str) {
+                    if (str.substr(-1) == '/') {
+                        return str.substr(0, str.length - 1);
+                    }
+                    return str;
+                }
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+                var url = window.location.pathname;
+                var activePage = ".."+ stripTrailingSlash(url);
+
+                $('.nav li a').each(function () {
+                    var currentPage = stripTrailingSlash($(this).attr('href'));
+
+                    if (activePage == currentPage) {
+                        $(this).parent().addClass('active');
+                    }
+                });
+            });
+        </script>
+        <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -46,8 +66,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Hardware inventory</a>
+                    <a class="pull-left" runat="server" href="~/">
+                        <img src="~/Images/brand-image.png" runat="server" alt="Hardware Inventory" class="brand-image" />
+
+                    </a>
                 </div>
+
                 <div class="navbar-collapse collapse">
 
                     <asp:LoginView ID="login" runat="server" ViewStateMode="Disabled">
@@ -92,10 +116,10 @@
                             <asp:RoleGroup Roles="gg_hardware_admin">
                                 <ContentTemplate>
                                     <ul class="nav navbar-nav">
-                                        <li><a runat="server" href="~/Overview">Overview</a></li>
-                                        <li><a runat="server" href="~/Add">Add</a></li>
-                                        <li><a runat="server" href="~/Archive">Archive</a></li>
-                                        <li><a runat="server" href="~/User">MySpace</a></li>
+                                        <li><a runat="server" id="Overview" href="~/Overview">Overview</a></li>
+                                        <li><a runat="server" id="Add" href="~/Add">Add</a></li>
+                                        <li><a runat="server" id="Archive" href="~/Archive">Archive</a></li>
+                                        <li><a runat="server" id="User" href="~/User">MySpace</a></li>
 
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">

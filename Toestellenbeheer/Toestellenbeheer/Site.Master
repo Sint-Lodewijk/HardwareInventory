@@ -140,6 +140,9 @@
             </div>
 
         </div>
+        <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+
+        </asp:ContentPlaceHolder>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>

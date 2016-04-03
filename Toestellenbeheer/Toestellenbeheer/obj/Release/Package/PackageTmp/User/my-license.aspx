@@ -43,4 +43,5 @@
                 <asp:SessionParameter Name="@eventID" SessionField="eventID" />
             </SelectParameters>
         </asp:SqlDataSource>
+</div>
 </asp:Content>

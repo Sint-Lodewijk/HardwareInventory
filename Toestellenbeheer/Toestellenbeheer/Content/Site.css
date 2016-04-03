@@ -54,6 +54,9 @@ input[type="select"] {
     width: 50%;
 }
 
+.jumbotron {
+}
+
 .form-control {
     height: 34px;
     margin-top: 5px;
@@ -170,13 +173,57 @@ input[type="select"] {
     left: 1%;
     right: 1%;
 }
+
 .half-width {
     width: 50%;
     display: block;
 }
-.brand-image{
+
+.brand-image {
     max-width: 40px;
     padding-top: 5px;
     margin-left: 15px;
     margin-right: 25px;
+}
+
+.title-bar {
+    background-color: rgba(241, 107, 7, 0.73);
+    height: 30%;
+    font-family: Segoe UI,Calibri, Arial,sans-serif;
+    color: #F9F9F9;
+}
+
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+form {
+    height: 100%;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.p6-margin{
+    top: 24%;
+}
+.title-container{
+    height: 100%;
+}
+.margin-top-20{
+    margin-top: 20px;
+}
+.max-p80{
+    max-width: 30% !important;
+}
+.no-15{
+    margin-left: 0px;
+    margin-right: 0px;
 }

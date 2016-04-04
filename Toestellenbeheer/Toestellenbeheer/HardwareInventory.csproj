@@ -204,6 +204,7 @@
     <None Include="Properties\PublishProfiles\Server2.pubxml" />
     <None Include="Properties\PublishProfiles\toestellenbeheer - Web Deploy.pubxml" />
     <Content Include="favicon.ico" />
+    <Content Include="Images\3-settings-icon.png" />
     <Content Include="Images\add-icon.png" />
     <Content Include="Images\add-people-icon.png" />
     <Content Include="Images\add-user-icon.png" />
@@ -211,13 +212,16 @@
     <Content Include="Images\brand-image.png" />
     <Content Include="Images\eye-icon.png" />
     <Content Include="Images\license-icon.png" />
+    <Content Include="Images\manufacturer-icon.png" />
     <Content Include="Images\multi-user-icon.png" />
     <Content Include="Images\overview-icon.png" />
     <Content Include="Images\hardware-main-icon.png" />
     <Content Include="Images\people-icon.png" />
     <Content Include="Images\request-icon.png" />
+    <Content Include="Images\return-icon.png" />
     <Content Include="Images\settings-icon.png" />
     <Content Include="Images\single-user-icon.png" />
+    <Content Include="Images\type-icon.png" />
     <Content Include="Manage\assign-hardware.aspx" />
     <Content Include="Manage\assign-license.aspx" />
     <Content Include="Manage\manage-manufacturer.aspx" />

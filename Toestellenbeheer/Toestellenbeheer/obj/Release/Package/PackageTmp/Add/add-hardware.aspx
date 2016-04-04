@@ -1,9 +1,14 @@
 ﻿<%@ Page Title="Add a hardware" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="add-hardware.aspx.cs" Inherits="Toestellenbeheer.Manage.add_hardware" %>
-
+<asp:Content ID="HeadCon" ContentPlaceHolderID="HeadContent" runat="server">
+    <div class="row sub-title-bar">
+        <div class="container sub-title-container">
+               
+        </div>
+    </div>
+</asp:Content>
 <asp:Content ID="addHardware" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Panel ID="addHardwarePanel" runat="server">
         <fieldset class="hardware-add-item">
-            <legend>Please fill those info to add a hardware into the database.</legend>
             <div class="form-group">
                 <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="typeList">Type</asp:Label>
                 <div class="col-sm-10">

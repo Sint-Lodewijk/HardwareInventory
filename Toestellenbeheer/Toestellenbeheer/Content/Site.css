@@ -219,22 +219,39 @@ input[type="select"] {
     margin-left: 0px;
     margin-right: 0px;
 }
-.no-border{
+
+.no-border {
     border: none !important;
 }
-.blue-title{
+
+.blue-title {
     background-color: rgba(18, 130, 251, 0.78);
 }
-.center-image{
-        margin: 0 auto !important;
-        max-width: 20%;
+
+.center-image {
+    margin: 0 auto !important;
+    max-width: 20%;
 }
-.green-title{
-    background-color:rgba(0, 254, 91, 0.82) !important;
+
+.green-title {
+    background-color: rgba(0, 254, 91, 0.82) !important;
 }
-.purple-title{
+
+.purple-title {
     background-color: rgba(154, 0, 248, 0.81);
 }
-.red-title{
+
+.red-title {
     background-color: rgba(235, 30, 30, 0.81);
+}
+
+.gray-title {
+    background-color: rgba(128, 128, 128, 0.81);
+}
+
+.sub-title-bar {
+    padding-top: 10px;
+}
+.head-text{
+    font-size: 1.2em;
 }

@@ -60,7 +60,20 @@
                     </p>
                 </div>
             </div>
+            
         </div>
-
+        <div class="row">
+                <div class="alert alert-warning">
+                    <strong>Default AD credential: Only for test purpose </strong>
+                    <div class="row">
+                        <div class="col-sm-6">AD username: </div>
+                        <div class="col-sm-6">jhli </div>
+                    </div>
+                      <div class="row">
+                        <div class="col-sm-6">AD password: </div>
+                        <div class="col-sm-6">Pwd1234 </div>
+                    </div>
+                </div>
+            </div>
     </div>
 </asp:Content>

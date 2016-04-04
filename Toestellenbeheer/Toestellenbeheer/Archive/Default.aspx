@@ -42,7 +42,7 @@
                         Get a historical overview of the people who accessed some hardware
                     </p>
                     <p>
-                        <a class="btn btn-default col-md-12" href="./license-history">People history &raquo;</a>
+                        <a class="btn btn-default col-md-12" href="./people-history">People history &raquo;</a>
                     </p>
                 </div>
             </div>

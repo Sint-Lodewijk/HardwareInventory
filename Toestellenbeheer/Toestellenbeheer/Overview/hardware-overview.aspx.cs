@@ -26,11 +26,11 @@ namespace Toestellenbeheer
                 {
                     var hardware = new Hardware();
                     DataTable dt = hardware.ReturnDatatableAllHardware();
-                    HardwareOverviewGrid.DataSource = dt;
-                    HardwareOverviewGrid.DataBind();
+                    HardwareOverviewGridSearch.DataSource = dt;
+                    HardwareOverviewGridSearch.DataBind();
                     btnReturn.Visible = false;
                     searchPanel.Visible = true;
-                    if (HardwareOverviewGrid.Rows.Count == 0)
+                    if (HardwareOverviewGridSearch.Rows.Count == 0)
                     {
                         lblGridTotalResult.Text = "No result found in the database.";
                     }
@@ -90,7 +90,6 @@ namespace Toestellenbeheer
 
                 }
                 mysqlConnectie.Close();
-                HardwareOverviewGrid.Visible = false;
             }
             catch (MySqlException ex)
             {
@@ -103,51 +102,31 @@ namespace Toestellenbeheer
             ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> alert('" + msg + "');</ script > ");
         }
 
-        protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            HardwareOverviewGrid.PageIndex = e.NewPageIndex;
-            this.Search();
-        }
+        
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(HardwareOverviewGrid, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(HardwareOverviewGridSearch, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
         }
-        #region Not used
-        protected void lnkShowMoreInfo_Click(object sender, EventArgs e)
-        {
-
-            mysqlConnectie.Open();
-            String strInternalNr = HardwareOverviewGrid.SelectedRow.Cells[2].ToString();
-            Hardware detail = new Hardware(strInternalNr);
-            DataTable dt = detail.ReturnDatatableHardwareFromInternal();
-            
-            selectedRow.DataSource = dt;
-            selectedRow.DataBind();
-            HardwareOverviewGrid.Visible = false;
-            btnReturn.Visible = true;
-
-        }
-        #endregion
+       
         //DeleteEvent is used for the datakey - to get details without selecting the rows
         protected void details(object sender, GridViewDeleteEventArgs e)
         {
             try
             {
                 mysqlConnectie.Open();
-                String strInternalNr = HardwareOverviewGrid.DataKeys[e.RowIndex].Value.ToString();
+                String strInternalNr = HardwareOverviewGridSearch.DataKeys[e.RowIndex].Value.ToString();
                 Session["internalNr"] = strInternalNr;
+
                 lblInternalNr.Text = strInternalNr;
                 var hardwareDetail = new Hardware(strInternalNr);
                 DataTable dt = hardwareDetail.ReturnDatatableHardwareFromInternal();
                 selectedRow.DataSource = dt;
                 selectedRow.DataBind();
-                HardwareOverviewGrid.Visible = false;
                 btnReturn.Visible = true;
-                searchPanel.Visible = false;
                 btnModifying.Visible = true;
                 mysqlConnectie.Close();
             }
@@ -207,6 +186,8 @@ namespace Toestellenbeheer
         }
         protected void btnModifying_Click(object sender, EventArgs e)
         {
+            Session["ToModifiedInternalNr"] = Session["internalNr"];
+
             Server.Transfer("./modify-hardware.aspx");
             modifyPanel.Visible = true;
             selectedRow.Visible = false;

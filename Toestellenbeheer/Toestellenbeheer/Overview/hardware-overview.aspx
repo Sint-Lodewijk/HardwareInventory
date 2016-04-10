@@ -27,12 +27,12 @@
         </div>
     </asp:Panel>
 
-    <asp:GridView ID="HardwareOverviewGridSearch" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" DataKeyNames="pictureLocation,attachmentLocation" runat="server">
+    <asp:GridView ID="HardwareOverviewGridSearch" OnRowDeleting="details" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" DataKeyNames="internalNr" runat="server">
         <Columns>
 
-            <asp:BoundField DataField="Serial Nr" HeaderText="Serial nr" ReadOnly="True" SortExpression="Serial Nr" />
-            <asp:BoundField DataField="Internal Nr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="Internal Nr" />
-            <asp:BoundField DataField="Manufacturer" HeaderText="Manufacturer name" SortExpression="Manufacturer" />
+            <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="Serial Nr" />
+            <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="Internal Nr" />
+            <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="Manufacturer" />
             <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
 
             <asp:TemplateField HeaderText="">
@@ -53,31 +53,8 @@
     <div class="form-group">
         <asp:Label ID="lblGridTotalResult" CssClass="col-sm-12" runat="server"></asp:Label>
     </div>
-    <asp:GridView ID="HardwareOverviewGrid" OnRowDeleting="details" OnRowDataBound="OnRowDataBound" CssClass="table table-hover table-striped gridview" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="internalNr" AllowPaging="True">
-        <Columns>
-            <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
-            <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />
-            <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="manufacturerName" />
-            <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
-            <asp:TemplateField HeaderText="">
-                <ItemTemplate>
-                    <asp:LinkButton ID="lnkShowMoreInfo" runat="server" CommandName="Delete" Text="Details"></asp:LinkButton>
-                </ItemTemplate>
-            </asp:TemplateField>
 
-
-        </Columns>
-
-
-        <EditRowStyle BackColor="#999999" />
-
-        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-        <SortedAscendingCellStyle BackColor="#E9E7E2" />
-        <SortedAscendingHeaderStyle BackColor="#506C8C" />
-        <SortedDescendingCellStyle BackColor="#FFFDF8" />
-        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-    </asp:GridView>
-    <asp:GridView ID="selectedRow" DataKeyNames="Internal Nr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
+    <asp:GridView ID="selectedRow" DataKeyNames="internalNr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
         <Columns>
 
             <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
@@ -96,7 +73,7 @@
                                 </asp:Label>
                             </td>
                             <td class="col-sm-6">
-                                <asp:Label ID="lblPDate" runat="server" Text='<%#Eval("Purchase date")%>'>
+                                <asp:Label ID="lblPDate" runat="server" Text='<%#Eval("purchaseDate")%>'>
                                 </asp:Label></td>
                         </tr>
                         <tr>
@@ -123,7 +100,7 @@
                                 </asp:Label>
                             </td>
                             <td>
-                                <asp:Label ID="Label2" runat="server" Text='<%#Eval("Manufacturer")%>'>
+                                <asp:Label ID="Label2" runat="server" Text='<%#Eval("manufacturerName")%>'>
                                 </asp:Label></td>
                         </tr>
                         <tr>
@@ -132,7 +109,7 @@
                                 </asp:Label>
                             </td>
                             <td>
-                                <asp:Label ID="Label3" runat="server" Text='<%#Eval("Serial Nr")%>'>
+                                <asp:Label ID="Label3" runat="server" Text='<%#Eval("serialNr")%>'>
                                 </asp:Label></td>
                         </tr>
                         <tr>
@@ -141,7 +118,7 @@
                                 </asp:Label>
                             </td>
                             <td>
-                                <asp:Label ID="lblInternalNr" runat="server" Text='<%#Eval("Internal Nr")%>'>
+                                <asp:Label ID="lblInternalNr" runat="server" Text='<%#Eval("internalNr")%>'>
                                 </asp:Label></td>
                         </tr>
                         <tr>
@@ -150,7 +127,7 @@
                                 </asp:Label>
                             </td>
                             <td>
-                                <asp:Label ID="Label5" runat="server" Text='<%#Eval("Warranty")%>'>
+                                <asp:Label ID="Label5" runat="server" Text='<%#Eval("warranty")%>'>
                                 </asp:Label></td>
                         </tr>
                         <tr>
@@ -159,7 +136,7 @@
                                 </asp:Label>
                             </td>
                             <td>
-                                <asp:Label ID="Label7" runat="server" Text='<%#Eval("Extra info")%>'>
+                                <asp:Label ID="Label7" runat="server" Text='<%#Eval("extraInfo")%>'>
                                 </asp:Label></td>
                         </tr>
                         <tr>
@@ -168,7 +145,7 @@
                                 </asp:Label>
                             </td>
                             <td>
-                                <asp:Label ID="Label6" runat="server" Text='<%#Eval("Added date")%>'>
+                                <asp:Label ID="Label6" runat="server" Text='<%#Eval("addedDate")%>'>
                                 </asp:Label></td>
                         </tr>
                         <tr>

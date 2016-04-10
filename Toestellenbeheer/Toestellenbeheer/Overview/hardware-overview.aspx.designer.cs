@@ -85,15 +85,6 @@ namespace Toestellenbeheer {
         protected global::System.Web.UI.WebControls.Label lblGridTotalResult;
         
         /// <summary>
-        /// HardwareOverviewGrid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView HardwareOverviewGrid;
-        
-        /// <summary>
         /// selectedRow control.
         /// </summary>
         /// <remarks>

@@ -1,8 +1,11 @@
 ﻿<%@ Page Title="Add a hardware" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="add-hardware.aspx.cs" Inherits="Toestellenbeheer.Manage.add_hardware" %>
+
 <asp:Content ID="HeadCon" ContentPlaceHolderID="HeadContent" runat="server">
-    <div class="row sub-title-bar">
-        <div class="container sub-title-container">
-               
+    <div class="row no-15 sub-title-bar blue-title">
+        <div class="container">
+            <div class="col-sm-12">
+                <p class="text-center head-text">Fill those info to add a hardware into the database.</p>
+            </div>
         </div>
     </div>
 </asp:Content>
@@ -18,13 +21,12 @@
 
             </div>
 
-       
+
             <div class="form-group">
 
                 <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="manufacturerList">Manufacturer</asp:Label>
                 <div class="col-sm-10">
                     <asp:DropDownList ID="manufacturerList" CssClass="form-control normal-height" runat="server" AutoPostBack="True" Height="34px" DataSourceID="sqlManufacturer" DataTextField="manufacturerName" DataValueField="manufacturerName">
-                        
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="sqlManufacturer" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT manufacturerName FROM manufacturer"></asp:SqlDataSource>
                 </div>
@@ -131,7 +133,7 @@
         </fieldset>
     </asp:Panel>
     <asp:Panel ID="addResultPanel" runat="server">
-        
+
 
         <asp:GridView ID="grvJustAddedHardware" AutoGenerateColumns="false" CssClass="table table-striped table-hover gridview" runat="server">
             <Columns>

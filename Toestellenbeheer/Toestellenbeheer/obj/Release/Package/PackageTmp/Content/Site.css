@@ -250,4 +250,8 @@ input[type="select"] {
 }
 
 .sub-title-bar {
+    padding-top: 10px;
+}
+.head-text{
+    font-size: 1.2em;
 }

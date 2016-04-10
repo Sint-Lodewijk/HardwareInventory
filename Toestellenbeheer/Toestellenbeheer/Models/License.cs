@@ -16,7 +16,14 @@ namespace Toestellenbeheer.Models
         {
 
         }
-       
+        /// <summary>
+        /// Initializes a new instance of the <see cref="License"/> class.
+        /// </summary>
+        /// <param name="strLicenseCode">The string license code.</param>
+        public License(string strLicenseCode)
+        {
+            LicenseCode = strLicenseCode;
+        }
         /// <summary>
         /// Initializes a new instance of the <see cref="License"/> class with 5 parameters.
         /// </summary>
@@ -38,13 +45,17 @@ namespace Toestellenbeheer.Models
         public string ExpireDate { get; set; }
         public string LicenseFile { get; set; }
         public string ExtraInfo { get; set; }
+        public int LicenseID { get; set; }
+        public string LicenseType { get; set; }
+
         /// <summary>
         /// Adds the license in to the database;
         /// </summary>
         /// <exception cref="Exception"></exception>
         public void AddLicense()
         {
-            try {
+            try
+            {
                 mysqlConnectie.Open();
                 MySqlCommand addLicense = new MySqlCommand("INSERT INTO license (licenseName, licenseCode, expireDate, extraInfo, licenseFileLocation) values (@licenseName, @licenseCode, @expireDate, @extraInfo, @licenseFileLocation)", mysqlConnectie);
                 addLicense.Parameters.AddWithValue("@licenseName", LicenseName);
@@ -56,7 +67,7 @@ namespace Toestellenbeheer.Models
                 addLicense.ExecuteNonQuery();
                 addLicense.Dispose();
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 throw new Exception(ex.ToString());
             }
@@ -83,17 +94,44 @@ namespace Toestellenbeheer.Models
         public DataTable ReturnLicenseCHardware()
         {
             DataTable dt = new DataTable();
-            return dt;  
+            return dt;
+        }
+        public bool IsRemoved()
+        {
+            try
+            {
+                mysqlConnectie.Open();
+                var RemoveLicense = new MySqlCommand("DELETE FROM license WHERE licenseID= " + LicenseID, mysqlConnectie);
+                mysqlConnectie.Close();
+                return true;
+            }
+            catch(MySqlException ex)
+            {
+                var exep = new MySqlExceptionHandler(ex, "License");
+                throw new Exception(exep.ReturnMessage());
+            }
+        }
+        /// <summary>
+        /// Gets the license identifier of the corresponding license code.
+        /// </summary>
+        /// <returns>System.Int32.</returns>
+        public int GetLicenseID(string Type)
+        {
+            mysqlConnectie.Open();
+            var getLicenseID = new MySqlCommand("SELECT licenseID FROM license WHERE licenseCode = '" + LicenseCode + "'", mysqlConnectie);
+            mysqlConnectie.Close();
+            LicenseID = (int)getLicenseID.ExecuteScalar();
+            return LicenseID;
         }
         /// <summary>
         /// Returns the Datatable license code of the current user.
         /// </summary>
         /// <param name="UserID">The user identifier.</param>
         /// <returns>DataTable license code.</returns>
-      //  public DataTable ReturnDTLCodeCurrentUser(int UserID)
+        //  public DataTable ReturnDTLCodeCurrentUser(int UserID)
         //{
-            
-       // }
+
+        // }
     }
 
 }

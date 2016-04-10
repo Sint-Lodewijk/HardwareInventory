@@ -1,16 +1,12 @@
 ﻿<%@ Page Title="License overview" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="license-overview.aspx.cs" Inherits="Toestellenbeheer.Overview.license_overview" EnableEventValidation="false" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:GridView ID="grvLicense" CssClass="table table-hover table-striped gridview" runat="server" OnSelectedIndexChanged="grvLicense_SelectedIndexChanged" OnRowDataBound="OnRowDataBound" OnRowDeleting="grvLicense_RowDeleting" DataKeyNames="License Code">
+<asp:Content ID="LicenseContent" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:GridView ID="grvLicenseCode" CssClass="table table-hover table-striped gridview" runat="server" OnSelectedIndexChanged="grvLicense_SelectedIndexChanged" DataKeyNames="licenseCode" OnRowDataBound="OnRowDataBound" OnRowDeleting="grvLicense_RowDeleting" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="sqlLicenseCode">
         <Columns>
-            <asp:TemplateField>
-                <ItemTemplate>
-
-                    <asp:LinkButton ID="delete" runat="server"
-                        OnClientClick="if (!confirm('Are you sure you want delete?')) return false;"
-                        CommandName="Delete">Delete</asp:LinkButton>
-                </ItemTemplate>
-            </asp:TemplateField>
+            <asp:BoundField DataField="licenseName" HeaderText="licenseName" SortExpression="licenseName" />
+            <asp:BoundField DataField="licenseCode" HeaderText="licenseCode" SortExpression="licenseCode" />
+            <asp:BoundField DataField="expireDate" HeaderText="expireDate" SortExpression="expireDate" />
+            <asp:BoundField DataField="extraInfo" HeaderText="extraInfo" SortExpression="extraInfo" />
         </Columns>
 
 
@@ -20,6 +16,7 @@
         <SortedDescendingCellStyle BackColor="#E5E5E5" />
         <SortedDescendingHeaderStyle BackColor="#242121" />
     </asp:GridView>
+    <asp:SqlDataSource ID="sqlLicenseCode" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT licenseName, licenseCode, expireDate, extraInfo FROM license WHERE (licenseFileLocation = NULL) OR (licenseFileLocation = '')"></asp:SqlDataSource>
     <asp:GridView ID="grvLicenseAssignedPeople" OnSelectedIndexChanged="grvLicenseAssignedPeople_SelectedIndexChanged" CssClass="table table-hover table-striped gridview" OnRowDeleting="grvLicenseAssignedPeople_RowDeleting" DataKeyNames="licenseEventID" runat="server">
         <Columns>
             <asp:TemplateField HeaderText="">

@@ -16,6 +16,30 @@ namespace Toestellenbeheer.Models
 
         }
         /// <summary>
+        /// Initializes a new instance of the <see cref="Hardware"/> class with 7 parameters. 
+        /// </summary>
+        /// <remarks>
+        /// Main purpose: Modify hardware</remarks>
+        /// <param name="strExtraInfo">The string extra information.</param>
+        /// <param name="strInternalNr">The string internal nr.</param>
+        /// <param name="strManufacturerName">Name of the string manufacturer.</param>
+        /// <param name="strModelName">Name of the string model.</param>
+        /// <param name="strPurchaseDate">The string purchase date.</param>
+        /// <param name="strWarrantyInfo">The string warranty information.</param>
+        /// <param name="strTypeName">Name of the string type.</param>
+        public Hardware( string strExtraInfo, string strInternalNr, string strManufacturerName, 
+            string strModelName,
+            string strPurchaseDate, string strWarrantyInfo, string strTypeName)
+        {
+            ExtraInfo = strExtraInfo;
+            InternalNr = strInternalNr;
+            ManufacturerName = strManufacturerName;
+            ModelName = strModelName;
+            PurchaseDate = strPurchaseDate;
+            WarrantyInfo = strWarrantyInfo;
+            TypeName = strTypeName;
+        }
+        /// <summary>
         /// Initializes a new instance of the <see cref="Hardware"/> class with 11 parameters.
         /// </summary>
         /// <param name="strAddedDate">The string added date.</param>
@@ -124,7 +148,7 @@ namespace Toestellenbeheer.Models
             {
                 MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
                 mysqlConnectie.Open();
-                MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', type , manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation, modelNr FROM hardware WHERE internalNr = '" + InternalNr + "'", mysqlConnectie);
+                MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type , manufacturerName, serialNr , internalNr, warranty, extraInfo , DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation, modelNr FROM hardware WHERE internalNr = '" + InternalNr + "'", mysqlConnectie);
                 var dataReader = getCorrespondingPeople.ExecuteReader();
                 var dt = new DataTable();
                 dt.Load(dataReader);
@@ -274,7 +298,7 @@ namespace Toestellenbeheer.Models
                 MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
                 mysqlConnectie.Open();
-                MySqlCommand searchItem = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'Purchase date', type, manufacturerName 'Manufacturer', serialNr 'Serial Nr', internalNr 'Internal Nr', warranty 'Warranty', extraInfo 'Extra info', DATE_FORMAT(addedDate, '%Y-%m-%d') 'Added date', attachmentLocation, modelNr FROM hardware WHERE " + searchType + " LIKE '%" + searchValue + "%';", mysqlConnectie);
+                MySqlCommand searchItem = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type, manufacturerName , serialNr, internalNr , warranty , extraInfo , DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation, modelNr FROM hardware WHERE " + searchType + " LIKE '%" + searchValue + "%';", mysqlConnectie);
 
                 var searchReader = searchItem.ExecuteReader();
                 DataTable dt = new DataTable();
@@ -287,10 +311,14 @@ namespace Toestellenbeheer.Models
             {
                 var handler = new MySqlExceptionHandler(ex, "Hardware");
                 throw new Exception(handler.ExceptionType);
-                
+
             }
-            
+
         }
+        /// <summary>
+        /// Returns the datatable of unassigned hardware.
+        /// </summary>
+        /// <returns>DataTable.</returns>
         public DataTable ReturnUnassignedHardware()
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
@@ -303,9 +331,26 @@ namespace Toestellenbeheer.Models
             mysqlConnectie.Close();
 
             return dt;
-           
-        }
 
+        }
+        /// <summary>
+        /// Updates the hardware information in the database.
+        /// </summary>
+        public void UpdateHardware()
+        {
+            MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+            mysqlConnectie.Open();
+            var update = new MySqlCommand("UPDATE hardware SET purchaseDate = @purchaseDate, type = @type, manufacturerName = @manufacturer, warranty = @warranty, extraInfo = @extraInfo", mysqlConnectie);
+            update.Parameters.AddWithValue("@purchaseDate", PurchaseDate);
+            update.Parameters.AddWithValue("@type", TypeName);
+            update.Parameters.AddWithValue("@manufacturer", ManufacturerName);
+            update.Parameters.AddWithValue("@warranty", WarrantyInfo);
+            update.Parameters.AddWithValue("@extraInfo", ExtraInfo);
+            update.ExecuteNonQuery();
+            mysqlConnectie.Close();
+
+        }
     }
 }
 //WebRequest request = WebRequest.Create(SetupFile.GlobalVar.ScripturaPath);

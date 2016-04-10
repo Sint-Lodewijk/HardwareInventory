@@ -13,13 +13,22 @@ namespace Toestellenbeheer.Overview {
     public partial class license_overview {
         
         /// <summary>
-        /// grvLicense control.
+        /// grvLicenseCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvLicense;
+        protected global::System.Web.UI.WebControls.GridView grvLicenseCode;
+        
+        /// <summary>
+        /// sqlLicenseCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource sqlLicenseCode;
         
         /// <summary>
         /// grvLicenseAssignedPeople control.

@@ -1,5 +1,13 @@
 ﻿<%@ Page Title="Add a license" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="add-license.aspx.cs" Inherits="Toestellenbeheer.Manage.add_license" %>
-
+<asp:Content ID="HeadCon" ContentPlaceHolderID="HeadContent" runat="server">
+    <div class="row no-15 sub-title-bar blue-title">
+        <div class="container">
+            <div class="col-sm-12">
+                <p class="text-center head-text">Fill those info to add a license or a licensefile into the database.</p>
+            </div>
+        </div>
+    </div>
+</asp:Content>
 <asp:Content ID="LicenseAdd" ContentPlaceHolderID="MainContent" runat="server">
 
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="AjaxControl" %>

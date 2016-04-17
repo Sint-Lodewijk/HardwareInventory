@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Add a license" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="add-license.aspx.cs" Inherits="Toestellenbeheer.Manage.add_license" %>
+
 <asp:Content ID="HeadCon" ContentPlaceHolderID="HeadContent" runat="server">
     <div class="row no-15 sub-title-bar blue-title">
         <div class="container">
@@ -161,11 +162,11 @@
                         </div>
 
                         <asp:GridView ID="licenseOverviewGridSearch" AutoGenerateColumns="false" OnRowDataBound="SearchBound" CssClass="table table-hover table-striped gridview" runat="server">
-                             <Columns>
+                            <Columns>
                                 <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
-                                <asp:BoundField DataField="Manufacturer" HeaderText="Manufacturer name" SortExpression="manufacturerName" />
-                                <asp:BoundField DataField="Internal Nr" HeaderText="Internal nr" ReadOnly="True" SortExpression="internalNr" />
-                                <asp:BoundField DataField="Serial Nr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
+                                <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="manufacturerName" />
+                                <asp:BoundField DataField="internalNr" HeaderText="Internal nr" ReadOnly="True" SortExpression="internalNr" />
+                                <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
                             </Columns>
 
 
@@ -203,6 +204,10 @@
                                 <asp:Button ID="btnAssignToSelectedHardwareSearch" runat="server" Text="Assign" CssClass="btn btn-primary " OnClick="assignToSelectedHardwareSearch_Click" />
                                 <asp:Button ID="btnCloseHardware" runat="server" Text="Cancel" CssClass="btn btn-info" />
                             </div>
+
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <asp:Label ID="lblSearchResult" runat="server" Text=""></asp:Label>
                         </div>
                     </ContentTemplate>
                     <Triggers>
@@ -236,7 +241,7 @@
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <asp:GridView ID="licenseOverviewGridPeople" DataKeyNames="Domain Name" OnPageIndexChanging="licenseOverviewGridPeople_PageIndexChanging" CssClass="table table-hover table-striped gridview" runat="server" OnRowDataBound="PeopleBound" AllowPaging="True" PageSize="9">
-                            
+
                             <SelectedRowStyle BackColor="#A1DCF2" Font-Bold="True" ForeColor="White" />
                             <SortedAscendingCellStyle BackColor="#F1F1F1" />
                             <SortedAscendingHeaderStyle BackColor="#808080" />
@@ -260,7 +265,7 @@
                 <asp:Button runat="server" Text="Add license only" ID="btnAddLicense" CssClass="btn btn-primary col-sm-12 margin-top-5" OnClick="btnAddLicense_click" />
             </div>
             <div class="form-group col-sm-12">
-                <asp:Label ID="testLabel" runat="server" Text=""></asp:Label>
+                <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
             </div>
         </div>
     </body>

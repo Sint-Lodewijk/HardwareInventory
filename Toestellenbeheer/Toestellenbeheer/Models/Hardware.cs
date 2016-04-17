@@ -298,7 +298,7 @@ namespace Toestellenbeheer.Models
                 MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
                 mysqlConnectie.Open();
-                MySqlCommand searchItem = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type, manufacturerName , serialNr, internalNr , warranty , extraInfo , DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation, modelNr FROM hardware WHERE " + searchType + " LIKE '%" + searchValue + "%';", mysqlConnectie);
+                MySqlCommand searchItem = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type, manufacturerName , serialNr, internalNr , warranty , extraInfo , DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation, modelNr FROM hardware WHERE " + searchType + " COLLATE UTF8_GENERAL_CI LIKE '%" + searchValue + "%';", mysqlConnectie);
 
                 var searchReader = searchItem.ExecuteReader();
                 DataTable dt = new DataTable();

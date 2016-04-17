@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="col-md-6 text-center thumbnail no-border">
-                <a href="./license-history">
+                <a href="./people-history">
 
                     <img src="~/Images/people-icon.png" runat="server" alt="License overview" class="img-responsive max-p80">
                 </a>

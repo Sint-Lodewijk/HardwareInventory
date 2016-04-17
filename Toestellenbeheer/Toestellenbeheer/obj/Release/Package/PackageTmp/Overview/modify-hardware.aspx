@@ -1,27 +1,116 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="modify-hardware.aspx.cs" Inherits="Toestellenbeheer.Overview.modify_hardware" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:DetailsView runat="server" CssClass="gridview form-control table table-hover table-striped" AutoGenerateRows="False" DataSourceID="sqlDetail" DataKeyNames="serialNr,internalNr">
-        <Fields>
-            
-            <asp:BoundField DataField="serialNr" ReadOnly="true" HeaderText="Serial nr" SortExpression="serialNr" />
-            <asp:BoundField DataField="internalNr" ReadOnly="true" HeaderText="Internal nr" SortExpression="internalNr" />
-            <asp:BoundField DataField="warranty" HeaderText="Warranty" SortExpression="warranty" />
-            <asp:BoundField DataField="extraInfo" HeaderText="Extra info" SortExpression="extraInfo" />
-            <asp:BoundField DataField="modelNr" HeaderText="Model nr" SortExpression="modelNr" />
-            <asp:BoundField DataField="purchaseDate" HeaderText="Purchase Date" InsertVisible="false" SortExpression="purchaseDate" DataFormatString="{0:yyyy-MM-dd}" />
-            <asp:BoundField DataField="type" HeaderText="Type" InsertVisible="false" SortExpression="Type" />
-            <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" InsertVisible="false" SortExpression="manufacturerName" />
-            <asp:BoundField DataField="attachmentLocation" HeaderText="Attachment" SortExpression="attachmentLocation" InsertVisible="False" />
-            <asp:BoundField DataField="pictureLocation" HeaderText="Picture file" SortExpression="pictureLocation" InsertVisible="False" />
+    <asp:GridView ID="grvModifyHardware" AutoGenerateColumns="false" CssClass="table table-striped table-hover gridview" runat="server">
+        <Columns>
+            <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
+                NullDisplayText="No image associated." ControlStyle-CssClass="picutureGrid" ReadOnly="True">
+                <ControlStyle CssClass="picutureGrid"></ControlStyle>
+            </asp:ImageField>
+            <asp:TemplateField>
 
-            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-        </Fields>
+                <ItemTemplate>
 
-    </asp:DetailsView>
-    <asp:SqlDataSource ID="sqlDetail" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT purchaseDate, serialNr, internalNr, warranty, extraInfo, manufacturerName, pictureLocation, type, attachmentLocation,  modelNr FROM hardware  WHERE (internalNr = @internalNr)" UpdateCommand="UPDATE hardware SET purchaseDate = @purchaseDate, serialNr = @serialNr, internalNr = @internalNr, warranty = @warranty, extraInfo = @extraInfo, manufacturerName = @manufacturerName, modelNr = modelNr">
-        <SelectParameters>
-            <asp:SessionParameter Name="@internalNr" SessionField="internalNr" />
-        </SelectParameters>
-    </asp:SqlDataSource>
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label11" runat="server" Text="Serial Nr: ">
+                                </asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label3" runat="server" Text='<%#Eval("serialNr")%>'>
+                                </asp:Label></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label12" runat="server" Text="Internal Nr: ">
+                                </asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label4" runat="server" Text='<%#Eval("internalNr")%>'>
+                                </asp:Label></td>
+                        </tr>
+
+                        <tr>
+                            <td class="col-sm-6">
+                                <asp:Label ID="Label8" runat="server" Text="Purchase date: ">
+                                </asp:Label>
+                            </td>
+                            <td class="col-sm-6">
+                                    <link rel="stylesheet" href="../../Scripts/jquery-ui.css">
+                                    <script src="../../Scripts/jquery-2.2.0.js"></script>
+                                    <script src="../../Scripts/jquery-ui.js"></script>
+                                    <script>
+                                        $(function () {
+                                            $("[id$=txtPDate]").datepicker({ dateFormat: 'dd-mm-yy' }).val();
+                                        });
+                                    </script>
+                                    <asp:TextBox ID="txtPDate" runat="server" Text='<%#Eval("purchaseDate")%>' CssClass="form-control">
+                                    </asp:TextBox>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label9" runat="server" Text="Type: ">
+                                </asp:Label>
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="ddlType" CssClass="form-control" runat="server" SelectedValue='<%# Eval("type") %>' DataSourceID="sqlType" DataTextField="type" DataValueField="type"></asp:DropDownList>
+                                <asp:SqlDataSource ID="sqlType" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT type FROM type"></asp:SqlDataSource>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label10" runat="server" Text="Manufacturer: ">
+                                </asp:Label>
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="ddlManufacturer" CssClass="form-control" runat="server" SelectedValue='<%# Eval("manufacturerName") %>' DataSourceID="sqlManufacturer" DataTextField="manufacturerName" DataValueField="manufacturerName"></asp:DropDownList>
+                                <asp:SqlDataSource ID="sqlManufacturer" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT manufacturerName FROM manufacturer"></asp:SqlDataSource>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label13" runat="server" Text="Warranty: ">
+                                </asp:Label>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtWarranty" CssClass="form-control" runat="server" Text='<%#Eval("warranty")%>'>
+                                </asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label14" runat="server" Text="Extra info: ">
+                                </asp:Label>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtExtra" runat="server" CssClass="form-control" Text='<%#Eval("extraInfo")%>'>
+                                </asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label1" runat="server" Text="Extra info: ">
+                                </asp:Label>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtModelNr" runat="server" CssClass="form-control" Text='<%#Eval("ModelNr")%>'>
+                                </asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label15" runat="server" Text="Added date: ">
+                                </asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label6" runat="server"  Text='<%#Eval("addedDate")%>'>
+                                </asp:Label></td>
+                        </tr>
+                    </table>
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
+    <asp:Button runat="server" OnClick="btnModify_Click" ID="btnModify" Text="Modify" />
 </asp:Content>

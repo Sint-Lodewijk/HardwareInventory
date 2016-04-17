@@ -93,11 +93,13 @@ namespace Toestellenbeheer.Manage
                 int intTotalResultReturned = licenseOverviewGridSearch.Rows.Count;
                 if (intTotalResultReturned == 0)
                 {
-                    testLabel.Text = "No entry found, please use a different keyword or switch between the search types.";
+                    lblSearchResult.Text = "No entry found for search word: " + strSearchText +
+                      " on " + drpSearchItem.SelectedItem.Text +  ", please use a different keyword or switch between the search types.";
                 }
                 else
                 {
-                    testLabel.Text = "Total result returned: " + intTotalResultReturned;
+                    lblSearchResult.Text = "Total result returned: " + intTotalResultReturned + " for "
+                        + strSearchText + " on " + drpSearchItem.SelectedItem.Text;
 
                 }
                 grvHardwareLicenseSelect.Visible = false;
@@ -285,7 +287,7 @@ namespace Toestellenbeheer.Manage
                 if (ex.Number.ToString() == "1062")
                 {
                     //testLabel.Text = ex.Message.ToString() + ", please check your input.";
-                    testLabel.Text = "The license code: " + "<span style=\"color:red\">" +
+                    lblResult.Text = "The license code: " + "<span style=\"color:red\">" +
                         txtLicenseCode.Text + "</span>" + " you have entered for: " + "<span style=\"color:red\">" +
                         licenseOverviewGridPeople.SelectedRow.Cells[2].Text + "</span>" + " has been assigned to another person.";
 
@@ -294,7 +296,7 @@ namespace Toestellenbeheer.Manage
                 {
 
                     //testLabel.Text = ex.Message.ToString() + ", please check your input.";
-                    testLabel.Text = "Apostrophe ('), quotation mark and semicolum is not allowed in the searchword: " + "<span style=\"color:red\">" + txtLicenseCode.Text + "</span>" + ", please delete this marks.";
+                    lblResult.Text = "Apostrophe ('), quotation mark and semicolum is not allowed in the searchword: " + "<span style=\"color:red\">" + txtLicenseCode.Text + "</span>" + ", please delete this marks.";
 
                 }
                 else { ShowMessage(ex.Message); }

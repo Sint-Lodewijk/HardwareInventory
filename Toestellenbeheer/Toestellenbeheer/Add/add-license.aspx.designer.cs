@@ -238,6 +238,15 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.Button btnCloseHardware;
         
         /// <summary>
+        /// lblSearchResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSearchResult;
+        
+        /// <summary>
         /// hideShowPeople control.
         /// </summary>
         /// <remarks>
@@ -310,12 +319,12 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.Button btnAddLicense;
         
         /// <summary>
-        /// testLabel control.
+        /// lblResult control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label testLabel;
+        protected global::System.Web.UI.WebControls.Label lblResult;
     }
 }

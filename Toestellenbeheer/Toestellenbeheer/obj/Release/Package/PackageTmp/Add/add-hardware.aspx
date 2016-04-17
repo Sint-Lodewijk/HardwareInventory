@@ -153,7 +153,7 @@
                                     </asp:Label>
                                 </td>
                                 <td class="col-sm-6">
-                                    <asp:Label ID="lblPDate" runat="server" Text='<%#Eval("Purchase date")%>'>
+                                    <asp:Label ID="lblPDate" runat="server" Text='<%#Eval("purchaseDate")%>'>
                                     </asp:Label></td>
                             </tr>
                             <tr>
@@ -171,7 +171,7 @@
                                     </asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Label ID="Label2" runat="server" Text='<%#Eval("Manufacturer")%>'>
+                                    <asp:Label ID="Label2" runat="server" Text='<%#Eval("manufacturerName")%>'>
                                     </asp:Label></td>
                             </tr>
                             <tr>
@@ -180,7 +180,7 @@
                                     </asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Label ID="Label3" runat="server" Text='<%#Eval("Serial Nr")%>'>
+                                    <asp:Label ID="Label3" runat="server" Text='<%#Eval("serialNr")%>'>
                                     </asp:Label></td>
                             </tr>
                             <tr>
@@ -189,7 +189,7 @@
                                     </asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Label ID="Label4" runat="server" Text='<%#Eval("Internal Nr")%>'>
+                                    <asp:Label ID="Label4" runat="server" Text='<%#Eval("internalNr")%>'>
                                     </asp:Label></td>
                             </tr>
                             <tr>
@@ -198,7 +198,7 @@
                                     </asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Label ID="Label5" runat="server" Text='<%#Eval("Warranty")%>'>
+                                    <asp:Label ID="Label5" runat="server" Text='<%#Eval("warranty")%>'>
                                     </asp:Label></td>
                             </tr>
                             <tr>
@@ -207,7 +207,7 @@
                                     </asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Label ID="Label7" runat="server" Text='<%#Eval("Extra info")%>'>
+                                    <asp:Label ID="Label7" runat="server" Text='<%#Eval("extraInfo")%>'>
                                     </asp:Label></td>
                             </tr>
                             <tr>
@@ -216,7 +216,7 @@
                                     </asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Label ID="Label6" runat="server" Text='<%#Eval("Added date")%>'>
+                                    <asp:Label ID="Label6" runat="server" Text='<%#Eval("addedDate")%>'>
                                     </asp:Label></td>
                             </tr>
                             <tr>

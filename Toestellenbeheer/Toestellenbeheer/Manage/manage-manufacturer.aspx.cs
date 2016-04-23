@@ -80,12 +80,18 @@ namespace Toestellenbeheer.Manage
             ButtonPanel.Visible = true;
 
         }
+        public void modalShow()
+        {
+            udpDetails.Update();
+            ScriptManager.RegisterStartupScript(udpDetails, udpDetails.GetType(), "show", "$(function () { $('#modalManufacturer').modal('show'); });", true);
 
+        }
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            ModifyPanel.Visible = true;
             txtManufacturerModifying.Text = ViewState["manufacturerName"].ToString();
-            ModifyPopUP.Show();
+            manufacturerModalTitle.InnerText = "You are modifying manufacturer: " + ViewState["manufacturerName"].ToString();
+
+            modalShow();
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)

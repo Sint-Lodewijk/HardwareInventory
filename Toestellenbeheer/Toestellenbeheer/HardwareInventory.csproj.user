@@ -4,6 +4,7 @@
     <ReferencePath>
     </ReferencePath>
     <NameOfLastUsedPublishProfile>Server2</NameOfLastUsedPublishProfile>
+    <UseIISExpress>true</UseIISExpress>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

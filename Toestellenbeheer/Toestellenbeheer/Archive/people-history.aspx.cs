@@ -27,6 +27,19 @@ namespace Toestellenbeheer.Archive
         {
             String strNameAD = grvPeopleAD.SelectedRow.Cells[1].Text.ToString();
             getHardwareFromNameAD(strNameAD);
+            if (grvHardwareOfPeople.Rows.Count == 0)
+            {
+                modalTitle.InnerText = "No result!";
+                lblResult.Text = strNameAD + " has never lend a hardware.";
+            }
+            else
+            {
+                modalTitle.InnerText = "Lend hardware archive of " + strNameAD;
+                lblResult.Text = strNameAD + " has lend " + grvHardwareOfPeople.Rows.Count +
+                    " times of hardware.";
+
+            }
+            modalShow();
         }
         protected void getHardwareFromNameAD(String nameAD)
         {
@@ -61,7 +74,7 @@ namespace Toestellenbeheer.Archive
             }
             catch (Exception ex)
             {
-                lblProblem.Text = "An problem has occured, due: " + ex.Message;
+                lblResult.Text = "An problem has occured, due: " + ex.Message;
             }
         }
         protected void gridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -81,6 +94,12 @@ namespace Toestellenbeheer.Archive
 
         protected void grvPeopleAD_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
+
+        }
+        public void modalShow()
+        {
+            udpDetails.Update();
+            ScriptManager.RegisterStartupScript(udpDetails, udpDetails.GetType(), "show", "$(function () { $('#" + modalHardware.ClientID + "').modal('show'); });", true);
 
         }
     }

@@ -22,13 +22,13 @@ namespace Toestellenbeheer.User {
         protected global::System.Web.UI.WebControls.GridView grvMyLicenseCode;
         
         /// <summary>
-        /// sqlLicenseCode control.
+        /// lblLicenseCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sqlLicenseCode;
+        protected global::System.Web.UI.WebControls.Label lblLicenseCode;
         
         /// <summary>
         /// grvMyLicenseFile control.
@@ -38,6 +38,24 @@ namespace Toestellenbeheer.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvMyLicenseFile;
+        
+        /// <summary>
+        /// lblLicenseFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLicenseFile;
+        
+        /// <summary>
+        /// sqlLicenseCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource sqlLicenseCode;
         
         /// <summary>
         /// sqlLicenseFile control.

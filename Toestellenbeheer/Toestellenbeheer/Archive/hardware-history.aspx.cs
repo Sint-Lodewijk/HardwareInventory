@@ -44,6 +44,7 @@ namespace Toestellenbeheer.Archive
             grvPeopleLinked.DataSource = ds;
             grvPeopleLinked.DataBind();
             int intTotalResult = grvPeopleLinked.Rows.Count;
+            modalTitle.InnerText = "Assign history of " + strInternalNr;
             if (intTotalResult == 0)
             {
                 lblResult.Text = "The hardware with internal Nr: " + strInternalNr + " has never been assigned to a person before!";
@@ -52,6 +53,7 @@ namespace Toestellenbeheer.Archive
             {
                 lblResult.Text = "The hardware with internal Nr: " + strInternalNr + " has been assigned " + intTotalResult + " times";
             }
+            modalShow();
         }
         protected void getHardware()
         {
@@ -60,5 +62,12 @@ namespace Toestellenbeheer.Archive
             grvHardware.DataSource = dt;
             grvHardware.DataBind();
         }
+        public void modalShow()
+        {
+            udpDetails.Update();
+            ScriptManager.RegisterStartupScript(udpDetails, udpDetails.GetType(), "show", "$(function () { $('#" + modalHardware.ClientID + "').modal('show'); });", true);
+
+        }
     }
+
 }

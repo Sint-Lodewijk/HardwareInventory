@@ -141,7 +141,6 @@ namespace Toestellenbeheer
             udpDetails.Update();
             ScriptManager.RegisterStartupScript(udpDetails, udpDetails.GetType(), "show", "$(function () { $('#" + modalHardware.ClientID + "').modal('show'); });", true);
             
-
         }
 
         

@@ -85,31 +85,22 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.Button btnDelete;
         
         /// <summary>
-        /// target control.
+        /// typeModalTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button target;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl typeModalTitle;
         
         /// <summary>
-        /// ModifyPopUP control.
+        /// udpDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender ModifyPopUP;
-        
-        /// <summary>
-        /// ModifyPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel ModifyPanel;
+        protected global::System.Web.UI.UpdatePanel udpDetails;
         
         /// <summary>
         /// txtType control.
@@ -128,14 +119,5 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpdate;
-        
-        /// <summary>
-        /// btnCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

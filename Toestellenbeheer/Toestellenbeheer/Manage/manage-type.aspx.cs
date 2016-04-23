@@ -45,7 +45,12 @@ namespace Toestellenbeheer.Manage
                 lblProblem.Text = ex.ToString();
             }
         }
+        public void modalShow()
+        {
+            udpDetails.Update();
+            ScriptManager.RegisterStartupScript(udpDetails, udpDetails.GetType(), "show", "$(function () { $('#modalType').modal('show'); });", true);
 
+        }
         protected void btnAddType_Click(object sender, EventArgs e)
         {
 
@@ -81,9 +86,9 @@ namespace Toestellenbeheer.Manage
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            ModifyPanel.Visible = true;
             txtType.Text = ViewState["type"].ToString();
-            ModifyPopUP.Show();
+            typeModalTitle.InnerText = "You are modifying type: " + ViewState["type"].ToString();
+            modalShow();
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)

@@ -1,266 +1,228 @@
 ﻿<%@ Page Title="Hardware overview" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="hardware-overview.aspx.cs" EnableEventValidation="false" Inherits="Toestellenbeheer.hardware_overview" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="AjaxControl" %>
+
 <asp:Content ID="hardwareOverview" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:Panel ID="searchPanel" runat="server">
+  
 
-        <div id="search" class="form-group">
-            <asp:Label ID="lblSearch" runat="server" CssClass="control-label col-sm-1" AssociatedControlID="txtSearch">Search</asp:Label>
-            <div class="col-sm-5">
-                <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server"></asp:TextBox>
+    <asp:UpdatePanel runat="server" ID="udpHardware" UpdateMode="Always">
+
+        <ContentTemplate>
+
+
+            <asp:Panel ID="searchPanel" runat="server">
+
+                <div id="search" class="form-group">
+                    <asp:Label ID="lblSearch" runat="server" CssClass="control-label col-sm-1" AssociatedControlID="txtSearch">Search</asp:Label>
+                    <div class="col-sm-5">
+                        <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-sm-1">
+
+                        <asp:Label ID="lblOn" runat="server" AssociatedControlID="drpSearchItem" CssClass="control-label">on</asp:Label>
+                    </div>
+                    <div class="col-sm-3">
+
+                        <asp:DropDownList ID="drpSearchItem" CssClass="form-control" runat="server">
+                            <asp:ListItem Value="internalNr">Internal Nr</asp:ListItem>
+                            <asp:ListItem Value="manufacturerName">Manufacturer</asp:ListItem>
+                            <asp:ListItem Value="type">Type</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="col-sm-2">
+
+                        <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-default margin-top-5" OnClick="Search" />
+                    </div>
+                </div>
+            </asp:Panel>
+
+            <asp:GridView ID="HardwareOverviewGridSearch" OnSelectedIndexChanged="details" data-toggle="modal" data-target="#HardwareDetailModal" OnRowDataBound="OnRowDataBound" OnRowDeleting="details" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" DataKeyNames="internalNr" runat="server">
+                <Columns>
+
+                    <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="Serial Nr" />
+                    <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="Internal Nr" />
+                    <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="Manufacturer" />
+                    <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
+
+
+
+
+                </Columns>
+
+                <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                <SortedDescendingHeaderStyle BackColor="#242121" />
+            </asp:GridView>
+            <div class="form-group">
+                <asp:Label ID="lblGridTotalResult" CssClass="col-sm-12" runat="server"></asp:Label>
             </div>
-            <div class="col-sm-1">
 
-                <asp:Label ID="lblOn" runat="server" AssociatedControlID="drpSearchItem" CssClass="control-label">on</asp:Label>
-            </div>
-            <div class="col-sm-3">
+        </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="HardwareOverviewGridSearch" />
+            <asp:PostBackTrigger ControlID="btnSearch" />
 
-                <asp:DropDownList ID="drpSearchItem" CssClass="form-control" runat="server">
-                    <asp:ListItem Value="internalNr">Internal Nr</asp:ListItem>
-                    <asp:ListItem Value="manufacturerName">Manufacturer</asp:ListItem>
-                    <asp:ListItem Value="type">Type</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <div class="col-sm-2">
+        </Triggers>
+    </asp:UpdatePanel>
+    <asp:Panel ID="modalHardware" runat="server" CssClass="modal fade" TabIndex="-1" role="dialog">
 
-                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-default margin-top-5" OnClick="Search" />
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <asp:UpdatePanel ID="udpDetails" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modalTitle" runat="server">Loading...</h4>
+
+                        </div>
+
+                        <div class="modal-body">
+
+                            <asp:GridView runat="server" ID="grvImage" CssClass="gridview table table-hover table-striped" AutoGenerateColumns="false">
+                                <Columns>
+                                    <asp:ImageField ControlStyle-CssClass="img-responsive center-block" DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
+                                        NullDisplayText="No image associated.">
+                                    </asp:ImageField>
+                                </Columns>
+
+
+                            </asp:GridView>
+
+                            <asp:GridView ID="selectedRow" DataKeyNames="internalNr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
+                                <Columns>
+
+
+                                    <asp:TemplateField>
+
+                                        <ItemTemplate>
+
+                                            <table class="table table-striped table-hover">
+
+                                                <tr>
+                                                    <td class="col-sm-6">
+                                                        <asp:Label ID="Label8" runat="server" Text="Purchase date: ">
+                                                        </asp:Label>
+                                                    </td>
+                                                    <td class="col-sm-6">
+                                                        <asp:Label ID="lblPDate" runat="server" Text='<%#Eval("purchaseDate")%>'>
+                                                        </asp:Label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-sm-6">
+                                                        <asp:Label ID="Label4" runat="server" Text="Model Nr: ">
+                                                        </asp:Label>
+                                                    </td>
+                                                    <td class="col-sm-6">
+                                                        <asp:Label ID="Label17" runat="server" Text='<%#Eval("modelNr")%>'>
+                                                        </asp:Label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <asp:Label ID="Label9" runat="server" Text="Type: ">
+                                                        </asp:Label>
+                                                    </td>
+                                                    <td>
+                                                        <asp:Label ID="Label1" runat="server" Text='<%#Eval("Type")%>'>
+                                                        </asp:Label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <asp:Label ID="Label10" runat="server" Text="Manufacturer: ">
+                                                        </asp:Label>
+                                                    </td>
+                                                    <td>
+                                                        <asp:Label ID="Label2" runat="server" Text='<%#Eval("manufacturerName")%>'>
+                                                        </asp:Label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <asp:Label ID="Label11" runat="server" Text="Serial Nr: ">
+                                                        </asp:Label>
+                                                    </td>
+                                                    <td>
+                                                        <asp:Label ID="Label3" runat="server" Text='<%#Eval("serialNr")%>'>
+                                                        </asp:Label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <asp:Label ID="Label12" runat="server" Text="Internal Nr: ">
+                                                        </asp:Label>
+                                                    </td>
+                                                    <td>
+                                                        <asp:Label ID="lblInternalNr" runat="server" Text='<%#Eval("internalNr")%>'>
+                                                        </asp:Label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <asp:Label ID="Label13" runat="server" Text="Warranty: ">
+                                                        </asp:Label>
+                                                    </td>
+                                                    <td>
+                                                        <asp:Label ID="Label5" runat="server" Text='<%#Eval("warranty")%>'>
+                                                        </asp:Label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <asp:Label ID="Label14" runat="server" Text="Extra info: ">
+                                                        </asp:Label>
+                                                    </td>
+                                                    <td>
+                                                        <asp:Label ID="Label7" runat="server" Text='<%#Eval("extraInfo")%>'>
+                                                        </asp:Label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <asp:Label ID="Label15" runat="server" Text="Added date: ">
+                                                        </asp:Label>
+                                                    </td>
+                                                    <td>
+                                                        <asp:Label ID="Label6" runat="server" Text='<%#Eval("addedDate")%>'>
+                                                        </asp:Label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <asp:Label ID="Label16" runat="server" Text="Attachment: ">
+                                                        </asp:Label></td>
+                                                    <td>
+                                                        <asp:LinkButton ID="lnkDownload" CommandArgument='<%# Eval("attachmentLocation") %>' runat="server" OnClick="DownloadFile" Text='<%# Convert.ToString(Eval("attachmentLocation")).Length < 1 ? "" : Convert.ToString(Eval("attachmentLocation")) %>'>Download</asp:LinkButton>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                </Columns>
+                            </asp:GridView>
+                            <asp:GridView ID="grvPeopleLinked" CssClass="table table-hover table-striped gridview" AutoGenerateColumns="false" runat="server">
+                                <Columns>
+                                    <asp:BoundField DataField="Serial Nr" HeaderText="Serial Nr" />
+                                    <asp:BoundField DataField="Internal Nr" HeaderText="Internal Nr" />
+                                    <asp:BoundField DataField="nameAD" HeaderText="Domain Name" />
+                                    <asp:BoundField DataField="assignedDate" HeaderText="Assigned Date" />
+                                    <asp:BoundField DataField="returnedDate" HeaderText="Returned Date" NullDisplayText="Not returned yet" />
+
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                        <div class="modal-footer">
+
+
+                            <asp:Button ID="btnModifying" runat="server" OnClick="btnModifying_Click" Text="Modify" CssClass="btn btn-primary" />
+                            <asp:Label ID="lblTotalQuery" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lblInternalNr" Visible="false" runat="server" Text='<%#Eval("Internal Nr")%>' />
+                            <asp:Label ID="lblProblem" runat="server"></asp:Label>
+                        </div>
+                        </div>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:PostBackTrigger ControlID="btnModifying" />
+                    </Triggers>
+                </asp:UpdatePanel>
             </div>
         </div>
-    </asp:Panel>
 
-    <asp:GridView ID="HardwareOverviewGridSearch" OnRowDeleting="details" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" DataKeyNames="internalNr" runat="server">
-        <Columns>
-
-            <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="Serial Nr" />
-            <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="Internal Nr" />
-            <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="Manufacturer" />
-            <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
-
-            <asp:TemplateField HeaderText="">
-                <ItemTemplate>
-                    <asp:LinkButton ID="lnkShowMoreInfo" runat="server" CommandName="Delete" Text="Details"></asp:LinkButton>
-                </ItemTemplate>
-            </asp:TemplateField>
-
-
-        </Columns>
-
-        <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-        <SortedAscendingCellStyle BackColor="#F7F7F7" />
-        <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-        <SortedDescendingCellStyle BackColor="#E5E5E5" />
-        <SortedDescendingHeaderStyle BackColor="#242121" />
-    </asp:GridView>
-    <div class="form-group">
-        <asp:Label ID="lblGridTotalResult" CssClass="col-sm-12" runat="server"></asp:Label>
-    </div>
-
-    <asp:GridView ID="selectedRow" DataKeyNames="internalNr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
-        <Columns>
-
-            <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
-                NullDisplayText="No image associated." ControlStyle-CssClass="picutureGrid" ReadOnly="True">
-                <ControlStyle CssClass="picutureGrid"></ControlStyle>
-            </asp:ImageField>
-            <asp:TemplateField>
-
-                <ItemTemplate>
-
-                    <table class="table table-striped table-hover">
-
-                        <tr>
-                            <td class="col-sm-6">
-                                <asp:Label ID="Label8" runat="server" Text="Purchase date: ">
-                                </asp:Label>
-                            </td>
-                            <td class="col-sm-6">
-                                <asp:Label ID="lblPDate" runat="server" Text='<%#Eval("purchaseDate")%>'>
-                                </asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td class="col-sm-6">
-                                <asp:Label ID="Label4" runat="server" Text="Model Nr: ">
-                                </asp:Label>
-                            </td>
-                            <td class="col-sm-6">
-                                <asp:Label ID="Label17" runat="server" Text='<%#Eval("modelNr")%>'>
-                                </asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Label ID="Label9" runat="server" Text="Type: ">
-                                </asp:Label>
-                            </td>
-                            <td>
-                                <asp:Label ID="Label1" runat="server" Text='<%#Eval("Type")%>'>
-                                </asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Label ID="Label10" runat="server" Text="Manufacturer: ">
-                                </asp:Label>
-                            </td>
-                            <td>
-                                <asp:Label ID="Label2" runat="server" Text='<%#Eval("manufacturerName")%>'>
-                                </asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Label ID="Label11" runat="server" Text="Serial Nr: ">
-                                </asp:Label>
-                            </td>
-                            <td>
-                                <asp:Label ID="Label3" runat="server" Text='<%#Eval("serialNr")%>'>
-                                </asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Label ID="Label12" runat="server" Text="Internal Nr: ">
-                                </asp:Label>
-                            </td>
-                            <td>
-                                <asp:Label ID="lblInternalNr" runat="server" Text='<%#Eval("internalNr")%>'>
-                                </asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Label ID="Label13" runat="server" Text="Warranty: ">
-                                </asp:Label>
-                            </td>
-                            <td>
-                                <asp:Label ID="Label5" runat="server" Text='<%#Eval("warranty")%>'>
-                                </asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Label ID="Label14" runat="server" Text="Extra info: ">
-                                </asp:Label>
-                            </td>
-                            <td>
-                                <asp:Label ID="Label7" runat="server" Text='<%#Eval("extraInfo")%>'>
-                                </asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Label ID="Label15" runat="server" Text="Added date: ">
-                                </asp:Label>
-                            </td>
-                            <td>
-                                <asp:Label ID="Label6" runat="server" Text='<%#Eval("addedDate")%>'>
-                                </asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:Label ID="Label16" runat="server" Text="Attachment: ">
-                                </asp:Label></td>
-                            <td>
-                                <asp:LinkButton ID="lnkDownload" CommandArgument='<%# Eval("attachmentLocation") %>' runat="server" OnClick="DownloadFile" Text='<%# Convert.ToString(Eval("attachmentLocation")).Length < 1 ? "" : Convert.ToString(Eval("attachmentLocation")) %>'>Download</asp:LinkButton>
-                            </td>
-                        </tr>
-                    </table>
-                </ItemTemplate>
-            </asp:TemplateField>
-
-        </Columns>
-    </asp:GridView>
-    <asp:DetailsView runat="server" ></asp:DetailsView>
-    <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
-
-    <asp:GridView ID="grvPeopleLinked" CssClass="table table-hover table-striped gridview" AutoGenerateColumns="false" runat="server">
-        <Columns>
-            <asp:BoundField DataField="Serial Nr" HeaderText="Serial Nr" />
-            <asp:BoundField DataField="Internal Nr" HeaderText="Internal Nr" />
-            <asp:BoundField DataField="nameAD" HeaderText="Domain Name" />
-            <asp:BoundField DataField="assignedDate" HeaderText="Assigned Date" />
-            <asp:BoundField DataField="returnedDate" HeaderText="Returned Date" NullDisplayText="Not returned yet" />
-
-        </Columns>
-    </asp:GridView>
-    <asp:Button ID="btnReturn" runat="server" Text="Return to the overview page" OnClick="btnReturn_Click" CssClass="btn btn-primary" />
-    <asp:Button ID="btnModifying" runat="server" OnClick="btnModifying_Click" Visible="false" Text="Modify" CssClass="btn btn-info" />
-    <asp:Label ID="lblTotalQuery" runat="server" Text=""></asp:Label>
-    <asp:Label ID="lblInternalNr" Visible="false" runat="server" Text='<%#Eval("Internal Nr")%>' />
-    <asp:Label ID="lblProblem" runat="server"></asp:Label>
-    <asp:Panel ID="modifyPanel" Visible="false" runat="server">
-        <fieldset class="hardware-modify-item">
-            <div class="form-group">
-                <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="typeList">Type</asp:Label>
-                <div class="col-sm-10">
-                    <asp:DropDownList ID="typeList" OnSelectedIndexChanged="typeList_SelectedIndexChanged" CssClass="form-control" runat="server" EnableViewState="true" AutoPostBack="true">
-                        <asp:ListItem>** Please select a type **</asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                <div id="typeHelp" class="col-sm-12 col-sm-offset-2">
-                    <asp:Label ID="lblModifiedType" Text="When you select a type, this will update automatically into the database." CssClass="help-block" runat="server"></asp:Label>
-                </div>
-            </div>
-
-            <div class="form-group">
-
-                <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="manufacturerList">Manufacturer</asp:Label>
-                <div class="col-sm-10">
-                    <asp:DropDownList ID="manufacturerList" OnSelectedIndexChanged="manufacturerList_SelectedIndexChanged" CssClass="form-control normal-height" runat="server" AutoPostBack="True">
-                        <asp:ListItem>** Please select a manufacturer **</asp:ListItem>
-                        <asp:ListItem>Apple</asp:ListItem>
-                        <asp:ListItem>Lenovo</asp:ListItem>
-                        <asp:ListItem>HP</asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                <div id="ManufacturerHelp" class="col-sm-12 col-sm-offset-2">
-
-                    <asp:Label ID="lblModifiedManufacturer" Text="When you select a manufacturer, this will update automatically into the database." class="help-block" runat="server"></asp:Label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <asp:Label AssociatedControlID="txtDatepicker" CssClass="control-label col-sm-2" runat="server">Purchasedate</asp:Label>
-
-                <div class="col-sm-10">
-                    <link rel="stylesheet" href="../../Scripts/jquery-ui.css">
-                    <script src="../../Scripts/jquery-2.2.0.js"></script>
-                    <script src="../../Scripts/jquery-ui.js"></script>
-
-                    <script>
-                        $(function () {
-                            $("[id$=txtDatepicker]").datepicker();
-                        });
-                    </script>
-                    <asp:TextBox runat="server" ID="txtDatepicker" CssClass="form-control" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <asp:Label runat="server" CssClass="control-label col-sm-2" AssociatedControlID="modelNr">Model nr</asp:Label>
-                <div class="col-sm-10">
-                    <asp:TextBox runat="server" ID="modelNr" CssClass="form-control" placeholder="model number of the hardware" /> 
-                </div>
-            </div>
-
-            <div class="form-group">
-
-                <asp:Label AssociatedControlID="warrantyInfo" CssClass="control-label col-sm-2" runat="server">Warranty</asp:Label>
-                <div class="col-sm-10">
-                    <asp:TextBox ID="warrantyInfo" runat="server" CssClass="form-control" placeholder="warranty information" />
-                </div>
-            </div>
-
-            <div class="form-group">
-
-                <asp:Label AssociatedControlID="extraInfo" runat="server" CssClass="control-label col-sm-2">Extra info</asp:Label>
-                <div class="col-sm-10">
-                    <asp:TextBox runat="server" ID="extraInfo" CssClass="form-control" placeholder="additional info related to this hardware" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-sm-offset-5 col-sm-7">
-                    <asp:Button ID="Submit" runat="server" Text="Confirm modify" CssClass="btn btn-primary margin-top-15" OnClick="Confirm_Click" />
-                    <!--<asp:Label ID="testSelected" runat="server" Text="testSelected"></asp:Label>
-                <asp:TextBox ID="test" CssClass="form-control" runat="server"></asp:TextBox>-->
-                </div>
-
-            </div>
-
-        </fieldset>
     </asp:Panel>
 </asp:Content>
 

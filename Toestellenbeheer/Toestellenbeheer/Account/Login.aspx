@@ -35,14 +35,14 @@
                             <div class="col-md-offset-2 col-md-10">
                                 <div class="checkbox">
                                     <asp:CheckBox runat="server" ID="RememberMe" />
-                                    <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
+                                    <asp:Label runat="server" AssociatedControlID="RememberMe" data-container="body">Remember me?</asp:Label>
                                 </div>
                             </div>
                         </div>
                         <asp:Label ID="errorLabel" runat="server" Text=""></asp:Label>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <asp:Button runat="server" OnClick="Login_Click" Text="Log in" CssClass="btn btn-default" />
+                                <asp:Button  title="Login using the AD credentials" runat="server" OnClick="Login_Click" Text="Log in"  data-toggle="popover" data-placement="top" data-content="Remember me next time." CssClass="btn btn-primary" />
                             </div>
                         </div>
                     </div>
@@ -50,6 +50,8 @@
 
                 </section>
             </div>
+
+
             <div class="col-md-4">
                 <div class="form-group">
                     <h4 class="hint-block">Do not have an account?
@@ -60,20 +62,21 @@
                     </p>
                 </div>
             </div>
-            
+
         </div>
         <div class="row">
-                <div class="alert alert-warning">
-                    <strong>Default AD credential: Only for test purpose </strong>
-                    <div class="row">
-                        <div class="col-sm-6">AD username: </div>
-                        <div class="col-sm-6">jhli </div>
-                    </div>
-                      <div class="row">
-                        <div class="col-sm-6">AD password: </div>
-                        <div class="col-sm-6">Pwd1234 </div>
-                    </div>
+            <div class="alert alert-warning" data-dismiss="alert">
+                <strong>Default AD credential: Only for test purpose </strong>
+                <div class="row">
+                    <div class="col-sm-6">AD username: </div>
+                    <div class="col-sm-6">jhli </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">AD password: </div>
+                    <div class="col-sm-6">Pwd1234 </div>
                 </div>
             </div>
+        </div>
+
     </div>
 </asp:Content>

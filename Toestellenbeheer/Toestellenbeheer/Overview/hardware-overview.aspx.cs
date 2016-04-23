@@ -28,24 +28,24 @@ namespace Toestellenbeheer
                     DataTable dt = hardware.ReturnDatatableAllHardware();
                     HardwareOverviewGridSearch.DataSource = dt;
                     HardwareOverviewGridSearch.DataBind();
-                    btnReturn.Visible = false;
-                    searchPanel.Visible = true;
                     if (HardwareOverviewGridSearch.Rows.Count == 0)
                     {
                         lblGridTotalResult.Text = "No result found in the database.";
                     }
                 }
+                
                 catch (MySqlException ex)
                 {
                     ShowMessage(ex.ToString());
                 }
             }
+        
+
         }
 
         protected void Search(object sender, EventArgs e)
         {
             this.Search();
-            searchPanel.Visible = false;
         }
         protected void DownloadFile(object sender, EventArgs e)
         {
@@ -112,87 +112,45 @@ namespace Toestellenbeheer
             }
         }
        
-        //DeleteEvent is used for the datakey - to get details without selecting the rows
-        protected void details(object sender, GridViewDeleteEventArgs e)
+        protected void details(object sender, EventArgs e)
         {
             try
             {
                 mysqlConnectie.Open();
-                String strInternalNr = HardwareOverviewGridSearch.DataKeys[e.RowIndex].Value.ToString();
+                String strInternalNr = HardwareOverviewGridSearch.SelectedDataKey["internalNr"].ToString();
                 Session["internalNr"] = strInternalNr;
 
                 lblInternalNr.Text = strInternalNr;
                 var hardwareDetail = new Hardware(strInternalNr);
                 DataTable dt = hardwareDetail.ReturnDatatableHardwareFromInternal();
                 selectedRow.DataSource = dt;
+                grvImage.DataSource = dt;
+                grvImage.DataBind();
                 selectedRow.DataBind();
-                btnReturn.Visible = true;
-                btnModifying.Visible = true;
                 mysqlConnectie.Close();
+                modalShow();
+                modalTitle.InnerText = strInternalNr + " detail";
             }
             catch (MySqlException ex)
             {
                 ShowMessage(ex.ToString());
             }
         }
-
-        protected void btnReturn_Click(object sender, EventArgs e)
+        public void modalShow()
         {
-            btnReturn.Visible = false;
-            Server.Transfer("./hardware-overview.aspx");
-
+            udpDetails.Update();
+            ScriptManager.RegisterStartupScript(udpDetails, udpDetails.GetType(), "show", "$(function () { $('#" + modalHardware.ClientID + "').modal('show'); });", true);
+            
 
         }
 
-        protected void Confirm_Click(object sender, EventArgs e)
-        {
-            mysqlConnectie.Open();
-
-            String strInternalNr = lblInternalNr.Text.ToString();
-            String emptyString = "";
-
-            if (txtDatepicker.Text != emptyString)
-            {
-                String dtePurchaseYear = txtDatepicker.Text.Substring(6);
-                String dtePurchaseMonth = txtDatepicker.Text.Substring(0, 2);
-                String dtePurchaseDay = txtDatepicker.Text.Substring(3, 2);
-                String dtePurchaseDate = dtePurchaseYear.ToString() + '-' + dtePurchaseMonth.ToString() + '-' + dtePurchaseDay.ToString();
-                updateInfo("purchaseDate", dtePurchaseDate);
-            }
-            if (modelNr.Text.Trim() != emptyString)
-            {
-                updateInfo("modelNr", modelNr.Text.Trim());
-            }
-            if (warrantyInfo.Text.Trim() != emptyString)
-            {
-                updateInfo("warranty", warrantyInfo.Text.Trim());
-            }
-            /*if (internalNr.Text.Trim() != emptyString)
-            {
-                updateInfo("internalNr", internalNr.Text.Trim());
-            }*/
-            mysqlConnectie.Close();
-
-            selectedRow.Visible = true;
-            mysqlConnectie.Open();
-            strInternalNr = lblInternalNr.Text;
-            var getHardware = new Hardware(strInternalNr);
-            DataTable dt = getHardware.ReturnDatatableHardwareFromInternal();
-            selectedRow.DataSource = dt;
-            selectedRow.DataBind();
-            mysqlConnectie.Close();
-            modifyPanel.Visible = false;
-            btnModifying.Visible = true;
-        }
+        
         protected void btnModifying_Click(object sender, EventArgs e)
         {
             Session["ToModifiedInternalNr"] = Session["internalNr"];
 
             Server.Transfer("./modify-hardware.aspx");
-            modifyPanel.Visible = true;
-            selectedRow.Visible = false;
-            btnModifying.Visible = false;
-            getTypeList();
+           
         }
 
 
@@ -211,41 +169,7 @@ namespace Toestellenbeheer
                 lblProblem.Text = ex.Number.ToString();
             }
         }
-        protected void getTypeList()
-        {
-
-            var type = new TypeName();
-            DataTable dt = type.ReturnDatatableType();
-            typeList.DataSource = dt;
-            typeList.DataBind();
-            mysqlConnectie.Close();
-
-        }
-
-        protected void typeList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            mysqlConnectie.Open();
-            updateInfo("typeNr", typeList.SelectedIndex.ToString());
-            mysqlConnectie.Close();
-            lblModifiedType.Text = "The type has been updated!";
-        }
-
-        protected void manufacturerList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (manufacturerList.SelectedIndex != 0)
-            {
-                mysqlConnectie.Open();
-
-                updateInfo("manufacturerName", manufacturerList.SelectedValue.ToString());
-                mysqlConnectie.Close();
-                lblModifiedManufacturer.Text = "The manufacturer has been updated!";
-            }
-            else
-            {
-                lblModifiedManufacturer.Text = "When you select a manufacturer, this will update automatically into the database.";
-
-            }
-        }
+       
     }
 
 

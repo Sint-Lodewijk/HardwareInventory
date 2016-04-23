@@ -37,9 +37,7 @@
                 <asp:Label AssociatedControlID="txtDatepicker" CssClass="control-label col-sm-2" runat="server">Purchasedate</asp:Label>
 
                 <div class="col-sm-10">
-                    <link rel="stylesheet" href="../../Scripts/jquery-ui.css">
-                    <script src="../../Scripts/jquery-2.2.0.js"></script>
-                    <script src="../../Scripts/jquery-ui.js"></script>
+                
 
                     <script>
                         $(function () {

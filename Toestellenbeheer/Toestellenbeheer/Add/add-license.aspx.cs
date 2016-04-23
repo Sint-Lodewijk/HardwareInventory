@@ -65,7 +65,6 @@ namespace Toestellenbeheer.Manage
             this.Search();
             btnAssignToSelectedHardwareSearch.Visible = true;
             btnAssignToSelectedHardware.Visible = false;
-            this.HardwarePanelPopUP.Show();
 
         }
         //Displays the search button
@@ -198,7 +197,6 @@ namespace Toestellenbeheer.Manage
             hardwarePanel.Visible = true;
 
 
-            this.HardwarePanelPopUP.Show();
 
         }
         protected void SearchBound(object sender, GridViewRowEventArgs e)

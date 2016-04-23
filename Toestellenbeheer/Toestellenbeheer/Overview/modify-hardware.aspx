@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="modify-hardware.aspx.cs" Inherits="Toestellenbeheer.Overview.modify_hardware" %>
+﻿<%@ Page Title="Modify hardware" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="modify-hardware.aspx.cs" Inherits="Toestellenbeheer.Overview.modify_hardware" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:GridView ID="grvModifyHardware" AutoGenerateColumns="false" CssClass="table table-striped table-hover gridview" runat="server">
@@ -37,9 +37,7 @@
                                 </asp:Label>
                             </td>
                             <td class="col-sm-6">
-                                    <link rel="stylesheet" href="../../Scripts/jquery-ui.css">
-                                    <script src="../../Scripts/jquery-2.2.0.js"></script>
-                                    <script src="../../Scripts/jquery-ui.js"></script>
+                                  
                                     <script>
                                         $(function () {
                                             $("[id$=txtPDate]").datepicker({ dateFormat: 'dd-mm-yy' }).val();
@@ -112,5 +110,5 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-    <asp:Button runat="server" OnClick="btnModify_Click" ID="btnModify" Text="Modify" />
+    <asp:Button runat="server" OnClick="btnModify_Click" ID="btnModify" CssClass="btn btn-primary" Text="Modify" />
 </asp:Content>

@@ -71,12 +71,23 @@ namespace Toestellenbeheer.Models
         public bool IsUpdated(string strManufacturerValue)
         {
             mysqlConnectie.Open();
-            MySqlCommand updateManufacturer = new MySqlCommand("UPDATE Manufacturer SET manufacturerName = '"+ 
+            MySqlCommand updateManufacturer = new MySqlCommand("UPDATE Manufacturer SET manufacturerName = '" +
                 strManufacturerValue + "' WHERE manufacturerName = '" + ManufacturerName + "'", mysqlConnectie);
             updateManufacturer.ExecuteNonQuery();
             mysqlConnectie.Close();
             return true;
         }
+        /// <summary>
+        /// Counts the total manufacturers in database.
+        /// </summary>
+        /// <returns>System.Int32. total manufacturers in database.</returns>
+        public int CountManufacturer()
+        {
+            mysqlConnectie.Open();
+            var TotalManufacturer = new MySqlCommand("SELECT COUNT(*) FROM manufacturer", mysqlConnectie);
+            int intTotal = Convert.ToInt16(TotalManufacturer.ExecuteScalar());
+            mysqlConnectie.Close();
+            return intTotal;
+        }
     }
 }
-  

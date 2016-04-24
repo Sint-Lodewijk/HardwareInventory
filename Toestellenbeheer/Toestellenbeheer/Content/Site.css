@@ -57,10 +57,7 @@ input[type="select"] {
 .jumbotron {
 }
 
-.form-control {
-    height: 34px;
-    margin-top: 5px;
-}
+
 
 .hardware-add-item {
     margin-left: auto;
@@ -252,17 +249,44 @@ input[type="select"] {
 .sub-title-bar {
     padding-top: 10px;
 }
-.head-text{
+
+.head-text {
     font-size: 1.2em;
 }
-.modal-content{
+
+.modal-content {
     max-width: 95% !important;
 }
-.OpenRequest{
+
+.OpenRequest {
     border-radius: 2px;
-    background:rgba(255, 69, 18, 0.68);
-    color:white;
+    background: rgba(255, 69, 18, 0.68);
+    color: white;
 }
-.img-center{
+
+.img-center {
+    margin: 0 auto;
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none !important;
+}
+
+.carousel-image {
+    width: 100%;
+}
+
+.no-padding {
+    padding: 0px 0px 0px 0px;
+}
+.carousel-text{
+    padding-bottom: 30px;
+
+}
+.carousel-caption{
+    position:static;
+}
+.three-fourth{
+    width: 75%;
     margin: 0 auto;
 }

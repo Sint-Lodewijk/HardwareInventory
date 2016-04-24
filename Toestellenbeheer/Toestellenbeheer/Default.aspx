@@ -13,7 +13,99 @@
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <asp:UpdatePanel runat="server" ID="udpInitialize" UpdateMode="Conditional">
+        <ContentTemplate>
+            <div class="modal fade" id="initSetupModal" tabindex="-1" role="dialog" aria-labelledby="initSetupTitle">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content" style="background: url(Images/modal-background.jpg) no-repeat left center; background-size: cover;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="initSetupTitle">Initial setup</h4>
+                        </div>
+                        <div class="modal-body no-padding">
+                            <div id="carousel-example-generic" class="carousel slide carousel-text" data-ride="carousel" data-interval="false">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                </ol>
 
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <div class="carousel-caption">
+                                            <h3>HELLO!</h3>
+                                            <p class="text-center">Please help us to initialize this application in just few steps!</p>
+
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="carousel-caption">
+                                            <h3>Type</h3>
+                                            <p>Let's add some type hardware into the database!</p>
+                                            <div class="row">
+                                                <div class="input-group three-fourth">
+                                                    <input type="text" runat="server" id="txtType" class="form-control">
+                                                    <span class="input-group-btn">
+                                                        <asp:Button ID="btnType" OnClick="btnType_Click" CssClass="btn btn-primary" runat="server" Text="Add" />
+
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <p>Or let's <a href="~/Manage/manage-type" runat="server">modify</a> the type</p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="carousel-caption">
+                                            <h3>Manufacturer</h3>
+                                            <p>Let's add some type hardware into the database!</p>
+                                            <div class="row">
+                                                <div class="input-group three-fourth">
+                                                    <input type="text" runat="server" id="txtManufacturer" class="form-control">
+                                                    <span class="input-group-btn">
+                                                        <asp:Button OnClick="btnManufacturer_Click" CssClass="btn btn-primary" ID="btnManufacturer" runat="server" Text="Add" />
+
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <p>Or let's <a href="~/Manage/manage-manufacturer" runat="server">modify</a> the manufacturer</p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger EventName="Click" ControlID="btnType" />
+            <asp:AsyncPostBackTrigger EventName="Click" ControlID="btnManufacturer" />
+
+        </Triggers>
+    </asp:UpdatePanel>
     <div class="container margin-top-20">
         <div class="row no-15">
             <div class="col-md-4 text-center thumbnail no-border">

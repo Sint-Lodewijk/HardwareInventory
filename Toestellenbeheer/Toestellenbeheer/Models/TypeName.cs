@@ -41,7 +41,7 @@ namespace Toestellenbeheer.Models
             MySqlCommand addType = new MySqlCommand("Insert into type (type) values (@Type)", mysqlConnectie);
 
             addType.Parameters.AddWithValue("@Type", typeName);
-            
+
             addType.ExecuteNonQuery();
             addType.Dispose();
             mysqlConnectie.Close();
@@ -69,10 +69,18 @@ namespace Toestellenbeheer.Models
         public bool IsUpdated(string strUpdateText)
         {
             mysqlConnectie.Open();
-            MySqlCommand removeType = new MySqlCommand("UPDATE type SET type = '"+ strUpdateText +"' WHERE type = '" + typeName + "'", mysqlConnectie);
+            MySqlCommand removeType = new MySqlCommand("UPDATE type SET type = '" + strUpdateText + "' WHERE type = '" + typeName + "'", mysqlConnectie);
             removeType.ExecuteNonQuery();
             mysqlConnectie.Close();
             return true;
+        }
+        public int CountType()
+        {
+            mysqlConnectie.Open();
+            var TotalType = new MySqlCommand("SELECT COUNT(*) FROM type", mysqlConnectie);
+            int intTotal = Convert.ToInt16(TotalType.ExecuteScalar());
+            mysqlConnectie.Close();
+            return intTotal;
         }
     }
 }

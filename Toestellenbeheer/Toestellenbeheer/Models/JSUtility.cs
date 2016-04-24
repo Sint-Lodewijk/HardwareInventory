@@ -18,6 +18,13 @@ namespace Toestellenbeheer.Models
         {
             ControlID = strControlID;
         }
+        public void ModalShowUpdate(UpdatePanel udp)
+        {
+
+            udp.Update();
+            ScriptManager.RegisterStartupScript(udp, udp.GetType(), "show", "$(function () { $('#" + ControlID + "').modal('show'); });", true);
+
+        }
         public void ModalShow(UpdatePanel udp)
         {
 
@@ -25,5 +32,6 @@ namespace Toestellenbeheer.Models
             ScriptManager.RegisterStartupScript(udp, udp.GetType(), "show", "$(function () { $('#" + ControlID + "').modal('show'); });", true);
 
         }
+       
     }
 }

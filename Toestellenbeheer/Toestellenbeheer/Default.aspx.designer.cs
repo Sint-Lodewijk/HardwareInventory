@@ -40,6 +40,15 @@ namespace Toestellenbeheer {
         protected global::System.Web.UI.WebControls.Button btnType;
         
         /// <summary>
+        /// lblTypeAvailible control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTypeAvailible;
+        
+        /// <summary>
         /// txtManufacturer control.
         /// </summary>
         /// <remarks>
@@ -56,5 +65,14 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnManufacturer;
+        
+        /// <summary>
+        /// lblAvailibleManufacturer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblAvailibleManufacturer;
     }
 }

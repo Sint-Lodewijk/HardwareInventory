@@ -287,6 +287,10 @@ input[type="select"] {
     position:static;
 }
 .three-fourth{
-    width: 75%;
+    width: 73%;
     margin: 0 auto;
+}
+.transparent{
+    background: transparent !important;
+    border: 0px !important;
 }

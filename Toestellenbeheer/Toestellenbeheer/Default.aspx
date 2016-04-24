@@ -23,12 +23,12 @@
                             <h4 class="modal-title" id="initSetupTitle">Initial setup</h4>
                         </div>
                         <div class="modal-body no-padding">
-                            <div id="carousel-example-generic" class="carousel slide carousel-text" data-ride="carousel" data-interval="false">
+                            <div id="carousel-init" class="carousel slide carousel-text" data-ride="carousel" data-interval="false">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
-                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                    <li data-target="#carousel-init" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-init" data-slide-to="1"></li>
+                                    <li data-target="#carousel-init" data-slide-to="2"></li>
                                 </ol>
 
                                 <!-- Wrapper for slides -->
@@ -53,11 +53,13 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                            <ul class="list-group">
+                                                <li class="list-group-item transparent three-fourth"><span class="badge" runat="server" id="lblTypeAvailible"></span>Availible type</li>
+                                            </ul>
                                             <div class="row">
                                                 <p>Or let's <a href="~/Manage/manage-type" runat="server">modify</a> the type</p>
 
                                             </div>
-
                                         </div>
                                     </div>
                                     <div class="item">
@@ -73,6 +75,9 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                            <ul class="list-group">
+                                                <li class="list-group-item  transparent three-fourth"><span class="badge" runat="server" id="lblAvailibleManufacturer"></span>Availible Manufacturer</li>
+                                            </ul>
                                             <div class="row">
                                                 <p>Or let's <a href="~/Manage/manage-manufacturer" runat="server">modify</a> the manufacturer</p>
 
@@ -84,11 +89,11 @@
                                 </div>
 
                                 <!-- Controls -->
-                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                <a class="left carousel-control" href="#carousel-init" role="button" data-slide="prev">
                                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
-                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                <a class="right carousel-control" href="#carousel-init" role="button" data-slide="next">
                                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>

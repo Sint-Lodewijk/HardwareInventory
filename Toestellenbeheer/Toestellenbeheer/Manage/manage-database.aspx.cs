@@ -22,6 +22,10 @@ namespace Toestellenbeheer.Manage
 
         protected void btnBackup_Click(object sender, EventArgs e)
         {
+            Backup();
+        }
+        private void Backup()
+        {
             var backupcmd = new MySqlCommand();
             backupcmd.Connection = mysqlConnectie;
             var backup = new MySqlBackup(backupcmd);
@@ -30,7 +34,6 @@ namespace Toestellenbeheer.Manage
             backup.ExportToFile(Server.MapPath("~/Backup/") + "mysql-backup.sql");
             mysqlConnectie.Close();
         }
-
         protected void btnRestore_Click(object sender, EventArgs e)
         {
 
@@ -51,6 +54,7 @@ namespace Toestellenbeheer.Manage
 
         protected void btnTruncate_Click(object sender, EventArgs e)
         {
+            Backup();
             var table = new MySqlUtility();
             DataTable dt = table.DtTable();
             mysqlConnectie.Open();

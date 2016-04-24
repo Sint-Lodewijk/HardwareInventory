@@ -20,6 +20,10 @@
     <script src='<%= ResolveUrl("~/Scripts/jquery-2.2.3.min.js") %>'></script>
     <script src='<%= ResolveUrl("~/Scripts/jquery-ui.js") %>'></script>
     <script src='<%= ResolveUrl("~/Scripts/bootstrap.min.js") %>'></script>
+        <script src='<%= ResolveUrl("~/Scripts/jquery.tablesorter.min.js") %>'></script>
+            <script src='<%= ResolveUrl("~/Scripts/jquery.tablesorter.widgets.js") %>'></script>
+
+
     <link rel="stylesheet" href='<%= ResolveUrl("~/Scripts/jquery-ui.css") %>' />
     <form runat="server">
         <asp:ScriptManager runat="server">
@@ -126,8 +130,8 @@
 
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li><a runat="server" class="OpenRequest" href="~/Manage/manage-requests">
-                                            <asp:Label ID="lblOpenRequest"  runat="server" EnableViewState="True"></asp:Label>
+                                        <li><a runat="server" class="OpenRequest" href="~/Manage/manage-requests"><span class="badge">
+                                            <asp:Label ID="lblOpenRequest" runat="server" EnableViewState="True"></asp:Label></span>
                                         </a></li>
                                         <li><a runat="server" href="~/Manage" title="Manage">Manage, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                         <li>

@@ -3,6 +3,8 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Configuration;
 using System.Data;
+using System.Web.UI.WebControls;
+using Toestellenbeheer.Models;
 
 namespace Toestellenbeheer.Users
 {
@@ -17,14 +19,9 @@ namespace Toestellenbeheer.Users
                 try
                 {
                     String strUserName = Context.User.Identity.GetUserName();
-  
-                    mysqlConnectie.Open();
-                    MySqlCommand getMyHardware = new MySqlCommand("SELECT hardware.pictureLocation, hardware.serialNr, hardware.internalNr, hardware.manufacturerName, type FROM hardware JOIN archive ON hardware.internalNr = archive.internalNr  JOIN people ON people.eventID = archive.eventID  WHERE people.nameAD = '" + strUserName+"'", mysqlConnectie);
-                    getMyHardware.Parameters.AddWithValue("@nameAD", strUserName);
-                    MySqlDataReader rdrGetMyHardware = getMyHardware.ExecuteReader();
-                    DataTable dt = new DataTable();
-                    // MySqlDataAdapter adpa = new MySqlDataAdapter(rdrGetMyHardware);
-                    dt.Load(rdrGetMyHardware);
+
+                    var uHardware = new Models.Hardware();
+                    DataTable dt = uHardware.ReturnUserHardware(strUserName);
                    
                     grvMyHardware.DataSource = dt;
                     grvMyHardware.DataBind();
@@ -38,7 +35,29 @@ namespace Toestellenbeheer.Users
                 {
                     lblError.Text = ex.ToString();
                 }
+
             }
+
+        }
+        protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvMyHardware, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to select this row.";
+            }
+        }
+
+        protected void grvMyHardware_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string strInternalNr = grvMyHardware.SelectedDataKey["internalNr"].ToString();
+            var picLoc = new Models.Hardware(strInternalNr);
+            
+            picDetail.ImageUrl = "../UserUploads/Images/" + picLoc.PicLocation();
+            var picModal = new JSUtility("hardwareImageModal");
+            picModal.ModalShowUpdate(udpDetails);
+
+
         }
     }
 }

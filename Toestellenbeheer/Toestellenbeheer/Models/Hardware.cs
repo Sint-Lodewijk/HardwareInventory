@@ -210,6 +210,33 @@ namespace Toestellenbeheer.Models
             }
 
         }
+      public String PicLocation()
+        {
+            MySqlConnection mysqlConnectie = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+            mysqlConnectie.Open();
+            MySqlCommand getMyHardware = new MySqlCommand("SELECT hardware.pictureLocation type FROM hardware WHERE hardware.internalNr = '" + InternalNr + "'", mysqlConnectie);
+            string strPicLoc = getMyHardware.ExecuteScalar().ToString();
+            return strPicLoc;
+        }
+        /// <summary>
+        /// Returns the current user hardware.
+        /// </summary>
+        /// <param name="UserName">Name of the user.</param>
+        /// <returns>DataTable. Hardware</returns>
+        public DataTable ReturnUserHardware(string UserName)
+        {
+            MySqlConnection mysqlConnectie = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+            mysqlConnectie.Open();
+            MySqlCommand getMyHardware = new MySqlCommand("SELECT hardware.pictureLocation, hardware.serialNr, hardware.internalNr, hardware.manufacturerName, type FROM hardware JOIN archive ON hardware.internalNr = archive.internalNr  JOIN people ON people.eventID = archive.eventID  WHERE people.nameAD = '" + UserName + "'", mysqlConnectie);
+            getMyHardware.Parameters.AddWithValue("@nameAD", UserName);
+            MySqlDataReader rdrGetMyHardware = getMyHardware.ExecuteReader();
+            DataTable dt = new DataTable();
+            // MySqlDataAdapter adpa = new MySqlDataAdapter(rdrGetMyHardware);
+            dt.Load(rdrGetMyHardware);
+            return dt;
+        }
         /// <summary>
         /// Creates the XML file.
         /// </summary>

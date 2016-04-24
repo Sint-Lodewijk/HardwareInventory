@@ -17,8 +17,8 @@
 
                         </div>
 
-                        <div class="modal-body">
-                                                        <asp:Label ID="lblResult" CssClass="col-sm-12" runat="server"></asp:Label>
+                        <div class="modal-body modal-margin">
+                            <asp:Label ID="lblResult" CssClass="col-sm-12" runat="server"></asp:Label>
 
                             <asp:GridView ID="grvHardwareOfPeople" runat="server" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview">
                                 <Columns>

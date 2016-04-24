@@ -1,32 +1,41 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="manage-manufacturer.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_manufacturer" %>
+﻿<%@ Page Title="Add a manufacturer" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="manage-manufacturer.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_manufacturer" %>
+
 <asp:Content ID="ManageManufacturer" ContentPlaceHolderID="MainContent" runat="server">
-       
-        <div class="form-group">
 
-            <asp:Label ID="lblManufacturerName" runat="server" CssClass="control-label col-sm-2" AssociatedControlID="txtManufacturerName">Manufacturer</asp:Label>
-            <div class="col-sm-7">
+    <div class="form-group">
 
-                <asp:TextBox ID="txtManufacturerName" runat="server" CssClass="form-control"></asp:TextBox>
+        <div class="input-group">
+
+            <asp:TextBox ID="txtManufacturerName" placeholder="manufacturer" runat="server" CssClass="form-control"></asp:TextBox>
+            <div class="input-group-btn">
+
+                <asp:Button ID="btnAddManufacturer" runat="server" Text="Add" CssClass="btn btn-primary" OnClick="btnAddManufacturer_Click" />
+
             </div>
-            <div class="col-sm-2">
-                <asp:Button ID="btnAddManufacturer" runat="server" Text="Add a manufacturer" CssClass="btn btn-primary margin-top-5" OnClick="btnAddManufacturer_Click" />
-            </div>
-            <div class="form-group">
-                <asp:Label runat="server" ID="lblProblem" Text=""></asp:Label>
-            </div>
+            <asp:Label runat="server" ID="Label1" Text=""></asp:Label>
         </div>
-        <asp:GridView ID="grvManufacturer" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="grvManufacturer_SelectedIndexChanged" runat="server"  CssClass="table table-hover table-striped gridview" AllowPaging="True"  AutoGenerateColumns="False" DataKeyNames="manufacturerName">
-            <Columns>
-                <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer" ReadOnly="False" SortExpression="manufacturerName" />
-            </Columns>
-            <SelectedRowStyle CssClass="success" />
-        </asp:GridView>
-        <asp:Panel ID="ButtonPanel" runat="server" Visible="false">
-            <asp:Button ID="btnEdit" OnClick="btnEdit_Click" CssClass="btn btn-primary" runat="server" Text="Modify" />
-            <asp:Button ID="btnDelete" OnClick="btnDelete_Click" CssClass="btn btn-primary" runat="server" Text="Delete" />
-        </asp:Panel>
-        <asp:Button ID="target" runat="server" CssClass="hide" />
-    
+
+        <asp:Label runat="server" ID="lblProblem" Text=""></asp:Label>
+
+    </div>
+   
+    <asp:GridView ID="grvManufacturer" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="grvManufacturer_SelectedIndexChanged" runat="server" CssClass="table table-hover table-striped gridview" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="manufacturerName">
+        <Columns>
+            <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer" ReadOnly="False" SortExpression="manufacturerName" />
+        </Columns>
+        <SelectedRowStyle CssClass="success" />
+    </asp:GridView>
+     <script>
+        $(document).ready(function () {
+            $("#MainContent_grvManufacturer").tablesorter();
+        });
+    </script>
+    <asp:Panel ID="ButtonPanel" runat="server" Visible="false">
+        <asp:Button ID="btnEdit" OnClick="btnEdit_Click" CssClass="btn btn-primary" runat="server" Text="Modify" />
+        <asp:Button ID="btnDelete" OnClick="btnDelete_Click" CssClass="btn btn-primary" runat="server" Text="Delete" />
+    </asp:Panel>
+    <asp:Button ID="target" runat="server" CssClass="hide" />
+
     <div class="modal fade" id="modalManufacturer" tabindex="-1" role="dialog" aria-labelledby="manufacturerModalTitle">
         <div class="modal-dialog" role="document">
 
@@ -42,7 +51,7 @@
                                 <asp:TextBox ID="txtManufacturerModifying" runat="server" CssClass="form-control col-sm-12"></asp:TextBox>
                             </div>
                         </ContentTemplate>
-                    </asp:UpdatePanel>                            
+                    </asp:UpdatePanel>
                     <br />
 
                 </div>
@@ -53,5 +62,5 @@
             </div>
         </div>
     </div>
-   
+
 </asp:Content>

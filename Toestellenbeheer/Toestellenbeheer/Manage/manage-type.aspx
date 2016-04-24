@@ -5,18 +5,18 @@
 
     <div class="form-group">
 
-        <asp:Label ID="lblTypeName" runat="server" CssClass="control-label col-sm-2" AssociatedControlID="typeName">Type name</asp:Label>
-        <div class="col-sm-7">
+        <div class="input-group">
 
-            <asp:TextBox ID="typeName" runat="server" CssClass="form-control"></asp:TextBox>
-        </div>
-        <div class="col-sm-2">
-            <asp:Button ID="btnAddType" runat="server" Text="Add a type" CssClass="btn btn-primary margin-top-5" OnClick="btnAddType_Click" />
-        </div>
-        <div class="form-group">
+            <asp:TextBox ID="typeName" placeholder="type" runat="server" CssClass="form-control"></asp:TextBox>
+            <div class="input-group-btn">
+
+                <asp:Button ID="btnAddType" runat="server" Text="Add a type" CssClass="btn btn-primary" OnClick="btnAddType_Click" />
+
+            </div>
             <asp:Label runat="server" ID="lblProblem" Text=""></asp:Label>
         </div>
     </div>
+
     <asp:GridView ID="typeSelect" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="typeSelect_SelectedIndexChanged" runat="server" CssClass="table table-hover table-striped gridview" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="type">
         <Columns>
             <asp:BoundField DataField="type" HeaderText="Type" ReadOnly="False" SortExpression="type" />
@@ -43,7 +43,7 @@
                                 <asp:TextBox ID="txtType" runat="server" CssClass="form-control col-sm-12"></asp:TextBox>
                             </div>
                         </ContentTemplate>
-                    </asp:UpdatePanel>                            
+                    </asp:UpdatePanel>
                     <br />
 
                 </div>
@@ -54,5 +54,4 @@
             </div>
         </div>
     </div>
-
 </asp:Content>

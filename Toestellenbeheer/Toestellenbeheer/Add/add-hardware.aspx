@@ -15,12 +15,13 @@
             <div class="form-group">
                 <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="typeList">Type</asp:Label>
                 <div class="col-sm-10">
+
                     <asp:DropDownList ID="typeList" CssClass="form-control" runat="server" AutoPostBack="True" DataSourceID="sqlType" DataTextField="type" DataValueField="type" />
                     <asp:SqlDataSource ID="sqlType" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT type FROM type"></asp:SqlDataSource>
                 </div>
 
             </div>
-
+            
 
             <div class="form-group">
 
@@ -37,7 +38,7 @@
                 <asp:Label AssociatedControlID="txtDatepicker" CssClass="control-label col-sm-2" runat="server">Purchasedate</asp:Label>
 
                 <div class="col-sm-10">
-                
+
 
                     <script>
                         $(function () {
@@ -89,11 +90,15 @@
             </div>
             <div class="form-group">
                 <asp:Label AssociatedControlID="PictureUpload" CssClass="control-label col-sm-2" runat="server">Picture</asp:Label>
-                <div class="col-sm-8">
-                    <asp:FileUpload ID="PictureUpload" CssClass="btn btn-default form-control" runat="server" />
-                </div>
-                <div class="col-sm-2">
-                    <asp:Button ID="Upload" runat="server" Text="Upload" CssClass="btn btn-info margin-top-6-2" OnClick="Upload_Click" />
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <asp:FileUpload ID="PictureUpload" CssClass="btn btn-default form-control" runat="server" />
+
+                        <div class="input-group-btn">
+                            <asp:Button ID="Upload" runat="server" Text="Upload" CssClass="btn btn-info" OnClick="Upload_Click" />
+
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group col-sm-10 col-sm-offset-2 hint-block">
@@ -104,13 +109,15 @@
 
                 <asp:Label AssociatedControlID="AttachmentUpload" runat="server" CssClass="control-label col-sm-2">Attachments</asp:Label>
 
-                <div class="col-sm-8">
-                    <asp:FileUpload ID="AttachmentUpload" CssClass="btn btn-default form-control" runat="server" />
-                </div>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <asp:FileUpload ID="AttachmentUpload" CssClass="btn btn-default form-control" runat="server" />
 
-                <div class="col-sm-2">
-                    <asp:Button ID="UploadAttachment" runat="server" CssClass="btn btn-info margin-top-6-2" Text="Upload" OnClick="UploadAttachment_Click" />
+                        <div class="input-group-btn">
+                            <asp:Button ID="UploadAttachment" runat="server" CssClass="btn btn-info" Text="Upload" OnClick="UploadAttachment_Click" />
 
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group col-sm-10 col-sm-offset-2 hint-block">

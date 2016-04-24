@@ -25,7 +25,7 @@ namespace Toestellenbeheer.Archive
         }
         protected void grvPeopleAD_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String strNameAD = grvPeopleAD.SelectedRow.Cells[1].Text.ToString();
+            String strNameAD = grvPeopleAD.SelectedRow.Cells[2].Text.ToString();
             getHardwareFromNameAD(strNameAD);
             if (grvHardwareOfPeople.Rows.Count == 0)
             {

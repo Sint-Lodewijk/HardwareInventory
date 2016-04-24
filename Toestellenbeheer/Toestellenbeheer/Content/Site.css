@@ -294,3 +294,9 @@ input[type="select"] {
     background: transparent !important;
     border: 0px !important;
 }
+.modal-margin{
+    margin-bottom: 30px;
+}
+form{
+margin-top: 20px;
+}

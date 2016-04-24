@@ -1,5 +1,0 @@
-C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\Jianing\Documents\toestellenbeheer\Toestellenbeheer\Toestellenbeheer\bin\roslyn\VBCSCompiler.exe

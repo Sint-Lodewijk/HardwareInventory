@@ -109,6 +109,23 @@
                 </div>
             </div>
         </div>
+        <div class="row no-15">
+             <div class="col-md-4 text-center thumbnail no-border">
+                <a href="./manage-database">
+
+                    <img src="~/Images/database-icon.png" runat="server" alt="Database" class="img-responsive max-p80">
+                </a>
+                <div class="caption">
+
+                    <p>
+                        Backup, restore and destroy the database.            
+                    </p>
+                    <p>
+                        <a class="btn btn-default col-md-12" href="./manage-requests">Manage database &raquo;</a>
+                    </p>
+                </div>
+            </div>
+        </div>
 
     </div>
 </asp:Content>

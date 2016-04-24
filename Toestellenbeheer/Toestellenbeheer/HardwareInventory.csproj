@@ -79,6 +79,9 @@
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.9.8\Assemblies\v4.5\MySql.Fabric.Plugin.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Web, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySqlBackup">
+      <HintPath>..\..\..\..\Downloads\MySqlBackup.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -210,6 +213,7 @@
     <Content Include="Images\add-user-icon.png" />
     <Content Include="Images\archive-icon.png" />
     <Content Include="Images\brand-image.png" />
+    <Content Include="Images\database-icon.png" />
     <Content Include="Images\eye-icon.png" />
     <Content Include="Images\license-icon.png" />
     <Content Include="Images\manufacturer-icon.png" />
@@ -225,6 +229,7 @@
     <Content Include="Images\type-icon.png" />
     <Content Include="Manage\assign-hardware.aspx" />
     <Content Include="Manage\assign-license.aspx" />
+    <Content Include="Manage\manage-database.aspx" />
     <Content Include="Manage\manage-manufacturer.aspx" />
     <Content Include="Manage\manage-requests.aspx" />
     <Content Include="Manage\manage-type.aspx" />
@@ -364,6 +369,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Manage\manage-database.aspx.cs">
+      <DependentUpon>manage-database.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manage\manage-database.aspx.designer.cs">
+      <DependentUpon>manage-database.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Manage\manage-manufacturer.aspx.cs">
       <DependentUpon>manage-manufacturer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -383,6 +395,7 @@
     <Compile Include="Models\LicenseHandler.cs" />
     <Compile Include="Models\Manufacturer.cs" />
     <Compile Include="Models\MySqlExceptionHandler.cs" />
+    <Compile Include="Models\MySqlUtility.cs" />
     <Compile Include="Models\Request.cs" />
     <Compile Include="Models\TypeName.cs" />
     <Compile Include="Models\User.cs" />
@@ -550,6 +563,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Backup\" />
     <Folder Include="Images\HardwarePicture\" />
     <Folder Include="Scripts\images\" />
     <Folder Include="UserUploads\Attachments\" />

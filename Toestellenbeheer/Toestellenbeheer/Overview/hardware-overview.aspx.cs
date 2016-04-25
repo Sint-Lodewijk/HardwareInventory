@@ -128,7 +128,8 @@ namespace Toestellenbeheer
                 grvImage.DataBind();
                 selectedRow.DataBind();
                 mysqlConnectie.Close();
-                modalShow();
+                var modalShow = new JSUtility(modalHardware.ClientID);
+                modalShow.ModalShowUpdate(udpDetails);
                 modalTitle.InnerText = strInternalNr + " detail";
             }
             catch (MySqlException ex)
@@ -136,12 +137,7 @@ namespace Toestellenbeheer
                 ShowMessage(ex.ToString());
             }
         }
-        public void modalShow()
-        {
-            udpDetails.Update();
-            ScriptManager.RegisterStartupScript(udpDetails, udpDetails.GetType(), "show", "$(function () { $('#" + modalHardware.ClientID + "').modal('show'); });", true);
-            
-        }
+       
 
         
         protected void btnModifying_Click(object sender, EventArgs e)

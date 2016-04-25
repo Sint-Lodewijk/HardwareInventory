@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace Toestellenbeheer.Models
 {
@@ -32,6 +34,16 @@ namespace Toestellenbeheer.Models
             ScriptManager.RegisterStartupScript(udp, udp.GetType(), "show", "$(function () { $('#" + ControlID + "').modal('show'); });", true);
 
         }
-       
+        public void DetailsPopUp(string strInternalNr, GridView grvDetail, Image ImageID, UpdatePanel udpDetails)
+        {
+            var detailHardware = new Hardware(strInternalNr);
+            DataTable dt = detailHardware.ReturnDatatableHardwareFromInternal();
+            grvDetail.DataSource = dt;
+            grvDetail.DataBind();
+            ImageID.ImageUrl = "../UserUploads/Images/" + detailHardware.PicLocation();
+            var detailModalShow = new JSUtility(ControlID);
+            detailModalShow.ModalShowUpdate(udpDetails);
+        }
+
     }
 }

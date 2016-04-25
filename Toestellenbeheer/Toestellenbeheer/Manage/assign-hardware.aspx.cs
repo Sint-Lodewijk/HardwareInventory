@@ -7,6 +7,7 @@ using System.Data;
 using System.DirectoryServices;
 using System.Xml;
 using Toestellenbeheer.Models;
+using System.IO;
 
 namespace Toestellenbeheer.Manage
 {
@@ -105,22 +106,43 @@ namespace Toestellenbeheer.Manage
             assignedHardware.BindEventID();
         }
 
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            PeoplePopUp.Hide();
-        }
 
-        protected void btnOpenPeoplePopUp_Click(object sender, EventArgs e)
-        {
-            PeoplePanel.Visible = true;
-            PeoplePopUp.Show();
-        }
+     
 
         protected void grvHardwarePoolUnassigned_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnOpenPeoplePopUp.Visible = true;
             btnAssignHardwarePeople.Text = "Assign " + grvHardwarePoolUnassigned.SelectedDataKey["internalNr"].ToString();
 
+        }
+
+        protected void grvHardwarePoolUnassigned_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string strInternalNr = grvHardwarePoolUnassigned.DataKeys[e.RowIndex]["internalNr"].ToString();
+            var detailHardware = new Hardware(strInternalNr);
+            DataTable dt = detailHardware.ReturnDatatableHardwareFromInternal();
+            grvDetail.DataSource = dt;
+            grvDetail.DataBind();
+            imgHardware.ImageUrl = "../UserUploads/Images/" + detailHardware.PicLocation();
+            var detailModalShow = new JSUtility(modalHardware.ClientID);
+            detailModalShow.ModalShowUpdate(udpDetails);
+        }
+        protected void DownloadFile(object sender, EventArgs e)
+        {
+            try
+            {
+                string path = "../UserUploads/Attachments/";
+
+                string filePath = (sender as LinkButton).CommandArgument;
+                Response.ContentType = ContentType;
+                Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
+                Response.WriteFile(path + Path.GetFileName(filePath));
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                lblResult.Text = "Problem with downloading, please check if you added a attachment to the hardware." + ex.ToString();
+            }
         }
     }
 }

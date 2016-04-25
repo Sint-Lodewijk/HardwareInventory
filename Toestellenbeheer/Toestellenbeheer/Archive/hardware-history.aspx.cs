@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -68,6 +69,32 @@ namespace Toestellenbeheer.Archive
             ScriptManager.RegisterStartupScript(udpDetails, udpDetails.GetType(), "show", "$(function () { $('#" + modalHardware.ClientID + "').modal('show'); });", true);
 
         }
+
+        protected void grvHardware_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string strInternalNr = grvHardware.DataKeys[e.RowIndex].Value.ToString();
+            var ShowDetail = new JSUtility(hardwareDetailsPanel.ClientID);
+            ShowDetail.DetailsPopUp(strInternalNr, grvDetail, imgHardware, udpHardwareDetails);
+
+        }
+        protected void DownloadFile(object sender, EventArgs e)
+        {
+            try
+            {
+                string path = "../UserUploads/Attachments/";
+
+                string filePath = (sender as LinkButton).CommandArgument;
+                Response.ContentType = ContentType;
+                Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
+                Response.WriteFile(path + Path.GetFileName(filePath));
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                lblResult.Text = "Problem with downloading, please check if you added a attachment to the hardware." + ex.ToString();
+            }
+        }
+
     }
 
 }

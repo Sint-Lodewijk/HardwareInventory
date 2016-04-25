@@ -3,7 +3,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="AjaxControl" %>
 
 <asp:Content ID="hardwareOverview" ContentPlaceHolderID="MainContent" runat="server">
-  
+
 
     <asp:UpdatePanel runat="server" ID="udpHardware" UpdateMode="Always">
 
@@ -43,7 +43,7 @@
                     <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="Internal Nr" />
                     <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="Manufacturer" />
                     <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
-
+                    <asp:BoundField DataField="modelNr" HeaderText="Model Nr" />
 
 
 
@@ -181,17 +181,12 @@
                                                         <asp:Label ID="Label6" runat="server" Text='<%#Eval("addedDate")%>'>
                                                         </asp:Label></td>
                                                 </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:Label ID="Label16" runat="server" Text="Attachment: ">
-                                                        </asp:Label></td>
-                                                    <td>
-                                                        <asp:LinkButton ID="lnkDownload" CommandArgument='<%# Eval("attachmentLocation") %>' runat="server" OnClick="DownloadFile" Text='<%# Convert.ToString(Eval("attachmentLocation")).Length < 1 ? "" : Convert.ToString(Eval("attachmentLocation")) %>'>Download</asp:LinkButton>
-                                                    </td>
-                                                </tr>
+
                                             </table>
+
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                    
 
                                 </Columns>
                             </asp:GridView>

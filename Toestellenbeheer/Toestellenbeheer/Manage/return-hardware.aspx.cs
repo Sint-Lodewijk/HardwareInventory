@@ -2,6 +2,7 @@
 using System;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Toestellenbeheer.Models;
@@ -27,17 +28,10 @@ namespace Toestellenbeheer.Manage
         {
             try
             {
-                mysqlConnectie.Open();
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT  DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type, manufacturerName, serialNr, internalNr, pictureLocation, nameAD FROM hardware JOIN people on hardware.eventID = people.eventID ", mysqlConnectie);
-                MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
-                bindToGrid.ExecuteNonQuery();
-                bindToGrid.Dispose();
-                DataSet ds = new DataSet();
-                adpa.Fill(ds);
-                grvHardwarePoolAssigned.DataSource = ds;
+                var Assigned = new Hardware();
+                grvHardwarePoolAssigned.DataSource = Assigned.ReturnAssignedHardware();
                 grvHardwarePoolAssigned.DataBind();
-                mysqlConnectie.Close();
-            }
+          }
             catch (MySqlException ex)
             {
                 lblResult.Text = ex.ToString();
@@ -80,13 +74,37 @@ namespace Toestellenbeheer.Manage
         protected int getCorrespondingEventID(String internalNr)
         {
             mysqlConnectie.Open();
-            MySqlCommand getCorrespondingIndex = new MySqlCommand("SELECT eventID from hardware where internalNr = '" + internalNr +"'", mysqlConnectie);
-            
-            int intCorrespondingIndex = (int) getCorrespondingIndex.ExecuteScalar();
-            
+            MySqlCommand getCorrespondingIndex = new MySqlCommand("SELECT eventID from hardware where internalNr = '" + internalNr + "'", mysqlConnectie);
+
+            int intCorrespondingIndex = (int)getCorrespondingIndex.ExecuteScalar();
+
             mysqlConnectie.Close();
             return intCorrespondingIndex;
 
+        }
+        protected void DownloadFile(object sender, EventArgs e)
+        {
+            try
+            {
+                string path = "../UserUploads/Attachments/";
+
+                string filePath = (sender as LinkButton).CommandArgument;
+                Response.ContentType = ContentType;
+                Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
+                Response.WriteFile(path + Path.GetFileName(filePath));
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                lblResult.Text = "Problem with downloading, please check if you added a attachment to the hardware." + ex.ToString();
+            }
+        }
+
+        protected void grvHardwarePoolAssigned_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string strInternalNr = grvHardwarePoolAssigned.DataKeys[e.RowIndex]["internalNr"].ToString();
+            var ShowDetail = new JSUtility(modalHardware.ClientID);
+            ShowDetail.DetailsPopUp(strInternalNr, grvDetail, imgHardware, udpDetails);
         }
     }
 

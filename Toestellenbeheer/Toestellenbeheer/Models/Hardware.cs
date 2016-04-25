@@ -27,7 +27,7 @@ namespace Toestellenbeheer.Models
         /// <param name="strPurchaseDate">The string purchase date.</param>
         /// <param name="strWarrantyInfo">The string warranty information.</param>
         /// <param name="strTypeName">Name of the string type.</param>
-        public Hardware( string strExtraInfo, string strInternalNr, string strManufacturerName, 
+        public Hardware(string strExtraInfo, string strInternalNr, string strManufacturerName,
             string strModelName,
             string strPurchaseDate, string strWarrantyInfo, string strTypeName)
         {
@@ -171,7 +171,7 @@ namespace Toestellenbeheer.Models
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             mysqlConnectie.Open();
-            MySqlCommand getHardware = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type , manufacturerName, serialNr, internalNr, warranty, extraInfo, DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation, eventID FROM hardware ", mysqlConnectie);
+            MySqlCommand getHardware = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type , manufacturerName, serialNr, internalNr, warranty, extraInfo, DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation, eventID, modelNr FROM hardware ", mysqlConnectie);
             var dataReader = getHardware.ExecuteReader();
             var dt = new DataTable();
             dt.Load(dataReader);
@@ -210,14 +210,30 @@ namespace Toestellenbeheer.Models
             }
 
         }
-      public String PicLocation()
+        public String PicLocation()
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
             mysqlConnectie.Open();
-            MySqlCommand getMyHardware = new MySqlCommand("SELECT hardware.pictureLocation type FROM hardware WHERE hardware.internalNr = '" + InternalNr + "'", mysqlConnectie);
-            string strPicLoc = getMyHardware.ExecuteScalar().ToString();
-            return strPicLoc;
+            MySqlCommand getMyHardware = new MySqlCommand("SELECT hardware.pictureLocation FROM hardware WHERE hardware.internalNr = '" + InternalNr + "'", mysqlConnectie);
+            object checkObj = new object();
+            checkObj = getMyHardware.ExecuteScalar();
+            if (checkObj == null)
+            {
+                mysqlConnectie.Close();
+
+                return "";
+
+            }
+            else
+            {
+                string strPicLoc = getMyHardware.ExecuteScalar().ToString();
+                mysqlConnectie.Close();
+
+                return strPicLoc;
+
+            }
+
         }
         /// <summary>
         /// Returns the current user hardware.
@@ -351,7 +367,7 @@ namespace Toestellenbeheer.Models
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
             mysqlConnectie.Open();
-            MySqlCommand ReturnUnassignedHardware = new MySqlCommand("SELECT DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type, manufacturerName, serialNr, internalNr, pictureLocation FROM hardware WHERE eventID IS NULL or eventID=''", mysqlConnectie);
+            MySqlCommand ReturnUnassignedHardware = new MySqlCommand("SELECT DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type, manufacturerName, serialNr, internalNr, pictureLocation, modelNr FROM hardware WHERE eventID IS NULL or eventID=''", mysqlConnectie);
             var unassignsReader = ReturnUnassignedHardware.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(unassignsReader);
@@ -377,6 +393,25 @@ namespace Toestellenbeheer.Models
             update.ExecuteNonQuery();
             mysqlConnectie.Close();
 
+        }
+        /// <summary>
+        /// Return the datatable of assigned hardware.
+        /// </summary>
+        /// <returns>DataTable assigned hardware.</returns>
+        public DataTable ReturnAssignedHardware()
+        {
+            MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+            mysqlConnectie.Open();
+
+            DataTable dt = new DataTable();
+            MySqlCommand cmdAssignedHardware = new MySqlCommand("SELECT  DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type, manufacturerName, serialNr, internalNr, pictureLocation, nameAD, modelNr FROM hardware JOIN people on hardware.eventID = people.eventID ", mysqlConnectie);
+            var AssignReader = cmdAssignedHardware.ExecuteReader();
+            dt.Load(AssignReader);
+            
+            mysqlConnectie.Close();
+            return dt;
+            
         }
     }
 }

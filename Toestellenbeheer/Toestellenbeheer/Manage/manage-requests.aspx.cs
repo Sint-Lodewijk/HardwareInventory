@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -30,7 +32,7 @@ namespace Toestellenbeheer.Manage
 
         protected void grvRequests_SelectedIndexChanged(object sender, EventArgs e)
         {
-         btnAcceptRequest.Visible = true;
+            btnAcceptRequest.Visible = true;
             btnDenyRequest.Visible = true;
         }
 
@@ -59,12 +61,12 @@ namespace Toestellenbeheer.Manage
             requestedHardware.ArchiveAssignedHardware(strSerialNr, strInternalNr, userIndex); //Archive the assigned hardware
             String strModelNr = "";
             String strManufacturer = "";
-           
-            requestedHardware.CreateXML("AssignedHardware",strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
+
+            requestedHardware.CreateXML("AssignedHardware", strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
 
         }
 
-        
+
         protected void btnDenyRequest_Click(object sender, EventArgs e)
         {
             try
@@ -82,6 +84,35 @@ namespace Toestellenbeheer.Manage
             finally
             {
                 mysqlConnectie.Close();
+            }
+        }
+
+        protected void grvRequests_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string strInternalNr = grvRequests.DataKeys[e.RowIndex]["internalNr"].ToString();
+            var detailHardware = new Hardware(strInternalNr);
+            DataTable dt = detailHardware.ReturnDatatableHardwareFromInternal();
+            grvDetail.DataSource = dt;
+            grvDetail.DataBind();
+            imgHardware.ImageUrl = "../UserUploads/Images/" + detailHardware.PicLocation();
+            var detailModalShow = new JSUtility(modalHardware.ClientID);
+            detailModalShow.ModalShowUpdate(udpDetails);
+        }
+        protected void DownloadFile(object sender, EventArgs e)
+        {
+            try
+            {
+                string path = "../UserUploads/Attachments/";
+
+                string filePath = (sender as LinkButton).CommandArgument;
+                Response.ContentType = ContentType;
+                Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
+                Response.WriteFile(path + Path.GetFileName(filePath));
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                lblExeption.Text = "Problem with downloading, please check if you added a attachment to the hardware." + ex.ToString();
             }
         }
     }

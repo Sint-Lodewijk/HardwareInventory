@@ -13,6 +13,51 @@ namespace Toestellenbeheer.Manage {
     public partial class manage_hardware {
         
         /// <summary>
+        /// modalHardware control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel modalHardware;
+        
+        /// <summary>
+        /// udpDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel udpDetails;
+        
+        /// <summary>
+        /// modalTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalTitle;
+        
+        /// <summary>
+        /// imgHardware control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgHardware;
+        
+        /// <summary>
+        /// grvDetail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grvDetail;
+        
+        /// <summary>
         /// grvHardwarePoolUnassigned control.
         /// </summary>
         /// <remarks>
@@ -28,25 +73,7 @@ namespace Toestellenbeheer.Manage {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOpenPeoplePopUp;
-        
-        /// <summary>
-        /// target control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button target;
-        
-        /// <summary>
-        /// PeoplePopUp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender PeoplePopUp;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnOpenPeoplePopUp;
         
         /// <summary>
         /// PeoplePanel control.
@@ -74,15 +101,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAssignHardwarePeople;
-        
-        /// <summary>
-        /// btnCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
         /// lblResult control.

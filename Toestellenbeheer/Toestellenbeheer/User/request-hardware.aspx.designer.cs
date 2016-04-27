@@ -13,6 +13,24 @@ namespace Toestellenbeheer.Users {
     public partial class request_hardware {
         
         /// <summary>
+        /// udpDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel udpDetails;
+        
+        /// <summary>
+        /// picDetail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image picDetail;
+        
+        /// <summary>
         /// drpTypeList control.
         /// </summary>
         /// <remarks>

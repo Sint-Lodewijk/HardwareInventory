@@ -130,5 +130,15 @@ namespace Toestellenbeheer.Users
             Session["SuccessInfo"] = "Congratulations, you have successfully required hardware with internal number: " + strInternalNr;
             Server.Transfer("~/Success.aspx");
         }
+
+        protected void grvAvailableHardwareType_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string strInternalNr = grvAvailableHardwareType.DataKeys[e.RowIndex]["internalNr"].ToString();
+            var picLoc = new Models.Hardware(strInternalNr);
+
+            picDetail.ImageUrl = "../UserUploads/Images/" + picLoc.PicLocation();
+            var picModal = new JSUtility("hardwareImageModal");
+            picModal.ModalShowUpdate(udpDetails);
+        }
     }
 }

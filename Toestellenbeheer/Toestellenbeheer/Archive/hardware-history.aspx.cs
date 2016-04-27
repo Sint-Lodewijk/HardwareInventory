@@ -23,6 +23,11 @@ namespace Toestellenbeheer.Archive
                 getHardware();
 
             }
+            else if (iframeDownload.Src != "")
+            {
+                iframeDownload.Src = "";
+
+            }
         }
         protected void grvHardware_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -45,7 +50,7 @@ namespace Toestellenbeheer.Archive
             grvPeopleLinked.DataSource = ds;
             grvPeopleLinked.DataBind();
             int intTotalResult = grvPeopleLinked.Rows.Count;
-            modalTitle.InnerText = "Assign history of " + strInternalNr;
+            modalTitleP.InnerText = "Assign history of " + strInternalNr;
             if (intTotalResult == 0)
             {
                 lblResult.Text = "The hardware with internal Nr: " + strInternalNr + " has never been assigned to a person before!";
@@ -65,36 +70,38 @@ namespace Toestellenbeheer.Archive
         }
         public void modalShow()
         {
-            udpDetails.Update();
-            ScriptManager.RegisterStartupScript(udpDetails, udpDetails.GetType(), "show", "$(function () { $('#" + modalHardware.ClientID + "').modal('show'); });", true);
+            udpDetailsP.Update();
+            ScriptManager.RegisterStartupScript(udpDetailsP, udpDetailsP.GetType(), "show", "$(function () { $('#" + modalHardwarePeople.ClientID + "').modal('show'); });", true);
 
         }
 
         protected void grvHardware_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string strInternalNr = grvHardware.DataKeys[e.RowIndex].Value.ToString();
-            var ShowDetail = new JSUtility(hardwareDetailsPanel.ClientID);
-            ShowDetail.DetailsPopUp(strInternalNr, grvDetail, imgHardware, udpHardwareDetails);
+            var ShowDetail = new JSUtility(modalHardware.ClientID);
+            ShowDetail.DetailsPopUp(strInternalNr, grvDetail, imgHardware, udpDetailsP, modalTitle);
 
         }
+       
         protected void DownloadFile(object sender, EventArgs e)
         {
-            try
-            {
-                string path = "../UserUploads/Attachments/";
 
-                string filePath = (sender as LinkButton).CommandArgument;
-                Response.ContentType = ContentType;
-                Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
-                Response.WriteFile(path + Path.GetFileName(filePath));
-                Response.End();
-            }
-            catch (Exception ex)
-            {
-                lblResult.Text = "Problem with downloading, please check if you added a attachment to the hardware." + ex.ToString();
-            }
+            Session["FilePath"] = "UserUploads/Attachments/";
+
+            Session["FileName"] = (sender as LinkButton).CommandArgument;
+            var ShowDownload = new HardwareDetails();
+            ShowDownload.IframeDownload(lnkDownloadB, (sender as LinkButton).CommandArgument, iframeDownload, this);
+
         }
+        protected void lnkDownloadB_Click(object sender, EventArgs e)
+        {
+            string filePath = (sender as LinkButton).CommandArgument;
 
+            Response.ContentType = ContentType;
+            Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
+            Response.WriteFile("../UserUploads/Attachments/" + Path.GetFileName(filePath));
+            Response.End();
+        }
     }
 
 }

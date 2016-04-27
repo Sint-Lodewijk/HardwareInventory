@@ -104,7 +104,7 @@ namespace Toestellenbeheer.Manage
         {
             string strInternalNr = grvHardwarePoolAssigned.DataKeys[e.RowIndex]["internalNr"].ToString();
             var ShowDetail = new JSUtility(modalHardware.ClientID);
-            ShowDetail.DetailsPopUp(strInternalNr, grvDetail, imgHardware, udpDetails);
+            ShowDetail.DetailsPopUp(strInternalNr, grvDetail, imgHardware, udpDetails, modalTitle);
         }
     }
 

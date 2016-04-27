@@ -194,6 +194,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Account\Web.config" />
+    <Content Include="Download.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -368,6 +369,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Download.aspx.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Download.aspx.designer.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -392,6 +400,7 @@
     <Compile Include="Manage\manage-requests.aspx.designer.cs">
       <DependentUpon>manage-requests.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\HardwareDetails.cs" />
     <Compile Include="Models\JSUtility.cs" />
     <Compile Include="Models\License.cs" />
     <Compile Include="Models\LicenseHandler.cs" />

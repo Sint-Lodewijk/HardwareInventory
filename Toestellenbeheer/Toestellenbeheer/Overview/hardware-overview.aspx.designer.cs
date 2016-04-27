@@ -94,6 +94,24 @@ namespace Toestellenbeheer {
         protected global::System.Web.UI.WebControls.Label lblGridTotalResult;
         
         /// <summary>
+        /// iframeDownload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlIframe iframeDownload;
+        
+        /// <summary>
+        /// lnkDownloadB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkDownloadB;
+        
+        /// <summary>
         /// modalHardware control.
         /// </summary>
         /// <remarks>
@@ -121,22 +139,22 @@ namespace Toestellenbeheer {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalTitle;
         
         /// <summary>
-        /// grvImage control.
+        /// imgHardware control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvImage;
+        protected global::System.Web.UI.WebControls.Image imgHardware;
         
         /// <summary>
-        /// selectedRow control.
+        /// grvDetail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView selectedRow;
+        protected global::System.Web.UI.WebControls.GridView grvDetail;
         
         /// <summary>
         /// grvPeopleLinked control.

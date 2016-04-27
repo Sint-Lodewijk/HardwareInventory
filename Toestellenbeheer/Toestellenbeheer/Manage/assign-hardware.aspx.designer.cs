@@ -13,6 +13,24 @@ namespace Toestellenbeheer.Manage {
     public partial class manage_hardware {
         
         /// <summary>
+        /// iframeDownload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlIframe iframeDownload;
+        
+        /// <summary>
+        /// lnkDownloadB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkDownloadB;
+        
+        /// <summary>
         /// modalHardware control.
         /// </summary>
         /// <remarks>

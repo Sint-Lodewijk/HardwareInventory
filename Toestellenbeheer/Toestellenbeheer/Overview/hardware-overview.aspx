@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="Hardware overview" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="hardware-overview.aspx.cs" EnableEventValidation="false" Inherits="Toestellenbeheer.hardware_overview" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="AjaxControl" %>
 
 <asp:Content ID="hardwareOverview" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -66,6 +65,27 @@
 
         </Triggers>
     </asp:UpdatePanel>
+
+
+    <!-- Modal -->
+    <div class="modal fade foreground" id="modalDownload" tabindex="-1" role="dialog" aria-labelledby="modalDownloadTitle">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalDownloadTitle">Downloading your file...</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe id="iframeDownload" class="center-block no-border hide" runat="server"></iframe>
+                <asp:LinkButton ID="lnkDownloadB" OnClick="lnkDownloadB_Click" runat="server"></asp:LinkButton>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <asp:Panel ID="modalHardware" runat="server" CssClass="modal fade" TabIndex="-1" role="dialog">
 
         <div class="modal-dialog modal-lg">
@@ -77,138 +97,171 @@
                             <h4 class="modal-title" id="modalTitle" runat="server">Loading...</h4>
 
                         </div>
-
                         <div class="modal-body">
+                            <div id="carousel-details" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-details" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-details" data-slide-to="1"></li>
+                                    <li data-target="#carousel-details" data-slide-to="2"></li>
 
-                            <asp:GridView runat="server" ID="grvImage" CssClass="gridview table table-hover table-striped" AutoGenerateColumns="false">
-                                <Columns>
-                                    <asp:ImageField ControlStyle-CssClass="img-responsive center-block" DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
-                                        NullDisplayText="No image associated.">
-                                    </asp:ImageField>
-                                </Columns>
+                                </ol>
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <asp:Image runat="server" ID="imgHardware" CssClass="img-responsive center-block" />
+
+                                    </div>
+                                    <div class="item">
+                                        <asp:GridView ID="grvDetail" DataKeyNames="internalNr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
+                                            <Columns>
+
+                                                <asp:TemplateField>
+
+                                                    <ItemTemplate>
+
+                                                        <table class="table table-striped table-hover table-responsive">
+
+                                                            <tr>
+                                                                <td class="col-sm-6">
+                                                                    <asp:Label ID="Label8" runat="server" Text="Purchase date: ">
+                                                                    </asp:Label>
+                                                                </td>
+                                                                <td class="col-sm-6">
+                                                                    <asp:Label ID="lblPDate" runat="server" Text='<%#Eval("purchaseDate")%>'>
+                                                                    </asp:Label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="col-sm-6">
+                                                                    <asp:Label ID="Label4" runat="server" Text="Model Nr: ">
+                                                                    </asp:Label>
+                                                                </td>
+                                                                <td class="col-sm-6">
+                                                                    <asp:Label ID="Label17" runat="server" Text='<%#Eval("modelNr")%>'>
+                                                                    </asp:Label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <asp:Label ID="Label9" runat="server" Text="Type: ">
+                                                                    </asp:Label>
+                                                                </td>
+                                                                <td>
+                                                                    <asp:Label ID="Label1" runat="server" Text='<%#Eval("Type")%>'>
+                                                                    </asp:Label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <asp:Label ID="Label10" runat="server" Text="Manufacturer: ">
+                                                                    </asp:Label>
+                                                                </td>
+                                                                <td>
+                                                                    <asp:Label ID="Label2" runat="server" Text='<%#Eval("manufacturerName")%>'>
+                                                                    </asp:Label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <asp:Label ID="Label11" runat="server" Text="Serial Nr: ">
+                                                                    </asp:Label>
+                                                                </td>
+                                                                <td>
+                                                                    <asp:Label ID="Label3" runat="server" Text='<%#Eval("serialNr")%>'>
+                                                                    </asp:Label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <asp:Label ID="Label12" runat="server" Text="Internal Nr: ">
+                                                                    </asp:Label>
+                                                                </td>
+                                                                <td>
+                                                                    <asp:Label ID="lblInternalNr" runat="server" Text='<%#Eval("internalNr")%>'>
+                                                                    </asp:Label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <asp:Label ID="Label13" runat="server" Text="Warranty: ">
+                                                                    </asp:Label>
+                                                                </td>
+                                                                <td>
+                                                                    <asp:Label ID="Label5" runat="server" Text='<%#Eval("warranty")%>'>
+                                                                    </asp:Label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <asp:Label ID="Label14" runat="server" Text="Extra info: ">
+                                                                    </asp:Label>
+                                                                </td>
+                                                                <td>
+                                                                    <asp:Label ID="Label7" runat="server" Text='<%#Eval("extraInfo")%>'>
+                                                                    </asp:Label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <asp:Label ID="Label15" runat="server" Text="Added date: ">
+                                                                    </asp:Label>
+                                                                </td>
+                                                                <td>
+                                                                    <asp:Label ID="Label6" runat="server" Text='<%#Eval("addedDate")%>'>
+                                                                    </asp:Label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <asp:Label ID="Label16" runat="server" Text="Attachment: ">
+                                                                    </asp:Label></td>
+                                                                <td>
+                                                                    <asp:UpdatePanel runat="server" ID="panelDownload">
+                                                                        <ContentTemplate>
+                                                                            <asp:LinkButton ID="lnkDownload" CommandArgument='<%# Eval("attachmentLocation") %>' runat="server" OnClick="DownloadFile" Text='<%# Convert.ToString(Eval("attachmentLocation")).Length < 1 ? "" : Convert.ToString(Eval("attachmentLocation")) %>'>Download</asp:LinkButton>
+
+                                                                        </ContentTemplate>
+                                                                        <Triggers>
+                                                                            <asp:PostBackTrigger ControlID="lnkDownload" />
+                                                                        </Triggers>
+                                                                    </asp:UpdatePanel>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
 
-                            </asp:GridView>
+                                            </Columns>
+                                        </asp:GridView>
 
-                            <asp:GridView ID="selectedRow" DataKeyNames="internalNr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
-                                <Columns>
+                                    </div>
+                                    <div class="item">
+                                        <asp:GridView ID="grvPeopleLinked" CssClass="table table-hover table-striped gridview" AutoGenerateColumns="false" runat="server">
+                                            <Columns>
+                                                <asp:BoundField DataField="Serial Nr" HeaderText="Serial Nr" />
+                                                <asp:BoundField DataField="Internal Nr" HeaderText="Internal Nr" />
+                                                <asp:BoundField DataField="nameAD" HeaderText="Domain Name" />
+                                                <asp:BoundField DataField="assignedDate" HeaderText="Assigned Date" />
+                                                <asp:BoundField DataField="returnedDate" HeaderText="Returned Date" NullDisplayText="Not returned yet" />
 
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
+                                </div>
 
-                                    <asp:TemplateField>
-
-                                        <ItemTemplate>
-
-                                            <table class="table table-striped table-hover">
-
-                                                <tr>
-                                                    <td class="col-sm-6">
-                                                        <asp:Label ID="Label8" runat="server" Text="Purchase date: ">
-                                                        </asp:Label>
-                                                    </td>
-                                                    <td class="col-sm-6">
-                                                        <asp:Label ID="lblPDate" runat="server" Text='<%#Eval("purchaseDate")%>'>
-                                                        </asp:Label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="col-sm-6">
-                                                        <asp:Label ID="Label4" runat="server" Text="Model Nr: ">
-                                                        </asp:Label>
-                                                    </td>
-                                                    <td class="col-sm-6">
-                                                        <asp:Label ID="Label17" runat="server" Text='<%#Eval("modelNr")%>'>
-                                                        </asp:Label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:Label ID="Label9" runat="server" Text="Type: ">
-                                                        </asp:Label>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="Label1" runat="server" Text='<%#Eval("Type")%>'>
-                                                        </asp:Label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:Label ID="Label10" runat="server" Text="Manufacturer: ">
-                                                        </asp:Label>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="Label2" runat="server" Text='<%#Eval("manufacturerName")%>'>
-                                                        </asp:Label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:Label ID="Label11" runat="server" Text="Serial Nr: ">
-                                                        </asp:Label>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="Label3" runat="server" Text='<%#Eval("serialNr")%>'>
-                                                        </asp:Label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:Label ID="Label12" runat="server" Text="Internal Nr: ">
-                                                        </asp:Label>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="lblInternalNr" runat="server" Text='<%#Eval("internalNr")%>'>
-                                                        </asp:Label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:Label ID="Label13" runat="server" Text="Warranty: ">
-                                                        </asp:Label>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="Label5" runat="server" Text='<%#Eval("warranty")%>'>
-                                                        </asp:Label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:Label ID="Label14" runat="server" Text="Extra info: ">
-                                                        </asp:Label>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="Label7" runat="server" Text='<%#Eval("extraInfo")%>'>
-                                                        </asp:Label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:Label ID="Label15" runat="server" Text="Added date: ">
-                                                        </asp:Label>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="Label6" runat="server" Text='<%#Eval("addedDate")%>'>
-                                                        </asp:Label></td>
-                                                </tr>
-
-                                            </table>
-
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    
-
-                                </Columns>
-                            </asp:GridView>
-                            <asp:GridView ID="grvPeopleLinked" CssClass="table table-hover table-striped gridview" AutoGenerateColumns="false" runat="server">
-                                <Columns>
-                                    <asp:BoundField DataField="Serial Nr" HeaderText="Serial Nr" />
-                                    <asp:BoundField DataField="Internal Nr" HeaderText="Internal Nr" />
-                                    <asp:BoundField DataField="nameAD" HeaderText="Domain Name" />
-                                    <asp:BoundField DataField="assignedDate" HeaderText="Assigned Date" />
-                                    <asp:BoundField DataField="returnedDate" HeaderText="Returned Date" NullDisplayText="Not returned yet" />
-
-                                </Columns>
-                            </asp:GridView>
-                        </div>
-                        <div class="modal-footer">
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel-details" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-details" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
 
 
-                            <asp:Button ID="btnModifying" runat="server" OnClick="btnModifying_Click" Text="Modify" CssClass="btn btn-primary" />
-                            <asp:Label ID="lblTotalQuery" runat="server" Text=""></asp:Label>
-                            <asp:Label ID="lblInternalNr" Visible="false" runat="server" Text='<%#Eval("Internal Nr")%>' />
-                            <asp:Label ID="lblProblem" runat="server"></asp:Label>
-                        </div>
+
+                            <div class="modal-footer">
+                                <asp:Button ID="btnModifying" runat="server" OnClick="btnModifying_Click" Text="Modify" CssClass="btn btn-primary" />
+                                <asp:Label ID="lblTotalQuery" runat="server" Text=""></asp:Label>
+                                <asp:Label ID="lblInternalNr" Visible="false" runat="server" Text='<%#Eval("Internal Nr")%>' />
+                                <asp:Label ID="lblProblem" runat="server"></asp:Label>
+                            </div>
                         </div>
                     </ContentTemplate>
                     <Triggers>
@@ -220,4 +273,3 @@
 
     </asp:Panel>
 </asp:Content>
-

@@ -13,31 +13,49 @@ namespace Toestellenbeheer.Archive {
     public partial class hardware_history {
         
         /// <summary>
-        /// hardwareDetailsPanel control.
+        /// iframeDownload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel hardwareDetailsPanel;
+        protected global::System.Web.UI.HtmlControls.HtmlIframe iframeDownload;
         
         /// <summary>
-        /// udpHardwareDetails control.
+        /// lnkDownloadB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel udpHardwareDetails;
+        protected global::System.Web.UI.WebControls.LinkButton lnkDownloadB;
         
         /// <summary>
-        /// H1 control.
+        /// modalHardware control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H1;
+        protected global::System.Web.UI.WebControls.Panel modalHardware;
+        
+        /// <summary>
+        /// udpDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel udpDetails;
+        
+        /// <summary>
+        /// modalTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalTitle;
         
         /// <summary>
         /// imgHardware control.
@@ -67,31 +85,31 @@ namespace Toestellenbeheer.Archive {
         protected global::System.Web.UI.WebControls.GridView grvHardware;
         
         /// <summary>
-        /// modalHardware control.
+        /// modalHardwarePeople control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel modalHardware;
+        protected global::System.Web.UI.WebControls.Panel modalHardwarePeople;
         
         /// <summary>
-        /// udpDetails control.
+        /// udpDetailsP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel udpDetails;
+        protected global::System.Web.UI.UpdatePanel udpDetailsP;
         
         /// <summary>
-        /// modalTitle control.
+        /// modalTitleP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalTitle;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalTitleP;
         
         /// <summary>
         /// grvPeopleLinked control.

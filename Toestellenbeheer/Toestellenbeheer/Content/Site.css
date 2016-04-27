@@ -300,3 +300,6 @@ input[type="select"] {
 form{
 margin-top: 20px;
 }
+.foreground{
+    z-index: 999999;
+}

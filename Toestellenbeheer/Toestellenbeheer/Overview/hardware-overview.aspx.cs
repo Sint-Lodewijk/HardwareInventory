@@ -33,13 +33,17 @@ namespace Toestellenbeheer
                         lblGridTotalResult.Text = "No result found in the database.";
                     }
                 }
-                
+
                 catch (MySqlException ex)
                 {
                     ShowMessage(ex.ToString());
                 }
             }
-        
+            else if (iframeDownload.Src != "")
+            {
+                iframeDownload.Src = "";
+
+            }
 
         }
 
@@ -51,13 +55,14 @@ namespace Toestellenbeheer
         {
             try
             {
-                string path = "../UserUploads/Attachments/";
+                Session["FilePath"] = "UserUploads/Attachments/";
 
-                string filePath = (sender as LinkButton).CommandArgument;
-                Response.ContentType = ContentType;
-                Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
-                Response.WriteFile(path + Path.GetFileName(filePath));
-                Response.End();
+                Session["FileName"] = (sender as LinkButton).CommandArgument;
+                lnkDownloadB.CommandArgument = Session["FileName"].ToString();
+                lnkDownloadB.Text = "Not downloading? Try again by clicking here.";
+                iframeDownload.Src = "~/Download.aspx";
+                var openDownloadModal = new JSUtility("modalDownload");
+                openDownloadModal.ModalShow(this);
             }
             catch (Exception ex)
             {
@@ -102,16 +107,17 @@ namespace Toestellenbeheer
             ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> alert('" + msg + "');</ script > ");
         }
 
-        
+
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(HardwareOverviewGridSearch, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
         }
-       
+
         protected void details(object sender, EventArgs e)
         {
             try
@@ -120,32 +126,23 @@ namespace Toestellenbeheer
                 String strInternalNr = HardwareOverviewGridSearch.SelectedDataKey["internalNr"].ToString();
                 Session["internalNr"] = strInternalNr;
 
-                lblInternalNr.Text = strInternalNr;
-                var hardwareDetail = new Hardware(strInternalNr);
-                DataTable dt = hardwareDetail.ReturnDatatableHardwareFromInternal();
-                selectedRow.DataSource = dt;
-                grvImage.DataSource = dt;
-                grvImage.DataBind();
-                selectedRow.DataBind();
-                mysqlConnectie.Close();
-                var modalShow = new JSUtility(modalHardware.ClientID);
-                modalShow.ModalShowUpdate(udpDetails);
-                modalTitle.InnerText = strInternalNr + " detail";
+                var hardwareDetail = new JSUtility(modalHardware.ClientID);
+                hardwareDetail.DetailsPopUp(strInternalNr, grvDetail, imgHardware, udpDetails, modalTitle);
             }
             catch (MySqlException ex)
             {
                 ShowMessage(ex.ToString());
             }
         }
-       
 
-        
+
+
         protected void btnModifying_Click(object sender, EventArgs e)
         {
             Session["ToModifiedInternalNr"] = Session["internalNr"];
 
             Server.Transfer("./modify-hardware.aspx");
-           
+
         }
 
 
@@ -164,7 +161,21 @@ namespace Toestellenbeheer
                 lblProblem.Text = ex.Number.ToString();
             }
         }
-       
+
+        protected void grvDetail_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void lnkDownloadB_Click(object sender, EventArgs e)
+        {
+            string filePath = (sender as LinkButton).CommandArgument;
+
+            Response.ContentType = ContentType;
+            Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
+            Response.WriteFile("../UserUploads/Attachments/" + Path.GetFileName(filePath));
+            Response.End();
+        }
     }
 
 

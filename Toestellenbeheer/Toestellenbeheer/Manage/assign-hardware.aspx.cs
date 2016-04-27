@@ -22,6 +22,11 @@ namespace Toestellenbeheer.Manage
                 getUnassignedHardware();
                 getUserFromAD();
             }
+            else if (iframeDownload.Src != "")
+            {
+                iframeDownload.Src = "";
+
+            }
         }
 
         protected void getUnassignedHardware()
@@ -129,20 +134,25 @@ namespace Toestellenbeheer.Manage
         }
         protected void DownloadFile(object sender, EventArgs e)
         {
-            try
-            {
-                string path = "../UserUploads/Attachments/";
+           
+                Session["FilePath"] = "UserUploads/Attachments/";
 
-                string filePath = (sender as LinkButton).CommandArgument;
-                Response.ContentType = ContentType;
-                Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
-                Response.WriteFile(path + Path.GetFileName(filePath));
-                Response.End();
-            }
-            catch (Exception ex)
-            {
-                lblResult.Text = "Problem with downloading, please check if you added a attachment to the hardware." + ex.ToString();
-            }
+                Session["FileName"] = (sender as LinkButton).CommandArgument;
+                lnkDownloadB.CommandArgument = Session["FileName"].ToString();
+                lnkDownloadB.Text = "Not downloading? Try again by clicking here.";
+                iframeDownload.Src = "~/Download.aspx";
+                var openDownloadModal = new JSUtility("modalDownload");
+                openDownloadModal.ModalShow(this);
+            
+        }
+        protected void lnkDownloadB_Click(object sender, EventArgs e)
+        {
+            string filePath = (sender as LinkButton).CommandArgument;
+
+            Response.ContentType = ContentType;
+            Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
+            Response.WriteFile("../UserUploads/Attachments/" + Path.GetFileName(filePath));
+            Response.End();
         }
     }
 }

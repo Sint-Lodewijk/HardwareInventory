@@ -6,11 +6,11 @@
     <asp:UpdatePanel ID="udpSuccess" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="alert fade in" id="successMessageAlert">
-                
+
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            <asp:Label runat="server" ID="lblAlert"></asp:Label>
+                <asp:Label runat="server" ID="lblAlert"></asp:Label>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
@@ -22,14 +22,14 @@
         <li role="presentation"><a href="#destroy" aria-controls="destroy" role="tab" data-toggle="tab">Destroy database</a></li>
 
     </ul>
-         
+
     <!-- Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="backup">
             <h3>Backup</h3>
             <p>Back up the database regularly on preventing data lose.</p>
             <asp:Button runat="server" ID="btnBackup" OnClick="btnBackup_Click" Text="Backup" CssClass="btn btn-primary" />
-      
+
 
         </div>
         <div role="tabpanel" class="tab-pane" id="restore">
@@ -77,5 +77,5 @@
             </div>
         </div>
     </div>
-    </div>
+
 </asp:Content>

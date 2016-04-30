@@ -20,7 +20,6 @@
     };
   }(w.document);
 })(this);
-
 /*! matchMedia() polyfill addListener/removeListener extension. Author & copyright (c) 2012: Scott Jehl. Dual MIT/BSD license */
 (function(w) {
   "use strict";
@@ -69,7 +68,6 @@
     return mql;
   };
 })(this);
-
 /*! Respond.js v1.4.0: min/max-width media query polyfill. (c) Scott Jehl. MIT Lic. j.mp/respondjs  */
 (function(w) {
   "use strict";

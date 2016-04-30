@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer.Add {
-    
-    
     public partial class add_person {
-        
         /// <summary>
         /// ErrorMessage control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace Toestellenbeheer.Add {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder ErrorMessage;
-        
         /// <summary>
         /// FailureText control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace Toestellenbeheer.Add {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal FailureText;
-        
         /// <summary>
         /// drpRoleSelect control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace Toestellenbeheer.Add {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList drpRoleSelect;
-        
         /// <summary>
         /// txtGivenName control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace Toestellenbeheer.Add {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtGivenName;
-        
         /// <summary>
         /// txtLastName control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace Toestellenbeheer.Add {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLastName;
-        
         /// <summary>
         /// UserName control.
         /// </summary>
@@ -65,7 +56,6 @@ namespace Toestellenbeheer.Add {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox UserName;
-        
         /// <summary>
         /// Password control.
         /// </summary>
@@ -74,7 +64,6 @@ namespace Toestellenbeheer.Add {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Password;
-        
         /// <summary>
         /// errorLabel control.
         /// </summary>

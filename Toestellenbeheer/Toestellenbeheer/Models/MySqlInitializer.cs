@@ -2,7 +2,6 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-
 namespace Toestellenbeheer
 {
     public class MySqlInitializer : IDatabaseInitializer<ApplicationDbContext>
@@ -21,7 +20,6 @@ namespace Toestellenbeheer
                 string.Format(
                   "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '{0}' AND table_name = '__MigrationHistory'",
                   "toestellenbeheer"));
-
                 // if MigrationHistory table is not there (which is the case first time we run) - create it
                 if (migrationHistoryTableExists.FirstOrDefault() == 0)
                 {

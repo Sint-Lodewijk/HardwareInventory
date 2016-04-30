@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer.Archive {
-    
-    
     public partial class hardware_history {
-        
         /// <summary>
         /// iframeDownload control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlIframe iframeDownload;
-        
         /// <summary>
         /// lnkDownloadB control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkDownloadB;
-        
         /// <summary>
         /// modalHardware control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel modalHardware;
-        
         /// <summary>
         /// udpDetails control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpDetails;
-        
         /// <summary>
         /// modalTitle control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalTitle;
-        
         /// <summary>
         /// imgHardware control.
         /// </summary>
@@ -65,7 +56,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgHardware;
-        
         /// <summary>
         /// grvDetail control.
         /// </summary>
@@ -74,7 +64,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvDetail;
-        
         /// <summary>
         /// grvHardware control.
         /// </summary>
@@ -83,7 +72,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvHardware;
-        
         /// <summary>
         /// modalHardwarePeople control.
         /// </summary>
@@ -92,7 +80,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel modalHardwarePeople;
-        
         /// <summary>
         /// udpDetailsP control.
         /// </summary>
@@ -101,7 +88,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpDetailsP;
-        
         /// <summary>
         /// modalTitleP control.
         /// </summary>
@@ -110,7 +96,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalTitleP;
-        
         /// <summary>
         /// grvPeopleLinked control.
         /// </summary>
@@ -119,7 +104,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvPeopleLinked;
-        
         /// <summary>
         /// lblResult control.
         /// </summary>

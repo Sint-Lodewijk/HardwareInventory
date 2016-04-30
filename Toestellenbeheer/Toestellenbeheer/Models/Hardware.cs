@@ -8,12 +8,10 @@ using System.Xml;
 using System.Data;
 namespace Toestellenbeheer.Models
 {
-
     public class Hardware
     {
         public Hardware()
         {
-
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="Hardware"/> class with 7 parameters. 
@@ -97,7 +95,6 @@ namespace Toestellenbeheer.Models
             this.EventID = intEventID;
             this.InternalNr = strInternalNr;
         }
-
         public string AddedDate { get; set; }
         public string AttachmentLocation { get; set; }
         public string ExtraInfo { get; set; }
@@ -110,17 +107,14 @@ namespace Toestellenbeheer.Models
         public string SerialNr { get; set; }
         public string WarrantyInfo { get; set; }
         public string TypeName { get; set; }
-
         /// <summary>
         /// Adds the hardware into database.
         /// </summary>
         public void AddHardwareIntoDatabase()
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
             MySqlCommand cmdAddHardware = new MySqlCommand("Insert into hardware (purchaseDate, serialNr, internalNr,  warranty, extraInfo, manufacturerName, addedDate, pictureLocation, type, attachmentLocation, modelNr) values (@purchaseDate, @serialNr, @internalNr,  @warranty, @extraInfo, @manufacturerName, @addedDate, @pictureLocation, @type, @attachmentLocation, @modelNr)", mysqlConnectie);
             mysqlConnectie.Open();
-
             //add parameters (assaign the values to the column.)
             cmdAddHardware.Parameters.AddWithValue("@purchaseDate", PurchaseDate);
             cmdAddHardware.Parameters.AddWithValue("@serialNr", SerialNr);
@@ -136,12 +130,11 @@ namespace Toestellenbeheer.Models
             cmdAddHardware.ExecuteNonQuery();
             cmdAddHardware.Dispose();
             mysqlConnectie.Close();
-
         }
         /// <summary>
-        /// Returns the datatable hardware from internalnumber.
+        /// Returns the datatable hardware from the internal number.
         /// </summary>
-        /// <returns>DataTable.</returns>
+        /// <returns>DataTable internal nr corresponsing hardware.</returns>
         public DataTable ReturnDatatableHardwareFromInternal()
         {
             try
@@ -153,7 +146,6 @@ namespace Toestellenbeheer.Models
                 var dt = new DataTable();
                 dt.Load(dataReader);
                 mysqlConnectie.Close();
-
                 return dt;
             }
             catch (MySqlException ex)
@@ -161,7 +153,6 @@ namespace Toestellenbeheer.Models
                 var handler = new MySqlExceptionHandler(ex, "Hardware");
                 throw new Exception(handler.ExceptionType);
             }
-
         }
         /// <summary>
         /// Returns the datatable of all hardware in the database.
@@ -176,7 +167,6 @@ namespace Toestellenbeheer.Models
             var dt = new DataTable();
             dt.Load(dataReader);
             mysqlConnectie.Close();
-
             return dt;
         }
         /// <summary>
@@ -190,7 +180,6 @@ namespace Toestellenbeheer.Models
             try
             {
                 MySqlConnection mysqlConnectie = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
                 String dteAssignedDate = DateTime.Today.ToString("yyyy-MM-dd");
                 mysqlConnectie.Open();
                 MySqlCommand archiveAssigned = new MySqlCommand("Insert into archive ( assignedDate, serialNr, internalNr, eventID ) values (@assignedDate, @serialNr, @internalNr, @eventID)", mysqlConnectie);
@@ -198,7 +187,6 @@ namespace Toestellenbeheer.Models
                 archiveAssigned.Parameters.AddWithValue("@serialNr", strSerialNr);
                 archiveAssigned.Parameters.AddWithValue("@internalNr", strInternalNr);
                 archiveAssigned.Parameters.AddWithValue("@eventID", intEventID);
-
                 archiveAssigned.ExecuteNonQuery();
                 archiveAssigned.Dispose();
                 mysqlConnectie.Close();
@@ -208,12 +196,14 @@ namespace Toestellenbeheer.Models
                 var handler = new MySqlExceptionHandler(ex, "Hardware");
                 throw new Exception(handler.ExceptionType);
             }
-
         }
+        /// <summary>
+        /// Return the picture location.
+        /// </summary>
+        /// <returns>String.</returns>
         public String PicLocation()
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
             mysqlConnectie.Open();
             MySqlCommand getMyHardware = new MySqlCommand("SELECT hardware.pictureLocation FROM hardware WHERE hardware.internalNr = '" + InternalNr + "'", mysqlConnectie);
             object checkObj = new object();
@@ -221,19 +211,14 @@ namespace Toestellenbeheer.Models
             if (checkObj == null)
             {
                 mysqlConnectie.Close();
-
                 return "";
-
             }
             else
             {
                 string strPicLoc = getMyHardware.ExecuteScalar().ToString();
                 mysqlConnectie.Close();
-
                 return strPicLoc;
-
             }
-
         }
         /// <summary>
         /// Returns the current user hardware.
@@ -243,7 +228,6 @@ namespace Toestellenbeheer.Models
         public DataTable ReturnUserHardware(string UserName)
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
             mysqlConnectie.Open();
             MySqlCommand getMyHardware = new MySqlCommand("SELECT hardware.pictureLocation, hardware.serialNr, hardware.internalNr, hardware.manufacturerName, type FROM hardware JOIN archive ON hardware.internalNr = archive.internalNr  JOIN people ON people.eventID = archive.eventID  WHERE people.nameAD = '" + UserName + "'", mysqlConnectie);
             getMyHardware.Parameters.AddWithValue("@nameAD", UserName);
@@ -268,41 +252,30 @@ namespace Toestellenbeheer.Models
             XmlDocument doc = new XmlDocument();
             XmlNode docNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
             doc.AppendChild(docNode);
-
             XmlNode AssignedNodes = doc.CreateElement(statusNode);
             doc.AppendChild(AssignedNodes);
-
             XmlNode xmlHardwareNode = doc.CreateElement("Hardware");
             AssignedNodes.AppendChild(xmlHardwareNode);
-
             XmlNode xmlPersonNode = doc.CreateElement("person");
             AssignedNodes.AppendChild(xmlPersonNode);
-
             XmlNode xmlInternalNrNode = doc.CreateElement("InternalNr");
             xmlInternalNrNode.AppendChild(doc.CreateTextNode(internalNr));
             xmlHardwareNode.AppendChild(xmlInternalNrNode);
-
             XmlNode xmlSerialNr = doc.CreateElement("SerialNr");
             xmlSerialNr.AppendChild(doc.CreateTextNode(serialNr));
             xmlHardwareNode.AppendChild(xmlSerialNr);
-
             XmlNode xmlManufacturer = doc.CreateElement("Manufacturer");
             xmlManufacturer.AppendChild(doc.CreateTextNode(manufacturer));
             xmlHardwareNode.AppendChild(xmlManufacturer);
-
-
             XmlNode xmlModelNr = doc.CreateElement("ModelNr");
             xmlModelNr.AppendChild(doc.CreateTextNode(modelNr));
             xmlHardwareNode.AppendChild(xmlModelNr);
-
             XmlNode xmlUserId = doc.CreateElement("UserID");
             xmlUserId.AppendChild(doc.CreateTextNode(nameAD));
             xmlPersonNode.AppendChild(xmlUserId);
-
             XmlNode xmlUserName = doc.CreateElement("UserName");
             xmlUserName.AppendChild(doc.CreateTextNode(userName));
             xmlPersonNode.AppendChild(xmlUserName);
-
             doc.Save("./UserUploads/Attachments/GeneratedAssignedHardware.xml");
         }
         /// <summary>
@@ -313,9 +286,7 @@ namespace Toestellenbeheer.Models
             try
             {
                 MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
                 mysqlConnectie.Open();
-
                 MySqlCommand bindEventIDWithHardware = new MySqlCommand("UPDATE hardware SET eventID = '" + EventID + "' WHERE internalNr LIKE '" +
                     InternalNr + "'", mysqlConnectie);
                 bindEventIDWithHardware.ExecuteNonQuery();
@@ -339,24 +310,19 @@ namespace Toestellenbeheer.Models
             try
             {
                 MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
                 mysqlConnectie.Open();
                 MySqlCommand searchItem = new MySqlCommand("SELECT pictureLocation, DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type, manufacturerName , serialNr, internalNr , warranty , extraInfo , DATE_FORMAT(addedDate, '%Y-%m-%d') 'addedDate', attachmentLocation, modelNr FROM hardware WHERE " + searchType + " COLLATE UTF8_GENERAL_CI LIKE '%" + searchValue + "%';", mysqlConnectie);
-
                 var searchReader = searchItem.ExecuteReader();
                 DataTable dt = new DataTable();
                 dt.Load(searchReader);
                 mysqlConnectie.Close();
-
                 return dt;
             }
             catch (MySqlException ex)
             {
                 var handler = new MySqlExceptionHandler(ex, "Hardware");
                 throw new Exception(handler.ExceptionType);
-
             }
-
         }
         /// <summary>
         /// Returns the datatable of unassigned hardware.
@@ -365,16 +331,13 @@ namespace Toestellenbeheer.Models
         public DataTable ReturnUnassignedHardware()
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
             mysqlConnectie.Open();
             MySqlCommand ReturnUnassignedHardware = new MySqlCommand("SELECT DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type, manufacturerName, serialNr, internalNr, pictureLocation, modelNr FROM hardware WHERE eventID IS NULL or eventID=''", mysqlConnectie);
             var unassignsReader = ReturnUnassignedHardware.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(unassignsReader);
             mysqlConnectie.Close();
-
             return dt;
-
         }
         /// <summary>
         /// Updates the hardware information in the database.
@@ -382,7 +345,6 @@ namespace Toestellenbeheer.Models
         public void UpdateHardware()
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
             mysqlConnectie.Open();
             var update = new MySqlCommand("UPDATE hardware SET purchaseDate = @purchaseDate, type = @type, manufacturerName = @manufacturer, warranty = @warranty, extraInfo = @extraInfo", mysqlConnectie);
             update.Parameters.AddWithValue("@purchaseDate", PurchaseDate);
@@ -392,7 +354,6 @@ namespace Toestellenbeheer.Models
             update.Parameters.AddWithValue("@extraInfo", ExtraInfo);
             update.ExecuteNonQuery();
             mysqlConnectie.Close();
-
         }
         /// <summary>
         /// Return the datatable of assigned hardware.
@@ -401,19 +362,14 @@ namespace Toestellenbeheer.Models
         public DataTable ReturnAssignedHardware()
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
             mysqlConnectie.Open();
-
             DataTable dt = new DataTable();
             MySqlCommand cmdAssignedHardware = new MySqlCommand("SELECT  DATE_FORMAT(purchaseDate, '%Y-%m-%d') 'purchaseDate', type, manufacturerName, serialNr, internalNr, pictureLocation, nameAD, modelNr FROM hardware JOIN people on hardware.eventID = people.eventID ", mysqlConnectie);
             var AssignReader = cmdAssignedHardware.ExecuteReader();
             dt.Load(AssignReader);
-            
             mysqlConnectie.Close();
             return dt;
-            
         }
     }
 }
 //WebRequest request = WebRequest.Create(SetupFile.GlobalVar.ScripturaPath);
-

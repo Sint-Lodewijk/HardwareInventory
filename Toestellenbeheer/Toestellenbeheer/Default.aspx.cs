@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Toestellenbeheer.Models;
-
 namespace Toestellenbeheer
 {
     public partial class _Default : Page
@@ -21,11 +20,9 @@ namespace Toestellenbeheer
                     initializeSetupModal();
                     lblTypeAvailible.InnerText = totalType.CountType().ToString();
                     lblAvailibleManufacturer.InnerText = totalManufacturer.CountManufacturer().ToString();
-
                 }
             }
         }
-
         private void initializeSetupModal()
         {
             var modalInitialize = new JSUtility("initSetupModal");
@@ -36,7 +33,6 @@ namespace Toestellenbeheer
             var type = new TypeName(txtType.Value);
             type.AddTypeToDatabase();
             lblTypeAvailible.InnerText = type.CountType().ToString();
-
             initializeSetupModal();
             NextSlide("carousel-init", 1);
         }
@@ -47,17 +43,13 @@ namespace Toestellenbeheer
                 ScriptManager.RegisterStartupScript(this, GetType(), "Next", "$(function () { $('#" + strSlideControl + "').carousel(" + times + "); });", true);
             }
         }
-
         protected void btnManufacturer_Click(object sender, EventArgs e)
         {
             var manufacturer = new Manufacturer(txtManufacturer.Value);
             manufacturer.AddManufacturerToDatabase();
             lblAvailibleManufacturer.InnerText = manufacturer.CountManufacturer().ToString();
-
             initializeSetupModal();
             NextSlide("carousel-init", 2);
-      
-
         }
     }
 }

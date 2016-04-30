@@ -1,7 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
 using Toestellenbeheer.Models;
-
 [assembly: OwinStartupAttribute(typeof(Toestellenbeheer.Startup))]
 namespace Toestellenbeheer
 {

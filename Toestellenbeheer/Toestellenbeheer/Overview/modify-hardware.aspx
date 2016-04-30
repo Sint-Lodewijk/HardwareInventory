@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="Modify hardware" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="modify-hardware.aspx.cs" Inherits="Toestellenbeheer.Overview.modify_hardware" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:GridView ID="grvModifyHardware" AutoGenerateColumns="false" CssClass="table table-striped table-hover gridview" runat="server">
         <Columns>
@@ -8,9 +7,7 @@
                 <ControlStyle CssClass="picutureGrid"></ControlStyle>
             </asp:ImageField>
             <asp:TemplateField>
-
                 <ItemTemplate>
-
                     <table class="table table-striped table-hover">
                         <tr>
                             <td>
@@ -30,14 +27,12 @@
                                 <asp:Label ID="Label4" runat="server" Text='<%#Eval("internalNr")%>'>
                                 </asp:Label></td>
                         </tr>
-
                         <tr>
                             <td class="col-sm-6">
                                 <asp:Label ID="Label8" runat="server" Text="Purchase date: ">
                                 </asp:Label>
                             </td>
                             <td class="col-sm-6">
-                                  
                                     <script>
                                         $(function () {
                                             $("[id$=txtPDate]").datepicker({ dateFormat: 'dd-mm-yy' }).val();
@@ -46,7 +41,6 @@
                                     <asp:TextBox ID="txtPDate" runat="server" Text='<%#Eval("purchaseDate")%>' CssClass="form-control">
                                     </asp:TextBox>
                             </td>
-
                         </tr>
                         <tr>
                             <td>
@@ -66,9 +60,7 @@
                             <td>
                                 <asp:DropDownList ID="ddlManufacturer" CssClass="form-control" runat="server" SelectedValue='<%# Eval("manufacturerName") %>' DataSourceID="sqlManufacturer" DataTextField="manufacturerName" DataValueField="manufacturerName"></asp:DropDownList>
                                 <asp:SqlDataSource ID="sqlManufacturer" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT manufacturerName FROM manufacturer"></asp:SqlDataSource>
-
                         </tr>
-
                         <tr>
                             <td>
                                 <asp:Label ID="Label13" runat="server" Text="Warranty: ">

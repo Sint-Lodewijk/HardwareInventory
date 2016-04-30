@@ -6,10 +6,7 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer.Users {
-    
-    
     public partial class Default {
     }
 }

@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer {
-    
-    
     public partial class Success {
-        
         /// <summary>
         /// lblSuccessInfo control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSuccessInfo;
-        
         /// <summary>
         /// lnkReturnToPreviousPage control.
         /// </summary>

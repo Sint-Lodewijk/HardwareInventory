@@ -13,13 +13,10 @@ namespace Toestellenbeheer.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
-
         protected void Login_Click(Object sender, EventArgs e)
         {
             String adPathtemp = SetupFile.AD.ADRootPath; //Not necessary
-
             LdapAuthentication adAuthtemp = new LdapAuthentication(adPathtemp);
             String adPath = adAuthtemp.LDAPPath(); //get AD path from class
             LdapAuthentication adAuth = new LdapAuthentication(adPath);
@@ -28,7 +25,6 @@ namespace Toestellenbeheer.Account
                 if (true == adAuth.IsAuthenticated(UserName.Text, Password.Text))
                 {
                     String groups = adAuth.GetGroups();
-
                     //Create the ticket, and add the groups.
                     bool isCookiePersistent = RememberMe.Checked;
                     FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, UserName.Text,
@@ -36,16 +32,12 @@ namespace Toestellenbeheer.Account
                     // Session["group"] = groups;
                     //Encrypt the ticket.
                     String encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-
                     //Create a cookie, and then add the encrypted ticket to the cookie as data.
                     HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-
                     if (true == isCookiePersistent)
                         authCookie.Expires = authTicket.Expiration;
-
                     //Add the cookie to the outgoing cookies collection.
                     Response.Cookies.Add(authCookie);
-
                     //You can redirect now.
                     Response.Redirect(FormsAuthentication.GetRedirectUrl(UserName.Text, false));
                 }

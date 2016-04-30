@@ -105,33 +105,68 @@ namespace Toestellenbeheer.Models
                 mysqlConnectie.Close();
                 return true;
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 var exep = new MySqlExceptionHandler(ex, "License");
                 throw new Exception(exep.ReturnMessage());
             }
         }
         /// <summary>
-        /// Gets the license identifier of the corresponding license code.
+        /// Gets the license identifier of the corresponding license code or file.
         /// </summary>
         /// <returns>System.Int32.</returns>
         public int GetLicenseID(string Type)
         {
             mysqlConnectie.Open();
-            var getLicenseID = new MySqlCommand("SELECT licenseID FROM license WHERE licenseCode = '" + LicenseCode + "'", mysqlConnectie);
+            var getLicenseID = new MySqlCommand("SELECT licenseID FROM license WHERE " + Type + "  = '" + LicenseCode + "'", mysqlConnectie);
             mysqlConnectie.Close();
             LicenseID = (int)getLicenseID.ExecuteScalar();
             return LicenseID;
         }
-        /// <summary>
-        /// Returns the Datatable license code of the current user.
-        /// </summary>
-        /// <param name="UserID">The user identifier.</param>
-        /// <returns>DataTable license code.</returns>
-        //  public DataTable ReturnDTLCodeCurrentUser(int UserID)
-        //{
+        public DataTable ReturnLicensePeople(string license, bool IsFile)
+        {
+            if (IsFile == true)
+            {
+                return DTLicensePeople(license, "licenseFile");
+            }
+            else
+            {
+                return DTLicensePeople(license, "licenseCode");
+            }
+        }
+        private DataTable DTLicensePeople(string license, string licenseType)
+        {
+         
+            mysqlConnectie.Open();
+            MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT licenseEventID, licenseHandler.licenseID, nameAD from licenseHandler join people on licenseHandler.eventID = people.eventID WHERE " + licenseType + " = '" + license + "'", mysqlConnectie);
+            var peopleReader = getCorrespondingPeople.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(peopleReader);
+            mysqlConnectie.Close();
+            return dt;
+        }
+        public DataTable ReturnLicenseHardware(string license, bool IsFile)
+        {
+            if (IsFile == true)
+            {
+                return DTLicenseHardware(license, "licenseFile");
+            }
+            else
+            {
+                return DTLicenseHardware(license, "licenseCode");
+            }
+        }
+        private DataTable DTLicenseHardware(string license, string licenseType)
+        {
+            mysqlConnectie.Open();
+            MySqlCommand getCorrespondingHardware = new MySqlCommand("SELECT licenseEventID, licenseHandler.licenseID, nameAD from licenseHandler join people on licenseHandler.eventID = people.eventID WHERE " + licenseType + " = '" + license + "'", mysqlConnectie);
+            var HardwareReader = getCorrespondingHardware.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(HardwareReader);
+            mysqlConnectie.Close();
+            return dt;
+        }
 
-        // }
     }
 
 }

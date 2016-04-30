@@ -6,11 +6,8 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer.Manage
 {
-
-
     public partial class Default
     {
     }

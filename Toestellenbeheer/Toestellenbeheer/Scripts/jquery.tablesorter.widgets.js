@@ -13,7 +13,6 @@
 ;(function($) {
 "use strict";
 var ts = $.tablesorter = $.tablesorter || {};
-
 ts.themes = {
 	"bootstrap" : {
 		table      : 'table table-bordered table-striped',
@@ -48,7 +47,6 @@ ts.themes = {
 		odd        : 'ui-state-default'   // odd row zebra striping
 	}
 };
-
 $.extend(ts.css, {
 	filterRow : 'tablesorter-filter-row',   // filter
 	filter    : 'tablesorter-filter',
@@ -57,20 +55,16 @@ $.extend(ts.css, {
 	sticky    : 'tablesorter-stickyHeader', // stickyHeader
 	stickyVis : 'tablesorter-sticky-visible'
 });
-
 // *** Store data in local storage, with a cookie fallback ***
 /* IE7 needs JSON library for JSON.stringify - (http://caniuse.com/#search=json)
    if you need it, then include https://github.com/douglascrockford/JSON-js
-
    $.parseJSON is not available is jQuery versions older than 1.4.1, using older
    versions will only allow storing information for one page at a time
-
    // *** Save data (JSON format only) ***
    // val must be valid JSON... use http://jsonlint.com/ to ensure it is valid
    var val = { "mywidget" : "data1" }; // valid JSON uses double quotes
    // $.tablesorter.storage(table, key, val);
    $.tablesorter.storage(table, 'tablesorter-mywidget', val);
-
    // *** Get data: $.tablesorter.storage(table, key); ***
    v = $.tablesorter.storage(table, 'tablesorter-mywidget');
    // val may be empty, so also check for your data
@@ -127,7 +121,6 @@ ts.storage = function(table, key, value, options) {
 		return values && values[url] ? values[url][id] : '';
 	}
 };
-
 // Add a resize event to table headers
 // **************************
 ts.addHeaderResizeEvent = function(table, disable, settings) {
@@ -168,7 +161,6 @@ ts.addHeaderResizeEvent = function(table, disable, settings) {
 		checkSizes();
 	}, options.timer);
 };
-
 // Widget: General UI theme
 // "uitheme" option in "widgetOptions"
 // **************************
@@ -262,7 +254,6 @@ ts.addWidget({
 		$headers.find('.' + ts.css.icon).removeClass(themes.icons);
 	}
 });
-
 // Widget: Column styles
 // "columns", "columns_thead" (true) and
 // "columns_tfoot" (true) options in "widgetOptions"
@@ -344,7 +335,6 @@ ts.addWidget({
 		}
 	}
 });
-
 // Widget: filter
 // **************************
 ts.addWidget({
@@ -401,9 +391,7 @@ ts.addWidget({
 		}
 	}
 });
-
 ts.filter = {
-
 	// regex used in filter "check" functions - not for general use and not documented
 	regex: {
 		regex     : /^\/((?:\\\/|[^\/])+)\/([mig]{0,3})?$/, // regex to test for regex
@@ -453,13 +441,11 @@ ts.filter = {
 					result = ts.filter.parseFilter(c, $.trim('' + data.iFilter.replace(ts.filter.regex.operators, '')), index, parsed, true);
 					query = ( typeof result === "number" && result !== '' && !isNaN(result) ) ? result : query;
 				}
-
 				// iExact may be numeric - see issue #149;
 				// check if cached is defined, because sometimes j goes out of range? (numeric columns)
 				cachedValue = ( parsed || parser.type === 'numeric' ) && !isNaN(query) && typeof data.cache !== 'undefined' ? data.cache :
 					isNaN(data.iExact) ? ts.formatFloat( data.iExact.replace(ts.filter.regex.nondigit, ''), table) :
 					ts.formatFloat( data.iExact, table );
-
 				if ( />/.test(data.iFilter) ) { result = />=/.test(data.iFilter) ? cachedValue >= query : cachedValue > query; }
 				if ( /</.test(data.iFilter) ) { result = /<=/.test(data.iFilter) ? cachedValue <= query : cachedValue < query; }
 				// keep showing all rows if nothing follows the operator
@@ -577,21 +563,18 @@ ts.filter = {
 			or  : 'or',
 			and : 'and'
 		}, ts.language);
-
 		var options, string, txt, $header, column, filters, val, time, fxn, noSelect,
 			regex = ts.filter.regex;
 		if (c.debug) {
 			time = new Date();
 		}
 		c.$table.addClass('hasFilters');
-
 		// define timers so using clearTimeout won't cause an undefined error
 		wo.searchTimer = null;
 		wo.filter_initTimer = null;
 		wo.filter_formatterCount = 0;
 		wo.filter_formatterInit = [];
 		wo.filter_initializing = true;
-
 		txt = '\\{' + ts.filter.regex.query + '\\}';
 		$.extend( regex, {
 			child : new RegExp(c.cssChildRow),
@@ -605,13 +588,11 @@ ts.filter = {
 			iQuery : new RegExp(txt, 'i'),
 			igQuery : new RegExp(txt, 'ig')
 		});
-
 		// don't build filter row if columnFilters is false or all columns are set to "filter-false" - issue #156
 		if (wo.filter_columnFilters !== false && c.$headers.filter('.filter-false, .parser-false').length !== c.$headers.length) {
 			// build filter row
 			ts.filter.buildRow(table, c, wo);
 		}
-
 		c.$table.bind('addRows updateCell update updateRows updateComplete appendCache filterReset filterEnd search '.split(' ').join(c.namespace + 'filter '), function(event, filter) {
 			c.$table.find('.' + ts.css.filterRow).toggle( !(wo.filter_hideEmpty && $.isEmptyObject(c.cache) && !(c.delayInit && event.type === 'appendCache')) ); // fixes #450
 			if ( !/(search|filter)/.test(event.type) ) {
@@ -637,7 +618,6 @@ ts.filter = {
 			}
 			return false;
 		});
-
 		// reset button/link
 		if (wo.filter_reset) {
 			if (wo.filter_reset instanceof $) {
@@ -690,16 +670,13 @@ ts.filter = {
 		// not really updating, but if the column has both the "filter-select" class & filter_functions set to true,
 		// it would append the same options twice.
 		ts.filter.buildDefault(table, true);
-
 		ts.filter.bindSearch( table, c.$table.find('.' + ts.css.filter), true );
 		if (wo.filter_external) {
 			ts.filter.bindSearch( table, wo.filter_external );
 		}
-
 		if (wo.filter_hideFilters) {
 			ts.filter.hideFilters(table, c);
 		}
-
 		// show processing icon
 		if (c.showProcessing) {
 			c.$table.bind('filterStart' + c.namespace + 'filter filterEnd' + c.namespace + 'filter', function(event, columns) {
@@ -710,10 +687,8 @@ ts.filter = {
 				ts.isProcessing(table, event.type === 'filterStart', columns ? $header : '');
 			});
 		}
-
 		// set filtered rows count (intially unfiltered)
 		c.filteredRows = c.totalRows;
-
 		if (c.debug) {
 			ts.benchmark("Applying Filter widget", time);
 		}
@@ -780,7 +755,6 @@ ts.filter = {
 			}, 500);
 		}
 	},
-	
 	setDefaults: function(table, c, wo) {
 		var isArray, saved, indx,
 			// get current (default) filters
@@ -825,7 +799,6 @@ ts.filter = {
 			// get data from jQuery data, metadata, headers option or header class name
 			col = ts.getColumnData( table, c.headers, column );
 			disabled = ts.getData($header[0], col, 'filter') === 'false' || ts.getData($header[0], col, 'parser') === 'false';
-
 			if (buildSelect) {
 				buildFilter = $('<select>').appendTo( c.$filters.eq(column) );
 			} else {
@@ -1046,7 +1019,6 @@ ts.filter = {
 			data = { anyMatch: false },
 			// anyMatch really screws up with these types of filters
 			noAnyMatch = [ 'range', 'notMatch',  'operators' ];
-
 		// parse columns after formatter, in case the class is added at that point
 		data.parsed = c.$headers.map(function(columnIndex) {
 			return c.parsers && c.parsers[columnIndex] && c.parsers[columnIndex].parsed ||
@@ -1054,7 +1026,6 @@ ts.filter = {
 				ts.getData && ts.getData(c.$headers.filter('[data-column="' + columnIndex + '"]:last'), ts.getColumnData( table, c.headers, columnIndex ), 'filter') === 'parsed' ||
 				$(this).hasClass('filter-parsed');
 		}).get();
-
 		if (c.debug) { time = new Date(); }
 		// filtered rows count
 		c.filteredRows = 0;
@@ -1067,7 +1038,6 @@ ts.filter = {
 			columnIndex = c.columns;
 			// convert stored rows into a jQuery object
 			$rows = $( $.map(c.cache[tbodyIndex].normalized, function(el){ return el[columnIndex].$row.get(); }) );
-
 			if (combinedFilters === '' || wo.filter_serversideFiltering) {
 				$rows.removeClass(wo.filter_filteredRow).not('.' + c.cssChildRow).show();
 			} else {
@@ -1117,12 +1087,9 @@ ts.filter = {
 					}
 					data.iAnyMatchFilter = data.anyMatchFilter;
 				}
-
 				// loop through the rows
 				for (rowIndex = 0; rowIndex < len; rowIndex++) {
-
 					data.cacheArray = c.cache[tbodyIndex].normalized[rowIndex];
-
 					childRow = $rows[rowIndex].className;
 					// skip child rows & already filtered rows
 					if ( regex.child.test(childRow) || (searchFiltered && regex.filtered.test(childRow)) ) { continue; }
@@ -1135,7 +1102,6 @@ ts.filter = {
 					data.childRowText = (childRow.length && wo.filter_childRows) ? childRow.text() : '';
 					data.childRowText = wo.filter_ignoreCase ? data.childRowText.toLocaleLowerCase() : data.childRowText;
 					$cells = $rows.eq(rowIndex).children();
-
 					if (data.anyMatchFlag) {
 						data.anyMatch = true;
 						data.rowArray = $cells.map(function(i){
@@ -1181,14 +1147,11 @@ ts.filter = {
 						}
 						data.anyMatch = false;
 					}
-
 					for (columnIndex = 0; columnIndex < c.columns; columnIndex++) {
 						data.filter = filters[columnIndex];
 						data.index = columnIndex;
-
 						// filter types to exclude, per column
 						excludeMatch = ( ts.getColumnData( table, wo.filter_excludeFilter, columnIndex, true ) || '' ).split(/\s+/);
-
 						// ignore if filter is empty or disabled
 						if (data.filter) {
 							data.cache = data.cacheArray[columnIndex];
@@ -1202,14 +1165,11 @@ ts.filter = {
 							}
 							data.iExact = !regex.type.test(typeof data.exact) && wo.filter_ignoreCase ? data.exact.toLocaleLowerCase() : data.exact;
 							result = showRow; // if showRow is true, show that row
-
 							// in case select filter option has a different value vs text "a - z|A through Z"
 							ffxn = wo.filter_columnFilters ? 
 								c.$filters.add(c.$externalFilters).filter('[data-column="'+ columnIndex + '"]').find('select option:selected').attr('data-function-name') || '' : '';
-
 							// replace accents - see #357
 							data.filter = c.sortLocaleCompare ? ts.replaceAccents(data.filter) : data.filter;
-
 							val = true;
 							if (wo.filter_defaultFilter && regex.iQuery.test( ts.getColumnData( table, wo.filter_defaultFilter, columnIndex ) || '')) {
 								data.filter = ts.filter.defaultFilter( data.filter, ts.getColumnData( table, wo.filter_defaultFilter, columnIndex ) );
@@ -1291,11 +1251,9 @@ ts.filter = {
 			source = wo.filter_selectSource,
 			last = c.$table.data('lastSearch') || [],
 			fxn = $.isFunction(source) ? true : ts.getColumnData( table, source, column );
-
 		if (onlyAvail && last[column] !== '') {
 			onlyAvail = false;
 		}
-
 		// filter select source option
 		if (fxn === true) {
 			// OVERALL source
@@ -1313,14 +1271,12 @@ ts.filter = {
 			// fall back to original method
 			arry = ts.filter.getOptions(table, column, onlyAvail);
 		}
-
 		// get unique elements and sort the list
 		// if $.tablesorter.sortText exists (not in the original tablesorter),
 		// then natural sort the list otherwise use a basic sort
 		arry = $.grep(arry, function(value, indx) {
 			return $.inArray(value, arry) === indx;
 		});
-
 		if (c.$headers.filter('[data-column="' + column + '"]:last').hasClass('filter-select-nosort')) {
 			// unsorted select options
 			return arry;
@@ -1331,7 +1287,6 @@ ts.filter = {
 				// table cell to the parser format function
 				parsed.push({ t : v, p : c.parsers && c.parsers[column].format( v, table, [], column ) });
 			});
-
 			// sort parsed select options
 			cts = c.textSorter || '';
 			parsed.sort(function(a, b){
@@ -1404,7 +1359,6 @@ ts.filter = {
 		if (typeof arry === 'undefined' || arry === '') {
 			arry = ts.filter.getOptionSource(table, column, onlyAvail);
 		}
-
 		if ($.isArray(arry)) {
 			// build option list
 			for (indx = 0; indx < arry.length; indx++) {
@@ -1424,14 +1378,12 @@ ts.filter = {
 			// clear arry so it doesn't get appended twice
 			arry = [];
 		}
-
 		// update all selects in the same column (clone thead in sticky headers & any external selects) - fixes 473
 		$filters = ( c.$filters ? c.$filters : c.$table.children('thead') ).find('.' + ts.css.filter);
 		if (wo.filter_$externalFilters) {
 			$filters = $filters && $filters.length ? $filters.add(wo.filter_$externalFilters) : wo.filter_$externalFilters;
 		}
 		$filter = $filters.filter('select[data-column="' + column + '"]');
-
 		// make sure there is a select there!
 		if ($filter.length) {
 			$filter[ updating ? 'html' : 'append' ](options);
@@ -1459,7 +1411,6 @@ ts.filter = {
 		}
 	}
 };
-
 ts.getFilters = function(table, getRaw, setFilters, skipFirst) {
 	var i, $filters, $column,
 		filters = false,
@@ -1505,7 +1456,6 @@ ts.getFilters = function(table, getRaw, setFilters, skipFirst) {
 	}
 	return filters;
 };
-
 ts.setFilters = function(table, filter, apply, skipFirst) {
 	var c = table ? $(table)[0].config : '',
 		valid = ts.getFilters(table, true, filter, skipFirst);
@@ -1518,7 +1468,6 @@ ts.setFilters = function(table, filter, apply, skipFirst) {
 	}
 	return !!valid;
 };
-
 // Widget: Sticky headers
 // based on this awesome article:
 // http://css-tricks.com/13465-persistent-headers/
@@ -1614,9 +1563,7 @@ ts.addWidget({
 			.bind('pagerComplete.tsSticky', function() {
 				resizeHeader();
 			});
-
 		ts.bindEvents(table, $stickyThead.children().children('.tablesorter-header'));
-
 		// add stickyheaders AFTER the table. If the table is selected by ID, the original one (first) will be returned.
 		$table.after( $stickyTable );
 		// make it sticky!
@@ -1648,7 +1595,6 @@ ts.addWidget({
 		if (wo.stickyHeaders_addResizeEvent) {
 			ts.addHeaderResizeEvent(table);
 		}
-
 		// look for filter widget
 		if ($table.hasClass('hasFilters')) {
 			// scroll table into view after filtering, if sticky header is active - #482
@@ -1672,9 +1618,7 @@ ts.addWidget({
 				ts.filter.hideFilters($stickyTable, c);
 			}
 		}
-
 		$table.trigger('stickyHeadersInit');
-
 	},
 	remove: function(table, c, wo) {
 		c.$table
@@ -1689,7 +1633,6 @@ ts.addWidget({
 		ts.addHeaderResizeEvent(table, false);
 	}
 });
-
 // Add Column resizing widget
 // this widget saves the column widths if
 // $.tablesorter.storage function is included
@@ -1805,7 +1748,6 @@ ts.addWidget({
 		.bind('mouseup.tsresize', function() {
 			stopResize();
 		});
-
 		// right click to reset columns to default widths
 		$table.find('thead:first').bind('contextmenu.tsresize', function() {
 			ts.resizableReset(table);
@@ -1846,7 +1788,6 @@ ts.resizableReset = function(table, nosave) {
 		}
 	});
 };
-
 // Save table sort widget
 // this widget saves the last sort only if the
 // saveSort widget option is true AND the
@@ -1908,5 +1849,4 @@ ts.addWidget({
 		if (ts.storage) { ts.storage( table, 'tablesorter-savesort', '' ); }
 	}
 });
-
 })(jQuery);

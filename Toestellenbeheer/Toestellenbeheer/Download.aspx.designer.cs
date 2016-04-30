@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer {
-    
-    
     public partial class Download {
-        
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
         /// <summary>
         /// lnkDownload control.
         /// </summary>

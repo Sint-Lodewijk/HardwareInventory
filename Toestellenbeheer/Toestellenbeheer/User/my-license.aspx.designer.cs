@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer.User {
-    
-    
     public partial class my_license {
-        
         /// <summary>
         /// grvMyLicenseCode control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace Toestellenbeheer.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvMyLicenseCode;
-        
         /// <summary>
         /// lblLicenseCode control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace Toestellenbeheer.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblLicenseCode;
-        
         /// <summary>
         /// grvMyLicenseFile control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace Toestellenbeheer.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvMyLicenseFile;
-        
         /// <summary>
         /// lblLicenseFile control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace Toestellenbeheer.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblLicenseFile;
-        
         /// <summary>
         /// sqlLicenseCode control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace Toestellenbeheer.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource sqlLicenseCode;
-        
         /// <summary>
         /// sqlLicenseFile control.
         /// </summary>

@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer {
-    
-    
     public partial class hardware_overview {
-        
         /// <summary>
         /// udpHardware control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpHardware;
-        
         /// <summary>
         /// searchPanel control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel searchPanel;
-        
         /// <summary>
         /// lblSearch control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSearch;
-        
         /// <summary>
         /// txtSearch control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSearch;
-        
         /// <summary>
         /// lblOn control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblOn;
-        
         /// <summary>
         /// drpSearchItem control.
         /// </summary>
@@ -65,7 +56,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList drpSearchItem;
-        
         /// <summary>
         /// btnSearch control.
         /// </summary>
@@ -74,7 +64,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearch;
-        
         /// <summary>
         /// HardwareOverviewGridSearch control.
         /// </summary>
@@ -83,7 +72,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView HardwareOverviewGridSearch;
-        
         /// <summary>
         /// lblGridTotalResult control.
         /// </summary>
@@ -92,7 +80,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblGridTotalResult;
-        
         /// <summary>
         /// iframeDownload control.
         /// </summary>
@@ -101,7 +88,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlIframe iframeDownload;
-        
         /// <summary>
         /// lnkDownloadB control.
         /// </summary>
@@ -110,7 +96,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkDownloadB;
-        
         /// <summary>
         /// modalHardware control.
         /// </summary>
@@ -119,7 +104,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel modalHardware;
-        
         /// <summary>
         /// udpDetails control.
         /// </summary>
@@ -128,7 +112,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpDetails;
-        
         /// <summary>
         /// modalTitle control.
         /// </summary>
@@ -137,7 +120,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalTitle;
-        
         /// <summary>
         /// imgHardware control.
         /// </summary>
@@ -146,7 +128,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgHardware;
-        
         /// <summary>
         /// grvDetail control.
         /// </summary>
@@ -155,7 +136,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvDetail;
-        
         /// <summary>
         /// grvPeopleLinked control.
         /// </summary>
@@ -164,7 +144,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvPeopleLinked;
-        
         /// <summary>
         /// btnModifying control.
         /// </summary>
@@ -173,7 +152,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnModifying;
-        
         /// <summary>
         /// lblTotalQuery control.
         /// </summary>
@@ -182,7 +160,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalQuery;
-        
         /// <summary>
         /// lblInternalNr control.
         /// </summary>
@@ -191,7 +168,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblInternalNr;
-        
         /// <summary>
         /// lblProblem control.
         /// </summary>

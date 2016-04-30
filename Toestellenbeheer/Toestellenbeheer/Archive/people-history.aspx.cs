@@ -9,13 +9,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Toestellenbeheer.Models;
-
 namespace Toestellenbeheer.Archive
 {
     public partial class people_history : System.Web.UI.Page
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -37,7 +35,6 @@ namespace Toestellenbeheer.Archive
                 modalTitle.InnerText = "Lend hardware archive of " + strNameAD;
                 lblResult.Text = strNameAD + " has lend " + grvHardwareOfPeople.Rows.Count +
                     " times of hardware.";
-
             }
             modalShow();
         }
@@ -58,10 +55,8 @@ namespace Toestellenbeheer.Archive
             }
             catch (MySqlException ex)
             {
-
             }
         }
-
         protected void getUserFromAD()
         {
             try
@@ -69,7 +64,6 @@ namespace Toestellenbeheer.Archive
                 Models.User get = new Models.User();
                 DataTable dt = get.ReturnDataTable();
                 grvPeopleAD.DataSource = dt;
-
                 grvPeopleAD.DataBind();
             }
             catch (Exception ex)
@@ -82,7 +76,6 @@ namespace Toestellenbeheer.Archive
             grvPeopleAD.PageIndex = e.NewPageIndex;
             grvPeopleAD.DataBind();
         }
-
         protected void grvPeopleAD_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -91,16 +84,13 @@ namespace Toestellenbeheer.Archive
                 e.Row.ToolTip = "Click to select this row.";
             }
         }
-
         protected void grvPeopleAD_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-
         }
         public void modalShow()
         {
             udpDetails.Update();
             ScriptManager.RegisterStartupScript(udpDetails, udpDetails.GetType(), "show", "$(function () { $('#" + modalHardware.ClientID + "').modal('show'); });", true);
-
         }
     }
 }

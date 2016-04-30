@@ -8,19 +8,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Toestellenbeheer.Models;
-
 namespace Toestellenbeheer.Manage
 {
     public partial class manage_manufacturer : System.Web.UI.Page
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-
                 bindManufacturerToGrid();
             }
         }
@@ -40,60 +36,46 @@ namespace Toestellenbeheer.Manage
                 DataTable dt = manufacturer.ReturnDatatableManufacturer();
                 grvManufacturer.DataSource = dt;
                 grvManufacturer.DataBind();
-
             }
             catch (MySqlException ex)
             {
                 lblProblem.Text = ex.ToString();
             }
         }
-
         protected void btnAddManufacturer_Click(object sender, EventArgs e)
         {
-
             try
             {
                 String strManufacturer = txtManufacturerName.Text.ToString();
-
                 var manufacturer = new Manufacturer(strManufacturer);
                 manufacturer.AddManufacturerToDatabase();
                 bindManufacturerToGrid();
             }
-
             catch (MySqlException ex)
             {
-
                 ShowMessage(ex.Message);
             }
-
         }
-
         void ShowMessage(string msg)
         {
             ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> alert('" + msg + "');</ script > ");
         }
-
         protected void grvManufacturer_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             ViewState["manufacturerName"] = grvManufacturer.SelectedDataKey["manufacturerName"].ToString();
             ButtonPanel.Visible = true;
-
         }
         public void modalShow()
         {
             udpDetails.Update();
             ScriptManager.RegisterStartupScript(udpDetails, udpDetails.GetType(), "show", "$(function () { $('#modalManufacturer').modal('show'); });", true);
-
         }
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             txtManufacturerModifying.Text = ViewState["manufacturerName"].ToString();
             manufacturerModalTitle.InnerText = "You are modifying manufacturer: " + ViewState["manufacturerName"].ToString();
-
             modalShow();
         }
-
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             var deleteManufacturer = new Manufacturer(ViewState["manufacturerName"].ToString());
@@ -103,7 +85,6 @@ namespace Toestellenbeheer.Manage
                 Response.Redirect("~/Success.aspx");
             }
         }
-
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             var updateManufacturer = new Manufacturer(ViewState["manufacturerName"].ToString());
@@ -114,5 +95,4 @@ namespace Toestellenbeheer.Manage
             }
         }
     }
-
 }

@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer.Overview {
-    
-    
     public partial class user_overview {
-        
         /// <summary>
         /// gv control.
         /// </summary>

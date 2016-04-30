@@ -14,7 +14,6 @@ namespace Toestellenbeheer.Manage
     public partial class assign_license : System.Web.UI.Page
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -52,7 +51,6 @@ namespace Toestellenbeheer.Manage
         }
         protected void grvLicenseUnassignedHardware_RowDeleting(object sender, EventArgs e)
         {
-
         }
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -64,23 +62,17 @@ namespace Toestellenbeheer.Manage
         }
         protected void grvLicenseUnassignedPeople_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            
         }
-
         protected void grvLicenseUnassignedPeople_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
-
         protected void btnAPeople_Click(object sender, EventArgs e)
         {
             PeoplePanel.Visible = true;
             PeoplePopUP.Show();
         }
-
         protected void btnAHardware_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
 namespace Toestellenbeheer.Models
 {
     public class SetupFile
@@ -27,7 +26,6 @@ namespace Toestellenbeheer.Models
         public static class XML
         {
             public const String ScripturaPath = "http://scriptix:13542/web/ontvangstbewijs/generate-pdf";
-
         }
         public static class Email
         {
@@ -36,7 +34,6 @@ namespace Toestellenbeheer.Models
             public const String MailServer = "smtp-mail.outlook.com";
             public const int SMTPPort = 587;
             public const String EmailTo = "mr.jianing@hotmail.com";
-            
         }
         public static class Requests
         {

@@ -8,7 +8,6 @@
  *
  * http://api.jqueryui.com/category/theming/
  */
-
 /* Layout helpers
 ----------------------------------*/
 .ui-helper-hidden {
@@ -55,22 +54,16 @@
 	opacity: 0;
 	filter:Alpha(Opacity=0); /* support: IE8 */
 }
-
 .ui-front {
 	z-index: 100;
 }
-
-
 /* Interaction Cues
 ----------------------------------*/
 .ui-state-disabled {
 	cursor: default !important;
 }
-
-
 /* Icons
 ----------------------------------*/
-
 /* states and images */
 .ui-icon {
 	display: block;
@@ -78,11 +71,8 @@
 	overflow: hidden;
 	background-repeat: no-repeat;
 }
-
-
 /* Misc visuals
 ----------------------------------*/
-
 /* Overlays */
 .ui-widget-overlay {
 	position: fixed;
@@ -187,7 +177,6 @@
 .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
 	float: left;
 }
-
 /* with multiple calendars */
 .ui-datepicker.ui-datepicker-multi {
 	width: auto;
@@ -220,7 +209,6 @@
 	width: 100%;
 	font-size: 0;
 }
-
 /* RTL support */
 .ui-datepicker-rtl {
 	direction: rtl;

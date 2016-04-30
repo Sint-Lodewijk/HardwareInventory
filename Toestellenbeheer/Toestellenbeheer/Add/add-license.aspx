@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="Add a license" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="add-license.aspx.cs" Inherits="Toestellenbeheer.Manage.add_license" %>
-
 <asp:Content ID="HeadCon" ContentPlaceHolderID="HeadContent" runat="server">
     <div class="row no-15 sub-title-bar blue-title">
         <div class="container">
@@ -15,7 +14,6 @@
             opacity: 0.7;
             width: 100%;
         }
-
         body {
             width: 98% !important;
         }
@@ -23,35 +21,22 @@
             margin: 0 auto;
         }
     </style>
-
 </asp:Content>
 <asp:Content ID="LicenseAdd" ContentPlaceHolderID="MainContent" runat="server">
-
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="AjaxControl" %>
-
-
-
-
-
-
     <div id="hardwareGrides">
         <div class="form-group">
             <asp:Label ID="licenseName" runat="server" AssociatedControlID="txtLicenseName" CssClass="control-label col-sm-2">Name</asp:Label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtLicenseName" placeholder="Name of license" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-
             <asp:Label ID="licenseCode" runat="server" AssociatedControlID="txtLicenseCode" CssClass="control-label col-sm-2">Code: </asp:Label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtLicenseCode" placeholder="Enter the licensecode" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-
             <div class="form-group">
                 <asp:Label AssociatedControlID="txtDatepickerExpire" CssClass="control-label col-sm-2" runat="server" Text="Expire Date:"></asp:Label>
-
                 <div class="col-sm-10">
-
-
                     <script>
                         $(function () {
                             $("[id$=txtDatepickerExpire]").datepicker({ dateFormat: 'dd-mm-yy' }).val();
@@ -67,26 +52,19 @@
                 </div>
             </div>
             <div class="form-group">
-
                 <asp:Label AssociatedControlID="LicenseFileUpload" runat="server" CssClass="control-label col-sm-2">License File:</asp:Label>
-
                 <div class="col-sm-8">
                     <asp:FileUpload ID="LicenseFileUpload" CssClass="btn btn-default form-control" runat="server" />
                 </div>
-
                 <div class="col-sm-2">
                     <asp:Button ID="btnUploadLicense" runat="server" CssClass="btn btn-info margin-top-6-2 col-sm-12" Text="Upload" OnClick="btnUploadLicense_Click" />
                 </div>
                 <div class="col-sm-10 col-sm-offset-2 form-group hint-block">
-
                     <asp:Label ID="ResultUploadAtta" runat="server" Text="" CssClass="hint-block"></asp:Label>
-
                     <asp:Label ID="TestlocationAtt" runat="server" Text="" CssClass="hint-block"></asp:Label>
                 </div>
             </div>
-
         </div>
-
         <div class="form-group">
             <div class="col-sm-12">
                 <asp:Button ID="hideShowHardware" runat="server" Text="Assign to hardware" OnClick="hideShowHardware_Click" CssClass="btn btn-info form-control" />
@@ -99,7 +77,6 @@
             BackgroundCssClass="modalBackground"
             DropShadow="False">
         </AjaxControl:ModalPopupExtender>
-
         <div class="modal-dialog">
             <asp:Panel ID="hardwarePanel" CssClass="modal-content" runat="server">
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
@@ -133,8 +110,6 @@
                                     <asp:BoundField DataField="internalNr" HeaderText="Internal nr" ReadOnly="True" SortExpression="internalNr" />
                                     <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
                                 </Columns>
-
-
                                 <SelectedRowStyle BackColor="#A1DCF2" Font-Bold="True" ForeColor="White" />
                                 <SortedAscendingCellStyle BackColor="#F1F1F1" />
                                 <SortedAscendingHeaderStyle BackColor="#808080" />
@@ -149,7 +124,6 @@
                                     <asp:BoundField DataField="internalNr" HeaderText="Internal nr" ReadOnly="True" SortExpression="internalNr" />
                                     <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
                                 </Columns>
-
                                 <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                                 <SortedAscendingCellStyle BackColor="#F7F7F7" />
                                 <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
@@ -158,17 +132,13 @@
                             </asp:GridView>
                         </div>
                         <div class="modal-footer">
-
                             <div class="form-group">
                                 <div class="col-sm-4">
                                     <asp:Button ID="btnAssignToSelectedHardware" runat="server" Text="Assign" CssClass="btn btn-primary margin-top-5" OnClick="assignToSelectedHardware_Click" />
                                 </div>
-
                             </div>
                             <div class="form-group">
-
                                 <div class="col-sm-4">
-
                                     <asp:Button ID="btnAssignToSelectedHardwareSearch" runat="server" Text="Assign" CssClass="btn btn-primary " OnClick="assignToSelectedHardwareSearch_Click" />
                                     <asp:Button ID="btnCloseHardware" runat="server" Text="Cancel" CssClass="btn btn-info" />
                                 </div>
@@ -183,10 +153,8 @@
                         <asp:PostBackTrigger ControlID="btnCloseHardware" />
                         <asp:PostBackTrigger ControlID="btnAssignToSelectedHardware" />
                         <asp:PostBackTrigger ControlID="btnAssignToSelectedHardwareSearch" />
-
                         <asp:AsyncPostBackTrigger ControlID="licenseOverviewGridSearch" EventName="SelectedIndexChanged" />
                         <asp:AsyncPostBackTrigger ControlID="grvHardwareLicenseSelect" EventName="SelectedIndexChanged" />
-
                     </Triggers>
                 </asp:UpdatePanel>
             </asp:Panel>
@@ -205,12 +173,10 @@
             OkControlID="btnAssignLicenseToPeople"
             CancelControlID="btnClosePeople">
         </AjaxControl:ModalPopupExtender>
-
         <asp:Panel ID="peoplePanel" CssClass="innerPopup" runat="server">
             <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <asp:GridView ID="licenseOverviewGridPeople" DataKeyNames="Domain Name" OnPageIndexChanging="licenseOverviewGridPeople_PageIndexChanging" CssClass="table table-hover table-striped gridview" runat="server" OnRowDataBound="PeopleBound" AllowPaging="True" PageSize="9">
-
                         <SelectedRowStyle BackColor="#A1DCF2" Font-Bold="True" ForeColor="White" />
                         <SortedAscendingCellStyle BackColor="#F1F1F1" />
                         <SortedAscendingHeaderStyle BackColor="#808080" />
@@ -220,7 +186,6 @@
                     <div class="form-group col-sm-offset-4 col-sm-2">
                         <asp:Button runat="server" ID="btnAssignLicenseToPeople" OnClick="assignLicenseToPeople" CssClass="btn btn-primary " Text="Assign to selected person" />
                         <asp:Button ID="btnClosePeople" runat="server" Text="Cancel" CssClass="btn btn-info" />
-
                     </div>
                 </ContentTemplate>
                 <Triggers>
@@ -229,7 +194,6 @@
                 </Triggers>
             </asp:UpdatePanel>
         </asp:Panel>
-
         <div class="form-group col-sm-12">
             <asp:Button runat="server" Text="Add license only" ID="btnAddLicense" CssClass="btn btn-primary col-sm-12 margin-top-5" OnClick="btnAddLicense_click" />
         </div>
@@ -237,5 +201,4 @@
             <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
         </div>
     </div>
- 
 </asp:Content>

@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer.Manage {
-    
-    
     public partial class manage_database {
-        
         /// <summary>
         /// udpSuccess control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpSuccess;
-        
         /// <summary>
         /// lblAlert control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAlert;
-        
         /// <summary>
         /// btnBackup control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBackup;
-        
         /// <summary>
         /// fileRestore control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fileRestore;
-        
         /// <summary>
         /// btnRestore control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRestore;
-        
         /// <summary>
         /// btnTruncate control.
         /// </summary>

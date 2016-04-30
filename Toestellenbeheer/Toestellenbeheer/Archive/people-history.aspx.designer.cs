@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer.Archive {
-    
-    
     public partial class people_history {
-        
         /// <summary>
         /// grvPeopleAD control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvPeopleAD;
-        
         /// <summary>
         /// modalHardware control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel modalHardware;
-        
         /// <summary>
         /// udpDetails control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpDetails;
-        
         /// <summary>
         /// modalTitle control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalTitle;
-        
         /// <summary>
         /// lblResult control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace Toestellenbeheer.Archive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblResult;
-        
         /// <summary>
         /// grvHardwareOfPeople control.
         /// </summary>

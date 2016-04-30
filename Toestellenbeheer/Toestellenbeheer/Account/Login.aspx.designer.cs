@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer.Account {
-    
-    
     public partial class Login {
-        
         /// <summary>
         /// ErrorMessage control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace Toestellenbeheer.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder ErrorMessage;
-        
         /// <summary>
         /// FailureText control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace Toestellenbeheer.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal FailureText;
-        
         /// <summary>
         /// UserName control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace Toestellenbeheer.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox UserName;
-        
         /// <summary>
         /// Password control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace Toestellenbeheer.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Password;
-        
         /// <summary>
         /// RememberMe control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace Toestellenbeheer.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox RememberMe;
-        
         /// <summary>
         /// errorLabel control.
         /// </summary>

@@ -6,7 +6,6 @@ using System.Data;
 using System.DirectoryServices;
 using MySql.Data.MySqlClient;
 using System.Configuration;
-
 namespace Toestellenbeheer.Models
 {
     public class User
@@ -17,7 +16,6 @@ namespace Toestellenbeheer.Models
         /// </summary>
         public User()
         {
-
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="User"/> class with the user principal name of AD.
@@ -36,20 +34,16 @@ namespace Toestellenbeheer.Models
         public int ReturnEventID()
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
             mysqlConnectie.Open();
             MySqlCommand checkPeopleAlreadyExist = new MySqlCommand("SELECT eventID FROM people Where nameAD = '" + NameAD + "'", mysqlConnectie);
             object checkObj = checkPeopleAlreadyExist.ExecuteScalar();
-
             if (checkObj == null)
             {
                 MySqlCommand addPeople = new MySqlCommand("INSERT INTO people (nameAD) values (@nameAD)", mysqlConnectie);
                 addPeople.Parameters.AddWithValue("@nameAd", NameAD);
                 addPeople.ExecuteNonQuery();
                 addPeople.Dispose();
-
                 MySqlCommand getMaxIndex = new MySqlCommand("SELECT eventID FROM people WHERE eventID = (SELECT MAX(eventID) FROM people)", mysqlConnectie);
-
                 int maxIndex = Convert.ToInt16(getMaxIndex.ExecuteScalar().ToString());
                 return maxIndex;
             }
@@ -58,7 +52,6 @@ namespace Toestellenbeheer.Models
                 int maxIndex = Convert.ToInt16(checkPeopleAlreadyExist.ExecuteScalar().ToString());
                 return maxIndex;
             }
-
         }
         /// <summary>
         /// Returns all users in AD in specific path in the data table in a datatable.
@@ -67,11 +60,8 @@ namespace Toestellenbeheer.Models
         public DataTable ReturnDataTable()
         {
             DirectoryEntry rootDSE = rootDSE = new DirectoryEntry(SetupFile.AD.ADConnectionPrefix, SetupFile.AD.ADUserName, SetupFile.AD.ADUserPassword); //SetupFile
-
             DirectorySearcher search = new DirectorySearcher(rootDSE);
-
             search.PageSize = 1001;// To Pull up more than 100 records.
-
             search.Filter = "(&(objectClass=user)(objectCategory=person)(!userAccountControl:1.2.840.113556.1.4.803:=2))";//UserAccountControl will only Include Non-Disabled Users.
             SearchResultCollection result = search.FindAll();
             String DisplayName, EmailAddress, DomainName, Department, Title, Company, memberof, aaa;
@@ -135,16 +125,10 @@ namespace Toestellenbeheer.Models
                     aaa = item.Properties["AccountExpirationDate"][0].ToString();
                 }
                 //dt.Columns("DisplayName", "EmailAddress", "DomainName", "Department", "Title", "Company", "memberof");
-
-
                 dt.Rows.Add(DisplayName, EmailAddress, DomainName, Department, Title, Company);
-
-
             }
             rootDSE.Dispose();
             return dt;
-
         }
-
     }
 }

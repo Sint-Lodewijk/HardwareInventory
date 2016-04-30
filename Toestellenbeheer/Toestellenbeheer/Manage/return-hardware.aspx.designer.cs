@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer.Manage {
-    
-    
     public partial class return_hardware {
-        
         /// <summary>
         /// modalHardware control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel modalHardware;
-        
         /// <summary>
         /// udpDetails control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpDetails;
-        
         /// <summary>
         /// modalTitle control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalTitle;
-        
         /// <summary>
         /// imgHardware control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgHardware;
-        
         /// <summary>
         /// grvDetail control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvDetail;
-        
         /// <summary>
         /// grvHardwarePoolAssigned control.
         /// </summary>
@@ -65,7 +56,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvHardwarePoolAssigned;
-        
         /// <summary>
         /// btnReturnHardware control.
         /// </summary>
@@ -74,7 +64,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnReturnHardware;
-        
         /// <summary>
         /// lblResult control.
         /// </summary>

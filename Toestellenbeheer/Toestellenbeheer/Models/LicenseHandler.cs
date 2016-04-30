@@ -9,13 +9,11 @@ namespace Toestellenbeheer.Models
 {
     public class LicenseHandler : Hardware
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LicenseHandler"/> class.
         /// </summary>
         public LicenseHandler()
         {
-
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="LicenseHandler"/> class with 2 parameters.
@@ -27,7 +25,6 @@ namespace Toestellenbeheer.Models
             UserID = intEventID;
             LicenseID = intLicenseID;
         }
-  
         /// <summary>
         /// Initializes a new instance of the <see cref="LicenseHandler"/> class with 3 parameters.
         /// </summary>
@@ -46,13 +43,11 @@ namespace Toestellenbeheer.Models
         public void AssignLicenseToHardware()
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
             mysqlConnectie.Open();
             MySqlCommand addLicenseCommand = new MySqlCommand("INSERT INTO licenseHandler (internalNr, serialNr, licenseID) values (@internalNr, @serialNr, @licenseID)", mysqlConnectie);
             addLicenseCommand.Parameters.AddWithValue("@internalNr", InternalNr);
             addLicenseCommand.Parameters.AddWithValue("@serialNr", SerialNr);
             addLicenseCommand.Parameters.AddWithValue("@licenseID", LicenseID);
-
             addLicenseCommand.ExecuteNonQuery();
             addLicenseCommand.Dispose();
             mysqlConnectie.Close();
@@ -60,17 +55,13 @@ namespace Toestellenbeheer.Models
         public void AssignLicenseToPeople()
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
             mysqlConnectie.Open();
             MySqlCommand assignLicenseToPeople = new MySqlCommand("INSERT INTO licenseHandler (eventID, licenseID) values (@eventID, @licenseID)", mysqlConnectie);
-
             assignLicenseToPeople.Parameters.AddWithValue("@licenseID", LicenseID);
             assignLicenseToPeople.Parameters.AddWithValue("@eventID", UserID);
-
             assignLicenseToPeople.ExecuteNonQuery();
             assignLicenseToPeople.Dispose();
             mysqlConnectie.Close();
         }
-       
     }
 }

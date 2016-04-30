@@ -10,7 +10,6 @@ using Microsoft.AspNet.Identity;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using Toestellenbeheer.Models;
-
 namespace Toestellenbeheer
 {
     public partial class SiteMaster : MasterPage
@@ -18,9 +17,7 @@ namespace Toestellenbeheer
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
-
         public object Httpcontext { get; private set; }
-
         protected void Page_Init(object sender, EventArgs e)
         {
             // The code below helps to protect against XSRF attacks
@@ -37,7 +34,6 @@ namespace Toestellenbeheer
                 // Generate a new Anti-XSRF token and save to the cookie
                 _antiXsrfTokenValue = Guid.NewGuid().ToString("N");
                 Page.ViewStateUserKey = _antiXsrfTokenValue;
-
                 var responseCookie = new HttpCookie(AntiXsrfTokenKey)
                 {
                     HttpOnly = true,
@@ -49,10 +45,8 @@ namespace Toestellenbeheer
                 }
                 Response.Cookies.Set(responseCookie);
             }
-
             Page.PreLoad += master_Page_PreLoad;
         }
-
         protected void master_Page_PreLoad(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -71,35 +65,28 @@ namespace Toestellenbeheer
                 }
             }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (HttpContext.Current.User.IsInRole("gg_hardware_admin"))
             {
                 getOpenRequest();
-
             }
         }
         private void getOpenRequest()
         {
-
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             mysqlConnectie.Open();
             MySqlCommand getOpenRequest = new MySqlCommand("SELECT count(*) FROM request where requestAccepted = 0", mysqlConnectie);
             Label lblOpenRequest = ((Label)(this.login.FindControl("lblOpenRequest")));
-
             int intOpenRequests = Convert.ToInt32(getOpenRequest.ExecuteScalar());
             if (intOpenRequests > SetupFile.Requests.hardwareRequestChangeColorAfter)
             {
                 lblOpenRequest.Text = "<span style=\"color:" + SetupFile.Requests.hardwareRequestChangeColorHex + "\">" + intOpenRequests.ToString() + " open requests</span>";
-
             }
             else if (intOpenRequests == 0)
             {
                 lblOpenRequest.Text = "No open requests";
             }
-
             else {
                 lblOpenRequest.Text = intOpenRequests.ToString();
             }
@@ -110,5 +97,4 @@ namespace Toestellenbeheer
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
     }
-
 }

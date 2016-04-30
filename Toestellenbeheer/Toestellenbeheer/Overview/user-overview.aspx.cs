@@ -16,9 +16,7 @@ namespace Toestellenbeheer.Overview
             Models.User get = new Models.User();
             DataTable dt = get.ReturnDataTable();
             gv.DataSource = dt;
-
             gv.DataBind();
-
         }
         protected void gridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -26,5 +24,4 @@ namespace Toestellenbeheer.Overview
             gv.DataBind();
         }
     }
-
 }

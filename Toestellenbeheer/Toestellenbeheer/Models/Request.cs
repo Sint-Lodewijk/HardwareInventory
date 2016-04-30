@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
 namespace Toestellenbeheer.Models
 {
     public class Request
@@ -15,7 +14,6 @@ namespace Toestellenbeheer.Models
         public int RequestID { get; set; }
         public Request()
         {
-
         }
         public Request(int intRequestID)
         {
@@ -37,9 +35,7 @@ namespace Toestellenbeheer.Models
         }
         public void RequestHardware()
         {
-
             MySqlConnection mysqlConnectie = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
             mysqlConnectie.Open();
             MySqlCommand sendRequest = new MySqlCommand("INSERT INTO request (serialNr, internalNr,eventID, requestDate) Values (@serialNr, @internalNr, @eventID, @requestDate)", mysqlConnectie);
             sendRequest.Parameters.AddWithValue("@serialNr", SerialNr);
@@ -53,7 +49,6 @@ namespace Toestellenbeheer.Models
         public void AcceptRequest()
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
             try
             {
                 mysqlConnectie.Open();
@@ -72,12 +67,10 @@ namespace Toestellenbeheer.Models
         public void DenyRequest()
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
             mysqlConnectie.Open();
             MySqlCommand deleteSelectedRequest = new MySqlCommand("DELETE FROM request WHERE requestID = " + RequestID, mysqlConnectie);
             deleteSelectedRequest.ExecuteNonQuery();
             mysqlConnectie.Close();
-
         }
     }
 }

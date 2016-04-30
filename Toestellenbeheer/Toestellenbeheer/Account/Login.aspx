@@ -1,14 +1,11 @@
 ﻿<%@ Page Title="Log In" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Toestellenbeheer.Account.Login" %>
-
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div class="container body-content">
         <div class="row">
             <h2 class="col-md-12">Log in</h2>
             <div class="col-md-8">
-
                 <section id="loginForm">
                     <div class="form-horizontal">
-
                         <h4>Please use your Active Directory Account to log into this application.</h4>
                         <hr />
                         <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
@@ -46,12 +43,8 @@
                             </div>
                         </div>
                     </div>
-
-
                 </section>
             </div>
-
-
             <div class="col-md-4">
                 <div class="form-group">
                     <h4 class="hint-block">Do not have an account?
@@ -62,7 +55,6 @@
                     </p>
                 </div>
             </div>
-
         </div>
         <div class="row">
             <div class="alert alert-warning" data-dismiss="alert">
@@ -77,6 +69,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </asp:Content>

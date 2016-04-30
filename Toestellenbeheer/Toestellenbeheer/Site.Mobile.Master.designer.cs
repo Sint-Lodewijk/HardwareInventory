@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer {
-    
-    
     public partial class Site_Mobile {
-        
         /// <summary>
         /// MainContent control.
         /// </summary>

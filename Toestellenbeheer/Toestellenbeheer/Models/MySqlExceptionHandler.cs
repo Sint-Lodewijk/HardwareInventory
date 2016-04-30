@@ -3,14 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
 namespace Toestellenbeheer.Models
 {
     public class MySqlExceptionHandler
     {
         public MySqlExceptionHandler()
         {
-
         }
         public MySqlExceptionHandler(MySqlException ex, string strExceptionType)
         {

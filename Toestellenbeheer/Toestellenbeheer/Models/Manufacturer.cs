@@ -5,22 +5,18 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Configuration;
-
 namespace Toestellenbeheer.Models
 {
     public class Manufacturer
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
         public Manufacturer()
         {
-
         }
         public Manufacturer(string strManufacturer)
         {
             this.ManufacturerName = strManufacturer;
         }
-
         public string ManufacturerName { get; set; }
         /// <summary>
         /// Returns the datatable manufacturer.
@@ -39,9 +35,7 @@ namespace Toestellenbeheer.Models
         {
             mysqlConnectie.Open();
             MySqlCommand addManufacturer = new MySqlCommand("Insert into Manufacturer (manufacturerName) values (@ManufacturerName)", mysqlConnectie);
-
             addManufacturer.Parameters.AddWithValue("@ManufacturerName", ManufacturerName);
-
             addManufacturer.ExecuteNonQuery();
             addManufacturer.Dispose();
             mysqlConnectie.Close();
@@ -55,7 +49,6 @@ namespace Toestellenbeheer.Models
             var dt = new DataTable();
             dt.Load(hardwareReader);
             mysqlConnectie.Close();
-
             return dt;
         }
         public bool IsRemoved()
@@ -65,7 +58,6 @@ namespace Toestellenbeheer.Models
                 ManufacturerName + "'", mysqlConnectie);
             removeManufacturer.ExecuteNonQuery();
             mysqlConnectie.Close();
-
             return true;
         }
         public bool IsUpdated(string strManufacturerValue)

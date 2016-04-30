@@ -8,20 +8,16 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Toestellenbeheer.Models;
-
 namespace Toestellenbeheer.Add
 {
     public partial class add_person : System.Web.UI.Page
     {
-
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
         /// <summary>
         /// Clicking button - Create a user into ActiveDirectory
         /// </summary>
-
         protected void CreateAccount_Click(object sender, EventArgs e)
         {
             String strUserName = UserName.Text.Trim();
@@ -41,18 +37,14 @@ namespace Toestellenbeheer.Add
         /// <param name="memberOf">Group name - hardware admin(istration) or user from dropdownlist.</param>
         private void CreateADUser(String userName, String userPassword, String givenName, String lastName, String memberOf)
         {
-
             PrincipalContext pc = new PrincipalContext(ContextType.Domain,  SetupFile.AD.ADDomainControllerName, SetupFile.AD.ADPath, SetupFile.AD.ADUserName, SetupFile.AD.ADUserPassword);
-
             UserPrincipal up = new UserPrincipal(pc);
-            
                 try
                 {
                     up.GivenName = givenName;
                     up.Surname = lastName;
                     up.SamAccountName = userName;
                     up.UserPrincipalName = userName + SetupFile.AD.ADSAMAccountAt;
-
                     up.SetPassword(userPassword);
                     up.Enabled = true;
                     up.Save();
@@ -73,15 +65,12 @@ namespace Toestellenbeheer.Add
                 catch (System.DirectoryServices.DirectoryServicesCOMException E)
                 {
                     errorLabel.Text = "We cannot create a AD account, because: " + E.Message.ToString();
-
                 }
                 catch (Exception ex)
                 {
                     errorLabel.Text = "An exeption occured " + ex.ToString();
                 }
-            
         }
-
         /// <summary>
         /// Adds the user to group.
         /// </summary>

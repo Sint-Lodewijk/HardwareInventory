@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer.Manage {
-    
-    
     public partial class add_license {
-        
         /// <summary>
         /// licenseName control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label licenseName;
-        
         /// <summary>
         /// txtLicenseName control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLicenseName;
-        
         /// <summary>
         /// licenseCode control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label licenseCode;
-        
         /// <summary>
         /// txtLicenseCode control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLicenseCode;
-        
         /// <summary>
         /// txtDatepickerExpire control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDatepickerExpire;
-        
         /// <summary>
         /// txtExtraInfoLicense control.
         /// </summary>
@@ -65,7 +56,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtExtraInfoLicense;
-        
         /// <summary>
         /// LicenseFileUpload control.
         /// </summary>
@@ -74,7 +64,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload LicenseFileUpload;
-        
         /// <summary>
         /// btnUploadLicense control.
         /// </summary>
@@ -83,7 +72,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUploadLicense;
-        
         /// <summary>
         /// ResultUploadAtta control.
         /// </summary>
@@ -92,7 +80,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ResultUploadAtta;
-        
         /// <summary>
         /// TestlocationAtt control.
         /// </summary>
@@ -101,7 +88,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label TestlocationAtt;
-        
         /// <summary>
         /// hideShowHardware control.
         /// </summary>
@@ -110,7 +96,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button hideShowHardware;
-        
         /// <summary>
         /// targets control.
         /// </summary>
@@ -119,7 +104,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button targets;
-        
         /// <summary>
         /// HardwarePanelPopUP control.
         /// </summary>
@@ -128,7 +112,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender HardwarePanelPopUP;
-        
         /// <summary>
         /// hardwarePanel control.
         /// </summary>
@@ -137,7 +120,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel hardwarePanel;
-        
         /// <summary>
         /// lblSearch control.
         /// </summary>
@@ -146,7 +128,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSearch;
-        
         /// <summary>
         /// txtSearch control.
         /// </summary>
@@ -155,7 +136,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSearch;
-        
         /// <summary>
         /// lblOn control.
         /// </summary>
@@ -164,7 +144,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblOn;
-        
         /// <summary>
         /// drpSearchItem control.
         /// </summary>
@@ -173,7 +152,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList drpSearchItem;
-        
         /// <summary>
         /// btnSearch control.
         /// </summary>
@@ -182,7 +160,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearch;
-        
         /// <summary>
         /// licenseOverviewGridSearch control.
         /// </summary>
@@ -191,7 +168,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView licenseOverviewGridSearch;
-        
         /// <summary>
         /// HardwareLicense control.
         /// </summary>
@@ -200,7 +176,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource HardwareLicense;
-        
         /// <summary>
         /// grvHardwareLicenseSelect control.
         /// </summary>
@@ -209,7 +184,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvHardwareLicenseSelect;
-        
         /// <summary>
         /// btnAssignToSelectedHardware control.
         /// </summary>
@@ -218,7 +192,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAssignToSelectedHardware;
-        
         /// <summary>
         /// btnAssignToSelectedHardwareSearch control.
         /// </summary>
@@ -227,7 +200,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAssignToSelectedHardwareSearch;
-        
         /// <summary>
         /// btnCloseHardware control.
         /// </summary>
@@ -236,7 +208,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCloseHardware;
-        
         /// <summary>
         /// lblSearchResult control.
         /// </summary>
@@ -245,7 +216,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSearchResult;
-        
         /// <summary>
         /// hideShowPeople control.
         /// </summary>
@@ -254,7 +224,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button hideShowPeople;
-        
         /// <summary>
         /// target control.
         /// </summary>
@@ -263,7 +232,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button target;
-        
         /// <summary>
         /// PeoplePopUP control.
         /// </summary>
@@ -272,7 +240,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender PeoplePopUP;
-        
         /// <summary>
         /// peoplePanel control.
         /// </summary>
@@ -281,7 +248,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel peoplePanel;
-        
         /// <summary>
         /// licenseOverviewGridPeople control.
         /// </summary>
@@ -290,7 +256,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView licenseOverviewGridPeople;
-        
         /// <summary>
         /// btnAssignLicenseToPeople control.
         /// </summary>
@@ -299,7 +264,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAssignLicenseToPeople;
-        
         /// <summary>
         /// btnClosePeople control.
         /// </summary>
@@ -308,7 +272,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnClosePeople;
-        
         /// <summary>
         /// btnAddLicense control.
         /// </summary>
@@ -317,7 +280,6 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddLicense;
-        
         /// <summary>
         /// lblResult control.
         /// </summary>

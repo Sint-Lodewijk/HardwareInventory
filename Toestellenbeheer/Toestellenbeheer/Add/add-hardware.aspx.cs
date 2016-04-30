@@ -20,8 +20,6 @@ namespace Toestellenbeheer.Manage
         /// Initialize MySqlConnection for whole file.
         /// </summary>
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -41,7 +39,6 @@ namespace Toestellenbeheer.Manage
                 txtResultUpload.Text = ex.ToString();
             }
         }
-
         #endregion
         #region Insert Data
         ///<summary>Add a hardware into the database
@@ -50,7 +47,6 @@ namespace Toestellenbeheer.Manage
         ///</remarks>
         protected void Submit_Click(object sender, EventArgs e)
         {
-
             String strSerialNr = Serialnr.Text.ToString();
             String strWarrantyInfo = warrantyInfo.Text.ToString();
             String strInternalNr = internalNr.Text.ToString();
@@ -69,7 +65,6 @@ namespace Toestellenbeheer.Manage
             String dteAddedDate = DateTime.Now.ToString("yyyy-MM-dd");
             DateTime addedDate = DateTime.Today;
             DateTime purchaseDate = new DateTime(int.Parse(dtePurchaseYear), int.Parse(dtePurchaseMonth), int.Parse(dtePurchaseDay), 0, 0, 0);
-
             int result = DateTime.Compare(purchaseDate, addedDate);
             if (result > 0)
             {
@@ -84,7 +79,6 @@ namespace Toestellenbeheer.Manage
                 else
                 {
                     ViewState["pictureLocation"] = ViewState["timeStampAddedHardware"] + mImagePath;
-                   
                 }
                 if (TestlocationAtt.Text == "" || TestlocationAtt.Text == null)
                 {
@@ -93,36 +87,26 @@ namespace Toestellenbeheer.Manage
                 else
                 {
                     ViewState["attachmentLocation"] = ViewState["timeStampAddedHardware"] + TestlocationAtt.Text;
-
                 }
                 txtResultUpload.Text = "Congratulations! The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
                    " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " successfully added to the database.";
-
                 var hardware = new Hardware(dteAddedDate, ViewState["attachmentLocation"].ToString(), strExtraInfo, strInternalNr, strSelectedManufacturer, strModel, ViewState["pictureLocation"].ToString(),
                     dtePurchaseDate, strSerialNr, strWarrantyInfo, typeList.SelectedValue);
                 hardware.AddHardwareIntoDatabase();
-
                 viewJustAddedHardware();
-
-
             }
             catch (MySqlException ex)
             {
-
                 if (ex.Number.ToString() == "1062")
                 {
                     //testLabel.Text = ex.Message.ToString() + ", please check your input.";
                     txtResultUpload.Text = "The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
                         " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " already exist in de database.";
-
                 }
                 else { ShowMessage(ex.Message); }
-
             }
-
             addHardwarePanel.Visible = false;
             addResultPanel.Visible = true;
-
         }
         /// <summary>
         /// Views the just added hardware.
@@ -136,7 +120,6 @@ namespace Toestellenbeheer.Manage
                 DataTable dt = hardware.ReturnDatatableHardwareFromInternal();
                 grvJustAddedHardware.DataSource = dt;
                 grvJustAddedHardware.DataBind();
-
             }
             catch (MySqlException ex)
             {
@@ -153,18 +136,15 @@ namespace Toestellenbeheer.Manage
             {
                 //testLabel.Text = ex.Message.ToString() + ", please check your input.";
                 txtResultUpload.Text = "This device already exist in de database.";
-
             }
             else { ShowMessage(ex.Message); }
         }
         /// <summary>
         /// Download the file in /Attachments folder when pressing the linkbutton in Gridview
         /// </summary>
-
         protected void DownloadFile(object sender, EventArgs e)
         {
             string path = "../UserUploads/Attachments/";
-
             string filePath = (sender as LinkButton).CommandArgument;
             Response.ContentType = ContentType;
             Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
@@ -182,7 +162,6 @@ namespace Toestellenbeheer.Manage
         {
             ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> alert('" + msg + "');</ script > ");
         }
-
         #endregion
         //Upload the selected picture and return the right path
         /// <summary>
@@ -193,7 +172,6 @@ namespace Toestellenbeheer.Manage
         /// </remarks>
         public void Upload_Click(object sender, EventArgs e)
         {
-
             if (IsPostBack)
             {
                 //Initialize the Boolean FileOk to status false;
@@ -214,7 +192,6 @@ namespace Toestellenbeheer.Manage
                         }
                     }
                 }
-
                 if (fileOK == true)
                 {
                     try
@@ -226,7 +203,6 @@ namespace Toestellenbeheer.Manage
                         //Gets the path and return this path to ASP Label control - Testlocation
                         Testlocation.Text = mImagePath;
                         ResultUploadImg.Text = "File uploaded!";
-
                     }
                     catch (Exception ex)
                     {
@@ -235,7 +211,6 @@ namespace Toestellenbeheer.Manage
                 }
                 else
                 {
-
                     ResultUploadImg.Text = "Not a extension of image";
                 }
             }
@@ -249,9 +224,7 @@ namespace Toestellenbeheer.Manage
             Server.Transfer("./add-hardware.aspx");
         }
         //Upload the attachment and return the path.
-
         protected void UploadAttachment_Click(object sender, EventArgs e)
-
         {
             if (IsPostBack)
             {
@@ -265,8 +238,6 @@ namespace Toestellenbeheer.Manage
                         String mAttachPath = AttachmentUpload.FileName.ToString();
                         TestlocationAtt.Text = AttachmentUpload.FileName.ToString();
                         ResultUploadAtta.Text = "File uploaded!";
-
-
                     }
                     catch (Exception ex)
                     {
@@ -279,8 +250,6 @@ namespace Toestellenbeheer.Manage
                 ResultUploadAtta.Text = "Do you not want to add a attachment?";
             }
         }
-
     }
 }
-
 

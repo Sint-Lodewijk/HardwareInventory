@@ -64,21 +64,14 @@ namespace Toestellenbeheer.Overview
 
         protected void getCorrespondingPeople(String strLicenseCode)
         {
-            mysqlConnectie.Open();
-            MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT licenseEventID, licenseHandler.licenseID, nameAD from licenseHandler join people on licenseHandler.eventID = people.eventID where licenseCode = '" + strLicenseCode + "'", mysqlConnectie);
-            MySqlDataAdapter adpa = new MySqlDataAdapter(getCorrespondingPeople);
-            getCorrespondingPeople.ExecuteNonQuery();
-            getCorrespondingPeople.Dispose();
-            DataSet ds = new DataSet();
-            adpa.Fill(ds);
-            grvLicenseAssignedPeople.DataSource = ds;
+            var licenseCorresponding = new Models.License();
+            grvLicenseAssignedPeople.DataSource = licenseCorresponding.ReturnLicensePeople(strLicenseCode, false);
             grvLicenseAssignedPeople.DataBind();
-            mysqlConnectie.Close();
 
         }
         protected void getCorrespondingHardware(String strLicenseCode)
         {
-            mysqlConnectie.Open();
+           /* mysqlConnectie.Open();
             MySqlCommand getCorrespondingHardware = new MySqlCommand("SELECT serialNr, internalNr, licenseCode FROM licenseHandler WHERE serialNr IS NOT NULL AND internalNr IS NOT NULL AND licenseCode ='" + strLicenseCode + "'", mysqlConnectie);
             MySqlDataAdapter adpa = new MySqlDataAdapter(getCorrespondingHardware);
             getCorrespondingHardware.ExecuteNonQuery();
@@ -88,7 +81,7 @@ namespace Toestellenbeheer.Overview
             grvLicenseAssignedHardware.DataSource = ds;
             grvLicenseAssignedHardware.DataBind();
             mysqlConnectie.Close();
-
+            */
         }
 
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)

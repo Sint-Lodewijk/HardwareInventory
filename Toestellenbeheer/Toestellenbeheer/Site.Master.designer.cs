@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer {
-    
-    
     public partial class SiteMaster {
-        
         /// <summary>
         /// login control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LoginView login;
-        
         /// <summary>
         /// HeadContent control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
-        
         /// <summary>
         /// MainContent control.
         /// </summary>

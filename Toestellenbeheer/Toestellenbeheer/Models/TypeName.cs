@@ -5,22 +5,18 @@ using System.Web;
 using System.Data;
 using MySql.Data.MySqlClient;
 using System.Configuration;
-
 namespace Toestellenbeheer.Models
 {
     public class TypeName
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
         public TypeName()
         {
-
         }
         public TypeName(string strTypeName)
         {
             this.typeName = strTypeName;
         }
-
         public string typeName { get; set; }
         /// <summary>
         /// Returns the type in the database into a datatable.
@@ -39,9 +35,7 @@ namespace Toestellenbeheer.Models
         {
             mysqlConnectie.Open();
             MySqlCommand addType = new MySqlCommand("Insert into type (type) values (@Type)", mysqlConnectie);
-
             addType.Parameters.AddWithValue("@Type", typeName);
-
             addType.ExecuteNonQuery();
             addType.Dispose();
             mysqlConnectie.Close();
@@ -54,7 +48,6 @@ namespace Toestellenbeheer.Models
             var dt = new DataTable();
             dt.Load(hardwareReader);
             mysqlConnectie.Close();
-
             return dt;
         }
         public bool IsRemoved()
@@ -63,7 +56,6 @@ namespace Toestellenbeheer.Models
             MySqlCommand removeType = new MySqlCommand("DELETE FROM type WHERE type = '" + typeName + "'", mysqlConnectie);
             removeType.ExecuteNonQuery();
             mysqlConnectie.Close();
-
             return true;
         }
         public bool IsUpdated(string strUpdateText)

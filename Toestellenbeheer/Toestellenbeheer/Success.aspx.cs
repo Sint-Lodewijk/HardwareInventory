@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 namespace Toestellenbeheer
 {
     public partial class Success : System.Web.UI.Page

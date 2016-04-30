@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Toestellenbeheer.Users {
-    
-    
     public partial class my_hardware {
-        
         /// <summary>
         /// grvMyHardware control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace Toestellenbeheer.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvMyHardware;
-        
         /// <summary>
         /// udpDetails control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace Toestellenbeheer.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpDetails;
-        
         /// <summary>
         /// picDetail control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace Toestellenbeheer.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image picDetail;
-        
         /// <summary>
         /// lblStatus control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace Toestellenbeheer.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblStatus;
-        
         /// <summary>
         /// lblError control.
         /// </summary>

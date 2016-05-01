@@ -4,14 +4,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
-
 namespace Toestellenbeheer.Models
 {
     public class MySqlUtility
     {
         public MySqlUtility()
         {
-
         }
         public DataTable DtTable()
         {
@@ -23,8 +21,6 @@ namespace Toestellenbeheer.Models
             dt.Load(dr);
             mysqlConnectie.Close();
             return dt;
-
     }
 }
-
 }

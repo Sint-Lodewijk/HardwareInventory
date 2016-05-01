@@ -9,20 +9,17 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
-
 namespace Toestellenbeheer.Overview
 {
     public partial class license_overview : System.Web.UI.Page
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
             }
         }
-
         protected void grvLicense_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
@@ -38,13 +35,11 @@ namespace Toestellenbeheer.Overview
                 {
                     ShowMessage("Exeption occured!");
                 }
-
             }
             catch (MySqlException ex)
             {
                 ShowMessage(ex.Message);
             }
-
         }
         void ShowMessage(string msg)
         {
@@ -58,16 +53,12 @@ namespace Toestellenbeheer.Overview
             getCorrespondingHardware(strLicenseCode);
             lblCountPeople.Text = "This license has been assigned to: " + grvLicenseAssignedPeople.Rows.Count.ToString() + " people and ";
             lblCountHardware.Text = grvLicenseAssignedHardware.Rows.Count.ToString() + " hardware";
-
-
         }
-
         protected void getCorrespondingPeople(String strLicenseCode)
         {
             var licenseCorresponding = new Models.License();
             grvLicenseAssignedPeople.DataSource = licenseCorresponding.ReturnLicensePeople(strLicenseCode, false);
             grvLicenseAssignedPeople.DataBind();
-
         }
         protected void getCorrespondingHardware(String strLicenseCode)
         {
@@ -83,7 +74,6 @@ namespace Toestellenbeheer.Overview
             mysqlConnectie.Close();
             */
         }
-
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -92,11 +82,9 @@ namespace Toestellenbeheer.Overview
                 e.Row.ToolTip = "Click to select this row.";
             }
         }
-
         protected void grvLicenseAssignedPeople_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
-
         protected void getLicenseCorresponding()
         {
             String strLicenseCode = grvLicenseCode.SelectedDataKey.Value.ToString();
@@ -119,9 +107,7 @@ namespace Toestellenbeheer.Overview
                     mysqlConnectie.Open();
                     // String strLicenseCode = grvLicense.DataKeys[e.RowIndex].Value.ToString();
                     String strLicenseCode = grvLicenseCode.SelectedDataKey.Value.ToString();
-
                     String strLicenseEventID = grvLicenseAssignedPeople.DataKeys[e.RowIndex].Value.ToString();
-
                     MySqlCommand deleteLicenseAPeople = new MySqlCommand("Delete From licenseHandler where licenseEventID='" + strLicenseEventID + "'", mysqlConnectie);
                     deleteLicenseAPeople.ExecuteNonQuery();
                     deleteLicenseAPeople.Dispose();
@@ -143,9 +129,7 @@ namespace Toestellenbeheer.Overview
                     mysqlConnectie.Open();
                     // String strLicenseCode = grvLicense.DataKeys[e.RowIndex].Value.ToString();
                     String strLicenseCode = grvLicenseCode.SelectedDataKey.Value.ToString();
-
                     String strInternalNr = grvLicenseAssignedHardware.DataKeys[e.RowIndex].Value.ToString();
-
                     MySqlCommand deleteLicenseAHardware = new MySqlCommand("Delete From licenseHandler where internalNr='" +
                         strInternalNr + "' AND licenseCode = '" + strLicenseCode + "'", mysqlConnectie);
                     deleteLicenseAHardware.ExecuteNonQuery();
@@ -160,7 +144,4 @@ namespace Toestellenbeheer.Overview
             }
         }
     }
-
-
-
 }

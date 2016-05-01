@@ -40,22 +40,9 @@ namespace Toestellenbeheer.Archive
         }
         protected void getHardwareFromNameAD(String nameAD)
         {
-            try
-            {
-                mysqlConnectie.Open();
-                MySqlCommand bindToGrid = new MySqlCommand("SELECT serialNr, internalNr, DATE_FORMAT(assignedDate, '%Y-%m-%d') 'assignedDate',DATE_FORMAT(returnedDate, '%Y-%m-%d') 'returnedDate' FROM archive JOIN people on archive.eventID = people.eventID WHERE nameAD = '" + nameAD + "'", mysqlConnectie);
-                MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
-                bindToGrid.ExecuteNonQuery();
-                bindToGrid.Dispose();
-                DataSet ds = new DataSet();
-                adpa.Fill(ds);
-                grvHardwareOfPeople.DataSource = ds;
-                grvHardwareOfPeople.DataBind();
-                mysqlConnectie.Close();
-            }
-            catch (MySqlException ex)
-            {
-            }
+            var FullHardware = new Hardware();
+            grvHardwareOfPeople.DataSource = FullHardware.ReturnUserFullHardware(nameAD);
+            grvHardwareOfPeople.DataBind();
         }
         protected void getUserFromAD()
         {

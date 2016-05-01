@@ -1,24 +1,15 @@
 ﻿<%@ Page Title="Add a manufacturer" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="manage-manufacturer.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_manufacturer" %>
-
 <asp:Content ID="ManageManufacturer" ContentPlaceHolderID="MainContent" runat="server">
-
     <div class="form-group">
-
         <div class="input-group">
-
             <asp:TextBox ID="txtManufacturerName" placeholder="manufacturer" runat="server" CssClass="form-control"></asp:TextBox>
             <div class="input-group-btn">
-
                 <asp:Button ID="btnAddManufacturer" runat="server" Text="Add" CssClass="btn btn-primary" OnClick="btnAddManufacturer_Click" />
-
             </div>
             <asp:Label runat="server" ID="Label1" Text=""></asp:Label>
         </div>
-
         <asp:Label runat="server" ID="lblProblem" Text=""></asp:Label>
-
     </div>
-   
     <asp:GridView ID="grvManufacturer" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="grvManufacturer_SelectedIndexChanged" runat="server" CssClass="table table-hover table-striped gridview" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="manufacturerName">
         <Columns>
             <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer" ReadOnly="False" SortExpression="manufacturerName" />
@@ -35,10 +26,8 @@
         <asp:Button ID="btnDelete" OnClick="btnDelete_Click" CssClass="btn btn-primary" runat="server" Text="Delete" />
     </asp:Panel>
     <asp:Button ID="target" runat="server" CssClass="hide" />
-
     <div class="modal fade" id="modalManufacturer" tabindex="-1" role="dialog" aria-labelledby="manufacturerModalTitle">
         <div class="modal-dialog" role="document">
-
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -53,7 +42,6 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                     <br />
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -62,5 +50,4 @@
             </div>
         </div>
     </div>
-
 </asp:Content>

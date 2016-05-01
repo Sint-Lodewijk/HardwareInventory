@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Toestellenbeheer.Models;
-
 namespace Toestellenbeheer.User
 {
     public partial class my_license : System.Web.UI.Page
@@ -23,13 +22,11 @@ namespace Toestellenbeheer.User
         protected void DownloadFile(object sender, EventArgs e)
         {
             string path = "../UserUploads/License/";
-
             string filePath = (sender as LinkButton).CommandArgument;
             Response.ContentType = ContentType;
             Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
             Response.WriteFile(path + Path.GetFileName(filePath));
             Response.End();
         }
-
    }
 }

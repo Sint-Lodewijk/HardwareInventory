@@ -8,13 +8,11 @@ using System.DirectoryServices;
 using System.Xml;
 using Toestellenbeheer.Models;
 using System.IO;
-
 namespace Toestellenbeheer.Manage
 {
     public partial class manage_hardware : System.Web.UI.Page
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,10 +23,8 @@ namespace Toestellenbeheer.Manage
             else if (iframeDownload.Src != "")
             {
                 iframeDownload.Src = "";
-
             }
         }
-
         protected void getUnassignedHardware()
         {
             try
@@ -51,7 +47,6 @@ namespace Toestellenbeheer.Manage
                 e.Row.ToolTip = "Click to select this row.";
             }
         }
-
         protected void grvPeopleAD_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -65,16 +60,13 @@ namespace Toestellenbeheer.Manage
             Models.User getAD = new Models.User();
             DataTable dt = getAD.ReturnDataTable();
             grvPeopleAD.DataSource = dt;
-
             grvPeopleAD.DataBind();
-
         }
         protected void gridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             grvPeopleAD.PageIndex = e.NewPageIndex;
             grvPeopleAD.DataBind();
         }
-
         protected void assignHardwarePeople_Click(object sender, EventArgs e)
         {
             if (grvHardwarePoolUnassigned.SelectedRow != null && grvPeopleAD.SelectedRow != null)
@@ -82,24 +74,18 @@ namespace Toestellenbeheer.Manage
                 String strSerialNr = grvHardwarePoolUnassigned.SelectedDataKey["serialNr"].ToString();
                 String strInternalNr = grvHardwarePoolUnassigned.SelectedDataKey["internalNr"].ToString();
                 String strNameAD = grvPeopleAD.SelectedRow.Cells[2].Text.ToString();
-
                 Models.User getUserID = new Models.User(strNameAD);
                 int maxIndex = getUserID.ReturnEventID();
                 mysqlConnectie.Open();
                 assignHardware(maxIndex, strInternalNr);
-
                 mysqlConnectie.Close();
                 getUnassignedHardware();
                 String strManufacturer = "";
                 String strModelNr = "";
                 Hardware assignedHardware = new Hardware();
                 assignedHardware.ArchiveAssignedHardware(strSerialNr, strInternalNr, maxIndex); //Archive the assigned hardware
-
                 assignedHardware.CreateXML("AssignedHardware", strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
             }
-
-
-
             else
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please select a hardware or people to continue!');", true);
@@ -110,17 +96,11 @@ namespace Toestellenbeheer.Manage
             var assignedHardware = new Hardware(index, internalNr);
             assignedHardware.BindEventID();
         }
-
-
-     
-
         protected void grvHardwarePoolUnassigned_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnOpenPeoplePopUp.Visible = true;
             btnAssignHardwarePeople.Text = "Assign " + grvHardwarePoolUnassigned.SelectedDataKey["internalNr"].ToString();
-
         }
-
         protected void grvHardwarePoolUnassigned_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string strInternalNr = grvHardwarePoolUnassigned.DataKeys[e.RowIndex]["internalNr"].ToString();
@@ -134,21 +114,17 @@ namespace Toestellenbeheer.Manage
         }
         protected void DownloadFile(object sender, EventArgs e)
         {
-           
                 Session["FilePath"] = "UserUploads/Attachments/";
-
                 Session["FileName"] = (sender as LinkButton).CommandArgument;
                 lnkDownloadB.CommandArgument = Session["FileName"].ToString();
                 lnkDownloadB.Text = "Not downloading? Try again by clicking here.";
                 iframeDownload.Src = "~/Download.aspx";
                 var openDownloadModal = new JSUtility("modalDownload");
                 openDownloadModal.ModalShow(this);
-            
         }
         protected void lnkDownloadB_Click(object sender, EventArgs e)
         {
             string filePath = (sender as LinkButton).CommandArgument;
-
             Response.ContentType = ContentType;
             Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
             Response.WriteFile("../UserUploads/Attachments/" + Path.GetFileName(filePath));

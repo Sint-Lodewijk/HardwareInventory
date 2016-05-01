@@ -5,16 +5,13 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Data;
-
 namespace Toestellenbeheer.Models
 {
     public class License
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
         public License()
         {
-
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="License"/> class.
@@ -47,7 +44,6 @@ namespace Toestellenbeheer.Models
         public string ExtraInfo { get; set; }
         public int LicenseID { get; set; }
         public string LicenseType { get; set; }
-
         /// <summary>
         /// Adds the license in to the database;
         /// </summary>
@@ -63,7 +59,6 @@ namespace Toestellenbeheer.Models
                 addLicense.Parameters.AddWithValue("@expireDate", ExpireDate);
                 addLicense.Parameters.AddWithValue("@extraInfo", ExtraInfo);
                 addLicense.Parameters.AddWithValue("@licenseFileLocation", LicenseFile);
-
                 addLicense.ExecuteNonQuery();
                 addLicense.Dispose();
             }
@@ -74,13 +69,11 @@ namespace Toestellenbeheer.Models
             finally
             {
                 mysqlConnectie.Close();
-
             }
         }
         public int ReturnMaxLicenseID()
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
             mysqlConnectie.Open();
             MySqlCommand getMaxIndexLicenseID = new MySqlCommand("SELECT MAX(licenseID) FROM license", mysqlConnectie);
             int intLicenseID = (int)getMaxIndexLicenseID.ExecuteScalar();
@@ -89,7 +82,6 @@ namespace Toestellenbeheer.Models
         }
         public void AssignLicenseToHardware(string strSerialNr, string strInternalNr)
         {
-
         }
         public DataTable ReturnLicenseCHardware()
         {
@@ -136,7 +128,6 @@ namespace Toestellenbeheer.Models
         }
         private DataTable DTLicensePeople(string license, string licenseType)
         {
-         
             mysqlConnectie.Open();
             MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT licenseEventID, licenseHandler.licenseID, nameAD from licenseHandler join people on licenseHandler.eventID = people.eventID WHERE " + licenseType + " = '" + license + "'", mysqlConnectie);
             var peopleReader = getCorrespondingPeople.ExecuteReader();
@@ -166,7 +157,5 @@ namespace Toestellenbeheer.Models
             mysqlConnectie.Close();
             return dt;
         }
-
     }
-
 }

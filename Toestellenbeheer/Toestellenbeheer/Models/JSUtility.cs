@@ -5,16 +5,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 namespace Toestellenbeheer.Models
 {
     public class JSUtility
     {
         public string ControlID { get; set; }
-
         public JSUtility()
         {
-
         }
         public JSUtility(string strControlID)
         {
@@ -22,33 +19,23 @@ namespace Toestellenbeheer.Models
         }
         public void ModalShowUpdate(UpdatePanel udp)
         {
-
             udp.Update();
             ScriptManager.RegisterStartupScript(udp, udp.GetType(), "show", "$(function () { $('#" + ControlID + "').modal('show'); });", true);
-
         }
         public void ModalShow(Page page)
         {
-
             ScriptManager.RegisterStartupScript(page, typeof(Page).GetType(), "show", "$(function () { $('#" + ControlID + "').modal('show'); });", true);
-
         }
         public void ShowJS(UpdatePanel udp)
         {
-
             udp.Update();
             ScriptManager.RegisterStartupScript(udp, udp.GetType(), "show", "$(function () { $('#" + ControlID + "').show; });", true);
-
         }
         public void CloseAlert(UpdatePanel udp)
         {
-
             udp.Update();
             ScriptManager.RegisterStartupScript(udp, udp.GetType(), "show", "$(function () { $('#" + ControlID + "').hide; });", true);
-
         }
-
-
         /// <summary>
         /// Detailses the pop up.
         /// </summary>
@@ -69,6 +56,5 @@ namespace Toestellenbeheer.Models
             var detailModalShow = new JSUtility(ControlID);
             detailModalShow.ModalShowUpdate(udpDetails);
         }
-
     }
 }

@@ -11,7 +11,6 @@ namespace Toestellenbeheer.Manage
     public partial class return_hardware : System.Web.UI.Page
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -45,12 +44,10 @@ namespace Toestellenbeheer.Manage
                 e.Row.ToolTip = "Click to select this row.";
             }
         }
-
         protected void btnReturnHardware_Click(object sender, EventArgs e)
         {
             String strInternalNr = grvHardwarePoolAssigned.SelectedDataKey.Value.ToString();
             archiveReturnedHardware(strInternalNr, getCorrespondingEventID(strInternalNr));
-
             mysqlConnectie.Open();
             MySqlCommand unassignHardware = new MySqlCommand("UPDATE hardware SET eventID = NULL WHERE internalNr='" + strInternalNr + "'", mysqlConnectie);
             unassignHardware.ExecuteNonQuery();
@@ -66,7 +63,6 @@ namespace Toestellenbeheer.Manage
             mysqlConnectie.Open();
             MySqlCommand archiveAssigned = new MySqlCommand("UPDATE archive SET returnedDate = '" + dteReturnedDate + "'" + "WHERE internalNr = '" + strInternalNr + "' and " + "eventID = '" + intEventID + "'", mysqlConnectie);
             archiveAssigned.Parameters.AddWithValue("@returnedDate", dteReturnedDate);
-
             archiveAssigned.ExecuteNonQuery();
             archiveAssigned.Dispose();
             mysqlConnectie.Close();
@@ -75,19 +71,15 @@ namespace Toestellenbeheer.Manage
         {
             mysqlConnectie.Open();
             MySqlCommand getCorrespondingIndex = new MySqlCommand("SELECT eventID from hardware where internalNr = '" + internalNr + "'", mysqlConnectie);
-
             int intCorrespondingIndex = (int)getCorrespondingIndex.ExecuteScalar();
-
             mysqlConnectie.Close();
             return intCorrespondingIndex;
-
         }
         protected void DownloadFile(object sender, EventArgs e)
         {
             try
             {
                 string path = "../UserUploads/Attachments/";
-
                 string filePath = (sender as LinkButton).CommandArgument;
                 Response.ContentType = ContentType;
                 Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
@@ -99,7 +91,6 @@ namespace Toestellenbeheer.Manage
                 lblResult.Text = "Problem with downloading, please check if you added a attachment to the hardware." + ex.ToString();
             }
         }
-
         protected void grvHardwarePoolAssigned_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string strInternalNr = grvHardwarePoolAssigned.DataKeys[e.RowIndex]["internalNr"].ToString();
@@ -107,5 +98,4 @@ namespace Toestellenbeheer.Manage
             ShowDetail.DetailsPopUp(strInternalNr, grvDetail, imgHardware, udpDetails, modalTitle);
         }
     }
-
 }

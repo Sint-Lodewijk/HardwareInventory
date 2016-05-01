@@ -1,12 +1,10 @@
 ﻿<%@ Page Title="Manage database" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="manage-database.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_database" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="DatabaseContent" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="udpSuccess" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="alert fade in" id="successMessageAlert">
-
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -14,28 +12,22 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#backup" aria-controls="backup" role="tab" data-toggle="tab">Backup database</a></li>
         <li role="presentation"><a href="#restore" aria-controls="restore" role="tab" data-toggle="tab">Restore database</a></li>
         <li role="presentation"><a href="#destroy" aria-controls="destroy" role="tab" data-toggle="tab">Destroy database</a></li>
-
     </ul>
-
     <!-- Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="backup">
             <h3>Backup</h3>
             <p>Back up the database regularly on preventing data lose.</p>
             <asp:Button runat="server" ID="btnBackup" OnClick="btnBackup_Click" Text="Backup" CssClass="btn btn-primary" />
-
-
         </div>
         <div role="tabpanel" class="tab-pane" id="restore">
             <h3>Restore</h3>
             <p>Restore the database from the sql file.</p>
-
             <div class="input-group">
                 <asp:FileUpload ID="fileRestore" CssClass="form-control" runat="server" />
                 <span class="input-group-btn">
@@ -43,7 +35,6 @@
                 </span>
             </div>
             <!-- /input-group -->
-
         </div>
         <div role="tabpanel" class="tab-pane" id="destroy">
             <h3>Truncate database</h3>
@@ -52,10 +43,7 @@
                 Truncate database
             </button>
         </div>
-
     </div>
-
-
     <!-- Modal -->
     <div class="modal fade" id="confirmTruncateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -77,5 +65,4 @@
             </div>
         </div>
     </div>
-
 </asp:Content>

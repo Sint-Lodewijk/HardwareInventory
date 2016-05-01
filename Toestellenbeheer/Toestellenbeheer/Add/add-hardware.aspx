@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="Add a hardware" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="add-hardware.aspx.cs" Inherits="Toestellenbeheer.Manage.add_hardware" %>
-
 <asp:Content ID="HeadCon" ContentPlaceHolderID="HeadContent" runat="server">
     <div class="row no-15 sub-title-bar blue-title">
         <div class="container">
@@ -15,16 +14,11 @@
             <div class="form-group">
                 <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="typeList">Type</asp:Label>
                 <div class="col-sm-10">
-
                     <asp:DropDownList ID="typeList" CssClass="form-control" runat="server" AutoPostBack="True" DataSourceID="sqlType" DataTextField="type" DataValueField="type" />
                     <asp:SqlDataSource ID="sqlType" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT type FROM type"></asp:SqlDataSource>
                 </div>
-
             </div>
-            
-
             <div class="form-group">
-
                 <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="manufacturerList">Manufacturer</asp:Label>
                 <div class="col-sm-10">
                     <asp:DropDownList ID="manufacturerList" CssClass="form-control normal-height" runat="server" AutoPostBack="True" Height="34px" DataSourceID="sqlManufacturer" DataTextField="manufacturerName" DataValueField="manufacturerName">
@@ -32,14 +26,9 @@
                     <asp:SqlDataSource ID="sqlManufacturer" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT manufacturerName FROM manufacturer"></asp:SqlDataSource>
                 </div>
             </div>
-
-
             <div class="form-group">
                 <asp:Label AssociatedControlID="txtDatepicker" CssClass="control-label col-sm-2" runat="server">Purchasedate</asp:Label>
-
                 <div class="col-sm-10">
-
-
                     <script>
                         $(function () {
                             $("[id$=txtDatepicker]").datepicker({ dateFormat: 'dd-mm-yy' }).val();
@@ -48,17 +37,13 @@
                     <asp:TextBox runat="server" ID="txtDatepicker" placeholder="Click to select a date." CssClass="form-control" />
                 </div>
             </div>
-
             <div class="form-group">
-
                 <asp:Label AssociatedControlID="Serialnr" CssClass="control-label col-sm-2" runat="server">Serial Number</asp:Label>
                 <div class="col-sm-10">
-
                     <asp:TextBox ID="Serialnr" CssClass="form-control" runat="server" placeholder="serial number can be found on the box of the product" />
                 </div>
             </div>
             <br />
-
             <div class="form-group">
                 <asp:Label runat="server" CssClass="control-label col-sm-2" AssociatedControlID="internalNr">Internal Nr</asp:Label>
                 <div class="col-sm-10">
@@ -71,18 +56,13 @@
                     <asp:TextBox runat="server" ID="modelNr" CssClass="form-control" placeholder="model number of the hardware" />
                 </div>
             </div>
-
-
-
             <div class="form-group">
-
                 <asp:Label AssociatedControlID="warrantyInfo" CssClass="control-label col-sm-2" runat="server">Warranty</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox ID="warrantyInfo" runat="server" CssClass="form-control" placeholder="warranty information" />
                 </div>
             </div>
             <div class="form-group">
-
                 <asp:Label AssociatedControlID="extraInfo" runat="server" CssClass="control-label col-sm-2">Extra info</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox runat="server" ID="extraInfo" CssClass="form-control" placeholder="additional info related to this hardware" />
@@ -93,10 +73,8 @@
                 <div class="col-sm-10">
                     <div class="input-group">
                         <asp:FileUpload ID="PictureUpload" CssClass="btn btn-default form-control" runat="server" />
-
                         <div class="input-group-btn">
                             <asp:Button ID="Upload" runat="server" Text="Upload" CssClass="btn btn-info" OnClick="Upload_Click" />
-
                         </div>
                     </div>
                 </div>
@@ -106,24 +84,18 @@
                 <asp:Label ID="Testlocation" runat="server" Text="" CssClass="hint-block"></asp:Label>
             </div>
             <div class="form-group">
-
                 <asp:Label AssociatedControlID="AttachmentUpload" runat="server" CssClass="control-label col-sm-2">Attachments</asp:Label>
-
                 <div class="col-sm-10">
                     <div class="input-group">
                         <asp:FileUpload ID="AttachmentUpload" CssClass="btn btn-default form-control" runat="server" />
-
                         <div class="input-group-btn">
                             <asp:Button ID="UploadAttachment" runat="server" CssClass="btn btn-info" Text="Upload" OnClick="UploadAttachment_Click" />
-
                         </div>
                     </div>
                 </div>
             </div>
             <div class="form-group col-sm-10 col-sm-offset-2 hint-block">
-
                 <asp:Label ID="ResultUploadAtta" runat="server" Text="" CssClass="hint-block"></asp:Label>
-
                 <asp:Label ID="TestlocationAtt" runat="server" Text="" CssClass="hint-block"></asp:Label>
             </div>
             <div class="form-group">
@@ -132,14 +104,10 @@
                     <!--<asp:Label ID="testSelected" runat="server" Text="testSelected"></asp:Label>
                 <asp:TextBox ID="test" CssClass="form-control" runat="server"></asp:TextBox>-->
                 </div>
-
             </div>
-
         </fieldset>
     </asp:Panel>
     <asp:Panel ID="addResultPanel" runat="server">
-
-
         <asp:GridView ID="grvJustAddedHardware" AutoGenerateColumns="false" CssClass="table table-striped table-hover gridview" runat="server">
             <Columns>
                 <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"
@@ -147,11 +115,8 @@
                     <ControlStyle CssClass="picutureGrid"></ControlStyle>
                 </asp:ImageField>
                 <asp:TemplateField>
-
                     <ItemTemplate>
-
                         <table class="table table-striped table-hover">
-
                             <tr>
                                 <td class="col-sm-6">
                                     <asp:Label ID="Label8" runat="server" Text="Purchase date: ">

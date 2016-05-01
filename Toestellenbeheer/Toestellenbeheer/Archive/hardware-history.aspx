@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="Hardware history" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="hardware-history.aspx.cs" Inherits="Toestellenbeheer.Archive.hardware_history" EnableEventValidation="false" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="modal fade foreground" id="modalDownload" tabindex="-1" role="dialog" aria-labelledby="modalDownloadTitle">
         <div class="modal-dialog" role="document">
@@ -18,9 +17,7 @@
             </div>
         </div>
     </div>
-
     <asp:Panel ID="modalHardware" runat="server" CssClass="modal fade" TabIndex="-1" role="dialog">
-
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <asp:UpdatePanel ID="udpDetails" runat="server" UpdateMode="Conditional">
@@ -35,25 +32,18 @@
                                 <ol class="carousel-indicators">
                                     <li data-target="#carousel-details" data-slide-to="0" class="active"></li>
                                     <li data-target="#carousel-details" data-slide-to="1"></li>
-
                                 </ol>
-
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner" role="listbox">
                                     <div class="item active">
                                         <asp:Image runat="server" ID="imgHardware" CssClass="img-responsive center-block" />
-
                                     </div>
                                     <div class="item">
                                         <asp:GridView ID="grvDetail" DataKeyNames="internalNr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
                                             <Columns>
-
                                                 <asp:TemplateField>
-
                                                     <ItemTemplate>
-
                                                         <table class="table table-striped table-hover table-responsive">
-
                                                             <tr>
                                                                 <td class="col-sm-6">
                                                                     <asp:Label ID="Label8" runat="server" Text="Purchase date: ">
@@ -143,7 +133,6 @@
                                                                     <asp:UpdatePanel runat="server" ID="panelDownload">
                                                                         <ContentTemplate>
                                                                             <asp:LinkButton ID="lnkDownload" CommandArgument='<%# Eval("attachmentLocation") %>' runat="server" OnClick="DownloadFile" Text='<%# Convert.ToString(Eval("attachmentLocation")).Length < 1 ? "" : Convert.ToString(Eval("attachmentLocation")) %>'>Download</asp:LinkButton>
-
                                                                         </ContentTemplate>
                                                                         <Triggers>
                                                                             <asp:PostBackTrigger ControlID="lnkDownload" />
@@ -154,15 +143,10 @@
                                                         </table>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-
-
                                             </Columns>
                                         </asp:GridView>
-
                                     </div>
-
                                 </div>
-
                                 <!-- Controls -->
                                 <a class="left carousel-control" href="#carousel-details" role="button" data-slide="prev">
                                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -173,20 +157,14 @@
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
-
-
-
                             <div class="modal-footer">
                             </div>
                         </div>
                     </ContentTemplate>
-
                 </asp:UpdatePanel>
             </div>
         </div>
-
     </asp:Panel>
-
     <asp:GridView ID="grvHardware" OnRowDeleting="grvHardware_RowDeleting" AutoGenerateColumns="false" runat="server" CssClass="table table-hover table-striped gridview" OnRowDataBound="grvHardware_OnRowDataBound" OnSelectedIndexChanged="grvHardware_SelectedIndexChanged" DataKeyNames="internalNr">
         <Columns>
             <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
@@ -195,12 +173,9 @@
             <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
             <asp:BoundField DataField="modelNr" HeaderText="Model Nr" />
             <asp:CommandField DeleteText="Details" ShowDeleteButton="True" />
-
         </Columns>
     </asp:GridView>
-
     <asp:Panel ID="modalHardwarePeople" runat="server" CssClass="modal fade" TabIndex="-1" role="dialog">
-
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <asp:UpdatePanel ID="udpDetailsP" runat="server" UpdateMode="Conditional">
@@ -208,26 +183,20 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="modalTitleP" runat="server">People Linked</h4>
-
                         </div>
-
                         <div class="modal-body">
-
                             <asp:GridView ID="grvPeopleLinked" CssClass="table table-hover table-striped gridview" AutoGenerateColumns="false" runat="server">
                                 <Columns>
                                     <asp:BoundField DataField="nameAD" HeaderText="Domain Name" />
                                     <asp:BoundField DataField="assignedDate" HeaderText="Assigned Date" />
                                     <asp:BoundField DataField="returnedDate" HeaderText="Returned Date" NullDisplayText="Not returned yet" />
-
                                 </Columns>
                             </asp:GridView>
                             <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
                         </div>
-
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
         </div>
     </asp:Panel>
-
 </asp:Content>

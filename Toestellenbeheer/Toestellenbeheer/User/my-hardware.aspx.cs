@@ -5,13 +5,11 @@ using System.Configuration;
 using System.Data;
 using System.Web.UI.WebControls;
 using Toestellenbeheer.Models;
-
 namespace Toestellenbeheer.Users
 {
     public partial class my_hardware : System.Web.UI.Page
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -19,10 +17,8 @@ namespace Toestellenbeheer.Users
                 try
                 {
                     String strUserName = Context.User.Identity.GetUserName();
-
                     var uHardware = new Models.Hardware();
                     DataTable dt = uHardware.ReturnUserHardware(strUserName);
-                   
                     grvMyHardware.DataSource = dt;
                     grvMyHardware.DataBind();
                     mysqlConnectie.Close();
@@ -35,9 +31,7 @@ namespace Toestellenbeheer.Users
                 {
                     lblError.Text = ex.ToString();
                 }
-
             }
-
         }
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -47,17 +41,13 @@ namespace Toestellenbeheer.Users
                 e.Row.ToolTip = "Click to select this row.";
             }
         }
-
         protected void grvMyHardware_SelectedIndexChanged(object sender, EventArgs e)
         {
             string strInternalNr = grvMyHardware.SelectedDataKey["internalNr"].ToString();
             var picLoc = new Models.Hardware(strInternalNr);
-            
             picDetail.ImageUrl = "../UserUploads/Images/" + picLoc.PicLocation();
             var picModal = new JSUtility("hardwareImageModal");
             picModal.ModalShowUpdate(udpDetails);
-
-
         }
     }
 }

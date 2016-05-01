@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="Return hardware" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="return-hardware.aspx.cs" EnableEventValidation="false" Inherits="Toestellenbeheer.Manage.return_hardware" %>
-
 <asp:Content ID="AssignPool" ContentPlaceHolderID="MainContent" runat="server">
         <asp:Panel ID="modalHardware" runat="server" CssClass="modal fade" TabIndex="-1" role="dialog">
-
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <asp:UpdatePanel ID="udpDetails" runat="server" UpdateMode="Conditional">
@@ -18,23 +16,17 @@
                                     <li data-target="#carousel-details" data-slide-to="0" class="active"></li>
                                     <li data-target="#carousel-details" data-slide-to="1"></li>
                                 </ol>
-
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner" role="listbox">
                                     <div class="item active">
                                         <asp:Image runat="server" ID="imgHardware" CssClass="img-responsive center-block" />
-
                                     </div>
                                     <div class="item">
                                         <asp:GridView ID="grvDetail" DataKeyNames="internalNr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
                                             <Columns>
-
                                                 <asp:TemplateField>
-
                                                     <ItemTemplate>
-
                                                         <table class="table table-striped table-hover table-responsive">
-
                                                             <tr>
                                                                 <td class="col-sm-6">
                                                                     <asp:Label ID="Label8" runat="server" Text="Purchase date: ">
@@ -127,15 +119,10 @@
                                                         </table>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-
-
                                             </Columns>
                                         </asp:GridView>
-
                                     </div>
-
                                 </div>
-
                                 <!-- Controls -->
                                 <a class="left carousel-control" href="#carousel-details" role="button" data-slide="prev">
                                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -146,9 +133,6 @@
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
-
-
-
                             <div class="modal-footer">
                             </div>
                         </div>
@@ -158,23 +142,17 @@
                 </asp:UpdatePanel>
             </div>
         </div>
-
     </asp:Panel>
-
-
     <asp:GridView ID="grvHardwarePoolAssigned" OnRowDeleting="grvHardwarePoolAssigned_RowDeleting" AutoGenerateColumns="false" OnRowDataBound="grvHardwarePoolAssigned_OnRowDataBound" runat="server" CssClass="table table-hover table-striped gridview" DataKeyNames="internalNr">
         <Columns>
-
             <asp:BoundField DataField="nameAD" HeaderText="User name" />
             <asp:BoundField DataField="type" HeaderText="Type" />
             <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer" />
             <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" />
             <asp:BoundField DataField="modelNr" HeaderText="Model Nr" />
             <asp:CommandField DeleteText="Details" ShowDeleteButton="True" />
-
         </Columns>
         <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-
     </asp:GridView>
     <asp:Button ID="btnReturnHardware" OnClientClick="if (!confirm('Are you sure you want to return the assigned hardware? This will delete the corresponding record from the database!')) return false;" runat="server" Text="Return the selected hardware" CssClass="btn btn-primary" OnClick="btnReturnHardware_Click" />
     <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>

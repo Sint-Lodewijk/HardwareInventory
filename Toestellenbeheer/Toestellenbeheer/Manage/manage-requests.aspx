@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="Manage requests" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="manage-requests.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_requests" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Panel ID="modalHardware" runat="server" CssClass="modal fade" TabIndex="-1" role="dialog">
-
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <asp:UpdatePanel ID="udpDetails" runat="server" UpdateMode="Conditional">
@@ -11,18 +9,12 @@
                             <h4 class="modal-title" id="modalTitle" runat="server">Details</h4>
                         </div>
                         <div class="modal-body">
-
                             <asp:Image runat="server" ID="imgHardware" CssClass="img-responsive center-block" />
-
                             <asp:GridView ID="grvDetail" DataKeyNames="internalNr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
                                 <Columns>
-
                                     <asp:TemplateField>
-
                                         <ItemTemplate>
-
                                             <table class="table table-striped table-hover">
-
                                                 <tr>
                                                     <td class="col-sm-6">
                                                         <asp:Label ID="Label8" runat="server" Text="Purchase date: ">
@@ -115,8 +107,6 @@
                                             </table>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
-
                                 </Columns>
                             </asp:GridView>
                             <div class="modal-footer">
@@ -129,9 +119,7 @@
                 </asp:UpdatePanel>
             </div>
         </div>
-
     </asp:Panel>
-
     <asp:GridView ID="grvRequests" OnRowDeleting="grvRequests_RowDeleting" CssClass="gridview table table-hover table-striped" OnSelectedIndexChanged="grvRequests_SelectedIndexChanged" OnRowDataBound="grvRequests_RowDataBound" runat="server" AutoGenerateColumns="False" DataKeyNames="requestID,nameAD,internalNr,serialNr" DataSourceID="sqlRequest">
         <Columns>
             <asp:BoundField DataField="requestID" HeaderText="requestID" InsertVisible="False" ReadOnly="True" SortExpression="requestID" />
@@ -140,7 +128,6 @@
             <asp:BoundField DataField="nameAD" HeaderText="nameAD" SortExpression="nameAD" />
             <asp:BoundField DataField="requestDate" HeaderText="requestDate" SortExpression="requestDate" DataFormatString="{0:yyyy-MM-dd}" />
             <asp:CommandField DeleteText="Details" ShowDeleteButton="True" />
-
         </Columns>
     </asp:GridView>
     <asp:Button ID="btnAcceptRequest" Text="Accept" OnClick="btnAcceptRequest_Click" Visible="false" runat="server" CssClass="btn btn-primary" />

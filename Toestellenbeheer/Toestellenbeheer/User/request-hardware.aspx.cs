@@ -9,11 +9,9 @@ using System.Web.UI.WebControls;
 using Toestellenbeheer.Models;
 namespace Toestellenbeheer.Users
 {
-
     public partial class request_hardware : System.Web.UI.Page
     {
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -21,7 +19,6 @@ namespace Toestellenbeheer.Users
                 bindTypeToGrid();
                 drpTypeList.Items[0].Selected = true;
                 getTypeAssociatedHardware(drpTypeList.SelectedValue.ToString());
-
             }
         }
         protected void bindTypeToGrid()
@@ -30,7 +27,6 @@ namespace Toestellenbeheer.Users
             DataTable dt = type.ReturnDatatableType();
             drpTypeList.DataSource = dt;
             drpTypeList.DataBind();
-            
         }
         protected void typeList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -69,22 +65,17 @@ namespace Toestellenbeheer.Users
         }
         protected void grvAvailibleHardwareType_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvAvailableHardwareType, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
-
         }
-
-
         private void sendEmailNotification(String internalNr)
         {
             try
             {
                 SmtpClient smtpClient = new SmtpClient(SetupFile.Email.MailServer, SetupFile.Email.SMTPPort);
-
                 smtpClient.Credentials = new System.Net.NetworkCredential(SetupFile.Email.EmailFrom, SetupFile.Email.EmailPassword);
                 //smtpClient.UseDefaultCredentials = true;
                 smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -99,21 +90,17 @@ namespace Toestellenbeheer.Users
                 //Setting From - To 
                 mail.From = new MailAddress(SetupFile.Email.EmailFrom, "Hardware Request");
                 mail.To.Add(new MailAddress(SetupFile.Email.EmailTo));
-
                 smtpClient.Send(mail);
             }
             catch (SmtpException ex)
             {
                 lblProblem.Text = ex.ToString();
             }
-
         }
         protected void grvAvailibleHardwareType_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnRequest.Visible = true;
-
         }
-
         protected void btnRequest_Click(object sender, EventArgs e)
         {
             String strInternalNr = grvAvailableHardwareType.SelectedDataKey["internalNr"].ToString();
@@ -123,19 +110,14 @@ namespace Toestellenbeheer.Users
             int intEventID = userID.ReturnEventID();
             var hardwareRequest = new Request(strInternalNr, strSerialNr, intEventID, requestDate);
             hardwareRequest.RequestHardware();
-
             sendEmailNotification(strInternalNr);
-
-
             Session["SuccessInfo"] = "Congratulations, you have successfully required hardware with internal number: " + strInternalNr;
             Server.Transfer("~/Success.aspx");
         }
-
         protected void grvAvailableHardwareType_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string strInternalNr = grvAvailableHardwareType.DataKeys[e.RowIndex]["internalNr"].ToString();
             var picLoc = new Models.Hardware(strInternalNr);
-
             picDetail.ImageUrl = "../UserUploads/Images/" + picLoc.PicLocation();
             var picModal = new JSUtility("hardwareImageModal");
             picModal.ModalShowUpdate(udpDetails);

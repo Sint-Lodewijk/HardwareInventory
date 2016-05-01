@@ -1,9 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Xml;
 using System.Data;
 namespace Toestellenbeheer.Models
@@ -238,6 +235,23 @@ namespace Toestellenbeheer.Models
             return dt;
         }
         /// <summary>
+        /// Returns the user full hardware.
+        /// </summary>
+        /// <param name="UserName">Name of the user.</param>
+        /// <returns>DataTable.</returns>
+        public DataTable ReturnUserFullHardware(string UserName)
+        {
+            MySqlConnection mysqlConnectie = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            mysqlConnectie.Open();
+            MySqlCommand getMyHardware = new MySqlCommand("SELECT serialNr, internalNr, DATE_FORMAT(assignedDate, '%Y-%m-%d') 'assignedDate',DATE_FORMAT(returnedDate, '%Y-%m-%d') 'returnedDate' FROM archive JOIN people on archive.eventID = people.eventID WHERE nameAD = '" + UserName + "'", mysqlConnectie);
+            getMyHardware.Parameters.AddWithValue("@nameAD", UserName);
+            MySqlDataReader rdrGetMyHardware = getMyHardware.ExecuteReader();
+            DataTable dt = new DataTable();
+            // MySqlDataAdapter adpa = new MySqlDataAdapter(rdrGetMyHardware);
+            dt.Load(rdrGetMyHardware);
+            return dt;
+        }
+        /// <summary>
         /// Creates the XML file.
         /// </summary>
         /// <param name="statusNode">The status node.</param>
@@ -370,6 +384,29 @@ namespace Toestellenbeheer.Models
             mysqlConnectie.Close();
             return dt;
         }
+        public void DeleteHardware()
+        {
+            MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            mysqlConnectie.Open();
+            MySqlCommand cmdRemoveHardware = new MySqlCommand("DELETE FROM hardware WHERE serialNr= '" + SerialNr + "' and internalNr= '" + InternalNr + "'", mysqlConnectie);
+            cmdRemoveHardware.ExecuteNonQuery();
+            mysqlConnectie.Close();
+        }
+        /// <summary>
+        /// Hardwares the history.
+        /// </summary>
+        /// <returns>DataTable.</returns>
+        public DataTable HardwareHistory()
+        {
+            MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            mysqlConnectie.Open();
+            MySqlCommand getPeopleLinked = new MySqlCommand("SELECT nameAD, serialNr, internalNr, DATE_FORMAT(assignedDate, '%Y-%m-%d') 'assignedDate',DATE_FORMAT(returnedDate, '%Y-%m-%d') 'returnedDate' FROM archive JOIN people on archive.eventID = people.eventID where internalNr = '" + InternalNr + "'", mysqlConnectie);
+            var AssignReader = getPeopleLinked.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(AssignReader);
+            return dt;
+        }
     }
+
 }
 //WebRequest request = WebRequest.Create(SetupFile.GlobalVar.ScripturaPath);

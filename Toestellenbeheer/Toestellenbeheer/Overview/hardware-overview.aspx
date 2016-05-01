@@ -1,27 +1,18 @@
 ﻿<%@ Page Title="Hardware overview" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="hardware-overview.aspx.cs" EnableEventValidation="false" Inherits="Toestellenbeheer.hardware_overview" %>
 
-
 <asp:Content ID="hardwareOverview" ContentPlaceHolderID="MainContent" runat="server">
-
-
     <asp:UpdatePanel runat="server" ID="udpHardware" UpdateMode="Always">
-
         <ContentTemplate>
-
-
             <asp:Panel ID="searchPanel" runat="server">
-
                 <div id="search" class="form-group">
                     <asp:Label ID="lblSearch" runat="server" CssClass="control-label col-sm-1" AssociatedControlID="txtSearch">Search</asp:Label>
                     <div class="col-sm-5">
                         <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                     <div class="col-sm-1">
-
                         <asp:Label ID="lblOn" runat="server" AssociatedControlID="drpSearchItem" CssClass="control-label">on</asp:Label>
                     </div>
                     <div class="col-sm-3">
-
                         <asp:DropDownList ID="drpSearchItem" CssClass="form-control" runat="server">
                             <asp:ListItem Value="internalNr">Internal Nr</asp:ListItem>
                             <asp:ListItem Value="manufacturerName">Manufacturer</asp:ListItem>
@@ -29,25 +20,18 @@
                         </asp:DropDownList>
                     </div>
                     <div class="col-sm-2">
-
                         <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-default margin-top-5" OnClick="Search" />
                     </div>
                 </div>
             </asp:Panel>
-
-            <asp:GridView ID="HardwareOverviewGridSearch" OnSelectedIndexChanged="details" data-toggle="modal" data-target="#HardwareDetailModal" OnRowDataBound="OnRowDataBound" OnRowDeleting="details" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" DataKeyNames="internalNr" runat="server">
+            <asp:GridView ID="grvHardware" OnSelectedIndexChanged="details" data-toggle="modal" data-target="#HardwareDetailModal" OnRowDataBound="OnRowDataBound" OnRowDeleting="details" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" DataKeyNames="internalNr, serialNr" runat="server">
                 <Columns>
-
                     <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="Serial Nr" />
                     <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="Internal Nr" />
                     <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer name" SortExpression="Manufacturer" />
                     <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
                     <asp:BoundField DataField="modelNr" HeaderText="Model Nr" />
-
-
-
                 </Columns>
-
                 <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                 <SortedAscendingCellStyle BackColor="#F7F7F7" />
                 <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
@@ -57,16 +41,12 @@
             <div class="form-group">
                 <asp:Label ID="lblGridTotalResult" CssClass="col-sm-12" runat="server"></asp:Label>
             </div>
-
         </ContentTemplate>
         <Triggers>
-            <asp:PostBackTrigger ControlID="HardwareOverviewGridSearch" />
+            <asp:PostBackTrigger ControlID="grvHardware" />
             <asp:PostBackTrigger ControlID="btnSearch" />
-
         </Triggers>
     </asp:UpdatePanel>
-
-
     <!-- Modal -->
     <div class="modal fade foreground" id="modalDownload" tabindex="-1" role="dialog" aria-labelledby="modalDownloadTitle">
         <div class="modal-dialog" role="document">
@@ -77,7 +57,7 @@
                 </div>
                 <div class="modal-body">
                     <iframe id="iframeDownload" class="center-block no-border hide" runat="server"></iframe>
-                <asp:LinkButton ID="lnkDownloadB" OnClick="lnkDownloadB_Click" runat="server"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkDownloadB" OnClick="lnkDownloadB_Click" runat="server"></asp:LinkButton>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -85,9 +65,7 @@
             </div>
         </div>
     </div>
-
     <asp:Panel ID="modalHardware" runat="server" CssClass="modal fade" TabIndex="-1" role="dialog">
-
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <asp:UpdatePanel ID="udpDetails" runat="server" UpdateMode="Conditional">
@@ -95,7 +73,6 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="modalTitle" runat="server">Loading...</h4>
-
                         </div>
                         <div class="modal-body">
                             <div id="carousel-details" class="carousel slide" data-ride="carousel">
@@ -104,25 +81,18 @@
                                     <li data-target="#carousel-details" data-slide-to="0" class="active"></li>
                                     <li data-target="#carousel-details" data-slide-to="1"></li>
                                     <li data-target="#carousel-details" data-slide-to="2"></li>
-
                                 </ol>
-
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner" role="listbox">
                                     <div class="item active">
                                         <asp:Image runat="server" ID="imgHardware" CssClass="img-responsive center-block" />
-
                                     </div>
                                     <div class="item">
                                         <asp:GridView ID="grvDetail" DataKeyNames="internalNr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
                                             <Columns>
-
                                                 <asp:TemplateField>
-
                                                     <ItemTemplate>
-
                                                         <table class="table table-striped table-hover table-responsive">
-
                                                             <tr>
                                                                 <td class="col-sm-6">
                                                                     <asp:Label ID="Label8" runat="server" Text="Purchase date: ">
@@ -212,7 +182,6 @@
                                                                     <asp:UpdatePanel runat="server" ID="panelDownload">
                                                                         <ContentTemplate>
                                                                             <asp:LinkButton ID="lnkDownload" CommandArgument='<%# Eval("attachmentLocation") %>' runat="server" OnClick="DownloadFile" Text='<%# Convert.ToString(Eval("attachmentLocation")).Length < 1 ? "" : Convert.ToString(Eval("attachmentLocation")) %>'>Download</asp:LinkButton>
-
                                                                         </ContentTemplate>
                                                                         <Triggers>
                                                                             <asp:PostBackTrigger ControlID="lnkDownload" />
@@ -223,11 +192,8 @@
                                                         </table>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-
-
                                             </Columns>
                                         </asp:GridView>
-
                                     </div>
                                     <div class="item">
                                         <asp:GridView ID="grvPeopleLinked" CssClass="table table-hover table-striped gridview" AutoGenerateColumns="false" runat="server">
@@ -237,12 +203,10 @@
                                                 <asp:BoundField DataField="nameAD" HeaderText="Domain Name" />
                                                 <asp:BoundField DataField="assignedDate" HeaderText="Assigned Date" />
                                                 <asp:BoundField DataField="returnedDate" HeaderText="Returned Date" NullDisplayText="Not returned yet" />
-
                                             </Columns>
                                         </asp:GridView>
                                     </div>
                                 </div>
-
                                 <!-- Controls -->
                                 <a class="left carousel-control" href="#carousel-details" role="button" data-slide="prev">
                                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -253,10 +217,10 @@
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
-
-
-
                             <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalConfirm">
+                                    Remove
+                                </button>
                                 <asp:Button ID="btnModifying" runat="server" OnClick="btnModifying_Click" Text="Modify" CssClass="btn btn-primary" />
                                 <asp:Label ID="lblTotalQuery" runat="server" Text=""></asp:Label>
                                 <asp:Label ID="lblInternalNr" Visible="false" runat="server" Text='<%#Eval("Internal Nr")%>' />
@@ -268,8 +232,26 @@
                         <asp:PostBackTrigger ControlID="btnModifying" />
                     </Triggers>
                 </asp:UpdatePanel>
+                <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="confirmLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="confirmLabel">Confirm remove</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure to remove this hardware? This action is not reversible, but you can stil restore it from the previous backup.</p>
+                                <p>Continue to proceed?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <asp:Button ID="btnRemove" runat="server" CssClass="btn btn-danger" Text="Remove" OnClick="btnRemove_Click" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-
     </asp:Panel>
 </asp:Content>

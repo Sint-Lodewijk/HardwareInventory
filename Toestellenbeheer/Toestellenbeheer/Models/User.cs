@@ -116,15 +116,11 @@ namespace Toestellenbeheer.Models
                 {
                     Company = "";
                 }
-                /*if (item.Properties["DistinguishedName"].Count > 0)
-                {
-                    memberof = item.Properties["DistinguishedName"][0].ToString();
-                }*/
+  
                 if (item.Properties["AccountExpirationDate"].Count > 0)
                 {
                     aaa = item.Properties["AccountExpirationDate"][0].ToString();
                 }
-                //dt.Columns("DisplayName", "EmailAddress", "DomainName", "Department", "Title", "Company", "memberof");
                 dt.Rows.Add(DisplayName, EmailAddress, DomainName, Department, Title, Company);
             }
             rootDSE.Dispose();

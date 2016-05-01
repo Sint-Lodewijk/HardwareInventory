@@ -44,15 +44,15 @@ namespace FormsAuth
         }
         public String LDAPPath()
         {
-            String LDAPpath = SetupFile.AD.ADRootPath; //Please change this path to the desired path
+            String LDAPpath = SetupFile.AD.ADRootPath;
             return LDAPpath;
         }
         public String GetGroups()
         {
             DirectoryEntry oRoot = new DirectoryEntry();
-            oRoot.Username = "jli@6ib.eu"; //Please change username to a useraccount who have read access
-            oRoot.Password = "1234QWEr"; //Please change the password
-            oRoot.Path = "LDAP://dc.6ib.eu/OU=Employees,DC=6ib,DC=eu"; //Please change the LDAP path
+            oRoot.Username = SetupFile.AD.ADUserName;
+            oRoot.Password = SetupFile.AD.ADUserPassword;
+            oRoot.Path = SetupFile.AD.ADConnectionPrefix;
             DirectorySearcher search = new DirectorySearcher(oRoot);
             search.Filter = "(cn=" + _filterAttribute + ")";
             search.PropertiesToLoad.Add("memberOf");

@@ -56,12 +56,11 @@ namespace Toestellenbeheer.Manage
             String strModel = modelNr.Text;
             int intSelectedTypeIndex = typeList.SelectedIndex + 1;
             String strSelectedManufacturer = manufacturerList.SelectedItem.ToString();
-            //testSelected.Text = strSelectedType;
             String dtePurchaseYear = txtDatepicker.Text.Substring(6);
             String dtePurchaseDay = txtDatepicker.Text.Substring(0, 2);
             String dtePurchaseMonth = txtDatepicker.Text.Substring(3, 2);
             //dtePurchaseDate converts the datepicker to database usable date
-            String dtePurchaseDate = dtePurchaseYear.ToString() + '-' + dtePurchaseMonth.ToString() + '-' + dtePurchaseDay.ToString();
+            String dtePurchaseDate = dtePurchaseYear + '-' + dtePurchaseMonth + '-' + dtePurchaseDay;
             String dteAddedDate = DateTime.Now.ToString("yyyy-MM-dd");
             DateTime addedDate = DateTime.Today;
             DateTime purchaseDate = new DateTime(int.Parse(dtePurchaseYear), int.Parse(dtePurchaseMonth), int.Parse(dtePurchaseDay), 0, 0, 0);
@@ -99,7 +98,6 @@ namespace Toestellenbeheer.Manage
             {
                 if (ex.Number.ToString() == "1062")
                 {
-                    //testLabel.Text = ex.Message.ToString() + ", please check your input.";
                     txtResultUpload.Text = "The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
                         " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " already exist in de database.";
                 }

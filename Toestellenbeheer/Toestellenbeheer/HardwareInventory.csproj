@@ -187,6 +187,8 @@
     <Content Include="Archive\hardware-history.aspx" />
     <Content Include="Archive\people-history.aspx" />
     <Content Include="BugReport.aspx" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
+    <Content Include="Content\bootstrap-datepicker3.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

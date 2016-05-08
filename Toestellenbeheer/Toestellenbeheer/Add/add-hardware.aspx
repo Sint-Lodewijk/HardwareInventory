@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Add a hardware" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="add-hardware.aspx.cs" Inherits="Toestellenbeheer.Manage.add_hardware" %>
+
 <asp:Content ID="HeadCon" ContentPlaceHolderID="HeadContent" runat="server">
     <div class="row no-15 sub-title-bar blue-title">
         <div class="container">
@@ -29,13 +30,22 @@
             <div class="form-group">
                 <asp:Label AssociatedControlID="txtDatepicker" CssClass="control-label col-sm-2" runat="server">Purchasedate</asp:Label>
                 <div class="col-sm-10">
-                    <script>
+                    
+                    <div class="input-group date" id="input-date">
+                        <asp:TextBox runat="server" ID="txtDatepicker" placeholder="Click to select a date." CssClass="form-control" />
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                    </div>
+                
+                </div>
+                <script>
                         $(function () {
-                            $("[id$=txtDatepicker]").datepicker({ dateFormat: 'dd-mm-yy' }).val();
+                            $("[id$=input-date]").datepicker({
+                                format: "dd-mm-yyyy",
+                                autoclose: true,
+                                todayHighlight: true
+                            });
                         });
                     </script>
-                    <asp:TextBox runat="server" ID="txtDatepicker" placeholder="Click to select a date." CssClass="form-control" />
-                </div>
             </div>
             <div class="form-group">
                 <asp:Label AssociatedControlID="Serialnr" CssClass="control-label col-sm-2" runat="server">Serial Number</asp:Label>

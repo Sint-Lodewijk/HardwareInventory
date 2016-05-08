@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Toestellenbeheer.SiteMaster" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
@@ -16,9 +17,12 @@
     <script src='<%= ResolveUrl("~/Scripts/jquery-2.2.3.min.js") %>'></script>
     <script src='<%= ResolveUrl("~/Scripts/jquery-ui.js") %>'></script>
     <script src='<%= ResolveUrl("~/Scripts/bootstrap.min.js") %>'></script>
-        <script src='<%= ResolveUrl("~/Scripts/jquery.tablesorter.min.js") %>'></script>
-            <script src='<%= ResolveUrl("~/Scripts/jquery.tablesorter.widgets.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Scripts/jquery.tablesorter.min.js") %>'></script>
+        <script src='<%= ResolveUrl("~/Scripts/bootstrap-datepicker.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Scripts/jquery.tablesorter.widgets.js") %>'></script>
     <link rel="stylesheet" href='<%= ResolveUrl("~/Scripts/jquery-ui.css") %>' />
+        <link rel="stylesheet" href='<%= ResolveUrl("~/Content/bootstrap-datepicker3.min.css") %>' />
+
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>

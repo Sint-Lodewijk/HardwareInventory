@@ -76,7 +76,7 @@ namespace Toestellenbeheer.Models
         public int CountManufacturer()
         {
             mysqlConnectie.Open();
-            var TotalManufacturer = new MySqlCommand("SELECT COUNT(*) FROM manufacturer", mysqlConnectie);
+            var TotalManufacturer = new MySqlCommand("SELECT COUNT(*) FROM Manufacturer", mysqlConnectie);
             int intTotal = Convert.ToInt16(TotalManufacturer.ExecuteScalar());
             mysqlConnectie.Close();
             return intTotal;

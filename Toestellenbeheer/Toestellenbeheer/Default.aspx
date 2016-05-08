@@ -12,7 +12,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel runat="server" ID="udpInitialize" UpdateMode="Conditional">
         <ContentTemplate>
-            <div class="modal fade" id="initSetupModal" tabindex="-1" role="dialog" aria-labelledby="initSetupTitle">
+            <div class="modal" id="initSetupModal" tabindex="-1" role="dialog" aria-labelledby="initSetupTitle">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content" style="background: url(Images/modal-background.jpg) no-repeat left center; background-size: cover;">
                         <div class="modal-header">

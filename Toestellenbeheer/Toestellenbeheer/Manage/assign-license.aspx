@@ -65,7 +65,7 @@
         <asp:Panel runat="server" ID="PeoplePanel" CssClass="innerPopup" Visible="false">
             <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <asp:GridView ID="grvLicenseUnassignedPeople" CssClass="table table-hover table-striped gridview" runat="server">
+                    <asp:GridView ID="grvLicenseUnassignedPeople" EmptyDataText="0 license key returned from the query!" CssClass="table table-hover table-striped gridview" runat="server">
                         <Columns>
                             <asp:TemplateField>
                                 <ItemTemplate>

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Welcome" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Toestellenbeheer._Default" %>
+
 <asp:Content ID="HeadCon" ContentPlaceHolderID="HeadContent" runat="server">
     <div class="row title-bar no-15">
         <div class="container title-container">
@@ -16,7 +17,6 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content" style="background: url(Images/modal-background.jpg) no-repeat left center; background-size: cover;">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="initSetupTitle">Initial setup</h4>
                         </div>
                         <div class="modal-body no-padding">
@@ -26,6 +26,8 @@
                                     <li data-target="#carousel-init" data-slide-to="0" class="active"></li>
                                     <li data-target="#carousel-init" data-slide-to="1"></li>
                                     <li data-target="#carousel-init" data-slide-to="2"></li>
+                                    <li data-target="#carousel-init" data-slide-to="3"></li>
+
                                 </ol>
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner" role="listbox">
@@ -58,7 +60,7 @@
                                     <div class="item">
                                         <div class="carousel-caption">
                                             <h3>Manufacturer</h3>
-                                            <p>Let's add some type hardware into the database!</p>
+                                            <p>Let's add some manufacturers into the database!</p>
                                             <div class="row">
                                                 <div class="input-group three-fourth">
                                                     <input type="text" runat="server" id="txtManufacturer" class="form-control">
@@ -73,6 +75,14 @@
                                             <div class="row">
                                                 <p>Or let's <a href="~/Manage/manage-manufacturer" runat="server">modify</a> the manufacturer</p>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="carousel-caption">
+                                            <h3>Congratulations</h3>
+                                            <p>You just finished the first time setup!</p>
+                                            <p>You can start using this application right now!</p>
+                                            <a href="./Default.aspx">By clicking here.</a>
                                         </div>
                                     </div>
                                 </div>

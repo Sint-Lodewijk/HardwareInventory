@@ -68,7 +68,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="pull-left" runat="server" href="~/">
+                    <a class="pull-left" runat="server" href="~/Default.aspx">
                         <img src="~/Images/brand-image.png" runat="server" alt="Hardware Inventory" class="brand-image" />
                     </a>
                 </div>
@@ -131,6 +131,7 @@
                 </div>
             </div>
         </div>
+
         <asp:ContentPlaceHolder ID="HeadContent" runat="server">
         </asp:ContentPlaceHolder>
         <div class="container body-content">

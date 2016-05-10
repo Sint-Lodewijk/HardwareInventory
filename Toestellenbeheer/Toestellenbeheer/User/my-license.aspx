@@ -36,13 +36,13 @@
             </div>
         </div>
     </div>
-    <asp:SqlDataSource ID="sqlLicenseCode" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT license.licenseName, license.licenseCode, license.expireDate, license.extraInfo FROM license INNER JOIN licensehandler ON license.licenseID = licensehandler.licenseID WHERE (license.licenseCode &lt;&gt; '' OR license.licenseCode &lt;&gt; NULL) AND (licensehandler.eventID = @eventID)
+    <asp:SqlDataSource ID="sqlLicenseCode" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT license.licenseName, license.licenseCode, license.expireDate, license.extraInfo FROM license INNER JOIN licenseHandler ON license.licenseID = licenseHandler.licenseID WHERE (license.licenseCode &lt;&gt; '' OR license.licenseCode &lt;&gt; NULL) AND (licenseHandler.eventID = @eventID)
 ">
         <SelectParameters>
             <asp:SessionParameter Name="@eventID" SessionField="eventID" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="sqlLicenseFile" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT license.licenseName, license.licenseFileLocation, license.expireDate, license.extraInfo FROM license INNER JOIN licensehandler ON license.licenseID = licensehandler.licenseID WHERE (license.licenseFileLocation &lt;&gt; '') OR (license.licenseFileLocation &lt;&gt; NULL) AND eventID = @eventID">
+    <asp:SqlDataSource ID="sqlLicenseFile" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT license.licenseName, license.licenseFileLocation, license.expireDate, license.extraInfo FROM license INNER JOIN licenseHandler ON license.licenseID = licenseHandler.licenseID WHERE (license.licenseFileLocation &lt;&gt; '') OR (license.licenseFileLocation &lt;&gt; NULL) AND eventID = @eventID">
         <SelectParameters>
             <asp:SessionParameter Name="@eventID" SessionField="eventID" />
         </SelectParameters>

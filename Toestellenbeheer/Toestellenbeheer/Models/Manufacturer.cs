@@ -25,7 +25,7 @@ namespace Toestellenbeheer.Models
         public DataTable ReturnDatatableManufacturer()
         {
             mysqlConnectie.Open();
-            MySqlCommand getManufacturer = new MySqlCommand("SELECT * FROM Manufacturer", mysqlConnectie);
+            MySqlCommand getManufacturer = new MySqlCommand("SELECT * FROM manufacturer", mysqlConnectie);
             var manufacturerReader = getManufacturer.ExecuteReader();
             var dt = new DataTable();
             dt.Load(manufacturerReader);
@@ -34,7 +34,7 @@ namespace Toestellenbeheer.Models
         public void AddManufacturerToDatabase()
         {
             mysqlConnectie.Open();
-            MySqlCommand addManufacturer = new MySqlCommand("Insert into Manufacturer (manufacturerName) values (@ManufacturerName)", mysqlConnectie);
+            MySqlCommand addManufacturer = new MySqlCommand("Insert into manufacturer (manufacturerName) values (@ManufacturerName)", mysqlConnectie);
             addManufacturer.Parameters.AddWithValue("@ManufacturerName", ManufacturerName);
             addManufacturer.ExecuteNonQuery();
             addManufacturer.Dispose();
@@ -54,7 +54,7 @@ namespace Toestellenbeheer.Models
         public bool IsRemoved()
         {
             mysqlConnectie.Open();
-            MySqlCommand removeManufacturer = new MySqlCommand("DELETE FROM Manufacturer WHERE manufacturerName = '" +
+            MySqlCommand removeManufacturer = new MySqlCommand("DELETE FROM manufacturer WHERE manufacturerName = '" +
                 ManufacturerName + "'", mysqlConnectie);
             removeManufacturer.ExecuteNonQuery();
             mysqlConnectie.Close();
@@ -63,7 +63,7 @@ namespace Toestellenbeheer.Models
         public bool IsUpdated(string strManufacturerValue)
         {
             mysqlConnectie.Open();
-            MySqlCommand updateManufacturer = new MySqlCommand("UPDATE Manufacturer SET manufacturerName = '" +
+            MySqlCommand updateManufacturer = new MySqlCommand("UPDATE manufacturer SET manufacturerName = '" +
                 strManufacturerValue + "' WHERE manufacturerName = '" + ManufacturerName + "'", mysqlConnectie);
             updateManufacturer.ExecuteNonQuery();
             mysqlConnectie.Close();
@@ -76,7 +76,7 @@ namespace Toestellenbeheer.Models
         public int CountManufacturer()
         {
             mysqlConnectie.Open();
-            var TotalManufacturer = new MySqlCommand("SELECT COUNT(*) FROM Manufacturer", mysqlConnectie);
+            var TotalManufacturer = new MySqlCommand("SELECT COUNT(*) FROM manufacturer", mysqlConnectie);
             int intTotal = Convert.ToInt16(TotalManufacturer.ExecuteScalar());
             mysqlConnectie.Close();
             return intTotal;

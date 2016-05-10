@@ -20,7 +20,7 @@
                         </asp:DropDownList>
                     </div>
                     <div class="col-sm-2">
-                        <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-default margin-top-5" OnClick="Search" />
+                        <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-default" OnClick="Search" />
                     </div>
                 </div>
             </asp:Panel>
@@ -80,7 +80,6 @@
                                 <ol class="carousel-indicators">
                                     <li data-target="#carousel-details" data-slide-to="0" class="active"></li>
                                     <li data-target="#carousel-details" data-slide-to="1"></li>
-                                    <li data-target="#carousel-details" data-slide-to="2"></li>
                                 </ol>
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner" role="listbox">
@@ -195,17 +194,7 @@
                                             </Columns>
                                         </asp:GridView>
                                     </div>
-                                    <div class="item">
-                                        <asp:GridView ID="grvPeopleLinked" CssClass="table table-hover table-striped gridview" AutoGenerateColumns="false" runat="server">
-                                            <Columns>
-                                                <asp:BoundField DataField="Serial Nr" HeaderText="Serial Nr" />
-                                                <asp:BoundField DataField="Internal Nr" HeaderText="Internal Nr" />
-                                                <asp:BoundField DataField="nameAD" HeaderText="Domain Name" />
-                                                <asp:BoundField DataField="assignedDate" HeaderText="Assigned Date" />
-                                                <asp:BoundField DataField="returnedDate" HeaderText="Returned Date" NullDisplayText="Not returned yet" />
-                                            </Columns>
-                                        </asp:GridView>
-                                    </div>
+                                    
                                 </div>
                                 <!-- Controls -->
                                 <a class="left carousel-control" href="#carousel-details" role="button" data-slide="prev">

@@ -9,7 +9,7 @@
             <asp:Label runat="server" ID="lblProblem" Text=""></asp:Label>
         </div>
     </div>
-    <asp:GridView ID="typeSelect" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="typeSelect_SelectedIndexChanged" runat="server" CssClass="table table-hover table-striped gridview" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="type">
+    <asp:GridView ID="typeSelect" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="typeSelect_SelectedIndexChanged" runat="server" CssClass="table table-hover table-striped gridview text-center" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="type">
         <Columns>
             <asp:BoundField DataField="type" HeaderText="Type" ReadOnly="False" SortExpression="type" />
         </Columns>

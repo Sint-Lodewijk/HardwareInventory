@@ -10,7 +10,7 @@
                         </div>
                         <div class="modal-body">
                             <asp:Image runat="server" ID="imgHardware" CssClass="img-responsive center-block" />
-                            <asp:GridView ID="grvDetail" DataKeyNames="internalNr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
+                            <asp:GridView ID="grvDetail"  DataKeyNames="internalNr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
                                 <Columns>
                                     <asp:TemplateField>
                                         <ItemTemplate>
@@ -120,7 +120,7 @@
             </div>
         </div>
     </asp:Panel>
-    <asp:GridView ID="grvRequests" OnRowDeleting="grvRequests_RowDeleting" CssClass="gridview table table-hover table-striped" OnSelectedIndexChanged="grvRequests_SelectedIndexChanged" OnRowDataBound="grvRequests_RowDataBound" runat="server" AutoGenerateColumns="False" DataKeyNames="requestID,nameAD,internalNr,serialNr" DataSourceID="sqlRequest">
+    <asp:GridView ID="grvRequests" EmptyDataText="There are no open requests!" OnRowDeleting="grvRequests_RowDeleting" CssClass="gridview table table-hover table-striped" OnSelectedIndexChanged="grvRequests_SelectedIndexChanged" OnRowDataBound="grvRequests_RowDataBound" runat="server" AutoGenerateColumns="False" DataKeyNames="requestID,nameAD,internalNr,serialNr" DataSourceID="sqlRequest">
         <Columns>
             <asp:BoundField DataField="requestID" HeaderText="requestID" InsertVisible="False" ReadOnly="True" SortExpression="requestID" />
             <asp:BoundField DataField="internalNr" HeaderText="internalNr" SortExpression="internalNr" />

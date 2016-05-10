@@ -33,8 +33,8 @@ namespace Toestellenbeheer
             var type = new TypeName(txtType.Value);
             type.AddTypeToDatabase();
             lblTypeAvailible.InnerText = type.CountType().ToString();
-            initializeSetupModal();
             NextSlide("carousel-init", 1);
+            initializeSetupModal();
         }
         private void NextSlide(string strSlideControl, int times)
         {
@@ -48,8 +48,8 @@ namespace Toestellenbeheer
             var manufacturer = new Manufacturer(txtManufacturer.Value);
             manufacturer.AddManufacturerToDatabase();
             lblAvailibleManufacturer.InnerText = manufacturer.CountManufacturer().ToString();
-            initializeSetupModal();
             NextSlide("carousel-init", 2);
+            initializeSetupModal();
         }
     }
 }

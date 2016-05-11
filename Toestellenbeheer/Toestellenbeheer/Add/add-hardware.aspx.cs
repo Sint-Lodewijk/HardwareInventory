@@ -47,64 +47,77 @@ namespace Toestellenbeheer.Manage
         ///</remarks>
         protected void Submit_Click(object sender, EventArgs e)
         {
-            String strSerialNr = Serialnr.Text.ToString();
+            String strSerialNr = Serialnr.Text;
             String strWarrantyInfo = warrantyInfo.Text.ToString();
-            String strInternalNr = internalNr.Text.ToString();
-            String strExtraInfo = extraInfo.Text.ToString();
-            String mImagePath = Testlocation.Text.ToString();
-            String mAttPath = TestlocationAtt.Text;
-            String strModel = modelNr.Text;
-            int intSelectedTypeIndex = typeList.SelectedIndex + 1;
-            String strSelectedManufacturer = manufacturerList.SelectedItem.ToString();
-            String dtePurchaseYear = txtDatepicker.Text.Substring(6);
-            String dtePurchaseDay = txtDatepicker.Text.Substring(0, 2);
-            String dtePurchaseMonth = txtDatepicker.Text.Substring(3, 2);
-            //dtePurchaseDate converts the datepicker to database usable date
-            String dtePurchaseDate = dtePurchaseYear + '-' + dtePurchaseMonth + '-' + dtePurchaseDay;
-            String dteAddedDate = DateTime.Now.ToString("yyyy-MM-dd");
-            DateTime addedDate = DateTime.Today;
-            DateTime purchaseDate = new DateTime(int.Parse(dtePurchaseYear), int.Parse(dtePurchaseMonth), int.Parse(dtePurchaseDay), 0, 0, 0);
-            int result = DateTime.Compare(purchaseDate, addedDate);
-            if (result > 0)
+            String strInternalNr = internalNr.Text;
+            if (strSerialNr == "")
             {
-                dtePurchaseDate = dteAddedDate;
+               serialError.Text= "The serial nr is necessary!";
             }
-            try
+            else if (strInternalNr == "")
             {
-                if (mImagePath == "" || mImagePath == null)
-                {
-                    ViewState["pictureLocation"] = "";
-                }
-                else
-                {
-                    ViewState["pictureLocation"] = ViewState["timeStampAddedHardware"] + mImagePath;
-                }
-                if (TestlocationAtt.Text == "" || TestlocationAtt.Text == null)
-                {
-                    ViewState["attachmentLocation"] = "";
-                }
-                else
-                {
-                    ViewState["attachmentLocation"] = ViewState["timeStampAddedHardware"] + TestlocationAtt.Text;
-                }
-                txtResultUpload.Text = "Congratulations! The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
-                   " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " successfully added to the database.";
-                var hardware = new Hardware(dteAddedDate, ViewState["attachmentLocation"].ToString(), strExtraInfo, strInternalNr, strSelectedManufacturer, strModel, ViewState["pictureLocation"].ToString(),
-                    dtePurchaseDate, strSerialNr, strWarrantyInfo, typeList.SelectedValue);
-                hardware.AddHardwareIntoDatabase();
-                viewJustAddedHardware();
+               internalError.Text = "The internal nr is necessary!";
             }
-            catch (MySqlException ex)
+            else
             {
-                if (ex.Number.ToString() == "1062")
+                String strExtraInfo = extraInfo.Text.ToString();
+                String mImagePath = Testlocation.Text.ToString();
+                String mAttPath = TestlocationAtt.Text;
+                String strModel = modelNr.Text;
+                int intSelectedTypeIndex = typeList.SelectedIndex + 1;
+                String strSelectedManufacturer = manufacturerList.SelectedItem.ToString();
+                String dtePurchaseYear = txtDatepicker.Text.Substring(6);
+                String dtePurchaseDay = txtDatepicker.Text.Substring(0, 2);
+                String dtePurchaseMonth = txtDatepicker.Text.Substring(3, 2);
+                //dtePurchaseDate converts the datepicker to database usable date
+                String dtePurchaseDate = dtePurchaseYear + '-' + dtePurchaseMonth + '-' + dtePurchaseDay;
+                String dteAddedDate = DateTime.Now.ToString("yyyy-MM-dd");
+                DateTime addedDate = DateTime.Today;
+                DateTime purchaseDate = new DateTime(int.Parse(dtePurchaseYear), int.Parse(dtePurchaseMonth), int.Parse(dtePurchaseDay), 0, 0, 0);
+                int result = DateTime.Compare(purchaseDate, addedDate);
+                if (result > 0)
                 {
-                    txtResultUpload.Text = "The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
-                        " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " already exist in de database.";
+                    dtePurchaseDate = dteAddedDate;
                 }
-                else { ShowMessage(ex.Message); }
+                try
+                {
+                    if (mImagePath == "" || mImagePath == null)
+                    {
+                        ViewState["pictureLocation"] = "";
+                    }
+                    else
+                    {
+                        ViewState["pictureLocation"] = ViewState["timeStampAddedHardware"] + mImagePath;
+                    }
+                    if (TestlocationAtt.Text == "" || TestlocationAtt.Text == null)
+                    {
+                        ViewState["attachmentLocation"] = "";
+                    }
+                    else
+                    {
+                        ViewState["attachmentLocation"] = ViewState["timeStampAddedHardware"] + TestlocationAtt.Text;
+                    }
+                    txtResultUpload.Text = "Congratulations! The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
+                       " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " successfully added to the database.";
+                    var hardware = new Hardware(dteAddedDate, ViewState["attachmentLocation"].ToString(), strExtraInfo, strInternalNr, strSelectedManufacturer, strModel, ViewState["pictureLocation"].ToString(),
+                        dtePurchaseDate, strSerialNr, strWarrantyInfo, typeList.SelectedValue);
+                    hardware.AddHardwareIntoDatabase();
+                    viewJustAddedHardware();
+
+                }
+              
+                catch (MySqlException ex)
+                {
+                    if (ex.Number.ToString() == "1062")
+                    {
+                        txtResultUpload.Text = "The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
+                            " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " already exist in de database.";
+                    }
+                    else { ShowMessage(ex.Message); }
+                }
+                addHardwarePanel.Visible = false;
+                addResultPanel.Visible = true;
             }
-            addHardwarePanel.Visible = false;
-            addResultPanel.Visible = true;
         }
         /// <summary>
         /// Views the just added hardware.
@@ -143,6 +156,7 @@ namespace Toestellenbeheer.Manage
         protected void DownloadFile(object sender, EventArgs e)
         {
             string path = "../UserUploads/Attachments/";
+            Directory.CreateDirectory(path);
             string filePath = (sender as LinkButton).CommandArgument;
             Response.ContentType = ContentType;
             Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
@@ -175,6 +189,7 @@ namespace Toestellenbeheer.Manage
                 //Initialize the Boolean FileOk to status false;
                 Boolean fileOK = false;
                 String path = Server.MapPath("~/UserUploads/Images/");
+                Directory.CreateDirectory(path);
                 if (PictureUpload.HasFile)
                 {
                     //Gets the extension of the uploaded file
@@ -227,6 +242,7 @@ namespace Toestellenbeheer.Manage
             if (IsPostBack)
             {
                 String path = Server.MapPath("~/UserUploads/Attachments/");
+                Directory.CreateDirectory(path);
                 if (AttachmentUpload.HasFile)
                 {
                     try

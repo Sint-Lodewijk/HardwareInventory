@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.DirectoryServices;
 using Toestellenbeheer.Models;
+using System.IO;
 namespace Toestellenbeheer.Manage
 {
     public partial class add_license : System.Web.UI.Page
@@ -259,6 +260,7 @@ namespace Toestellenbeheer.Manage
                 if (IsPostBack)
                 {
                     String path = Server.MapPath("~/UserUploads/License/");
+                    Directory.CreateDirectory(path);
                     if (LicenseFileUpload.HasFile)
                     {
                         try

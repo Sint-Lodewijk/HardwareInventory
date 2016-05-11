@@ -42,6 +42,8 @@ namespace Toestellenbeheer
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Next", "$(function () { $('#" + strSlideControl + "').carousel(" + times + "); });", true);
             }
+            ScriptManager.RegisterStartupScript(this, GetType(), "DeleteFade", "$(function () { $('#initSetupModal').removeClass('fade') });", true);
+
         }
         protected void btnManufacturer_Click(object sender, EventArgs e)
         {

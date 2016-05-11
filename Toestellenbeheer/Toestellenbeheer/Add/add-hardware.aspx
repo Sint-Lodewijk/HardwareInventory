@@ -30,27 +30,29 @@
             <div class="form-group">
                 <asp:Label AssociatedControlID="txtDatepicker" CssClass="control-label col-sm-2" runat="server">Purchasedate</asp:Label>
                 <div class="col-sm-10">
-                    
+
                     <div class="input-group date" id="input-date">
                         <asp:TextBox runat="server" ID="txtDatepicker" placeholder="Click to select a date." CssClass="form-control" />
                         <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                     </div>
-                
+
                 </div>
                 <script>
-                        $(function () {
-                            $("[id$=input-date]").datepicker({
-                                format: "dd-mm-yyyy",
-                                autoclose: true,
-                                todayHighlight: true
-                            });
+                    $(function () {
+                        $("[id$=input-date]").datepicker({
+                            format: "dd-mm-yyyy",
+                            autoclose: true,
+                            todayHighlight: true
                         });
-                    </script>
+                    });
+                </script>
             </div>
             <div class="form-group">
                 <asp:Label AssociatedControlID="Serialnr" CssClass="control-label col-sm-2" runat="server">Serial Number</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox ID="Serialnr" CssClass="form-control" runat="server" placeholder="serial number can be found on the box of the product" />
+                    <asp:Label runat="server" ID="serialError"></asp:Label>
+
                 </div>
             </div>
             <br />
@@ -58,6 +60,7 @@
                 <asp:Label runat="server" CssClass="control-label col-sm-2" AssociatedControlID="internalNr">Internal Nr</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox runat="server" ID="internalNr" CssClass="form-control" placeholder="internal number can be found under the hardware" />
+                    <asp:Label runat="server" ID="internalError"></asp:Label>
                 </div>
             </div>
             <div class="form-group">

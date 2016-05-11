@@ -40,10 +40,10 @@ namespace Toestellenbeheer.Manage
         }
         protected void btnBackup_Click(object sender, EventArgs e)
         {
+            Backup();
             lblAlert.Text = "Backup successfully!";
             var showSuccess = new JSUtility("successMessageAlert");
             showSuccess.ShowJS(udpSuccess);
-            Backup();
         }
         private void Backup()
         {
@@ -52,6 +52,8 @@ namespace Toestellenbeheer.Manage
             var backup = new MySqlBackup(backupcmd);
             mysqlConnectie.Open();
             backup.ExportInfo.AddCreateDatabase = true;
+            Directory.CreateDirectory(Server.MapPath("~/Backup/"));
+
             backup.ExportToFile(Server.MapPath("~/Backup/") + "mysql-backup.sql");
             mysqlConnectie.Close();
             Response.ContentType = ContentType;
@@ -61,6 +63,7 @@ namespace Toestellenbeheer.Manage
         protected void btnRestore_Click(object sender, EventArgs e)
         {
             //Save the uploaded file to the predefined path
+            Directory.CreateDirectory(Server.MapPath("~/Backup/"));
             fileRestore.PostedFile.SaveAs(Server.MapPath("~/Backup/") + "mysql-restore.sql");
             var restorecmd = new MySqlCommand();
             restorecmd.Connection = mysqlConnectie;
@@ -86,6 +89,7 @@ namespace Toestellenbeheer.Manage
             var setCheck1 = new MySqlCommand("SET FOREIGN_KEY_CHECKS = 1", mysqlConnectie);
             setCheck1.ExecuteNonQuery();
             mysqlConnectie.Close();
+            Server.Transfer("~/Default.aspx");
         }
     }
 }

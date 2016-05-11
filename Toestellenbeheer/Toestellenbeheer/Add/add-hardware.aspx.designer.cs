@@ -6,8 +6,12 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 namespace Toestellenbeheer.Manage {
+    
+    
     public partial class add_hardware {
+        
         /// <summary>
         /// addHardwarePanel control.
         /// </summary>
@@ -16,6 +20,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel addHardwarePanel;
+        
         /// <summary>
         /// typeList control.
         /// </summary>
@@ -24,6 +29,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList typeList;
+        
         /// <summary>
         /// sqlType control.
         /// </summary>
@@ -32,6 +38,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource sqlType;
+        
         /// <summary>
         /// manufacturerList control.
         /// </summary>
@@ -40,6 +47,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList manufacturerList;
+        
         /// <summary>
         /// sqlManufacturer control.
         /// </summary>
@@ -48,6 +56,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource sqlManufacturer;
+        
         /// <summary>
         /// txtDatepicker control.
         /// </summary>
@@ -56,6 +65,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDatepicker;
+        
         /// <summary>
         /// Serialnr control.
         /// </summary>
@@ -64,6 +74,16 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Serialnr;
+        
+        /// <summary>
+        /// serialError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label serialError;
+        
         /// <summary>
         /// internalNr control.
         /// </summary>
@@ -72,6 +92,16 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox internalNr;
+        
+        /// <summary>
+        /// internalError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label internalError;
+        
         /// <summary>
         /// modelNr control.
         /// </summary>
@@ -80,6 +110,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox modelNr;
+        
         /// <summary>
         /// warrantyInfo control.
         /// </summary>
@@ -88,6 +119,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox warrantyInfo;
+        
         /// <summary>
         /// extraInfo control.
         /// </summary>
@@ -96,6 +128,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox extraInfo;
+        
         /// <summary>
         /// PictureUpload control.
         /// </summary>
@@ -104,6 +137,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload PictureUpload;
+        
         /// <summary>
         /// Upload control.
         /// </summary>
@@ -112,6 +146,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Upload;
+        
         /// <summary>
         /// ResultUploadImg control.
         /// </summary>
@@ -120,6 +155,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ResultUploadImg;
+        
         /// <summary>
         /// Testlocation control.
         /// </summary>
@@ -128,6 +164,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Testlocation;
+        
         /// <summary>
         /// AttachmentUpload control.
         /// </summary>
@@ -136,6 +173,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload AttachmentUpload;
+        
         /// <summary>
         /// UploadAttachment control.
         /// </summary>
@@ -144,6 +182,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button UploadAttachment;
+        
         /// <summary>
         /// ResultUploadAtta control.
         /// </summary>
@@ -152,6 +191,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ResultUploadAtta;
+        
         /// <summary>
         /// TestlocationAtt control.
         /// </summary>
@@ -160,6 +200,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label TestlocationAtt;
+        
         /// <summary>
         /// Submit control.
         /// </summary>
@@ -168,6 +209,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Submit;
+        
         /// <summary>
         /// testSelected control.
         /// </summary>
@@ -176,6 +218,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label testSelected;
+        
         /// <summary>
         /// test control.
         /// </summary>
@@ -184,6 +227,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox test;
+        
         /// <summary>
         /// addResultPanel control.
         /// </summary>
@@ -192,6 +236,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel addResultPanel;
+        
         /// <summary>
         /// grvJustAddedHardware control.
         /// </summary>
@@ -200,6 +245,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvJustAddedHardware;
+        
         /// <summary>
         /// txtResultUpload control.
         /// </summary>
@@ -208,6 +254,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtResultUpload;
+        
         /// <summary>
         /// btnAddAnotherHardware control.
         /// </summary>

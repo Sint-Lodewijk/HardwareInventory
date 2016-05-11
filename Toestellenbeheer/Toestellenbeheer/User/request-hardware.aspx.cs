@@ -17,8 +17,15 @@ namespace Toestellenbeheer.Users
             if (!IsPostBack)
             {
                 bindTypeToGrid();
-                drpTypeList.Items[0].Selected = true;
-                getTypeAssociatedHardware(drpTypeList.SelectedValue.ToString());
+                if (drpTypeList.Items.Count != 0)
+                {
+                    drpTypeList.Items[0].Selected = true;
+                    getTypeAssociatedHardware(drpTypeList.SelectedValue.ToString());
+                }
+                else
+                {
+                    Server.Transfer("~/Default.aspx");
+                }
             }
         }
         protected void bindTypeToGrid()

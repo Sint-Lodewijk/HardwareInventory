@@ -34,16 +34,25 @@
             <div class="col-sm-4">
                 <asp:TextBox ID="txtLicenseCode" placeholder="Enter the licensecode" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="form-group">
-                <asp:Label AssociatedControlID="txtDatepickerExpire" CssClass="control-label col-sm-2" runat="server" Text="Expire Date:"></asp:Label>
+           <div class="form-group">
+                <asp:Label AssociatedControlID="txtDatepicker" CssClass="control-label col-sm-2" runat="server">Purchasedate</asp:Label>
                 <div class="col-sm-10">
-                    <script>
-                        $(function () {
-                            $("[id$=txtDatepickerExpire]").datepicker({ dateFormat: 'dd-mm-yy' }).val();
-                        });
-                    </script>
-                    <asp:TextBox runat="server" ID="txtDatepickerExpire" placeholder="Click to select a expire date" CssClass="form-control" />
+
+                    <div class="input-group date" id="input-date">
+                        <asp:TextBox runat="server" ID="txtDatepicker" placeholder="Click to select a date." CssClass="form-control" />
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                    </div>
+
                 </div>
+                <script>
+                    $(function () {
+                        $("[id$=input-date]").datepicker({
+                            format: "dd-mm-yyyy",
+                            autoclose: true,
+                            todayHighlight: true
+                        });
+                    });
+                </script>
             </div>
             <div class="form-group">
                 <asp:Label AssociatedControlID="txtExtraInfoLicense" runat="server" CssClass="control-label col-sm-2" Text="Extra info:"></asp:Label>

@@ -35,7 +35,7 @@
                         <asp:TextBox runat="server" ID="txtDatepicker" placeholder="Click to select a date." CssClass="form-control" />
                         <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                     </div>
-
+                    
                 </div>
                 <script>
                     $(function () {

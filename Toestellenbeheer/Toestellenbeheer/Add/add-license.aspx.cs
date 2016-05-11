@@ -101,7 +101,7 @@ namespace Toestellenbeheer.Manage
         {
             string strLicenseName = txtLicenseName.Text.Trim();
             string strLicenseCode = txtLicenseCode.Text;
-            string strExpireDate = txtDatepickerExpire.Text.Substring(6) + "-" + txtDatepickerExpire.Text.Substring(3, 2) + "-" + txtDatepickerExpire.Text.Substring(0, 2);
+            string strExpireDate = txtDatepicker.Text.Substring(6) + "-" + txtDatepicker.Text.Substring(3, 2) + "-" + txtDatepicker.Text.Substring(0, 2);
             string strExtraInfo = txtExtraInfoLicense.Text;
             if (TestlocationAtt.Text.Trim() == "" || TestlocationAtt.Text == null)
             {

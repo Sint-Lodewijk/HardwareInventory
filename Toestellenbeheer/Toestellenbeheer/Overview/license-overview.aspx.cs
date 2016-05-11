@@ -133,7 +133,6 @@ namespace Toestellenbeheer.Overview
                     MySqlCommand deleteLicenseAHardware = new MySqlCommand("Delete From licenseHandler where internalNr='" +
                         strInternalNr + "' AND licenseCode = '" + strLicenseCode + "'", mysqlConnectie);
                     deleteLicenseAHardware.ExecuteNonQuery();
-                    deleteLicenseAHardware.Dispose();
                     mysqlConnectie.Close();
                     getCorrespondingHardware(strLicenseCode);
                 }
@@ -142,6 +141,11 @@ namespace Toestellenbeheer.Overview
                     ShowMessage(ex.Message);
                 }
             }
+        }
+
+        protected void btnAssignCode_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

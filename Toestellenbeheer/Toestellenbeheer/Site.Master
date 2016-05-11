@@ -18,10 +18,11 @@
     <script src='<%= ResolveUrl("~/Scripts/jquery-ui.js") %>'></script>
     <script src='<%= ResolveUrl("~/Scripts/bootstrap.min.js") %>'></script>
     <script src='<%= ResolveUrl("~/Scripts/jquery.tablesorter.min.js") %>'></script>
-        <script src='<%= ResolveUrl("~/Scripts/bootstrap-datepicker.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Scripts/bootstrap-datepicker.min.js") %>'></script>
     <script src='<%= ResolveUrl("~/Scripts/jquery.tablesorter.widgets.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Scripts/loading.min.js") %>'></script>
     <link rel="stylesheet" href='<%= ResolveUrl("~/Scripts/jquery-ui.css") %>' />
-        <link rel="stylesheet" href='<%= ResolveUrl("~/Content/bootstrap-datepicker3.min.css") %>' />
+    <link rel="stylesheet" href='<%= ResolveUrl("~/Content/bootstrap-datepicker3.min.css") %>' />
 
     <form runat="server">
         <asp:ScriptManager runat="server">
@@ -85,7 +86,16 @@
                             <asp:RoleGroup Roles="gg_hardware_user">
                                 <ContentTemplate>
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li><a runat="server" href="~/User" title="User"><%: Context.User.Identity.GetUserName()  %>'s Space!</a></li>
+                                        <li class="dropdown">
+                                            <a href="~/User" runat="server" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%: Context.User.Identity.GetUserName()  %>'s Space! <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/User/my-hardware") %>'>My hardware</a></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/User/my-license") %>'>My license</a></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/User/request-hardware") %>'>Request hardware</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/User") %>'>Overview</a></li>
+                                            </ul>
+                                        </li>
                                         <li>
                                             <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                         </li>
@@ -95,9 +105,35 @@
                             <asp:RoleGroup Roles="gg_hardware_administration">
                                 <ContentTemplate>
                                     <ul class="nav navbar-nav">
-                                        <li><a runat="server" href="~/Overview">Overview</a></li>
-                                        <li><a runat="server" href="~/Add">Add</a></li>
-                                        <li><a runat="server" href="~/User">MySpace</a></li>
+                                        <li class="dropdown">
+                                            <a href="~/Overview" runat="server" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Overview <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Overview/hardware-overview") %>'>Hardware Overview</a></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Overview/license-overview") %>'>License Overview</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Overview") %>'>Overview</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="~/Add" runat="server" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Add/add-hardware") %>'>Add hardware</a></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Add/add-license") %>'>Add license</a></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Add/add-people") %>'>Add AD User</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Add") %>'>Overview</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="~/User" runat="server" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MySpace <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/User/my-hardware") %>'>My hardware</a></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/User/my-license") %>'>My license</a></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/User/request-hardware") %>'>Request hardware</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/User") %>'>Overview</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><a runat="server" href="~/User" title="User"><%: Context.User.Identity.GetUserName()  %>'s Space!</a></li>
@@ -110,10 +146,44 @@
                             <asp:RoleGroup Roles="gg_hardware_admin">
                                 <ContentTemplate>
                                     <ul class="nav navbar-nav">
-                                        <li><a runat="server" id="Overview" href="~/Overview">Overview</a></li>
-                                        <li><a runat="server" id="Add" href="~/Add">Add</a></li>
-                                        <li><a runat="server" id="Archive" href="~/Archive">Archive</a></li>
-                                        <li><a runat="server" id="User" href="~/User">MySpace</a></li>
+                                        <li class="dropdown">
+                                            <a href="~/Overview" runat="server" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Overview <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Overview/hardware-overview") %>'>Hardware Overview</a></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Overview/license-overview") %>'>License Overview</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Overview") %>'>Overview</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="~/Add" runat="server" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Add/add-hardware") %>'>Add hardware</a></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Add/add-license") %>'>Add license</a></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Add/add-people") %>'>Add AD User</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Add") %>'>Overview</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="~/Archive" runat="server" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Archive <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Archive/hardware-history") %>'>Hardware history</a></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Archive/people-history") %>'>People history</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Archive") %>'>Overview</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="~/User" runat="server" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MySpace <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/User/my-hardware") %>'>My hardware</a></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/User/my-license") %>'>My license</a></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/User/request-hardware") %>'>Request hardware</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/User") %>'>Overview</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><a runat="server" class="OpenRequest" href="~/Manage/manage-requests"><span class="badge">

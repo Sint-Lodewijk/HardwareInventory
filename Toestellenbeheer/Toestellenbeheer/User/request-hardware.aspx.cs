@@ -14,6 +14,7 @@ namespace Toestellenbeheer.Users
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 bindTypeToGrid();
@@ -80,6 +81,8 @@ namespace Toestellenbeheer.Users
         }
         private void sendEmailNotification(String internalNr)
         {
+            ClientScript.RegisterClientScriptBlock(this.GetType(),
+          "WaitDialog", "$(function () { waitingDialog.show('Sending request...'); };");
             try
             {
                 SmtpClient smtpClient = new SmtpClient(SetupFile.Email.MailServer, SetupFile.Email.SMTPPort);

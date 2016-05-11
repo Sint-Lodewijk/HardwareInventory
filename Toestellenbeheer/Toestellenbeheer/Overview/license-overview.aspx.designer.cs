@@ -6,8 +6,12 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 namespace Toestellenbeheer.Overview {
+    
+    
     public partial class license_overview {
+        
         /// <summary>
         /// grvLicenseCode control.
         /// </summary>
@@ -16,6 +20,7 @@ namespace Toestellenbeheer.Overview {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvLicenseCode;
+        
         /// <summary>
         /// sqlLicenseCode control.
         /// </summary>
@@ -24,6 +29,25 @@ namespace Toestellenbeheer.Overview {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource sqlLicenseCode;
+        
+        /// <summary>
+        /// panelCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelCode;
+        
+        /// <summary>
+        /// btnAssignCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAssignCode;
+        
         /// <summary>
         /// sqlLicenseFile control.
         /// </summary>
@@ -32,6 +56,25 @@ namespace Toestellenbeheer.Overview {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource sqlLicenseFile;
+        
+        /// <summary>
+        /// panelLicense control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelLicense;
+        
+        /// <summary>
+        /// btnAssignFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAssignFile;
+        
         /// <summary>
         /// grvLicenseAssignedPeople control.
         /// </summary>
@@ -40,6 +83,7 @@ namespace Toestellenbeheer.Overview {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvLicenseAssignedPeople;
+        
         /// <summary>
         /// grvLicenseAssignedHardware control.
         /// </summary>
@@ -48,6 +92,7 @@ namespace Toestellenbeheer.Overview {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvLicenseAssignedHardware;
+        
         /// <summary>
         /// lblCountPeople control.
         /// </summary>
@@ -56,6 +101,7 @@ namespace Toestellenbeheer.Overview {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCountPeople;
+        
         /// <summary>
         /// lblCountHardware control.
         /// </summary>
@@ -64,6 +110,7 @@ namespace Toestellenbeheer.Overview {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCountHardware;
+        
         /// <summary>
         /// lblProblem control.
         /// </summary>

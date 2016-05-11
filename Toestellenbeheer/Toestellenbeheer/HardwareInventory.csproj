@@ -243,6 +243,7 @@
     <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\jquery.tablesorter.min.js" />
     <Content Include="Scripts\jquery.tablesorter.widgets.js" />
+    <Content Include="Scripts\loading.min.js" />
     <Content Include="Success.aspx" />
     <Content Include="User\Default.aspx" />
     <Content Include="User\my-hardware.aspx" />

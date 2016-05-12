@@ -160,7 +160,7 @@
                                             <ul class="dropdown-menu">
                                                 <li class="text-center"><a href='<%= ResolveUrl("~/Add/add-hardware") %>'>Add hardware</a></li>
                                                 <li class="text-center"><a href='<%= ResolveUrl("~/Add/add-license") %>'>Add license</a></li>
-                                                <li class="text-center"><a href='<%= ResolveUrl("~/Add/add-people") %>'>Add AD User</a></li>
+                                                <li class="text-center"><a href='<%= ResolveUrl("~/Add/add-person") %>'>Add AD User</a></li>
                                                 <li role="separator" class="divider"></li>
                                                 <li class="text-center"><a href='<%= ResolveUrl("~/Add") %>'>Overview</a></li>
                                             </ul>

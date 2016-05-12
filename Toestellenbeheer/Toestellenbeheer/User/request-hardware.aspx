@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Request a hardware" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="request-hardware.aspx.cs" Inherits="Toestellenbeheer.Users.request_hardware" %>
+
 <asp:Content ID="cntRequest" ContentPlaceHolderID="MainContent" runat="server">
-        <div class="modal fade" id="hardwareImageModal" tabindex="-1" role="dialog" aria-labelledby="hardwareImage">
+    <div class="modal fade" id="hardwareImageModal" tabindex="-1" role="dialog" aria-labelledby="hardwareImage">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <asp:UpdatePanel ID="udpDetails" runat="server" UpdateMode="Conditional">
@@ -25,7 +26,7 @@
         <div class="col-sm-10">
             <asp:DropDownList ID="drpTypeList" OnSelectedIndexChanged="typeList_SelectedIndexChanged" CssClass="form-control" runat="server" AutoPostBack="True" DataTextField="type" DataValueField="type" />
         </div>
-        <asp:GridView runat="server" ID="grvAvailableHardwareType" AutoGenerateColumns="False" DataKeyNames="serialNr,internalNr" OnRowDataBound="grvAvailibleHardwareType_RowDataBound" OnSelectedIndexChanged="grvAvailibleHardwareType_SelectedIndexChanged" CssClass="gridview table table-striped table-hover" OnRowDeleting="grvAvailableHardwareType_RowDeleting">
+        <asp:GridView runat="server" EmptyDataText="No availible hardware with this type." ID="grvAvailableHardwareType" AutoGenerateColumns="False" DataKeyNames="serialNr,internalNr" OnRowDataBound="grvAvailibleHardwareType_RowDataBound" OnSelectedIndexChanged="grvAvailibleHardwareType_SelectedIndexChanged" CssClass="gridview table table-striped table-hover" OnRowDeleting="grvAvailableHardwareType_RowDeleting">
             <Columns>
                 <asp:BoundField DataField="serialNr" HeaderText="Serial Nr" ReadOnly="True" SortExpression="serialNr" />
                 <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />
@@ -35,11 +36,33 @@
             </Columns>
             <SelectedRowStyle BackColor="#cc6600" />
         </asp:GridView>
-        <div class="col-sm-12">
-            <asp:Label ID="lblProblem" CssClass="col-sm-12 control-label" runat="server"></asp:Label>
+        <asp:Label ID="lblProblem" CssClass="control-label" runat="server"></asp:Label>
+    </div>
+    <button type="button" visible="false" id="btnNextStep" runat="server" class="btn btn-primary" data-toggle="modal" data-target="#modalRequest">
+        Request
+    </button>
+
+    <div class="modal fade" id="modalRequest" tabindex="-1" role="dialog" aria-labelledby="lblModalRequest">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="lblModalRequest">Let your manager to know something?</h4>
+                </div>
+                <div class="modal-body">
+                    <asp:TextBox ID="txtMessage" placeholder="Optional" CssClass="form-control" runat="server"></asp:TextBox>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <asp:Button ID="btnRequest" CssClass="btn btn-primary" autocomplete="off" data-loading-text="Sending request" runat="server" Text="Send a request" OnClick="btnRequest_Click" />
+                    <script>
+                        $('#MainContent_btnRequest').on('click', function () {
+                            var $btn = $(this).button('loading')
+                        })
+                    </script>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <asp:Button ID="btnRequest" CssClass="btn btn-primary" runat="server" Text="Send a request" Visible="false" OnClick="btnRequest_Click" />
-    </div>
+
 </asp:Content>

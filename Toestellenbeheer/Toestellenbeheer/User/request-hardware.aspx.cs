@@ -49,11 +49,7 @@ namespace Toestellenbeheer.Users
                 grvAvailableHardwareType.DataSource = dt;
                 grvAvailableHardwareType.DataBind();
                 int intTotalAssociatedCount = grvAvailableHardwareType.Rows.Count;
-                if (intTotalAssociatedCount == 0)
-                {
-                    lblProblem.Text = "No available hardware of this type of hardware";
-                }
-                else
+                if (intTotalAssociatedCount != 0)
                 {
                     lblProblem.Text = intTotalAssociatedCount + " queries listed out.";
                 }
@@ -95,9 +91,9 @@ namespace Toestellenbeheer.Users
                 mail.Body = "<div style=\"font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; \">" +
                     "Dear hardware admin <br /> <br />A request has been made for hardware with the internal number: " + internalNr +
                         "<br />Please <a href=\"" + SetupFile.Web.WebLocation + "\"> log in </a> to the application and review those requests." +
-                        "<br /><br /><br />" + "Yours sincerely, " + Context.User.Identity.Name + "</div>";
+                        "<br />The message included is: " + txtMessage.Text +
+                        "<br /><br />" + "Yours sincerely, " + Context.User.Identity.Name + "</div>";
                 mail.IsBodyHtml = true;
-                //Setting From - To 
                 mail.From = new MailAddress(SetupFile.Email.EmailFrom, "Hardware Request");
                 mail.To.Add(new MailAddress(SetupFile.Email.EmailTo));
                 smtpClient.Send(mail);
@@ -109,7 +105,7 @@ namespace Toestellenbeheer.Users
         }
         protected void grvAvailibleHardwareType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnRequest.Visible = true;
+            btnNextStep.Visible = true;
         }
         protected void btnRequest_Click(object sender, EventArgs e)
         {

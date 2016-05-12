@@ -6,8 +6,12 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 namespace Toestellenbeheer.Users {
+    
+    
     public partial class request_hardware {
+        
         /// <summary>
         /// udpDetails control.
         /// </summary>
@@ -16,6 +20,7 @@ namespace Toestellenbeheer.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpDetails;
+        
         /// <summary>
         /// picDetail control.
         /// </summary>
@@ -24,6 +29,7 @@ namespace Toestellenbeheer.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image picDetail;
+        
         /// <summary>
         /// drpTypeList control.
         /// </summary>
@@ -32,6 +38,7 @@ namespace Toestellenbeheer.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList drpTypeList;
+        
         /// <summary>
         /// grvAvailableHardwareType control.
         /// </summary>
@@ -40,6 +47,7 @@ namespace Toestellenbeheer.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvAvailableHardwareType;
+        
         /// <summary>
         /// lblProblem control.
         /// </summary>
@@ -48,6 +56,25 @@ namespace Toestellenbeheer.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProblem;
+        
+        /// <summary>
+        /// btnNextStep control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnNextStep;
+        
+        /// <summary>
+        /// txtMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMessage;
+        
         /// <summary>
         /// btnRequest control.
         /// </summary>

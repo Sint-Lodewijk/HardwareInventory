@@ -28,9 +28,7 @@ namespace Toestellenbeheer.Manage
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvManufacturer, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
-            grvManufacturer.UseAccessibleHeader = true;
-            grvManufacturer.HeaderRow.TableSection = TableRowSection.TableHeader;
-        }
+                    }
         protected void bindManufacturerToGrid()
         {
             try

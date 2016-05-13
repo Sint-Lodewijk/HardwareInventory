@@ -16,7 +16,7 @@ namespace Toestellenbeheer.Manage
             {
                 bindTypeToGrid();
             }
-            
+
         }
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -25,14 +25,14 @@ namespace Toestellenbeheer.Manage
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvType, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
-                    }
+        }
         protected void bindTypeToGrid()
         {
             try
             {
                 var type = new TypeName();
                 type.BindGrvType(grvType);
-                
+
             }
             catch (MySqlException ex)
             {

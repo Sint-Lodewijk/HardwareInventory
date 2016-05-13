@@ -39,11 +39,6 @@ namespace Toestellenbeheer.Models
             var dt = ReturnDatatableManufacturer();
             gridview.DataSource = dt;
             gridview.DataBind();
-            if (gridview.Rows.Count != 0)
-            {
-                gridview.UseAccessibleHeader = true;
-                gridview.HeaderRow.TableSection = TableRowSection.TableHeader;
-            }
         }
         public void AddManufacturerToDatabase()
         {

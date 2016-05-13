@@ -38,11 +38,6 @@ namespace Toestellenbeheer.Models
             var dt = ReturnDatatableType();
             gridview.DataSource = dt;
             gridview.DataBind();
-            if (gridview.Rows.Count != 0)
-            {
-                gridview.UseAccessibleHeader = true;
-                gridview.HeaderRow.TableSection = TableRowSection.TableHeader;
-            }
         }
         public void AddTypeToDatabase()
         {

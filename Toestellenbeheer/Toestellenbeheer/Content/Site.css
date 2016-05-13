@@ -314,3 +314,6 @@ th {
 td {
     text-align: center;
 }
+.modal td {
+    text-align: left !important;
+}

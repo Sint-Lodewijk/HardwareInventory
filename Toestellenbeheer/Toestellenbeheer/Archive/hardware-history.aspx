@@ -180,6 +180,11 @@
             $("#MainContent_grvHardware").tablesorter();
         });
     </script>
+    <style type="text/css">
+     .modal-body td {
+            text-align: center !important;
+        }
+    </style>
     <asp:Panel ID="modalHardwarePeople" runat="server" CssClass="modal fade" TabIndex="-1" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">

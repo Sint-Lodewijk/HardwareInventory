@@ -81,11 +81,7 @@ namespace Toestellenbeheer
             int intOpenRequests = Convert.ToInt32(getOpenRequest.ExecuteScalar());
             if (intOpenRequests > SetupFile.Requests.hardwareRequestChangeColorAfter)
             {
-                lblOpenRequest.Text = "<span style=\"color:" + SetupFile.Requests.hardwareRequestChangeColorHex + "\">" + intOpenRequests.ToString() + " open requests</span>";
-            }
-            else if (intOpenRequests == 0)
-            {
-                lblOpenRequest.Text = "No open requests";
+                lblOpenRequest.Text = "<span style=\"color:" + SetupFile.Requests.hardwareRequestChangeColorHex + "\">" + intOpenRequests.ToString() + "</span>";
             }
             else {
                 lblOpenRequest.Text = intOpenRequests.ToString();

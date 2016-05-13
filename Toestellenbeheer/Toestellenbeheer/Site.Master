@@ -187,7 +187,7 @@
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><a runat="server" class="OpenRequest" href="~/Manage/manage-requests"><span class="badge">
-                                            <asp:Label ID="lblOpenRequest" runat="server" EnableViewState="True"></asp:Label></span>
+                                            <asp:Label ID="lblOpenRequest" runat="server" EnableViewState="True"></asp:Label></span> &nbsp;requests
                                         </a></li>
                                         <li><a runat="server" href="~/Manage" title="Manage">Manage, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                         <li>

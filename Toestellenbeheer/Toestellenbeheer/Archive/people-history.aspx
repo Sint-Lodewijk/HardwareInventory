@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="People history" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="people-history.aspx.cs" Inherits="Toestellenbeheer.Archive.people_history" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <style type="text/css">
+        .modal-body td {
+            text-align: center !important;
+        }
+    </style>
     <asp:GridView ID="grvPeopleAD" runat="server" OnPageIndexChanging="gridView_PageIndexChanging" CssClass="table table-hover table-striped gridview" OnRowDataBound="grvPeopleAD_OnRowDataBound" OnSelectedIndexChanged="grvPeopleAD_SelectedIndexChanged">
         <SelectedRowStyle BackColor="Azure" />
     </asp:GridView>

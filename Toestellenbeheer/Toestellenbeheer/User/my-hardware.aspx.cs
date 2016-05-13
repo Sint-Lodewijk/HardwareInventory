@@ -18,9 +18,7 @@ namespace Toestellenbeheer.Users
                 {
                     String strUserName = Context.User.Identity.GetUserName();
                     var uHardware = new Models.Hardware();
-                    DataTable dt = uHardware.ReturnUserHardware(strUserName);
-                    grvMyHardware.DataSource = dt;
-                    grvMyHardware.DataBind();
+                    uHardware.BindUserHardware(strUserName,grvMyHardware);
                     mysqlConnectie.Close();
                     if (grvMyHardware.Rows.Count == 0)
                     {
@@ -48,6 +46,13 @@ namespace Toestellenbeheer.Users
             picDetail.ImageUrl = "../UserUploads/Images/" + picLoc.PicLocation();
             var picModal = new JSUtility("hardwareImageModal");
             picModal.ModalShowUpdate(udpDetails);
+        }
+
+        protected void grvPreRender(object sender, EventArgs e)
+        {
+            var gridview = sender as GridView;
+            var Sort = new GridViewPreRender(gridview);
+            Sort.SetHeader();
         }
     }
 }

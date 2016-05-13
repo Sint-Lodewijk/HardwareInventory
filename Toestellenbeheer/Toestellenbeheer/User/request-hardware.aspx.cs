@@ -128,5 +128,12 @@ namespace Toestellenbeheer.Users
             var picModal = new JSUtility("hardwareImageModal");
             picModal.ModalShowUpdate(udpDetails);
         }
+
+        protected void grvAvailableHardwareType_PreRender(object sender, EventArgs e)
+        {
+            var gridview = sender as GridView;
+            var Sort = new GridViewPreRender(gridview);
+            Sort.SetHeader();
+        }
     }
 }

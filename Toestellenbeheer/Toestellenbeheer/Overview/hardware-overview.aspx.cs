@@ -37,13 +37,13 @@ namespace Toestellenbeheer
             {
                 iframeDownload.Src = "";
             }
+       
+
         }
         protected void BindHardwareGRV()
         {
             var hardware = new Hardware();
-            DataTable dt = hardware.ReturnDatatableAllHardware();
-            grvHardware.DataSource = dt;
-            grvHardware.DataBind();
+            hardware.BindGrvHardware(grvHardware);
         }
         protected void Search(object sender, EventArgs e)
         {
@@ -73,9 +73,7 @@ namespace Toestellenbeheer
                 String strSearchItem = drpSearchItem.SelectedValue.ToString();
                 String strSearchText = txtSearch.Text.Trim();
                 var searchHardware = new Hardware();
-                DataTable dt = searchHardware.ReturnSearchDatatable(strSearchItem, strSearchText);
-                grvHardware.DataSource = dt;
-                grvHardware.DataBind();
+                searchHardware.BindGrvSearch(strSearchItem, strSearchText, grvHardware);
                 int intTotalResultReturned = grvHardware.Rows.Count;
                 if (intTotalResultReturned == 0)
                 {
@@ -155,6 +153,13 @@ namespace Toestellenbeheer
             var RemoveHardware = new Hardware(grvHardware.SelectedDataKey["internalNr"].ToString(), grvHardware.SelectedDataKey["serialNr"].ToString());
             RemoveHardware.DeleteHardware();
             Response.Redirect(Request.RawUrl);
+        }
+
+        protected void grvHardware_PreRender(object sender, EventArgs e)
+        {
+            var gridview = sender as GridView;
+            var Sort = new GridViewPreRender(gridview);
+            Sort.SetHeader();
         }
     }
 }

@@ -100,5 +100,12 @@ namespace Toestellenbeheer.Manage
                 lblExeption.Text = "Problem with downloading, please check if you added a attachment to the hardware." + ex.ToString();
             }
         }
+
+        protected void grvPreRender(object sender, EventArgs e)
+        {
+            var gridview = sender as GridView;
+            var Sort = new GridViewPreRender(gridview);
+            Sort.SetHeader();
+        }
     }
 }

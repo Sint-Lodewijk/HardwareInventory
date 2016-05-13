@@ -6,8 +6,12 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 namespace Toestellenbeheer.Manage {
+    
+    
     public partial class manage_type {
+        
         /// <summary>
         /// typeName control.
         /// </summary>
@@ -16,6 +20,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox typeName;
+        
         /// <summary>
         /// btnAddType control.
         /// </summary>
@@ -24,6 +29,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddType;
+        
         /// <summary>
         /// lblProblem control.
         /// </summary>
@@ -32,14 +38,16 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProblem;
+        
         /// <summary>
-        /// typeSelect control.
+        /// grvType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView typeSelect;
+        protected global::System.Web.UI.WebControls.GridView grvType;
+        
         /// <summary>
         /// ButtonPanel control.
         /// </summary>
@@ -48,6 +56,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel ButtonPanel;
+        
         /// <summary>
         /// btnEdit control.
         /// </summary>
@@ -56,6 +65,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEdit;
+        
         /// <summary>
         /// btnDelete control.
         /// </summary>
@@ -64,6 +74,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDelete;
+        
         /// <summary>
         /// typeModalTitle control.
         /// </summary>
@@ -72,6 +83,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl typeModalTitle;
+        
         /// <summary>
         /// udpDetails control.
         /// </summary>
@@ -80,6 +92,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpDetails;
+        
         /// <summary>
         /// txtType control.
         /// </summary>
@@ -88,6 +101,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtType;
+        
         /// <summary>
         /// btnUpdate control.
         /// </summary>

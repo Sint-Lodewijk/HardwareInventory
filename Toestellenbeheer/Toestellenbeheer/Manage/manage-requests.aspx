@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Manage requests" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="manage-requests.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_requests" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Panel ID="modalHardware" runat="server" CssClass="modal fade" TabIndex="-1" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -10,7 +11,7 @@
                         </div>
                         <div class="modal-body">
                             <asp:Image runat="server" ID="imgHardware" CssClass="img-responsive center-block" />
-                            <asp:GridView ID="grvDetail"  DataKeyNames="internalNr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
+                            <asp:GridView ID="grvDetail" DataKeyNames="internalNr" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" runat="server">
                                 <Columns>
                                     <asp:TemplateField>
                                         <ItemTemplate>
@@ -120,7 +121,7 @@
             </div>
         </div>
     </asp:Panel>
-    <asp:GridView ID="grvRequests" EmptyDataText="There are no open requests!" OnRowDeleting="grvRequests_RowDeleting" CssClass="gridview table table-hover table-striped" OnSelectedIndexChanged="grvRequests_SelectedIndexChanged" OnRowDataBound="grvRequests_RowDataBound" runat="server" AutoGenerateColumns="False" DataKeyNames="requestID,nameAD,internalNr,serialNr" DataSourceID="sqlRequest">
+    <asp:GridView ID="grvRequests" OnPreRender="grvPreRender" EmptyDataText="There are no open requests!" OnRowDeleting="grvRequests_RowDeleting" CssClass="gridview table table-hover table-striped" OnSelectedIndexChanged="grvRequests_SelectedIndexChanged" OnRowDataBound="grvRequests_RowDataBound" runat="server" AutoGenerateColumns="False" DataKeyNames="requestID,nameAD,internalNr,serialNr" DataSourceID="sqlRequest">
         <Columns>
             <asp:BoundField DataField="requestID" HeaderText="requestID" InsertVisible="False" ReadOnly="True" SortExpression="requestID" />
             <asp:BoundField DataField="internalNr" HeaderText="internalNr" SortExpression="internalNr" />
@@ -130,6 +131,11 @@
             <asp:CommandField DeleteText="Details" ShowDeleteButton="True" />
         </Columns>
     </asp:GridView>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#MainContent_grvRequests").tablesorter();
+        });
+    </script>
     <asp:Button ID="btnAcceptRequest" Text="Accept" OnClick="btnAcceptRequest_Click" Visible="false" runat="server" CssClass="btn btn-primary" />
     <asp:Button ID="btnDenyRequest" Text="Deny" OnClick="btnDenyRequest_Click" Visible="false" runat="server" CssClass="btn btn-primary" />
     <asp:Label ID="lblExeption" runat="server"></asp:Label>

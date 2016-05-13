@@ -295,7 +295,6 @@ input[type="select"] {
 }
 
 form {
-    
 }
 
 .foreground {
@@ -305,4 +304,13 @@ form {
 .margin-bottom-16 {
     margin-bottom: 16px;
     margin-top: 16px;
+}
+
+th {
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+}
+td {
+    text-align: center;
 }

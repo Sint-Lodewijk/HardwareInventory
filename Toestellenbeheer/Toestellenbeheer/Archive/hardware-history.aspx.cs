@@ -32,13 +32,13 @@ namespace Toestellenbeheer.Archive
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvHardware, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
+            
         }
         protected void grvHardware_SelectedIndexChanged(object sender, EventArgs e)
         {
             String strInternalNr = grvHardware.SelectedDataKey.Value.ToString();
             var hardwareHistory = new Hardware(strInternalNr);
-            grvPeopleLinked.DataSource = hardwareHistory.HardwareHistory();
-            grvPeopleLinked.DataBind();
+            hardwareHistory.BindHardwareHistory(grvPeopleLinked);
             int intTotalResult = grvPeopleLinked.Rows.Count;
             modalTitleP.InnerText = "Assign history of " + strInternalNr;
             if (intTotalResult == 0)
@@ -54,9 +54,7 @@ namespace Toestellenbeheer.Archive
         protected void getHardware()
         {
             var hardware = new Hardware();
-            DataTable dt = hardware.ReturnDatatableAllHardware();
-            grvHardware.DataSource = dt;
-            grvHardware.DataBind();
+            hardware.BindGrvHardware(grvHardware);
         }
         public void modalShow()
         {
@@ -83,6 +81,13 @@ namespace Toestellenbeheer.Archive
             Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
             Response.WriteFile("../UserUploads/Attachments/" + Path.GetFileName(filePath));
             Response.End();
+        }
+
+        protected void grvHardware_PreRender(object sender, EventArgs e)
+        {
+            var gridview = sender as GridView;
+            var Sort = new GridViewPreRender(gridview);
+            Sort.SetHeader();
         }
     }
 }

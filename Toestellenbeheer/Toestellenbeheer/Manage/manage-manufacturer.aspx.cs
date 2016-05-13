@@ -19,6 +19,7 @@ namespace Toestellenbeheer.Manage
             {
                 bindManufacturerToGrid();
             }
+        
         }
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -27,15 +28,16 @@ namespace Toestellenbeheer.Manage
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvManufacturer, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
+            grvManufacturer.UseAccessibleHeader = true;
+            grvManufacturer.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
         protected void bindManufacturerToGrid()
         {
             try
             {
                 var manufacturer = new Manufacturer();
-                DataTable dt = manufacturer.ReturnDatatableManufacturer();
-                grvManufacturer.DataSource = dt;
-                grvManufacturer.DataBind();
+                manufacturer.BindManufacturer(grvManufacturer);
+             
             }
             catch (MySqlException ex)
             {
@@ -93,6 +95,13 @@ namespace Toestellenbeheer.Manage
                 Session["SuccessInfo"] = "Successfully updated manufacturer " + txtManufacturerModifying.Text;
                 Response.Redirect("~/Success.aspx");
             }
+        }
+
+        protected void grvPreRender(object sender, EventArgs e)
+        {
+            var gridview = sender as GridView;
+            var Sort = new GridViewPreRender(gridview);
+            Sort.SetHeader();
         }
     }
 }

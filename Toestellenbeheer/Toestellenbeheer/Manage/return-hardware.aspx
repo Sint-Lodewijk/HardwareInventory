@@ -143,7 +143,7 @@
             </div>
         </div>
     </asp:Panel>
-    <asp:GridView ID="grvHardwarePoolAssigned" OnRowDeleting="grvHardwarePoolAssigned_RowDeleting" AutoGenerateColumns="false" OnRowDataBound="grvHardwarePoolAssigned_OnRowDataBound" runat="server" CssClass="table table-hover table-striped gridview" DataKeyNames="internalNr">
+    <asp:GridView ID="grvHardwarePoolAssigned" OnPreRender="grvPreRender" OnRowDeleting="grvHardwarePoolAssigned_RowDeleting" AutoGenerateColumns="false" OnRowDataBound="grvHardwarePoolAssigned_OnRowDataBound" runat="server" CssClass="table table-hover table-striped gridview" DataKeyNames="internalNr">
         <Columns>
             <asp:BoundField DataField="nameAD" HeaderText="User name" />
             <asp:BoundField DataField="type" HeaderText="Type" />
@@ -154,6 +154,11 @@
         </Columns>
         <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
     </asp:GridView>
+       <script type="text/javascript">
+        $(document).ready(function () {
+            $("#MainContent_grvHardwarePoolAssigned").tablesorter();
+        });
+    </script>
     <asp:Button ID="btnReturnHardware" OnClientClick="if (!confirm('Are you sure you want to return the assigned hardware? This will delete the corresponding record from the database!')) return false;" runat="server" Text="Return the selected hardware" CssClass="btn btn-primary" OnClick="btnReturnHardware_Click" />
     <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
 </asp:Content>

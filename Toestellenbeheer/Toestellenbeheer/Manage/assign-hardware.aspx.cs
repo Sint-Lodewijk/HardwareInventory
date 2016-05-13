@@ -30,9 +30,7 @@ namespace Toestellenbeheer.Manage
             try
             {
                 var unassigned = new Hardware();
-                DataTable dt = unassigned.ReturnUnassignedHardware();
-                grvHardwarePoolUnassigned.DataSource = dt;
-                grvHardwarePoolUnassigned.DataBind();
+                unassigned.BindUnassignedHardware(grvHardwarePoolUnassigned);
             }
             catch (MySqlException ex)
             {
@@ -46,6 +44,7 @@ namespace Toestellenbeheer.Manage
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvHardwarePoolUnassigned, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
+            
         }
         protected void grvPeopleAD_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -54,6 +53,7 @@ namespace Toestellenbeheer.Manage
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvPeopleAD, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
+            
         }
         protected void getUserFromAD()
         {
@@ -114,13 +114,13 @@ namespace Toestellenbeheer.Manage
         }
         protected void DownloadFile(object sender, EventArgs e)
         {
-                Session["FilePath"] = "UserUploads/Attachments/";
-                Session["FileName"] = (sender as LinkButton).CommandArgument;
-                lnkDownloadB.CommandArgument = Session["FileName"].ToString();
-                lnkDownloadB.Text = "Not downloading? Try again by clicking here.";
-                iframeDownload.Src = "~/Download.aspx";
-                var openDownloadModal = new JSUtility("modalDownload");
-                openDownloadModal.ModalShow(this);
+            Session["FilePath"] = "UserUploads/Attachments/";
+            Session["FileName"] = (sender as LinkButton).CommandArgument;
+            lnkDownloadB.CommandArgument = Session["FileName"].ToString();
+            lnkDownloadB.Text = "Not downloading? Try again by clicking here.";
+            iframeDownload.Src = "~/Download.aspx";
+            var openDownloadModal = new JSUtility("modalDownload");
+            openDownloadModal.ModalShow(this);
         }
         protected void lnkDownloadB_Click(object sender, EventArgs e)
         {
@@ -129,6 +129,13 @@ namespace Toestellenbeheer.Manage
             Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
             Response.WriteFile("../UserUploads/Attachments/" + Path.GetFileName(filePath));
             Response.End();
+        }
+
+        protected void GRVPreRender(object sender, EventArgs e)
+        {
+            var gridview = sender as GridView;
+            var Sort = new GridViewPreRender(gridview);
+            Sort.SetHeader();
         }
     }
 }

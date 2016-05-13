@@ -23,5 +23,12 @@ namespace Toestellenbeheer.Overview
             gv.PageIndex = e.NewPageIndex;
             gv.DataBind();
         }
+
+        protected void grvPreRender(object sender, EventArgs e)
+        {
+            var gridview = sender as GridView;
+            var Sort = new GridViewPreRender(gridview);
+            Sort.SetHeader();
+        }
     }
 }

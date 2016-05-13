@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="Hardware overview" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="hardware-overview.aspx.cs" EnableEventValidation="false" Inherits="Toestellenbeheer.hardware_overview" %>
 
 <asp:Content ID="hardwareOverview" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#MainContent_grvHardware").tablesorter();
+        });
+    </script>
     <asp:UpdatePanel runat="server" ID="udpHardware" UpdateMode="Always">
         <ContentTemplate>
             <asp:Panel ID="searchPanel" runat="server">
@@ -24,7 +29,7 @@
                     </div>
                 </div>
             </asp:Panel>
-            <asp:GridView ID="grvHardware" OnSelectedIndexChanged="details" data-toggle="modal" data-target="#HardwareDetailModal" OnRowDataBound="OnRowDataBound" OnRowDeleting="details" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" DataKeyNames="internalNr, serialNr" runat="server">
+            <asp:GridView ID="grvHardware" OnPreRender="grvHardware_PreRender" OnSelectedIndexChanged="details" data-toggle="modal" data-target="#HardwareDetailModal" OnRowDataBound="OnRowDataBound" OnRowDeleting="details" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" DataKeyNames="internalNr, serialNr" runat="server">
                 <Columns>
                     <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="Serial Nr" />
                     <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="Internal Nr" />
@@ -38,6 +43,7 @@
                 <SortedDescendingCellStyle BackColor="#E5E5E5" />
                 <SortedDescendingHeaderStyle BackColor="#242121" />
             </asp:GridView>
+
             <div class="form-group">
                 <asp:Label ID="lblGridTotalResult" CssClass="col-sm-12" runat="server"></asp:Label>
             </div>
@@ -194,7 +200,7 @@
                                             </Columns>
                                         </asp:GridView>
                                     </div>
-                                    
+
                                 </div>
                                 <!-- Controls -->
                                 <a class="left carousel-control" href="#carousel-details" role="button" data-slide="prev">

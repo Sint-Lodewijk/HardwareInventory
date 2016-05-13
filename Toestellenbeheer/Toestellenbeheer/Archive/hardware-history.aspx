@@ -165,7 +165,7 @@
             </div>
         </div>
     </asp:Panel>
-    <asp:GridView ID="grvHardware" EmptyDataText="There are no hardware present in the database!" OnRowDeleting="grvHardware_RowDeleting" AutoGenerateColumns="false" runat="server" CssClass="table table-hover table-striped gridview" OnRowDataBound="grvHardware_OnRowDataBound" OnSelectedIndexChanged="grvHardware_SelectedIndexChanged" DataKeyNames="internalNr">
+    <asp:GridView ID="grvHardware" OnPreRender="grvHardware_PreRender" EmptyDataText="There are no hardware present in the database!" OnRowDeleting="grvHardware_RowDeleting" AutoGenerateColumns="false" runat="server" CssClass="table table-hover table-striped gridview" OnRowDataBound="grvHardware_OnRowDataBound" OnSelectedIndexChanged="grvHardware_SelectedIndexChanged" DataKeyNames="internalNr">
         <Columns>
             <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
             <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />
@@ -175,6 +175,11 @@
             <asp:CommandField DeleteText="Details" ShowDeleteButton="True" />
         </Columns>
     </asp:GridView>
+      <script type="text/javascript">
+        $(document).ready(function () {
+            $("#MainContent_grvHardware").tablesorter();
+        });
+    </script>
     <asp:Panel ID="modalHardwarePeople" runat="server" CssClass="modal fade" TabIndex="-1" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">

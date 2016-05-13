@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="Modify hardware" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="modify-hardware.aspx.cs" Inherits="Toestellenbeheer.Overview.modify_hardware" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <style type="text/css">
+        td {
+            text-align: left !important;
+        }
+    </style>
     <asp:GridView ID="grvModifyHardware" AutoGenerateColumns="false" CssClass="table table-striped table-hover gridview" runat="server">
         <Columns>
             <asp:ImageField DataImageUrlField="pictureLocation" DataImageUrlFormatString="../UserUploads/Images/{0}" HeaderText="Preview Image" AlternateText="Hardware Image"

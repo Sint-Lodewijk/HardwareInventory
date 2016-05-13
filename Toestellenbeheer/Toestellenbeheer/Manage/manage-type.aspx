@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Manage type" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="manage-type.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_type" %>
+
 <asp:Content ID="ManageType" ContentPlaceHolderID="MainContent" runat="server">
     <div class="form-group">
         <div class="input-group">
@@ -9,12 +10,17 @@
             <asp:Label runat="server" ID="lblProblem" Text=""></asp:Label>
         </div>
     </div>
-    <asp:GridView ID="typeSelect" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="typeSelect_SelectedIndexChanged" runat="server" CssClass="table table-hover table-striped gridview text-center" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="type">
+    <asp:GridView ID="grvType" OnPreRender="grvPreRender" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="typeSelect_SelectedIndexChanged" runat="server" CssClass="table table-hover table-striped gridview text-center" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="type">
         <Columns>
             <asp:BoundField DataField="type" HeaderText="Type" ReadOnly="False" SortExpression="type" />
         </Columns>
         <SelectedRowStyle CssClass="success" />
     </asp:GridView>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#MainContent_grvType").tablesorter();
+        });
+    </script>
     <asp:Panel ID="ButtonPanel" runat="server" Visible="false">
         <asp:Button ID="btnEdit" OnClick="btnEdit_Click" CssClass="btn btn-primary" runat="server" Text="Modify" />
         <asp:Button ID="btnDelete" OnClick="btnDelete_Click" CssClass="btn btn-primary" runat="server" Text="Delete" />

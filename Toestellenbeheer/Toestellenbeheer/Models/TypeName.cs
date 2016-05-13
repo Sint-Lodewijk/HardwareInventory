@@ -5,6 +5,8 @@ using System.Web;
 using System.Data;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using System.Web.UI.WebControls;
+
 namespace Toestellenbeheer.Models
 {
     public class TypeName
@@ -30,6 +32,17 @@ namespace Toestellenbeheer.Models
             var dt = new DataTable();
             dt.Load(typeReader);
             return dt;
+        }
+        public void BindGrvType(GridView gridview)
+        {
+            var dt = ReturnDatatableType();
+            gridview.DataSource = dt;
+            gridview.DataBind();
+            if (gridview.Rows.Count != 0)
+            {
+                gridview.UseAccessibleHeader = true;
+                gridview.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
         public void AddTypeToDatabase()
         {

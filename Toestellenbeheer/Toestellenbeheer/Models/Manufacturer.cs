@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Configuration;
+using System.Web.UI.WebControls;
+
 namespace Toestellenbeheer.Models
 {
     public class Manufacturer
@@ -22,6 +24,7 @@ namespace Toestellenbeheer.Models
         /// Returns the datatable manufacturer.
         /// </summary>
         /// <returns>DataTable.</returns>
+        /// 
         public DataTable ReturnDatatableManufacturer()
         {
             mysqlConnectie.Open();
@@ -30,6 +33,17 @@ namespace Toestellenbeheer.Models
             var dt = new DataTable();
             dt.Load(manufacturerReader);
             return dt;
+        }
+        public void BindManufacturer(GridView gridview)
+        {
+            var dt = ReturnDatatableManufacturer();
+            gridview.DataSource = dt;
+            gridview.DataBind();
+            if (gridview.Rows.Count != 0)
+            {
+                gridview.UseAccessibleHeader = true;
+                gridview.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
         public void AddManufacturerToDatabase()
         {

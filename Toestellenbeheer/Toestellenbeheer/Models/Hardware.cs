@@ -3,6 +3,8 @@ using System;
 using System.Configuration;
 using System.Xml;
 using System.Data;
+using System.Web.UI.WebControls;
+
 namespace Toestellenbeheer.Models
 {
     public class Hardware
@@ -155,7 +157,7 @@ namespace Toestellenbeheer.Models
         /// Returns the datatable of all hardware in the database.
         /// </summary>
         /// <returns>DataTable.</returns>
-        public DataTable ReturnDatatableAllHardware()
+        public void BindGrvHardware(System.Web.UI.WebControls.GridView gridview)
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             mysqlConnectie.Open();
@@ -164,7 +166,8 @@ namespace Toestellenbeheer.Models
             var dt = new DataTable();
             dt.Load(dataReader);
             mysqlConnectie.Close();
-            return dt;
+            gridview.DataSource = dt;
+            gridview.DataBind();
         }
         /// <summary>
         /// Archives the assigned hardware.
@@ -222,7 +225,7 @@ namespace Toestellenbeheer.Models
         /// </summary>
         /// <param name="UserName">Name of the user.</param>
         /// <returns>DataTable. Hardware</returns>
-        public DataTable ReturnUserHardware(string UserName)
+        public void BindUserHardware(string UserName, GridView gridview)
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             mysqlConnectie.Open();
@@ -230,9 +233,9 @@ namespace Toestellenbeheer.Models
             getMyHardware.Parameters.AddWithValue("@nameAD", UserName);
             MySqlDataReader rdrGetMyHardware = getMyHardware.ExecuteReader();
             DataTable dt = new DataTable();
-            // MySqlDataAdapter adpa = new MySqlDataAdapter(rdrGetMyHardware);
             dt.Load(rdrGetMyHardware);
-            return dt;
+            gridview.DataSource = dt;
+            gridview.DataBind();
         }
         /// <summary>
         /// Returns the user full hardware.
@@ -319,7 +322,7 @@ namespace Toestellenbeheer.Models
         /// <param name="searchType">Type of the search.</param>
         /// <param name="searchValue">The search value.</param>
         /// <returns>System.Data.DataTable. searched hardware</returns>
-        public DataTable ReturnSearchDatatable(string searchType, string searchValue)
+        public void BindGrvSearch(string searchType, string searchValue, GridView gridview)
         {
             try
             {
@@ -330,7 +333,8 @@ namespace Toestellenbeheer.Models
                 DataTable dt = new DataTable();
                 dt.Load(searchReader);
                 mysqlConnectie.Close();
-                return dt;
+                gridview.DataSource = dt;
+                gridview.DataBind();
             }
             catch (MySqlException ex)
             {
@@ -342,7 +346,7 @@ namespace Toestellenbeheer.Models
         /// Returns the datatable of unassigned hardware.
         /// </summary>
         /// <returns>DataTable.</returns>
-        public DataTable ReturnUnassignedHardware()
+        public void BindUnassignedHardware(GridView gridview)
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             mysqlConnectie.Open();
@@ -351,7 +355,9 @@ namespace Toestellenbeheer.Models
             DataTable dt = new DataTable();
             dt.Load(unassignsReader);
             mysqlConnectie.Close();
-            return dt;
+            gridview.DataSource = dt;
+            gridview.DataBind();
+
         }
         /// <summary>
         /// Updates the hardware information in the database.
@@ -373,7 +379,7 @@ namespace Toestellenbeheer.Models
         /// Return the datatable of assigned hardware.
         /// </summary>
         /// <returns>DataTable assigned hardware.</returns>
-        public DataTable ReturnAssignedHardware()
+        public void BindAssignedHardware(GridView gridview)
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             mysqlConnectie.Open();
@@ -382,7 +388,8 @@ namespace Toestellenbeheer.Models
             var AssignReader = cmdAssignedHardware.ExecuteReader();
             dt.Load(AssignReader);
             mysqlConnectie.Close();
-            return dt;
+            gridview.DataSource = dt;
+            gridview.DataBind();
         }
         public void DeleteHardware()
         {
@@ -396,7 +403,7 @@ namespace Toestellenbeheer.Models
         /// Hardwares the history.
         /// </summary>
         /// <returns>DataTable.</returns>
-        public DataTable HardwareHistory()
+        public void BindHardwareHistory(GridView gridview)
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             mysqlConnectie.Open();
@@ -404,7 +411,9 @@ namespace Toestellenbeheer.Models
             var AssignReader = getPeopleLinked.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(AssignReader);
-            return dt;
+            gridview.DataSource = dt;
+            gridview.DataBind();
+     
         }
     }
 

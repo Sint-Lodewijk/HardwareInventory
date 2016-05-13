@@ -16,23 +16,23 @@ namespace Toestellenbeheer.Manage
             {
                 bindTypeToGrid();
             }
+            
         }
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(typeSelect, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvType, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
-        }
+                    }
         protected void bindTypeToGrid()
         {
             try
             {
                 var type = new TypeName();
-                DataTable dt = type.ReturnDatatableType();
-                typeSelect.DataSource = dt;
-                typeSelect.DataBind();
+                type.BindGrvType(grvType);
+                
             }
             catch (MySqlException ex)
             {
@@ -64,7 +64,7 @@ namespace Toestellenbeheer.Manage
         }
         protected void typeSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ViewState["type"] = typeSelect.SelectedDataKey["type"].ToString();
+            ViewState["type"] = grvType.SelectedDataKey["type"].ToString();
             ButtonPanel.Visible = true;
         }
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -90,6 +90,13 @@ namespace Toestellenbeheer.Manage
                 Session["SuccessInfo"] = "Successfully updated type " + txtType.Text;
                 Response.Redirect("~/Success.aspx");
             }
+        }
+
+        protected void grvPreRender(object sender, EventArgs e)
+        {
+            var gridview = sender as GridView;
+            var Sort = new GridViewPreRender(gridview);
+            Sort.SetHeader();
         }
     }
 }

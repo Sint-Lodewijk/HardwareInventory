@@ -402,6 +402,7 @@
     <Compile Include="Manage\manage-requests.aspx.designer.cs">
       <DependentUpon>manage-requests.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\GridViewPreRender.cs" />
     <Compile Include="Models\HardwareDetails.cs" />
     <Compile Include="Models\JSUtility.cs" />
     <Compile Include="Models\License.cs" />

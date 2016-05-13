@@ -165,7 +165,7 @@
             </div>
         </div>
     </asp:Panel>
-    <asp:GridView ID="grvHardwarePoolUnassigned" OnRowDeleting="grvHardwarePoolUnassigned_RowDeleting" OnSelectedIndexChanged="grvHardwarePoolUnassigned_SelectedIndexChanged" DataKeyNames="internalNr, serialNr" OnRowDataBound="grvHardwarePoolUnassigned_OnRowDataBound" AutoGenerateColumns="False" runat="server" CssClass="table table-hover table-striped gridview">
+    <asp:GridView ID="grvHardwarePoolUnassigned" OnPreRender="GRVPreRender" OnRowDeleting="grvHardwarePoolUnassigned_RowDeleting" OnSelectedIndexChanged="grvHardwarePoolUnassigned_SelectedIndexChanged" DataKeyNames="internalNr, serialNr" OnRowDataBound="grvHardwarePoolUnassigned_OnRowDataBound" AutoGenerateColumns="False" runat="server" CssClass="table table-hover table-striped gridview">
         <Columns>
             <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
             <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />
@@ -176,6 +176,12 @@
         </Columns>
         <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
     </asp:GridView>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#MainContent_grvHardwarePoolUnassigned").tablesorter();
+            $("#MainContent_grvPeopleAD").tablesorter();
+        });
+    </script>
     <button type="button" id="btnOpenPeoplePopUp" visible="false" runat="server" class="btn btn-primary" data-toggle="modal" data-target="#modalPeople">
         Assign to people
     </button>
@@ -190,7 +196,7 @@
                     <asp:Panel ID="PeoplePanel" runat="server">
                         <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
-                                <asp:GridView ID="grvPeopleAD" runat="server" AllowPaging="true" OnPageIndexChanging="gridView_PageIndexChanging" OnRowDataBound="grvPeopleAD_OnRowDataBound" CssClass="table table-hover table-striped gridview">
+                                <asp:GridView OnPreRender="GRVPreRender" ID="grvPeopleAD" runat="server" AllowPaging="true" OnPageIndexChanging="gridView_PageIndexChanging" OnRowDataBound="grvPeopleAD_OnRowDataBound" CssClass="table table-hover table-striped gridview">
                                     <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                                 </asp:GridView>
                                 <asp:Button ID="btnAssignHardwarePeople" runat="server" Text="Assign" CssClass="btn btn-primary margin-top-5 col-centered" OnClick="assignHardwarePeople_Click" />

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Add a manufacturer" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="manage-manufacturer.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_manufacturer" %>
+
 <asp:Content ID="ManageManufacturer" ContentPlaceHolderID="MainContent" runat="server">
     <div class="form-group">
         <div class="input-group">
@@ -10,17 +11,18 @@
         </div>
         <asp:Label runat="server" ID="lblProblem" Text=""></asp:Label>
     </div>
-    <asp:GridView ID="grvManufacturer" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="grvManufacturer_SelectedIndexChanged" runat="server" CssClass="table table-hover table-striped gridview text-center" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="manufacturerName">
+    <asp:GridView ID="grvManufacturer" OnPreRender="grvPreRender" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="grvManufacturer_SelectedIndexChanged" runat="server" CssClass="table table-hover table-striped gridview text-center" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="manufacturerName">
         <Columns>
             <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer" ReadOnly="False" SortExpression="manufacturerName" />
         </Columns>
         <SelectedRowStyle CssClass="success" />
     </asp:GridView>
-     <script>
+    <script type="text/javascript">
         $(document).ready(function () {
             $("#MainContent_grvManufacturer").tablesorter();
         });
     </script>
+  
     <asp:Panel ID="ButtonPanel" runat="server" Visible="false">
         <asp:Button ID="btnEdit" OnClick="btnEdit_Click" CssClass="btn btn-primary" runat="server" Text="Modify" />
         <asp:Button ID="btnDelete" OnClick="btnDelete_Click" CssClass="btn btn-primary" runat="server" Text="Delete" />

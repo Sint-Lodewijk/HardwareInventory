@@ -75,14 +75,12 @@ namespace Toestellenbeheer.Manage
                 String strSearchText = txtSearch.Text.Trim();
                 // string bindToGridCmd = "SELECT * FROM hardware WHERE @searchItem LIKE '%@searchText%'";
                 var searchedHardware = new Hardware();
-                DataTable dt = searchedHardware.ReturnSearchDatatable(strSearchItem, strSearchText);
-                licenseOverviewGridSearch.DataSource = dt;
-                licenseOverviewGridSearch.DataBind();
+                searchedHardware.BindGrvSearch(strSearchItem, strSearchText, licenseOverviewGridSearch);
                 int intTotalResultReturned = licenseOverviewGridSearch.Rows.Count;
                 if (intTotalResultReturned == 0)
                 {
                     lblSearchResult.Text = "No entry found for search word: " + strSearchText +
-                      " on " + drpSearchItem.SelectedItem.Text +  ", please use a different keyword or switch between the search types.";
+                      " on " + drpSearchItem.SelectedItem.Text + ", please use a different keyword or switch between the search types.";
                 }
                 else
                 {

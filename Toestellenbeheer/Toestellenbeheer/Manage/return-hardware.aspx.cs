@@ -28,8 +28,8 @@ namespace Toestellenbeheer.Manage
             try
             {
                 var Assigned = new Hardware();
-                grvHardwarePoolAssigned.DataSource = Assigned.ReturnAssignedHardware();
-                grvHardwarePoolAssigned.DataBind();
+                Assigned.BindAssignedHardware(grvHardwarePoolAssigned);
+
           }
             catch (MySqlException ex)
             {
@@ -43,7 +43,7 @@ namespace Toestellenbeheer.Manage
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvHardwarePoolAssigned, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
-        }
+           }
         protected void btnReturnHardware_Click(object sender, EventArgs e)
         {
             String strInternalNr = grvHardwarePoolAssigned.SelectedDataKey.Value.ToString();
@@ -96,6 +96,13 @@ namespace Toestellenbeheer.Manage
             string strInternalNr = grvHardwarePoolAssigned.DataKeys[e.RowIndex]["internalNr"].ToString();
             var ShowDetail = new JSUtility(modalHardware.ClientID);
             ShowDetail.DetailsPopUp(strInternalNr, grvDetail, imgHardware, udpDetails, modalTitle);
+        }
+
+        protected void grvPreRender(object sender, EventArgs e)
+        {
+            var gridview = sender as GridView;
+            var Sort = new GridViewPreRender(gridview);
+            Sort.SetHeader();
         }
     }
 }

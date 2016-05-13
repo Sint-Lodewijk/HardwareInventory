@@ -52,6 +52,8 @@ namespace Toestellenbeheer.Archive
                 DataTable dt = get.ReturnDataTable();
                 grvPeopleAD.DataSource = dt;
                 grvPeopleAD.DataBind();
+                grvPeopleAD.UseAccessibleHeader = true;
+                grvPeopleAD.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
             catch (Exception ex)
             {
@@ -70,6 +72,7 @@ namespace Toestellenbeheer.Archive
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvPeopleAD, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
+          
         }
         protected void grvPeopleAD_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
@@ -78,6 +81,13 @@ namespace Toestellenbeheer.Archive
         {
             udpDetails.Update();
             ScriptManager.RegisterStartupScript(udpDetails, udpDetails.GetType(), "show", "$(function () { $('#" + modalHardware.ClientID + "').modal('show'); });", true);
+        }
+
+        protected void grvPreRender(object sender, EventArgs e)
+        {
+            var gridview = sender as GridView;
+            var Sort = new GridViewPreRender(gridview);
+            Sort.SetHeader();
         }
     }
 }

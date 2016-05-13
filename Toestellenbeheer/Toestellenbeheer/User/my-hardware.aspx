@@ -1,13 +1,18 @@
 ﻿<%@ Page Title="My hardware" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="my-hardware.aspx.cs" Inherits="Toestellenbeheer.Users.my_hardware" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:GridView ID="grvMyHardware" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="grvMyHardware_SelectedIndexChanged" runat="server" CssClass="gridview table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="serialNr,internalNr">
+    <asp:GridView ID="grvMyHardware" OnPreRender="grvPreRender" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="grvMyHardware_SelectedIndexChanged" runat="server" CssClass="gridview table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="serialNr,internalNr">
         <Columns>
-            <asp:BoundField DataField="serialNr" HeaderText="serialNr" ReadOnly="True" SortExpression="serialNr" />
-            <asp:BoundField DataField="internalNr" HeaderText="internalNr" SortExpression="internalNr" ReadOnly="True" />
-            <asp:BoundField DataField="manufacturerName" HeaderText="manufacturerName" SortExpression="manufacturerName" />
-            <asp:BoundField DataField="type" HeaderText="type" SortExpression="type" />
+            <asp:BoundField DataField="serialNr" HeaderText="Serial Nr" ReadOnly="True" SortExpression="serialNr" />
+            <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" SortExpression="internalNr" ReadOnly="True" />
+            <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer" SortExpression="manufacturerName" />
+            <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
         </Columns>
     </asp:GridView>
+      <script type="text/javascript">
+        $(document).ready(function () {
+            $("#MainContent_grvMyHardware").tablesorter();
+        });
+    </script>
     <!-- Modal -->
     <div class="modal fade" id="hardwareImageModal" tabindex="-1" role="dialog" aria-labelledby="hardwareImage">
         <div class="modal-dialog" role="document">

@@ -26,7 +26,7 @@
         <div class="col-sm-10">
             <asp:DropDownList ID="drpTypeList" OnSelectedIndexChanged="typeList_SelectedIndexChanged" CssClass="form-control" runat="server" AutoPostBack="True" DataTextField="type" DataValueField="type" />
         </div>
-        <asp:GridView runat="server" EmptyDataText="No availible hardware with this type." ID="grvAvailableHardwareType" AutoGenerateColumns="False" DataKeyNames="serialNr,internalNr" OnRowDataBound="grvAvailibleHardwareType_RowDataBound" OnSelectedIndexChanged="grvAvailibleHardwareType_SelectedIndexChanged" CssClass="gridview table table-striped table-hover" OnRowDeleting="grvAvailableHardwareType_RowDeleting">
+        <asp:GridView runat="server" OnPreRender="grvAvailableHardwareType_PreRender" EmptyDataText="No availible hardware with this type." ID="grvAvailableHardwareType" AutoGenerateColumns="False" DataKeyNames="serialNr,internalNr" OnRowDataBound="grvAvailibleHardwareType_RowDataBound" OnSelectedIndexChanged="grvAvailibleHardwareType_SelectedIndexChanged" CssClass="gridview table table-striped table-hover" OnRowDeleting="grvAvailableHardwareType_RowDeleting">
             <Columns>
                 <asp:BoundField DataField="serialNr" HeaderText="Serial Nr" ReadOnly="True" SortExpression="serialNr" />
                 <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />
@@ -36,6 +36,11 @@
             </Columns>
             <SelectedRowStyle BackColor="#cc6600" />
         </asp:GridView>
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $("#MainContent_grvAvailableHardwareType").tablesorter();
+        });
+    </script>
         <asp:Label ID="lblProblem" CssClass="control-label" runat="server"></asp:Label>
     </div>
     <button type="button" visible="false" id="btnNextStep" runat="server" class="btn btn-primary" data-toggle="modal" data-target="#modalRequest">

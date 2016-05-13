@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="People history" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="people-history.aspx.cs" Inherits="Toestellenbeheer.Archive.people_history" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:GridView ID="grvPeopleAD" runat="server" OnPageIndexChanging="gridView_PageIndexChanging" CssClass="table table-hover table-striped gridview" OnRowDataBound="grvPeopleAD_OnRowDataBound" OnSelectedIndexChanged="grvPeopleAD_SelectedIndexChanged">
         <SelectedRowStyle BackColor="Azure" />
@@ -14,7 +15,7 @@
                         </div>
                         <div class="modal-body modal-margin">
                             <asp:Label ID="lblResult" CssClass="col-sm-12" runat="server"></asp:Label>
-                            <asp:GridView ID="grvHardwareOfPeople" runat="server" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview">
+                            <asp:GridView ID="grvHardwareOfPeople" OnPreRender="grvPreRender" runat="server" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview">
                                 <Columns>
                                     <asp:BoundField DataField="serialNr" HeaderText="Serial Nr" />
                                     <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" />
@@ -22,6 +23,11 @@
                                     <asp:BoundField DataField="returnedDate" HeaderText="Returned Date" NullDisplayText="Not returned yet." />
                                 </Columns>
                             </asp:GridView>
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $("#MainContent_grvPeopleAD").tablesorter();
+                                });
+                            </script>
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>

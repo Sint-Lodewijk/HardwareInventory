@@ -48,5 +48,9 @@ namespace Toestellenbeheer.Models
         {
             public const String SelectedRowColorHex = "red";
         }
+        public static class MySql
+        {
+            public const string SHA2EncryptionKey = "HardwareInventory";
+        }
     }
 }

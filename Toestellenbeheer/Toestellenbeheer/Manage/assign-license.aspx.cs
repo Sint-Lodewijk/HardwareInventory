@@ -28,7 +28,7 @@ namespace Toestellenbeheer.Manage
         protected void bindLicenseGRVLicense()
         {
             try
-            {
+            {/*
                 MySqlCommand bindToGrid = new MySqlCommand("SELECT  licenseName 'License name', licenseCode 'License code' FROM license", mysqlConnectie);
                 mysqlConnectie.Open();
                 MySqlDataAdapter adpa = new MySqlDataAdapter(bindToGrid);
@@ -38,7 +38,7 @@ namespace Toestellenbeheer.Manage
                 adpa.Fill(ds);
                 grvLicense.DataSource = ds;
                 grvLicense.DataBind();
-                mysqlConnectie.Close();
+                mysqlConnectie.Close();*/
             }
             catch (MySqlException ex)
             {
@@ -56,7 +56,7 @@ namespace Toestellenbeheer.Manage
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvLicense, "Select$" + e.Row.RowIndex);
+               // e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvLicense, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
         }
@@ -69,7 +69,7 @@ namespace Toestellenbeheer.Manage
         protected void btnAPeople_Click(object sender, EventArgs e)
         {
             PeoplePanel.Visible = true;
-            PeoplePopUP.Show();
+  ;
         }
         protected void btnAHardware_Click(object sender, EventArgs e)
         {

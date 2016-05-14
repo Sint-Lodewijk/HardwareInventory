@@ -123,11 +123,11 @@
     </asp:Panel>
     <asp:GridView ID="grvRequests" OnPreRender="grvPreRender" EmptyDataText="There are no open requests!" OnRowDeleting="grvRequests_RowDeleting" CssClass="gridview table table-hover table-striped" OnSelectedIndexChanged="grvRequests_SelectedIndexChanged" OnRowDataBound="grvRequests_RowDataBound" runat="server" AutoGenerateColumns="False" DataKeyNames="requestID,nameAD,internalNr,serialNr" DataSourceID="sqlRequest">
         <Columns>
-            <asp:BoundField DataField="requestID" HeaderText="requestID" InsertVisible="False" ReadOnly="True" SortExpression="requestID" />
-            <asp:BoundField DataField="internalNr" HeaderText="internalNr" SortExpression="internalNr" />
-            <asp:BoundField DataField="type" HeaderText="type" SortExpression="type" />
-            <asp:BoundField DataField="nameAD" HeaderText="nameAD" SortExpression="nameAD" />
-            <asp:BoundField DataField="requestDate" HeaderText="requestDate" SortExpression="requestDate" DataFormatString="{0:yyyy-MM-dd}" />
+            <asp:BoundField DataField="requestID" HeaderText="Request ID" InsertVisible="False" ReadOnly="True" SortExpression="requestID" />
+            <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" SortExpression="internalNr" />
+            <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
+            <asp:BoundField DataField="nameAD" HeaderText="AD Name" SortExpression="nameAD" />
+            <asp:BoundField DataField="requestDate" HeaderText="Request Date" SortExpression="requestDate" DataFormatString="{0:yyyy-MM-dd}" />
             <asp:CommandField DeleteText="Details" ShowDeleteButton="True" />
         </Columns>
     </asp:GridView>

@@ -181,7 +181,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\DBConnect.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Add\add-person.aspx" />
     <Content Include="Archive\Default.aspx" />
@@ -319,13 +318,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\DBConnect.aspx.cs">
-      <DependentUpon>DBConnect.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\DBConnect.aspx.designer.cs">
-      <DependentUpon>DBConnect.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -416,6 +408,7 @@
     <Compile Include="Models\License.cs" />
     <Compile Include="Models\LicenseHandler.cs" />
     <Compile Include="Models\Manufacturer.cs" />
+    <Compile Include="Models\MySqlAuthentication.cs" />
     <Compile Include="Models\MySqlExceptionHandler.cs" />
     <Compile Include="Models\MySqlUtility.cs" />
     <Compile Include="Models\Request.cs" />

@@ -7,7 +7,7 @@
             <div class="col-md-8">
                 <section id="loginForm">
                     <div class="form-horizontal">
-                        <h4>Please use your Active Directory Account to log into this application.</h4>
+                        <h4 id="TitleType" runat="server">Please use your Active Directory Account to log into this application.</h4>
                         <hr />
                         <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                             <p class="text-danger">
@@ -15,11 +15,11 @@
                             </p>
                         </asp:PlaceHolder>
                         <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">User AD</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">User Name</asp:Label>
                             <div class="col-md-10">
                                 <asp:TextBox runat="server" ID="UserName" CssClass="form-control" />
                                 <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
-                                    CssClass="text-danger" ErrorMessage="The AD username is required." />
+                                    CssClass="text-danger" ErrorMessage="The username is required." />
                             </div>
                         </div>
                         <div class="form-group">
@@ -40,7 +40,7 @@
                         <asp:Label ID="errorLabel" runat="server" Text=""></asp:Label>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <asp:Button title="Login using the AD credentials" runat="server" OnClick="Login_Click" Text="Log in" data-toggle="popover" data-placement="top" data-content="Remember me next time." CssClass="btn btn-primary" />
+                                <asp:Button title="Login using the AD credentials" ID="btnLogin" runat="server" OnClick="Login_Click" Text="Log in" data-toggle="popover" data-placement="top" data-content="Remember me next time." CssClass="btn btn-primary" />
                             </div>
                         </div>
                     </div>
@@ -52,14 +52,14 @@
                     </h4>
                     <hr />
                     <p>
-                        If you do not have a AD account of this domain, please contact your domainadministrator to create a account.
+                        If you do not have an account of this domain, please contact your domainadministrator in order to create a account.
                     </p>
                 </div>
                 <div class="alert alert-db alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <strong>Having another credential?</strong>
                     <br />
-                    <a href="~/DBConnect.aspx" runat="server">DB auth</a>
+                    <asp:LinkButton ID="lnkAuthType" OnClick="DBAUTH" runat="server" Text="DB Authentication" CausesValidation="false"></asp:LinkButton>
                 </div>
             </div>
         </div>

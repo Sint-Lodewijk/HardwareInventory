@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Log In" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Toestellenbeheer.Account.Login" %>
+
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div class="container body-content">
         <div class="row">
@@ -39,7 +40,7 @@
                         <asp:Label ID="errorLabel" runat="server" Text=""></asp:Label>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <asp:Button  title="Login using the AD credentials" runat="server" OnClick="Login_Click" Text="Log in"  data-toggle="popover" data-placement="top" data-content="Remember me next time." CssClass="btn btn-primary" />
+                                <asp:Button title="Login using the AD credentials" runat="server" OnClick="Login_Click" Text="Log in" data-toggle="popover" data-placement="top" data-content="Remember me next time." CssClass="btn btn-primary" />
                             </div>
                         </div>
                     </div>
@@ -54,8 +55,15 @@
                         If you do not have a AD account of this domain, please contact your domainadministrator to create a account.
                     </p>
                 </div>
+                <div class="alert alert-db alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Having another credential?</strong>
+                    <br />
+                    <a href="~/DBConnect.aspx" runat="server">DB auth</a>
+                </div>
             </div>
         </div>
+
         <div class="row">
             <div class="alert alert-warning" data-dismiss="alert">
                 <strong>Default AD credential: Only for test purpose </strong>

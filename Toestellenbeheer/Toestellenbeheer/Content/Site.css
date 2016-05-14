@@ -317,3 +317,7 @@ td {
 .modal td {
     text-align: left !important;
 }
+.alert-db {
+    background-color: #f6f6f6;
+    border: none;
+}

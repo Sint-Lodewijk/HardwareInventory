@@ -4,7 +4,7 @@
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Jianing\\Documents\\toestellenbeheer\\Toestellenbeheer\\Toestellenbeheer\\obj\\Release\\Package\\PackageTmp$" />
     <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Jianing\\Documents\\toestellenbeheer\\Toestellenbeheer\\Toestellenbeheer\\obj\\Release\\Package\\PackageTmp$" />
   </parameter>
-  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Server=localhost;Port=3306;Database=HardwareInventory;Uid=toestellenbeheer;Pwd=toestellenbeheer" tags="">
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Server=hardware-inventory.c6co0t2aiynq.us-west-1.rds.amazonaws.com;Port=3306;Database=HardwareInventory;Uid=hardware;Pwd=HardwareAdmin520" tags="">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\Jianing\\Documents\\toestellenbeheer\\Toestellenbeheer\\Toestellenbeheer\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
   </parameter>
   <parameter name="DefaultConnection1-Web.config Connection String" description="" value="Server=localhost;Port=3307;Database=HardwareInventory;Uid=root;Pwd=usbw" tags="">
@@ -12,6 +12,9 @@
   </parameter>
   <parameter name="DefaultConnection2-Web.config Connection String" description="" value="Server=6ib.eu;Port=3306;Database=Toestellenbeheer;Uid=toestellenbeheer;Pwd=JIANINg****520" tags="">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\Jianing\\Documents\\toestellenbeheer\\Toestellenbeheer\\Toestellenbeheer\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection2']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection3-Web.config Connection String" description="" value="Server=localhost;Port=3306;Database=HardwareInventory;Uid=toestellenbeheer;Pwd=toestellenbeheer" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Jianing\\Documents\\toestellenbeheer\\Toestellenbeheer\\Toestellenbeheer\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection3']/@connectionString" />
   </parameter>
   <parameter name="Toestellenbeheer.Models.ApplicationDbContext+DemoContext-Web.config Connection String" description="" value="Toestellenbeheer.Models.ApplicationDbContext+DemoContext_ConnectionString" tags="">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\Jianing\\Documents\\toestellenbeheer\\Toestellenbeheer\\Toestellenbeheer\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Toestellenbeheer.Models.ApplicationDbContext+DemoContext']/@connectionString" />

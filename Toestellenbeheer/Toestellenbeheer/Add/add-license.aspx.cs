@@ -18,9 +18,8 @@ namespace Toestellenbeheer.Manage
         {
             if (!IsPostBack)
             {
+                getUserFromAD(licenseOverviewGridPeople);
                 btnAssignToSelectedHardwareSearch.Visible = false;
-                //hardwarePanel.Visible = false;
-                //peoplePanel.Visible = false;
                 String strTimeStamp = DateTime.Now.ToString("yyyyMMddHHmmss");
                 if (ViewState["timeStampAddedLicense"] == null)
                 {
@@ -162,7 +161,8 @@ namespace Toestellenbeheer.Manage
         //Expand or hide hardware grid + change the text of it
         protected void hideShowHardware_Click(object sender, EventArgs e)
         {
-            hardwarePanel.Visible = true;
+            var modalHw = new JSUtility("modalHardware");
+            modalHw.ModalShowUpdate(udpHardware);
         }
         protected void SearchBound(object sender, GridViewRowEventArgs e)
         {
@@ -188,13 +188,7 @@ namespace Toestellenbeheer.Manage
                 e.Row.ToolTip = "Click to select this row.";
             }
         }
-        //Expand or hide people grid + change the text of it
-        protected void hideShowPeople_Click(object sender, EventArgs e)
-        {
-            peoplePanel.Visible = true;
-            getUserFromAD(licenseOverviewGridPeople);
-            this.PeoplePopUP.Show();
-        }
+
         //Displays the hardwarePanel when click
         protected void displayHardwarePanel(object sender, GridViewSortEventArgs e)
         {
@@ -289,6 +283,13 @@ namespace Toestellenbeheer.Manage
         {
             licenseOverviewGridPeople.PageIndex = e.NewPageIndex;
             getUserFromAD(licenseOverviewGridPeople);
+        }
+
+        protected void grvPreRender(object sender, EventArgs e)
+        {
+            var gridview = sender as GridView;
+            var Sort = new GridViewPreRender(gridview);
+            Sort.SetHeader();
         }
     }
 }

@@ -103,33 +103,6 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.Label TestlocationAtt;
         
         /// <summary>
-        /// hideShowHardware control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button hideShowHardware;
-        
-        /// <summary>
-        /// targets control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button targets;
-        
-        /// <summary>
-        /// HardwarePanelPopUP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender HardwarePanelPopUP;
-        
-        /// <summary>
         /// hardwarePanel control.
         /// </summary>
         /// <remarks>
@@ -137,6 +110,15 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel hardwarePanel;
+        
+        /// <summary>
+        /// udpHardware control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel udpHardware;
         
         /// <summary>
         /// lblSearch control.
@@ -247,33 +229,6 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.Label lblSearchResult;
         
         /// <summary>
-        /// hideShowPeople control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button hideShowPeople;
-        
-        /// <summary>
-        /// target control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button target;
-        
-        /// <summary>
-        /// PeoplePopUP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender PeoplePopUP;
-        
-        /// <summary>
         /// peoplePanel control.
         /// </summary>
         /// <remarks>
@@ -281,6 +236,15 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel peoplePanel;
+        
+        /// <summary>
+        /// udpPeople control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel udpPeople;
         
         /// <summary>
         /// licenseOverviewGridPeople control.
@@ -301,13 +265,13 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.Button btnAssignLicenseToPeople;
         
         /// <summary>
-        /// btnClosePeople control.
+        /// hideShowHardware control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClosePeople;
+        protected global::System.Web.UI.WebControls.Button hideShowHardware;
         
         /// <summary>
         /// btnAddLicense control.

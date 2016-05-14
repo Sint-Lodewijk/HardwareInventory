@@ -321,3 +321,13 @@ td {
     background-color: #f6f6f6;
     border: none;
 }
+.control-label {
+    text-align: right;
+}
+.btn-group-wrap{
+    text-align: center;
+}
+.input-upload-adjust {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}

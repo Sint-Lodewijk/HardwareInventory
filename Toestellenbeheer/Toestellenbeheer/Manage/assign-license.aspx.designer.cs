@@ -6,8 +6,12 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 namespace Toestellenbeheer.Manage {
+    
+    
     public partial class assign_license {
+        
         /// <summary>
         /// grvLicense control.
         /// </summary>
@@ -16,6 +20,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvLicense;
+        
         /// <summary>
         /// ShowPanel control.
         /// </summary>
@@ -24,6 +29,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel ShowPanel;
+        
         /// <summary>
         /// btnAPeople control.
         /// </summary>
@@ -32,6 +38,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAPeople;
+        
         /// <summary>
         /// btnAHardware control.
         /// </summary>
@@ -40,14 +47,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAHardware;
-        /// <summary>
-        /// PeoplePopUP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender PeoplePopUP;
+        
         /// <summary>
         /// PeoplePanel control.
         /// </summary>
@@ -56,6 +56,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel PeoplePanel;
+        
         /// <summary>
         /// grvLicenseUnassignedPeople control.
         /// </summary>
@@ -64,6 +65,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvLicenseUnassignedPeople;
+        
         /// <summary>
         /// grvLicenseUnassignedHardware control.
         /// </summary>
@@ -72,6 +74,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvLicenseUnassignedHardware;
+        
         /// <summary>
         /// lblProblem control.
         /// </summary>

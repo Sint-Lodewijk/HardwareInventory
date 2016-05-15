@@ -26,7 +26,7 @@ namespace Toestellenbeheer
                     if (grvHardware.Rows.Count == 0)
                     {
                         var ShowSuccessAlert = new JSUtility();
-                        ShowSuccessAlert.ShowAlert(this, "<strong>No entry found</strong> , please consider to <a href=\"" + ResolveUrl("~\\Add\add-hardware>") +"\"> add a hardware </a>.", "alert-warning");
+                        ShowSuccessAlert.ShowAlert(this, "<strong>No entry found</strong> , please consider to <a href=\"" + ResolveUrl("~/Add/add-hardware") +"\"> add a hardware </a>.", "alert-warning");
                     }
                 }
                 catch (MySqlException ex)
@@ -156,6 +156,9 @@ namespace Toestellenbeheer
             var RemoveHardware = new Hardware(grvHardware.SelectedDataKey["internalNr"].ToString(), grvHardware.SelectedDataKey["serialNr"].ToString());
             RemoveHardware.DeleteHardware();
             Response.Redirect(Request.RawUrl);
+            var ShowSuccessAlert = new JSUtility();
+            ShowSuccessAlert.ShowAlert(this, "<strong>Success!</strong> The hardware is removed!", "alert-success");
+
         }
 
         protected void grvHardware_PreRender(object sender, EventArgs e)

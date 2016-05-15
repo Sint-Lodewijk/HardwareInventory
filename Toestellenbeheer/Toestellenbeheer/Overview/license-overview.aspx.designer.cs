@@ -58,6 +58,15 @@ namespace Toestellenbeheer.Overview {
         protected global::System.Web.UI.WebControls.SqlDataSource sqlLicenseFile;
         
         /// <summary>
+        /// grvLicenseFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grvLicenseFile;
+        
+        /// <summary>
         /// panelLicense control.
         /// </summary>
         /// <remarks>
@@ -76,15 +85,6 @@ namespace Toestellenbeheer.Overview {
         protected global::System.Web.UI.WebControls.Button btnAssignFile;
         
         /// <summary>
-        /// grvLicenseAssignedPeople control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvLicenseAssignedPeople;
-        
-        /// <summary>
         /// grvLicenseAssignedHardware control.
         /// </summary>
         /// <remarks>
@@ -92,6 +92,15 @@ namespace Toestellenbeheer.Overview {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvLicenseAssignedHardware;
+        
+        /// <summary>
+        /// grvLicenseAssignedPeople control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grvLicenseAssignedPeople;
         
         /// <summary>
         /// lblCountPeople control.

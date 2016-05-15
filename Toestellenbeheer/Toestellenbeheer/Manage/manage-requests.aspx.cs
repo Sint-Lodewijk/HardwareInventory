@@ -37,8 +37,8 @@ namespace Toestellenbeheer.Manage
             request.AcceptRequest();
             assignHardwareToPeople();
             var ShowSuccessAlert = new JSUtility();
+            grvRequests.DataBind();
             ShowSuccessAlert.ShowAlert(this, "<strong>Success!</strong> The request is successfully accepted!", "alert-success");
-
         }
         private void assignHardwareToPeople()
         {
@@ -63,8 +63,8 @@ namespace Toestellenbeheer.Manage
                 Request deniedRequest = new Request(intRequestID);
                 deniedRequest.DenyRequest();
                 var ShowSuccessAlert = new JSUtility();
+                grvRequests.DataBind();
                 ShowSuccessAlert.ShowAlert(this, "<strong>Success!</strong> The request is successfully deleted!", "alert-success");
-
             }
             catch (MySqlException ex)
             {

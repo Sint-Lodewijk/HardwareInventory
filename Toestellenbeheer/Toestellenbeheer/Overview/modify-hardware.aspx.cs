@@ -42,6 +42,9 @@ namespace Toestellenbeheer.Overview
             string strModelNr = txtModelNr.Text;
             var updateHardware = new Hardware(strExtra, Session["ToModifiedInternalNr"].ToString(), strManufacturer, strModelNr, strPDate, strWarranty, strType);
             updateHardware.UpdateHardware();
+            var WarningAlert = new JSUtility();
+            WarningAlert.ShowAlert(this, "<strong>Success!</strong> The hardware is modified.", "alert-success");
+
         }
     }
 }

@@ -111,46 +111,27 @@ namespace Toestellenbeheer.Models
         {
             mysqlConnectie.Open();
             var getLicenseID = new MySqlCommand("SELECT licenseID FROM license WHERE " + Type + "  = '" + LicenseCode + "'", mysqlConnectie);
-            mysqlConnectie.Close();
             LicenseID = (int)getLicenseID.ExecuteScalar();
+            mysqlConnectie.Close();
+
             return LicenseID;
         }
-        public DataTable ReturnLicensePeople(string license, bool IsFile)
-        {
-            if (IsFile == true)
-            {
-                return DTLicensePeople(license, "licenseFile");
-            }
-            else
-            {
-                return DTLicensePeople(license, "licenseCode");
-            }
-        }
-        private DataTable DTLicensePeople(string license, string licenseType)
+        public DataTable ReturnLicensePeople(int LicenseID)
         {
             mysqlConnectie.Open();
-            MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT licenseEventID, licenseHandler.licenseID, nameAD from licenseHandler join people on licenseHandler.eventID = people.eventID WHERE " + licenseType + " = '" + license + "'", mysqlConnectie);
+            MySqlCommand getCorrespondingPeople = new MySqlCommand("SELECT licenseEventID, licenseHandler.licenseID, nameAD from licenseHandler join people on licenseHandler.eventID = people.eventID  WHERE licenseID = @licenseID", mysqlConnectie);
+            getCorrespondingPeople.Parameters.AddWithValue("@licenseID", LicenseID);
             var peopleReader = getCorrespondingPeople.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(peopleReader);
             mysqlConnectie.Close();
             return dt;
         }
-        public DataTable ReturnLicenseHardware(string license, bool IsFile)
-        {
-            if (IsFile == true)
-            {
-                return DTLicenseHardware(license, "licenseFile");
-            }
-            else
-            {
-                return DTLicenseHardware(license, "licenseCode");
-            }
-        }
-        private DataTable DTLicenseHardware(string license, string licenseType)
+        public DataTable ReturnLicenseHardware(int LicenseID)
         {
             mysqlConnectie.Open();
-            MySqlCommand getCorrespondingHardware = new MySqlCommand("SELECT licenseEventID, licenseHandler.licenseID, nameAD from licenseHandler join people on licenseHandler.eventID = people.eventID WHERE " + licenseType + " = '" + license + "'", mysqlConnectie);
+            MySqlCommand getCorrespondingHardware = new MySqlCommand("SELECT licenseEventID, hardware.internalNr, hardware.serialNr from licenseHandler join hardware on licenseHandler.internalNr = hardware.internalNr  WHERE licenseID = @licenseID", mysqlConnectie);
+            getCorrespondingHardware.Parameters.AddWithValue("@licenseID", LicenseID);
             var HardwareReader = getCorrespondingHardware.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(HardwareReader);

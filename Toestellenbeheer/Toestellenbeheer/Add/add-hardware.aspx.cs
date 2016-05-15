@@ -32,7 +32,17 @@ namespace Toestellenbeheer.Manage
                     {
                         ViewState["timeStampAddedHardware"] = strTimeStamp;
                     }
+                    typeList.DataBind();
+                    manufacturerList.DataBind();
+                    if (typeList.Items.Count == 0 || manufacturerList.Items.Count == 0)
+                    {
+                        var WarningAlert = new JSUtility();
+                        WarningAlert.ShowAlert(this, "<strong>Warning!</strong> The type or manufacturer list is not complete, please consider <a href=\"" + ResolveUrl("~/Default.aspx") + "\"> initialize the database </a> first!", "alert-warning");
+
+                    }
                 }
+                
+
             }
             catch (Exception ex)
             {
@@ -52,11 +62,15 @@ namespace Toestellenbeheer.Manage
             String strInternalNr = internalNr.Text;
             if (strSerialNr == "")
             {
-               serialError.Text= "The serial nr is necessary!";
+                var WarningAlert = new JSUtility();
+                WarningAlert.ShowAlert(this, "<strong>Warning!</strong> The serial nr is necessary!", "alert-warning");
+                serialError.Text= "The serial nr is necessary!";
             }
             else if (strInternalNr == "")
             {
-               internalError.Text = "The internal nr is necessary!";
+                var WarningAlert = new JSUtility();
+                WarningAlert.ShowAlert(this, "<strong>Warning!</strong> The internal nr is necessary!", "alert-warning");
+                internalError.Text = "The internal nr is necessary!";
             }
             else
             {
@@ -112,6 +126,11 @@ namespace Toestellenbeheer.Manage
                     {
                         txtResultUpload.Text = "The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
                             " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " already exist in de database.";
+
+                        var WarningAlert = new JSUtility();
+                        WarningAlert.ShowAlert(this, "<strong>Warning!</strong> The device with a internal nr: " + "<span style=\"color:red\">" + strInternalNr + "</span>" +
+                            " and a serial nr: " + "<span style=\"color:red\">" + strSerialNr + "</span>" + " already exist in de database.", "alert-danger");
+
                     }
                     else { ShowMessage(ex.Message); }
                 }
@@ -264,6 +283,8 @@ namespace Toestellenbeheer.Manage
                 ResultUploadAtta.Text = "Do you not want to add a attachment?";
             }
         }
+
+      
     }
 }
 

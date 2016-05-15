@@ -9,6 +9,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using Toestellenbeheer.Models;
+
 namespace Toestellenbeheer.Overview
 {
     public partial class license_overview : System.Web.UI.Page
@@ -45,34 +47,30 @@ namespace Toestellenbeheer.Overview
         {
             ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript' > alert('" + msg + "');</ script > ");
         }
-        protected void grvLicense_SelectedIndexChanged(object sender, EventArgs e)
+        protected void grvLicenseCode_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow row = grvLicenseCode.SelectedRow;
             String strLicenseCode = grvLicenseCode.SelectedDataKey.Value.ToString();
-            getCorrespondingPeople(strLicenseCode);
-            getCorrespondingHardware(strLicenseCode);
-            lblCountPeople.Text = "This license has been assigned to: " + grvLicenseAssignedPeople.Rows.Count.ToString() + " people and ";
-            lblCountHardware.Text = grvLicenseAssignedHardware.Rows.Count.ToString() + " hardware";
+            var licenseID = new License(strLicenseCode);
+            int intLicenseID =  licenseID.GetLicenseID("licenseCode");
+            getCorrespondingPeople(intLicenseID);
+            getCorrespondingHardware(intLicenseID);
+            var detailModalShow = new JSUtility("modalHardwareLicense");
+            detailModalShow.ModalShow(this);
+            // lblCountPeople.Text = "This license has been assigned to: " + grvLicenseAssignedPeople.Rows.Count.ToString() + " people and ";
+            //  lblCountHardware.Text = grvLicenseAssignedHardware.Rows.Count.ToString() + " hardware";
         }
-        protected void getCorrespondingPeople(String strLicenseCode)
+        protected void getCorrespondingPeople(int LicenseID)
         {
-            var licenseCorresponding = new Models.License();
-            grvLicenseAssignedPeople.DataSource = licenseCorresponding.ReturnLicensePeople(strLicenseCode, false);
+            var licenseCorresponding = new License();
+            grvLicenseAssignedPeople.DataSource = licenseCorresponding.ReturnLicensePeople(LicenseID);
             grvLicenseAssignedPeople.DataBind();
         }
-        protected void getCorrespondingHardware(String strLicenseCode)
+        protected void getCorrespondingHardware(int LicenseID)
         {
-           /* mysqlConnectie.Open();
-            MySqlCommand getCorrespondingHardware = new MySqlCommand("SELECT serialNr, internalNr, licenseCode FROM licenseHandler WHERE serialNr IS NOT NULL AND internalNr IS NOT NULL AND licenseCode ='" + strLicenseCode + "'", mysqlConnectie);
-            MySqlDataAdapter adpa = new MySqlDataAdapter(getCorrespondingHardware);
-            getCorrespondingHardware.ExecuteNonQuery();
-            getCorrespondingHardware.Dispose();
-            DataSet ds = new DataSet();
-            adpa.Fill(ds);
-            grvLicenseAssignedHardware.DataSource = ds;
+            var licenseCorresponding = new License();
+            grvLicenseAssignedHardware.DataSource = licenseCorresponding.ReturnLicenseHardware(LicenseID);
             grvLicenseAssignedHardware.DataBind();
-            mysqlConnectie.Close();
-            */
         }
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -104,15 +102,19 @@ namespace Toestellenbeheer.Overview
             {
                 try
                 {
+                    GridView gridview = (GridView)sender;
                     mysqlConnectie.Open();
                     // String strLicenseCode = grvLicense.DataKeys[e.RowIndex].Value.ToString();
-                    String strLicenseCode = grvLicenseCode.SelectedDataKey.Value.ToString();
-                    String strLicenseEventID = grvLicenseAssignedPeople.DataKeys[e.RowIndex].Value.ToString();
+                    String strLicenseEventID = gridview.DataKeys[e.RowIndex].Value.ToString();
                     MySqlCommand deleteLicenseAPeople = new MySqlCommand("Delete From licenseHandler where licenseEventID='" + strLicenseEventID + "'", mysqlConnectie);
                     deleteLicenseAPeople.ExecuteNonQuery();
                     deleteLicenseAPeople.Dispose();
                     mysqlConnectie.Close();
-                    getCorrespondingPeople(strLicenseCode);
+                    /*
+                    var licenseID = new License(strLicenseCode);
+                    int intLicenseID = licenseID.GetLicenseID("licenseCode");
+                    getCorrespondingPeople(intLicenseID);*/
+
                 }
                 catch (MySqlException ex)
                 {
@@ -126,15 +128,18 @@ namespace Toestellenbeheer.Overview
             {
                 try
                 {
+                    GridView gridview = (GridView)sender;
                     mysqlConnectie.Open();
                     // String strLicenseCode = grvLicense.DataKeys[e.RowIndex].Value.ToString();
-                    String strLicenseCode = grvLicenseCode.SelectedDataKey.Value.ToString();
-                    String strInternalNr = grvLicenseAssignedHardware.DataKeys[e.RowIndex].Value.ToString();
-                    MySqlCommand deleteLicenseAHardware = new MySqlCommand("Delete From licenseHandler where internalNr='" +
-                        strInternalNr + "' AND licenseCode = '" + strLicenseCode + "'", mysqlConnectie);
+                    String LicenseEventID = gridview.DataKeys[e.RowIndex].Value.ToString();
+                    MySqlCommand deleteLicenseAHardware = new MySqlCommand("Delete From licenseHandler where licenseEventID = @licenseEventID", mysqlConnectie);
+                    deleteLicenseAHardware.Parameters.AddWithValue("@licenseEventID", LicenseEventID);
                     deleteLicenseAHardware.ExecuteNonQuery();
                     mysqlConnectie.Close();
-                    getCorrespondingHardware(strLicenseCode);
+                    /*
+                    var licenseID = new License(strLicenseCode);
+                    int intLicenseID = licenseID.GetLicenseID("licenseCode");
+                    getCorrespondingHardware(intLicenseID);*/
                 }
                 catch (MySqlException ex)
                 {
@@ -146,6 +151,35 @@ namespace Toestellenbeheer.Overview
         protected void btnAssignCode_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        protected void grvLicenseFile_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvLicenseFile, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to select this row.";
+            }
+        }
+
+        protected void grvLicenseFile_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            String strLicenseCode = grvLicenseFile.SelectedDataKey.Value.ToString();
+            var licenseID = new License(strLicenseCode);
+            int intLicenseID = licenseID.GetLicenseID("licenseFileLocation");
+            getCorrespondingPeople(intLicenseID);
+            getCorrespondingHardware(intLicenseID);
+            var detailModalShow = new JSUtility("modalHardwareLicense");
+            detailModalShow.ModalShow(this);
+        }
+
+        protected void lnkDownload_Click(object sender, EventArgs e)
+        {
+            string filePath = Server.MapPath("~/UserUploads/License/") + (sender as LinkButton).CommandArgument;
+            Response.ContentType = ContentType;
+            Response.AppendHeader("Content-Disposition", "attachment; filename=" + System.IO.Path.GetFileName(filePath));
+            Response.WriteFile(filePath);
         }
     }
 }

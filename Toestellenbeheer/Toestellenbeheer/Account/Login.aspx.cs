@@ -53,9 +53,9 @@ namespace Toestellenbeheer.Account
                 }
                 catch (Exception ex)
                 {
-                    errorLabel.Text = "Error authenticating. " + ex.Message;
                     var ShowFailedAlert = new JSUtility();
                     ShowFailedAlert.ShowAlert(this, "<strong>Error authenticating.</strong> " + ex.Message, "alert-danger");
+                    errorLabel.Text = "Error authenticating. " + ex.Message;
                 }
             }
             else

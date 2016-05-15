@@ -10,7 +10,7 @@
 namespace Toestellenbeheer.Add {
     
     
-    public partial class add_person {
+    public partial class add_db_user {
         
         /// <summary>
         /// ErrorMessage control.
@@ -40,24 +40,6 @@ namespace Toestellenbeheer.Add {
         protected global::System.Web.UI.WebControls.DropDownList drpRoleSelect;
         
         /// <summary>
-        /// txtGivenName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGivenName;
-        
-        /// <summary>
-        /// txtLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLastName;
-        
-        /// <summary>
         /// UserName control.
         /// </summary>
         /// <remarks>
@@ -67,6 +49,15 @@ namespace Toestellenbeheer.Add {
         protected global::System.Web.UI.WebControls.TextBox UserName;
         
         /// <summary>
+        /// ADAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ADAccount;
+        
+        /// <summary>
         /// Password control.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,15 @@ namespace Toestellenbeheer.Add {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Password;
+        
+        /// <summary>
+        /// ConfirmPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ConfirmPassword;
         
         /// <summary>
         /// errorLabel control.

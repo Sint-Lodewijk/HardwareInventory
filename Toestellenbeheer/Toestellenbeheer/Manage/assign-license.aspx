@@ -8,7 +8,7 @@
     <!-- Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="code">
-            <asp:GridView ID="grvLicenseCode" CssClass="table table-hover table-striped gridview" runat="server"  DataKeyNames="licenseCode" OnRowDataBound="OnRowDataBound" OnRowDeleting="grvLicense_RowDeleting" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="sqlLicenseCode">
+            <asp:GridView ID="grvLicenseCode" CssClass="table table-hover table-striped gridview" runat="server"  DataKeyNames="licenseCode" OnRowDataBound="OnRowDataBound"  AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="sqlLicenseCode">
                 <Columns>
                     <asp:BoundField DataField="licenseName" HeaderText="Name" SortExpression="licenseName" />
                     <asp:BoundField DataField="licenseCode" HeaderText="License Code" SortExpression="licenseCode" />

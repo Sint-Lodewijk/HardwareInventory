@@ -15,18 +15,19 @@
                     <asp:BoundField DataField="licenseCode" HeaderText="License Code" SortExpression="licenseCode" />
                     <asp:BoundField DataField="expireDate" HeaderText="Expire Date" SortExpression="expireDate" />
                     <asp:BoundField DataField="extraInfo" HeaderText="Extra Info" SortExpression="extraInfo" />
+                    <asp:CommandField ShowDeleteButton="true" />
                 </Columns>
                 <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
             </asp:GridView>
-            <asp:SqlDataSource ID="sqlLicenseCode" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT licenseName, licenseCode, DATE_FORMAT(expireDate, '%Y-%m-%d') 'expireDate', extraInfo FROM license WHERE (licenseFileLocation = NULL) OR (licenseFileLocation = '')"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="sqlLicenseCode" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT licenseName, licenseCode, DATE_FORMAT(expireDate, '%Y-%m-%d') 'expireDate', extraInfo FROM license WHERE (licenseFileLocation = NULL) OR (licenseFileLocation = '')" DeleteCommand="select * from license"></asp:SqlDataSource>
             <asp:Panel runat="server" ID="panelCode" Visible="false">
                 <asp:Button runat="server" ID="btnAssignCode" CssClass="btn btn-primary" OnClick="btnAssignCode_Click" />
 
             </asp:Panel>
         </div>
         <div role="tabpanel" class="tab-pane" id="file">
-            <asp:SqlDataSource ID="sqlLicenseFile" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT licenseName, licenseFileLocation, DATE_FORMAT(expireDate, '%Y-%m-%d') 'expireDate', extraInfo FROM license WHERE (licenseCode = NULL) OR (licenseCode = '')"></asp:SqlDataSource>
-            <asp:GridView runat="server" ID="grvLicenseFile" OnSelectedIndexChanged="grvLicenseFile_SelectedIndexChanged" DataKeyNames="licenseFileLocation" OnRowDataBound="grvLicenseFile_RowDataBound" EmptyDataText="No availible license file." DataSourceID="sqlLicenseFile" CssClass="table table-hover table-striped gridview" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False">
+            <asp:SqlDataSource ID="sqlLicenseFile" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT licenseName, licenseFileLocation, DATE_FORMAT(expireDate, '%Y-%m-%d') 'expireDate', extraInfo FROM license WHERE (licenseCode = NULL) OR (licenseCode = '')" DeleteCommand="select * from license"></asp:SqlDataSource>
+            <asp:GridView runat="server" ID="grvLicenseFile" OnRowDeleting="grvLicenseFile_RowDeleting" OnSelectedIndexChanged="grvLicenseFile_SelectedIndexChanged" DataKeyNames="licenseFileLocation" OnRowDataBound="grvLicenseFile_RowDataBound" EmptyDataText="No availible license file." DataSourceID="sqlLicenseFile" CssClass="table table-hover table-striped gridview" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False">
                 <Columns>
                     <asp:BoundField DataField="licenseName" HeaderText="Name" SortExpression="licenseName"></asp:BoundField>
                     <asp:BoundField DataField="expireDate" HeaderText="Expire Date" SortExpression="expireDate"></asp:BoundField>
@@ -36,6 +37,8 @@
                             <asp:LinkButton ID="lnkDownload" CommandArgument='<%# Eval("licenseFileLocation") %>' runat="server" OnClick="lnkDownload_Click" Text='<%# Convert.ToString(Eval("licenseFileLocation")).Length < 1 ? "" : Convert.ToString(Eval("licenseFileLocation")) %>'>Download</asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
+                    <asp:CommandField ShowDeleteButton="true" />
+
                 </Columns>
             </asp:GridView>
             <asp:Panel runat="server" ID="panelLicense" Visible="false">

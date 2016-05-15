@@ -80,27 +80,20 @@ namespace Toestellenbeheer.Models
             mysqlConnectie.Close();
             return intLicenseID;
         }
-        public void AssignLicenseToHardware(string strSerialNr, string strInternalNr)
-        {
-        }
-        public DataTable ReturnLicenseCHardware()
-        {
-            DataTable dt = new DataTable();
-            return dt;
-        }
+
         public bool IsRemoved()
         {
             try
             {
                 mysqlConnectie.Open();
                 var RemoveLicense = new MySqlCommand("DELETE FROM license WHERE licenseID= " + LicenseID, mysqlConnectie);
+                RemoveLicense.ExecuteNonQuery();
                 mysqlConnectie.Close();
                 return true;
             }
             catch (MySqlException ex)
             {
-                var exep = new MySqlExceptionHandler(ex, "License");
-                throw new Exception(exep.ReturnMessage());
+                return false;
             }
         }
         /// <summary>

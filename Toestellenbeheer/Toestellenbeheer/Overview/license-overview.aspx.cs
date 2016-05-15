@@ -26,16 +26,18 @@ namespace Toestellenbeheer.Overview
         {
             try
             {
-                // String strLicenseCode = grvLicense.DataKeys[e.RowIndex].Value.ToString();
-                String strLicenseCode = grvLicenseCode.DataKeys[e.RowIndex].Value.ToString();
-                var deleteLicense = new Models.License(strLicenseCode);
+                String strLicenseFile = grvLicenseCode.DataKeys[e.RowIndex].Value.ToString();
+                var deleteLicense = new Models.License(strLicenseFile);
+                deleteLicense.LicenseID = deleteLicense.GetLicenseID("licenseCode");
                 if (deleteLicense.IsRemoved())
                 {
-                    grvLicenseCode.DataBind();
+                    var ShowSuccessAlert = new JSUtility();
+                    ShowSuccessAlert.ShowAlert(this, "<strong>Success!</strong> License is deleted!", "alert-success");
                 }
                 else
                 {
-                    ShowMessage("Exeption occured!");
+                    var ShowSuccessAlert = new JSUtility();
+                    ShowSuccessAlert.ShowAlert(this, "<strong>Warning!</strong> Exception occurred!", "alert-danger");
                 }
             }
             catch (MySqlException ex)
@@ -110,10 +112,8 @@ namespace Toestellenbeheer.Overview
                     deleteLicenseAPeople.ExecuteNonQuery();
                     deleteLicenseAPeople.Dispose();
                     mysqlConnectie.Close();
-                    /*
-                    var licenseID = new License(strLicenseCode);
-                    int intLicenseID = licenseID.GetLicenseID("licenseCode");
-                    getCorrespondingPeople(intLicenseID);*/
+                    var ShowSuccessAlert = new JSUtility();
+                    ShowSuccessAlert.ShowAlert(this, "<strong>Success!</strong> License is unassigned!", "alert-success");
 
                 }
                 catch (MySqlException ex)
@@ -136,10 +136,9 @@ namespace Toestellenbeheer.Overview
                     deleteLicenseAHardware.Parameters.AddWithValue("@licenseEventID", LicenseEventID);
                     deleteLicenseAHardware.ExecuteNonQuery();
                     mysqlConnectie.Close();
-                    /*
-                    var licenseID = new License(strLicenseCode);
-                    int intLicenseID = licenseID.GetLicenseID("licenseCode");
-                    getCorrespondingHardware(intLicenseID);*/
+                    var ShowSuccessAlert = new JSUtility();
+                    ShowSuccessAlert.ShowAlert(this, "<strong>Success!</strong> License is unassigned!", "alert-success");
+
                 }
                 catch (MySqlException ex)
                 {
@@ -180,6 +179,24 @@ namespace Toestellenbeheer.Overview
             Response.ContentType = ContentType;
             Response.AppendHeader("Content-Disposition", "attachment; filename=" + System.IO.Path.GetFileName(filePath));
             Response.WriteFile(filePath);
+        }
+
+        protected void grvLicenseFile_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            String strLicenseFile = grvLicenseFile.DataKeys[e.RowIndex].Value.ToString();
+            var deleteLicense = new Models.License(strLicenseFile);
+            deleteLicense.LicenseID = deleteLicense.GetLicenseID("licenseFileLocation");
+            if (deleteLicense.IsRemoved())
+            {
+                var ShowSuccessAlert = new JSUtility();
+                ShowSuccessAlert.ShowAlert(this, "<strong>Success!</strong> License is deleted!", "alert-success");
+
+            }
+            else
+            {
+                var ShowSuccessAlert = new JSUtility();
+                ShowSuccessAlert.ShowAlert(this, "<strong>Warning!</strong> Exception occurred!", "alert-danger");
+            }
         }
     }
 }

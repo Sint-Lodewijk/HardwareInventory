@@ -35,15 +35,13 @@ namespace Toestellenbeheer.Manage
             }
             catch (Exception ex)
             {
-               // lblResult.Text = "Problem with downloading, please check if you added a attachment to the hardware." + ex.ToString();
+                // lblResult.Text = "Problem with downloading, please check if you added a attachment to the hardware." + ex.ToString();
             }
         }
         protected void btnBackup_Click(object sender, EventArgs e)
         {
             Backup();
-            lblAlert.Text = "Backup successfully!";
-            var showSuccess = new JSUtility("successMessageAlert");
-            showSuccess.ShowJS(udpSuccess);
+
         }
         private void Backup()
         {
@@ -51,9 +49,10 @@ namespace Toestellenbeheer.Manage
             backupcmd.Connection = mysqlConnectie;
             var backup = new MySqlBackup(backupcmd);
             mysqlConnectie.Open();
+            var ShowSuccessAlert = new JSUtility();
+            ShowSuccessAlert.ShowAlert(this, "Backup succesfully", "alert-success");
             backup.ExportInfo.AddCreateDatabase = true;
             Directory.CreateDirectory(Server.MapPath("~/Backup/"));
-
             backup.ExportToFile(Server.MapPath("~/Backup/") + "mysql-backup.sql");
             mysqlConnectie.Close();
             Response.ContentType = ContentType;
@@ -72,6 +71,8 @@ namespace Toestellenbeheer.Manage
             restore.ImportInfo.DatabaseDefaultCharSet = "utf8";
             restore.ImportFromFile(Server.MapPath("~/Backup/") + "mysql-restore.sql");
             mysqlConnectie.Close();
+            var ShowSuccessAlert = new JSUtility();
+            ShowSuccessAlert.ShowAlert(this, "Restore succesfully", "alert-success");
         }
         protected void btnTruncate_Click(object sender, EventArgs e)
         {
@@ -83,13 +84,18 @@ namespace Toestellenbeheer.Manage
             setCheck0.ExecuteNonQuery();
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
-                MySqlCommand truncateTable = new MySqlCommand("TRUNCATE " + dt.Rows[i].ItemArray[0].ToString(), mysqlConnectie);
-                truncateTable.ExecuteNonQuery();
+                if (dt.Rows[i].ItemArray[0].ToString() != "DBAccount")
+                {
+                    MySqlCommand truncateTable = new MySqlCommand("TRUNCATE " + dt.Rows[i].ItemArray[0].ToString(), mysqlConnectie);
+                    truncateTable.ExecuteNonQuery();
+                }
             }
             var setCheck1 = new MySqlCommand("SET FOREIGN_KEY_CHECKS = 1", mysqlConnectie);
             setCheck1.ExecuteNonQuery();
             mysqlConnectie.Close();
-            Server.Transfer("~/Default.aspx");
+            Response.Redirect("~/Default.aspx");
+            var ShowSuccessAlert = new JSUtility();
+            ShowSuccessAlert.ShowAlert(this, "Truncate succesfully", "alert-success");
         }
     }
 }

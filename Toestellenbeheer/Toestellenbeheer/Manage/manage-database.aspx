@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Manage database" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="manage-database.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_database" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="DatabaseContent" ContentPlaceHolderID="MainContent" runat="server">

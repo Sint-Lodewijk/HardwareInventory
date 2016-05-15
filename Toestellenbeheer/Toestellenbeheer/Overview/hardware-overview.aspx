@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </asp:Panel>
-            <asp:GridView ID="grvHardware" OnPreRender="grvHardware_PreRender" OnSelectedIndexChanged="details" data-toggle="modal" data-target="#HardwareDetailModal" OnRowDataBound="OnRowDataBound" OnRowDeleting="details" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" DataKeyNames="internalNr, serialNr" runat="server">
+            <asp:GridView ID="grvHardware" EmptyDataText="No hardware availible in the database, please consider to add a hardware." OnPreRender="grvHardware_PreRender" OnSelectedIndexChanged="details" data-toggle="modal" data-target="#HardwareDetailModal" OnRowDataBound="OnRowDataBound" OnRowDeleting="details" AutoGenerateColumns="false" CssClass="table table-hover table-striped gridview" DataKeyNames="internalNr, serialNr" runat="server">
                 <Columns>
                     <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="Serial Nr" />
                     <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="Internal Nr" />

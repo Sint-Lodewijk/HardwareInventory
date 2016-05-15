@@ -16,11 +16,11 @@ namespace Toestellenbeheer.Manage
             if (!IsPostBack)
             {
                 getAssignedHardware();
-                if (grvHardwarePoolAssigned.Rows.Count == 0)
-                {
-                    btnReturnHardware.Visible = false;
-                    lblResult.Text = "There are no assigned hardware currently.";
-                }
+            }
+            if (grvHardwarePoolAssigned.Rows.Count == 0)
+            {
+                btnReturnHardware.Visible = false;
+                lblResult.Text = "There are no assigned hardware currently.";
             }
         }
         protected void getAssignedHardware()
@@ -30,7 +30,7 @@ namespace Toestellenbeheer.Manage
                 var Assigned = new Hardware();
                 Assigned.BindAssignedHardware(grvHardwarePoolAssigned);
 
-          }
+            }
             catch (MySqlException ex)
             {
                 lblResult.Text = ex.ToString();
@@ -43,7 +43,7 @@ namespace Toestellenbeheer.Manage
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvHardwarePoolAssigned, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
-           }
+        }
         protected void btnReturnHardware_Click(object sender, EventArgs e)
         {
             String strInternalNr = grvHardwarePoolAssigned.SelectedDataKey.Value.ToString();
@@ -56,6 +56,9 @@ namespace Toestellenbeheer.Manage
             getAssignedHardware();
             Hardware returnedHardware = new Hardware();
             //returnedHardware.createXML("Returned hardware",);
+            var ShowSuccessAlert = new JSUtility();
+            ShowSuccessAlert.ShowAlert(this, "<strong>Success!</strong> The hardware is returned!", "alert-success");
+
         }
         private void archiveReturnedHardware(String strInternalNr, int intEventID)
         {

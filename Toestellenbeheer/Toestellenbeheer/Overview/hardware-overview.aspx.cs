@@ -25,7 +25,8 @@ namespace Toestellenbeheer
                     BindHardwareGRV();
                     if (grvHardware.Rows.Count == 0)
                     {
-                        lblGridTotalResult.Text = "No result found in the database.";
+                        var ShowSuccessAlert = new JSUtility();
+                        ShowSuccessAlert.ShowAlert(this, "<strong>No entry found</strong> , please consider to <a href=\"" + ResolveUrl("~\\Add\add-hardware>") +"\"> add a hardware </a>.", "alert-warning");
                     }
                 }
                 catch (MySqlException ex)
@@ -77,6 +78,8 @@ namespace Toestellenbeheer
                 int intTotalResultReturned = grvHardware.Rows.Count;
                 if (intTotalResultReturned == 0)
                 {
+                    var ShowSuccessAlert = new JSUtility();
+                    ShowSuccessAlert.ShowAlert(this, "<strong>No entry found</strong> , please use a different keyword or switch between the searchtypes.","alert-warning");
                     lblTotalQuery.Text = "No entry found, please use a different keyword or switch between the searchtypes.";
                 }
                 else

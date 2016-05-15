@@ -5,6 +5,7 @@
     </ReferencePath>
     <NameOfLastUsedPublishProfile>Server2</NameOfLastUsedPublishProfile>
     <UseIISExpress>true</UseIISExpress>
+    <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

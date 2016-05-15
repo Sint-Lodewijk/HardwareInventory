@@ -37,39 +37,45 @@ namespace Toestellenbeheer.Add
         /// <param name="memberOf">Group name - hardware admin(istration) or user from dropdownlist.</param>
         private void CreateADUser(String userName, String userPassword, String givenName, String lastName, String memberOf)
         {
-            PrincipalContext pc = new PrincipalContext(ContextType.Domain,  SetupFile.AD.ADDomainControllerName, SetupFile.AD.ADPath, SetupFile.AD.ADUserName, SetupFile.AD.ADUserPassword);
+            PrincipalContext pc = new PrincipalContext(ContextType.Domain, SetupFile.AD.ADDomainControllerName, SetupFile.AD.ADPath, SetupFile.AD.ADUserName, SetupFile.AD.ADUserPassword);
             UserPrincipal up = new UserPrincipal(pc);
-                try
+            try
+            {
+                up.GivenName = givenName;
+                up.Surname = lastName;
+                up.SamAccountName = userName;
+                up.UserPrincipalName = userName + SetupFile.AD.ADSAMAccountAt;
+                up.SetPassword(userPassword);
+                up.Enabled = true;
+                up.Save();
+                if (memberOf != "noneSelect")
                 {
-                    up.GivenName = givenName;
-                    up.Surname = lastName;
-                    up.SamAccountName = userName;
-                    up.UserPrincipalName = userName + SetupFile.AD.ADSAMAccountAt;
-                    up.SetPassword(userPassword);
-                    up.Enabled = true;
-                    up.Save();
-                    if (memberOf != "noneSelect")
-                    {
-                        AddUserToGroup(up.UserPrincipalName, memberOf);
-                        errorLabel.Text = "The account is created.";
-                    }
-                    else
-                    {
-                        errorLabel.Text = "The account is created, but without assigning group.";
-                    }
+                    var ShowSuccessAlert = new JSUtility();
+                    ShowSuccessAlert.ShowAlert(this, "<strong>Success!</strong> The account is created!", "alert-success");
+
+                    AddUserToGroup(up.UserPrincipalName, memberOf);
                 }
-                catch (TargetInvocationException ex)
+                else
                 {
-                    errorLabel.Text = ex.InnerException.ToString();
+                    var ShowSuccessAlert = new JSUtility();
+                    ShowSuccessAlert.ShowAlert(this, "<strong>Success!</strong> The account is created, but without assigning group.", "alert-warning");
+
                 }
-                catch (System.DirectoryServices.DirectoryServicesCOMException E)
-                {
-                    errorLabel.Text = "We cannot create a AD account, because: " + E.Message.ToString();
-                }
-                catch (Exception ex)
-                {
-                    errorLabel.Text = "An exeption occured " + ex.ToString();
-                }
+            }
+            catch (TargetInvocationException ex)
+            {
+                errorLabel.Text = ex.InnerException.ToString();
+            }
+            catch (System.DirectoryServices.DirectoryServicesCOMException E)
+            {
+                var ShowFailedAlert = new JSUtility();
+                ShowFailedAlert.ShowAlert(this, "<strong>Warning!</strong> We cannot create a AD account, because: " + E.Message.ToString(), "alert-danger");
+            }
+            catch (Exception ex)
+            {
+                var ShowFailedAlert = new JSUtility();
+                ShowFailedAlert.ShowAlert(this, "<strong>Warning!</strong> We cannot create a AD account, because: " + ex.Message, "alert-danger");
+            }
         }
         /// <summary>
         /// Adds the user to group.

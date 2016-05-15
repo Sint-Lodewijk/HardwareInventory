@@ -49,6 +49,8 @@ namespace Toestellenbeheer.Manage
                 String strManufacturer = txtManufacturerName.Text.ToString();
                 var manufacturer = new Manufacturer(strManufacturer);
                 manufacturer.AddManufacturerToDatabase();
+                var ShowSuccessAlert = new JSUtility();
+                ShowSuccessAlert.ShowAlert(this, "Added successfully", "alert-success");
                 bindManufacturerToGrid();
             }
             catch (MySqlException ex)
@@ -81,8 +83,15 @@ namespace Toestellenbeheer.Manage
             var deleteManufacturer = new Manufacturer(ViewState["manufacturerName"].ToString());
             if (deleteManufacturer.IsRemoved())
             {
-                Session["SuccessInfo"] = "Successfully deleted manufacturer " + ViewState["manufacturerName"].ToString();
-                Response.Redirect("~/Success.aspx");
+                var ShowSuccessAlert = new JSUtility();
+                ShowSuccessAlert.ShowAlert(this, "Removed successfully", "alert-success");
+                bindManufacturerToGrid();
+                ButtonPanel.Visible = false;
+            }
+            else
+            {
+                var FailedAlert = new JSUtility();
+                FailedAlert.ShowAlert(this, "Remove failed!", "alert-danger");
             }
         }
         protected void btnUpdate_Click(object sender, EventArgs e)
@@ -90,8 +99,15 @@ namespace Toestellenbeheer.Manage
             var updateManufacturer = new Manufacturer(ViewState["manufacturerName"].ToString());
             if (updateManufacturer.IsUpdated(txtManufacturerModifying.Text))
             {
-                Session["SuccessInfo"] = "Successfully updated manufacturer " + txtManufacturerModifying.Text;
-                Response.Redirect("~/Success.aspx");
+                var ShowSuccessAlert = new JSUtility();
+                ShowSuccessAlert.ShowAlert(this, "Update successfully", "alert-success");
+                bindManufacturerToGrid();
+
+            }
+            else
+            {
+                var FailedAlert = new JSUtility();
+                FailedAlert.ShowAlert(this, "Update failed!", "alert-danger");
             }
         }
 

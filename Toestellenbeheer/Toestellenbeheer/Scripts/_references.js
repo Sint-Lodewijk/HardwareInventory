@@ -1,4 +1,5 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="alert.js" />
 /// <reference path="bootstrap.min.js" />
 /// <reference path="bootstrap-datepicker.min.js" />
 /// <reference path="jquery.tablesorter.min.js" />

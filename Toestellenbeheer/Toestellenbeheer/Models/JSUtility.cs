@@ -26,6 +26,10 @@ namespace Toestellenbeheer.Models
         {
             ScriptManager.RegisterStartupScript(page, typeof(Page).GetType(), "show", "$(function () { $('#" + ControlID + "').modal('show'); });", true);
         }
+        public void ShowAlert(Page page, string Message, string AlertType)
+        {
+            ScriptManager.RegisterStartupScript(page, typeof(Page).GetType(), "show", "$(function () { showalert('" + Message + "','"+ AlertType + "'); });", true);
+        }
         public void ShowJS(UpdatePanel udp)
         {
             udp.Update();

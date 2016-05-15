@@ -24,6 +24,10 @@ namespace Toestellenbeheer.Manage
             {
                 iframeDownload.Src = "";
             }
+            if (grvHardwarePoolUnassigned.Rows.Count == 0)
+            {
+                btnOpenPeoplePopUp.Visible = false;
+            }
         }
         protected void getUnassignedHardware()
         {
@@ -85,10 +89,14 @@ namespace Toestellenbeheer.Manage
                 Hardware assignedHardware = new Hardware();
                 assignedHardware.ArchiveAssignedHardware(strSerialNr, strInternalNr, maxIndex); //Archive the assigned hardware
                 assignedHardware.CreateXML("AssignedHardware", strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
+                var ShowSuccessAlert = new JSUtility();
+                ShowSuccessAlert.ShowAlert(this, "<strong>Congratulations!</strong> The hardware is successfully assigned to the selected people.", "alert-success");
+
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please select a hardware or people to continue!');", true);
+                var ShowFailedAlert = new JSUtility();
+                ShowFailedAlert.ShowAlert(this, "<strong>Warning!</strong> Please select a hardware or people to continue!", "alert-danger");
             }
         }
         private void assignHardware(int index, String internalNr)

@@ -165,7 +165,7 @@
             </div>
         </div>
     </asp:Panel>
-    <asp:GridView ID="grvHardwarePoolUnassigned" OnPreRender="GRVPreRender" OnRowDeleting="grvHardwarePoolUnassigned_RowDeleting" OnSelectedIndexChanged="grvHardwarePoolUnassigned_SelectedIndexChanged" DataKeyNames="internalNr, serialNr" OnRowDataBound="grvHardwarePoolUnassigned_OnRowDataBound" AutoGenerateColumns="False" runat="server" CssClass="table table-hover table-striped gridview">
+    <asp:GridView ID="grvHardwarePoolUnassigned" EmptyDataText="No availible hardware in the database." OnPreRender="GRVPreRender" OnRowDeleting="grvHardwarePoolUnassigned_RowDeleting" OnSelectedIndexChanged="grvHardwarePoolUnassigned_SelectedIndexChanged" DataKeyNames="internalNr, serialNr" OnRowDataBound="grvHardwarePoolUnassigned_OnRowDataBound" AutoGenerateColumns="False" runat="server" CssClass="table table-hover table-striped gridview">
         <Columns>
             <asp:BoundField DataField="serialNr" HeaderText="Serial nr" ReadOnly="True" SortExpression="serialNr" />
             <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" ReadOnly="True" SortExpression="internalNr" />

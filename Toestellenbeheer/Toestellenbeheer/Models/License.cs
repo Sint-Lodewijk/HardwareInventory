@@ -157,5 +157,22 @@ namespace Toestellenbeheer.Models
             mysqlConnectie.Close();
             return dt;
         }
+        public bool IsExist()
+        {
+            mysqlConnectie.Open();
+            var CheckLicenseExist = new MySqlCommand("SELECT * FROM license WHERE licenseCode = @licenseCode", mysqlConnectie);
+            CheckLicenseExist.Parameters.AddWithValue("licenseCode", LicenseCode);
+            if (CheckLicenseExist.ExecuteScalar() == null)
+            {
+                mysqlConnectie.Close();
+                return false;
+            }
+            else
+            {
+                mysqlConnectie.Close();
+                return true;
+            }
+
+        }
     }
 }

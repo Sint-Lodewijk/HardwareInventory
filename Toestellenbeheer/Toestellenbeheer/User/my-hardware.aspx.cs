@@ -20,10 +20,6 @@ namespace Toestellenbeheer.Users
                     var uHardware = new Models.Hardware();
                     uHardware.BindUserHardware(strUserName,grvMyHardware);
                     mysqlConnectie.Close();
-                    if (grvMyHardware.Rows.Count == 0)
-                    {
-                        lblStatus.Text = "You do not have lend any hardware yet.";
-                    }
                 }
                 catch (MySqlException ex)
                 {

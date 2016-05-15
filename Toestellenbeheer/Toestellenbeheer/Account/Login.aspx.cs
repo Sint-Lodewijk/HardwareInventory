@@ -46,12 +46,16 @@ namespace Toestellenbeheer.Account
                     }
                     else
                     {
+                        var ShowFailedAlert = new JSUtility();
+                        ShowFailedAlert.ShowAlert(this, "<strong>Warning!</strong> Authentication did not succeed. Check user name and password.", "alert-danger");
                         errorLabel.Text = "Authentication did not succeed. Check user name and password.";
                     }
                 }
                 catch (Exception ex)
                 {
                     errorLabel.Text = "Error authenticating. " + ex.Message;
+                    var ShowFailedAlert = new JSUtility();
+                    ShowFailedAlert.ShowAlert(this, "<strong>Error authenticating.</strong> " + ex.Message, "alert-danger");
                 }
             }
             else
@@ -83,11 +87,15 @@ namespace Toestellenbeheer.Account
                     else
                     {
                         errorLabel.Text = "Authentication did not succeed. Check user name and password.";
+                        var ShowFailedAlert = new JSUtility();
+                        ShowFailedAlert.ShowAlert(this, "<strong>Warning!</strong> Authentication did not succeed. Check user name and password.", "alert-danger");
                     }
                 }
                 catch (Exception ex)
                 {
                     errorLabel.Text = "Error authenticating. " + ex.Message;
+                    var ShowFailedAlert = new JSUtility();
+                    ShowFailedAlert.ShowAlert(this, "<strong>Error authenticating.</strong> " + ex.Message, "alert-danger");
                 }
             }
         }

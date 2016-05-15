@@ -77,8 +77,6 @@ namespace Toestellenbeheer.Users
         }
         private void sendEmailNotification(String internalNr)
         {
-            ClientScript.RegisterClientScriptBlock(this.GetType(),
-          "WaitDialog", "$(function () { waitingDialog.show('Sending request...'); };");
             try
             {
                 SmtpClient smtpClient = new SmtpClient(SetupFile.Email.MailServer, SetupFile.Email.SMTPPort);
@@ -117,8 +115,9 @@ namespace Toestellenbeheer.Users
             var hardwareRequest = new Request(strInternalNr, strSerialNr, intEventID, requestDate);
             hardwareRequest.RequestHardware();
             sendEmailNotification(strInternalNr);
-            Session["SuccessInfo"] = "Congratulations, you have successfully required hardware with internal number: " + strInternalNr;
-            Server.Transfer("~/Success.aspx");
+            var ShowSuccessAlert = new JSUtility();
+            ShowSuccessAlert.ShowAlert(this, "<strong>Congratulations!</strong> The hardware request is successfull.", "alert-warning");
+
         }
         protected void grvAvailableHardwareType_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {

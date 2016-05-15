@@ -36,8 +36,9 @@ namespace Toestellenbeheer.Manage
             var request = new Request(intRequestID);
             request.AcceptRequest();
             assignHardwareToPeople();
-            Session["SuccessInfo"] = "Successfully accepted request";
-            Server.Transfer("~/Success.aspx");
+            var ShowSuccessAlert = new JSUtility();
+            ShowSuccessAlert.ShowAlert(this, "<strong>Success!</strong> The request is successfully accepted!", "alert-success");
+
         }
         private void assignHardwareToPeople()
         {
@@ -61,8 +62,9 @@ namespace Toestellenbeheer.Manage
                 int intRequestID = Convert.ToInt32(grvRequests.SelectedDataKey["requestID"].ToString());
                 Request deniedRequest = new Request(intRequestID);
                 deniedRequest.DenyRequest();
-                Session["SuccessInfo"] = "Succesfully deleted request";
-                Server.Transfer("~/Success.aspx");
+                var ShowSuccessAlert = new JSUtility();
+                ShowSuccessAlert.ShowAlert(this, "<strong>Success!</strong> The request is successfully deleted!", "alert-success");
+
             }
             catch (MySqlException ex)
             {

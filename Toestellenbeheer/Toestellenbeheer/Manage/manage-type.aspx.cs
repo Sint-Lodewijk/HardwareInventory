@@ -51,6 +51,9 @@ namespace Toestellenbeheer.Manage
                 String strType = typeName.Text.ToString();
                 var type = new TypeName(strType);
                 type.AddTypeToDatabase();
+                var ShowSuccessAlert = new JSUtility();
+                ShowSuccessAlert.ShowAlert(this, "Added successfully", "alert-success");
+
                 bindTypeToGrid();
             }
             catch (MySqlException ex)
@@ -78,8 +81,16 @@ namespace Toestellenbeheer.Manage
             var deleteType = new TypeName(ViewState["type"].ToString());
             if (deleteType.IsRemoved())
             {
-                Session["SuccessInfo"] = "Successfully deleted type " + ViewState["type"].ToString();
-                Response.Redirect("~/Success.aspx");
+                var ShowSuccessAlert = new JSUtility();
+                ShowSuccessAlert.ShowAlert(this, "Removed successfully", "alert-success");
+                bindTypeToGrid();
+                ButtonPanel.Visible = false;
+
+            }
+            else
+            {
+                var FailedAlert = new JSUtility();
+                FailedAlert.ShowAlert(this, "Remove failed!", "alert-danger");
             }
         }
         protected void btnUpdate_Click(object sender, EventArgs e)
@@ -87,8 +98,9 @@ namespace Toestellenbeheer.Manage
             var updateType = new TypeName(ViewState["type"].ToString());
             if (updateType.IsUpdated(txtType.Text))
             {
-                Session["SuccessInfo"] = "Successfully updated type " + txtType.Text;
-                Response.Redirect("~/Success.aspx");
+                var ShowSuccessAlert = new JSUtility();
+                ShowSuccessAlert.ShowAlert(this, "Update successfully", "alert-success");
+                bindTypeToGrid();
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="My hardware" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="my-hardware.aspx.cs" Inherits="Toestellenbeheer.Users.my_hardware" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:GridView ID="grvMyHardware" OnPreRender="grvPreRender" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="grvMyHardware_SelectedIndexChanged" runat="server" CssClass="gridview table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="serialNr,internalNr">
+    <asp:GridView ID="grvMyHardware" EmptyDataText="You do not have lend any hardware." OnPreRender="grvPreRender" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="grvMyHardware_SelectedIndexChanged" runat="server" CssClass="gridview table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="serialNr,internalNr">
         <Columns>
             <asp:BoundField DataField="serialNr" HeaderText="Serial Nr" ReadOnly="True" SortExpression="serialNr" />
             <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" SortExpression="internalNr" ReadOnly="True" />

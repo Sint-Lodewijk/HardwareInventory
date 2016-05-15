@@ -98,18 +98,40 @@ namespace Toestellenbeheer.Manage
         {
             string strLicenseName = txtLicenseName.Text.Trim();
             string strLicenseCode = txtLicenseCode.Text;
-            string strExpireDate = txtDatepicker.Text.Substring(6) + "-" + txtDatepicker.Text.Substring(3, 2) + "-" + txtDatepicker.Text.Substring(0, 2);
-            string strExtraInfo = txtExtraInfoLicense.Text;
-            if (TestlocationAtt.Text.Trim() == "" || TestlocationAtt.Text == null)
+            if (txtDatepicker.Text != "")
             {
-                ViewState["LocationWithTimeStamp"] = "";
+                string strExpireDate = txtDatepicker.Text.Substring(6) + "-" + txtDatepicker.Text.Substring(3, 2) + "-" + txtDatepicker.Text.Substring(0, 2);
+                string strExtraInfo = txtExtraInfoLicense.Text;
+                if (TestlocationAtt.Text.Trim() == "" || TestlocationAtt.Text == null)
+                {
+                    ViewState["LocationWithTimeStamp"] = "";
+                }
+                else
+                {
+                    ViewState["LocationWithTimeStamp"] = ViewState["timeStampAddedLicense"] + TestlocationAtt.Text.Trim();
+                }
+                var LicenseCheck = new License(strLicenseCode);
+                if (LicenseCheck.IsExist() == false)
+                {
+                    var toAddLicense = new License(strLicenseCode, strLicenseName, strExpireDate, ViewState["LocationWithTimeStamp"].ToString(), strExtraInfo);
+                    toAddLicense.AddLicense();
+                    var ShowSuccessAlert = new JSUtility();
+                    ShowSuccessAlert.ShowAlert(this, "Congratulations! The license code:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
+                            + "</span>" + ", is added in to the database.", "alert-success");
+                }
+                else
+                {
+                    var ShowFailedAlert = new JSUtility();
+                    ShowFailedAlert.ShowAlert(this, "<strong>Warning!</strong> The license code:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
+                            + "</span>" + ", already exists the database.", "alert-danger");
+                }
             }
             else
             {
-                ViewState["LocationWithTimeStamp"] = ViewState["timeStampAddedLicense"] + TestlocationAtt.Text.Trim();
+                lblResult.Text = "Expire date cannot be empty.";
             }
-            var toAddLicense = new License(strLicenseCode, strLicenseName, strExpireDate, ViewState["LocationWithTimeStamp"].ToString(), strExtraInfo);
-            toAddLicense.AddLicense();
+            
+
         }
         protected void btnAddLicense_click(object sender, EventArgs e)
         {
@@ -131,9 +153,10 @@ namespace Toestellenbeheer.Manage
                 mysqlConnectie.Close();
                 var licenseToHardware = new LicenseHandler(strInternalNr, strSerialCode, intLicenseID);
                 licenseToHardware.AssignLicenseToHardware();
-                Session["SuccessInfo"] = "Congratulations! The license code:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
-                    + "</span>" + " you have entered, has been successfully added into the database and assigned to the hardware with internal nr: " + strInternalNr;
-                Server.Transfer("~/Success.aspx");
+                var ShowSuccessAlert = new JSUtility();
+                ShowSuccessAlert.ShowAlert(this, "Congratulations! The license code:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
+                        + "</span>" + " you have entered, has been successfully added into the database and assigned to the hardware with internal nr: " + strInternalNr, "alert-success");
+
             }
             catch (MySqlException ex)
             {
@@ -154,9 +177,10 @@ namespace Toestellenbeheer.Manage
             int intLicenseID = maxLicense.ReturnMaxLicenseID();
             var licenseToHardware = new LicenseHandler(strInternalNr, strSerialCode, intLicenseID);
             licenseToHardware.AssignLicenseToHardware();
-            Session["SuccessInfo"] = "Congratulations! The license code:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
-                    + "</span>" + " you have entered, has been successfully added into the database and assigned to the hardware with internal nr: " + strInternalNr;
-            Server.Transfer("~/Success.aspx");
+            var ShowSuccessAlert = new JSUtility();
+            ShowSuccessAlert.ShowAlert(this, "Congratulations! The license code:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
+                    + "</span>" + " you have entered, has been successfully added into the database and assigned to the hardware with internal nr: " + strInternalNr, "alert-success");
+
         }
         //Expand or hide hardware grid + change the text of it
         protected void hideShowHardware_Click(object sender, EventArgs e)
@@ -223,10 +247,8 @@ namespace Toestellenbeheer.Manage
                 int intLicenseID = maxLicense.ReturnMaxLicenseID();
                 var assignLicenseToPeople = new LicenseHandler(userID, intLicenseID);
                 assignLicenseToPeople.AssignLicenseToPeople();
-                Session["SuccessInfo"] = "Congratulations! The license code: " + "<span class=\"labelOutput\">" + txtLicenseCode.Text + "</span>" +
-                    " has been successfully assigned to " + "<span class=\"labelOutput\">" +
-                    licenseOverviewGridPeople.SelectedRow.Cells[2].Text + "</span>";
-                Server.Transfer("~/Success.aspx");
+                var ShowSuccessAlert = new JSUtility();
+                ShowSuccessAlert.ShowAlert(this, "Successfully add the license and assigned to people.", "alert-success");
             }
             catch (MySqlException ex)
             {

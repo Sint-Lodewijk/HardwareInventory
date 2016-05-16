@@ -1,5 +1,5 @@
 -- MySqlBackup.NET 2.0.9.2
--- Dump Time: 2016-05-15 12:47:29
+-- Dump Time: 2016-05-16 13:56:28
 -- --------------------------------------
 -- Server version 5.7.11-log MySQL Community Server (GPL)
 
@@ -41,7 +41,9 @@ CREATE TABLE IF NOT EXISTS `DBAccount` (
 
 /*!40000 ALTER TABLE `DBAccount` DISABLE KEYS */;
 INSERT INTO `DBAccount`(`UserName`,`PassHash`,`UserGroup`,`ADAccount`) VALUES
-('Jianing','e2e3650e7e61d661007d536f94f56ed065170ec303d2160407b3d7664f226c6a','gg_hardware_admin','jli');
+('jhli','ef51306214d9a6361ee1d5b452e6d2bb70dc7ebb85bf9e02c3d4747fb57d6bec','gg_hardware_user','jhli'),
+('Jianing','e2e3650e7e61d661007d536f94f56ed065170ec303d2160407b3d7664f226c6a','gg_hardware_admin','jli'),
+('jli','ef51306214d9a6361ee1d5b452e6d2bb70dc7ebb85bf9e02c3d4747fb57d6bec','gg_hardware_user','jli');
 /*!40000 ALTER TABLE `DBAccount` ENABLE KEYS */;
 
 -- 
@@ -250,5 +252,5 @@ CREATE TABLE IF NOT EXISTS `type` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 
--- Dump completed on 2016-05-15 12:47:39
--- Total time: 0:0:0:10:86 (d:h:m:s:ms)
+-- Dump completed on 2016-05-16 13:56:38
+-- Total time: 0:0:0:10:68 (d:h:m:s:ms)

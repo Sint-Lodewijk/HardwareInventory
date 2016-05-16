@@ -13,6 +13,11 @@ namespace Toestellenbeheer
         {
             if (!IsPostBack)
             {
+                if (Request.QueryString["success"] == "truncate")
+                {
+                    var ShowTruncateSuccess = new JSUtility();
+                    ShowTruncateSuccess.ShowAlert(this, "<strong>Success!</strong> Database truncate successful, please initialize the database or <a href=\""+ ResolveUrl("~/Manage/manage-database#restore") +"\"> Restore </a> the previous backup.", "alert-success");
+                }
                 var totalType = new TypeName();
                 var totalManufacturer = new Manufacturer();
                 if (totalType.CountType() == 0 || totalManufacturer.CountManufacturer() == 0)

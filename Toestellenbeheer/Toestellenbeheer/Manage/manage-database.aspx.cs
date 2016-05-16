@@ -16,11 +16,6 @@ namespace Toestellenbeheer.Manage
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                var alertClose = new JSUtility("successMessageAlert");
-                alertClose.CloseAlert(udpSuccess);
-            }
         }
         protected void DownloadBackup(object sender, EventArgs e)
         {
@@ -31,7 +26,6 @@ namespace Toestellenbeheer.Manage
                 Response.ContentType = ContentType;
                 Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
                 Response.WriteFile(path + Path.GetFileName(filePath));
-                Response.End();
             }
             catch (Exception ex)
             {
@@ -41,6 +35,8 @@ namespace Toestellenbeheer.Manage
         protected void btnBackup_Click(object sender, EventArgs e)
         {
             Backup();
+            var ShowSuccessAlert = new JSUtility();
+            ShowSuccessAlert.ShowAlert(this, "Backup successfully", "alert-success");
 
         }
         private void Backup()
@@ -50,14 +46,18 @@ namespace Toestellenbeheer.Manage
             var backup = new MySqlBackup(backupcmd);
             mysqlConnectie.Open();
             var ShowSuccessAlert = new JSUtility();
-            ShowSuccessAlert.ShowAlert(this, "Backup succesfully", "alert-success");
+            ShowSuccessAlert.ShowAlert(this, "Backup successfully", "alert-success");
             backup.ExportInfo.AddCreateDatabase = true;
+            string backups = backup.ExportToString();
             Directory.CreateDirectory(Server.MapPath("~/Backup/"));
-            backup.ExportToFile(Server.MapPath("~/Backup/") + "mysql-backup.sql");
             mysqlConnectie.Close();
+            string path = HttpContext.Current.Server.MapPath("~/Backup/mysql-backup.sql");
+            Response.Buffer = true;
+            Response.Clear();
             Response.ContentType = ContentType;
-            Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(Server.MapPath("~/Backup/") + "mysql-backup.sql"));
-            Response.WriteFile(Server.MapPath("~/Backup/") + "mysql-backup.sql");
+            Response.AppendHeader("Content-Disposition", "attachment; filename=mysql-backup.sql");
+            Response.WriteFile(path);
+            Response.End();
         }
         protected void btnRestore_Click(object sender, EventArgs e)
         {
@@ -72,7 +72,7 @@ namespace Toestellenbeheer.Manage
             restore.ImportFromFile(Server.MapPath("~/Backup/") + "mysql-restore.sql");
             mysqlConnectie.Close();
             var ShowSuccessAlert = new JSUtility();
-            ShowSuccessAlert.ShowAlert(this, "Restore succesfully", "alert-success");
+            ShowSuccessAlert.ShowAlert(this, "Restore successfully", "alert-success");
         }
         protected void btnTruncate_Click(object sender, EventArgs e)
         {
@@ -93,9 +93,7 @@ namespace Toestellenbeheer.Manage
             var setCheck1 = new MySqlCommand("SET FOREIGN_KEY_CHECKS = 1", mysqlConnectie);
             setCheck1.ExecuteNonQuery();
             mysqlConnectie.Close();
-            Response.Redirect("~/Default.aspx");
-            var ShowSuccessAlert = new JSUtility();
-            ShowSuccessAlert.ShowAlert(this, "Truncate succesfully", "alert-success");
+            Response.Redirect("~/Default.aspx?success=truncate");
         }
     }
 }

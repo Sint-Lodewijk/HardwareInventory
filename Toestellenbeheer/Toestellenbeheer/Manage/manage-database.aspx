@@ -3,16 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="DatabaseContent" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:UpdatePanel ID="udpSuccess" runat="server" UpdateMode="Conditional">
-        <ContentTemplate>
-            <div class="alert alert-danger fade in" id="successMessageAlert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <asp:Label runat="server" ID="lblAlert">Please note! This feature is still experimental, the restore function may not working proberly.</asp:Label>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#backup" aria-controls="backup" role="tab" data-toggle="tab">Backup database</a></li>

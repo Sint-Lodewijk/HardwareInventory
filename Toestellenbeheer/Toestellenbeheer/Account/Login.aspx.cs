@@ -14,6 +14,15 @@ namespace Toestellenbeheer.Account
         public bool IsADAuth;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (Request.QueryString["ReturnUrl"] != "%20f" && Request.QueryString["ReturnUrl"] != null && Request.QueryString["ReturnUrl"] != "")
+                {
+                    var ShowNoPermission = new JSUtility();
+                    ShowNoPermission.ShowAlert(this, "<strong>Warning!</strong> You do not have the right premission to access this page.", "alert-warning");
+
+                }
+            }
         }
         protected void Login_Click(Object sender, EventArgs e)
         {

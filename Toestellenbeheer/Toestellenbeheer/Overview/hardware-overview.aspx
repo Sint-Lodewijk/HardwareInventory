@@ -46,6 +46,8 @@
 
             <div class="form-group">
                 <asp:Label ID="lblGridTotalResult" CssClass="col-sm-12" runat="server"></asp:Label>
+                <asp:Label ID="lblTotalQuery" runat="server" Text=""></asp:Label>
+
             </div>
         </ContentTemplate>
         <Triggers>
@@ -217,7 +219,6 @@
                                     Remove
                                 </button>
                                 <asp:Button ID="btnModifying" runat="server" OnClick="btnModifying_Click" Text="Modify" CssClass="btn btn-primary" />
-                                <asp:Label ID="lblTotalQuery" runat="server" Text=""></asp:Label>
                                 <asp:Label ID="lblInternalNr" Visible="false" runat="server" Text='<%#Eval("Internal Nr")%>' />
                                 <asp:Label ID="lblProblem" runat="server"></asp:Label>
                             </div>

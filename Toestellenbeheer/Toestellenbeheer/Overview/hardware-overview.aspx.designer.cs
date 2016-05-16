@@ -94,6 +94,15 @@ namespace Toestellenbeheer {
         protected global::System.Web.UI.WebControls.Label lblGridTotalResult;
         
         /// <summary>
+        /// lblTotalQuery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalQuery;
+        
+        /// <summary>
         /// iframeDownload control.
         /// </summary>
         /// <remarks>
@@ -164,15 +173,6 @@ namespace Toestellenbeheer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnModifying;
-        
-        /// <summary>
-        /// lblTotalQuery control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalQuery;
         
         /// <summary>
         /// lblInternalNr control.

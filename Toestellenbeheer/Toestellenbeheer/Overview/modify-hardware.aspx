@@ -53,7 +53,7 @@
                                 </asp:Label>
                             </td>
                             <td>
-                                <asp:DropDownList ID="ddlType" CssClass="form-control" runat="server" SelectedValue='<%# Eval("type") %>' DataSourceID="sqlType" DataTextField="type" DataValueField="type"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlType" AutoPostBack="false" CssClass="form-control" runat="server" SelectedValue='<%# Eval("type") %>' DataSourceID="sqlType" DataTextField="type" DataValueField="type"></asp:DropDownList>
                                 <asp:SqlDataSource ID="sqlType" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT type FROM type"></asp:SqlDataSource>
                             </td>
                         </tr>
@@ -63,7 +63,7 @@
                                 </asp:Label>
                             </td>
                             <td>
-                                <asp:DropDownList ID="ddlManufacturer" CssClass="form-control" runat="server" SelectedValue='<%# Eval("manufacturerName") %>' DataSourceID="sqlManufacturer" DataTextField="manufacturerName" DataValueField="manufacturerName"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlManufacturer" AutoPostBack="false" CssClass="form-control" runat="server" SelectedValue='<%# Eval("manufacturerName") %>' DataSourceID="sqlManufacturer" DataTextField="manufacturerName" DataValueField="manufacturerName"></asp:DropDownList>
                                 <asp:SqlDataSource ID="sqlManufacturer" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT manufacturerName FROM manufacturer"></asp:SqlDataSource>
                         </tr>
                         <tr>

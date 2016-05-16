@@ -82,7 +82,7 @@ namespace Toestellenbeheer.Manage
                     String strLicense = grvLicenseFile.SelectedDataKey.Value.ToString();
                     AssignLicense(strLicense, "licenseFileLocation");
                 }
-                else if (grvLicenseFile.SelectedDataKey.Value == null)
+                else
                 {
                     String strLicense = grvLicenseCode.SelectedDataKey.Value.ToString();
                     AssignLicense(strLicense, "licenseCode");
@@ -108,51 +108,54 @@ namespace Toestellenbeheer.Manage
         }
         protected void assignToSelectedHardwareSearch_Click(object sender, EventArgs e)
         {
-            GridView gridview = (GridView)sender;
-            String strInternalNr = gridview.Rows[2].ToString();
-            String strSerialCode = gridview.Rows[3].ToString();
-            var maxLicense = new License();
-            int intLicenseID = maxLicense.ReturnMaxLicenseID();
-            var licenseToHardware = new LicenseHandler(strInternalNr, strSerialCode, intLicenseID);
-            licenseToHardware.AssignLicenseToHardware();
-            var ShowSuccessAlert = new JSUtility();
-            ShowSuccessAlert.ShowAlert(this, "Congratulations! The license is assigned to the hardware with internal nr: " + strInternalNr, "alert-success");
+            String strInternalNr = grvHardwareLicenseSelect.SelectedDataKey["internalNr"].ToString();
+            String strSerialCode = grvHardwareLicenseSelect.SelectedDataKey["serialNr"].ToString();
+            if (grvLicenseCode.SelectedDataKey["licenseCode"] == null)
+            {
+                var License = new License(grvLicenseFile.SelectedDataKey["licenseFileLocation"].ToString());
+                int intLicenseID = License.GetLicenseID("licenseFileLocation");
+                var licenseToHardware = new LicenseHandler(strInternalNr, strSerialCode, intLicenseID);
+                licenseToHardware.AssignLicenseToHardware();
+                var ShowSuccessAlert = new JSUtility();
+                ShowSuccessAlert.ShowAlert(this, "Congratulations! The license is assigned to the hardware with internal nr: " + strInternalNr, "alert-success");
 
+            }
+            else
+            {
+                var License = new License(grvLicenseCode.SelectedDataKey["licenseCode"].ToString());
+                int intLicenseID = License.GetLicenseID("licenseCode");
+                var licenseToHardware = new LicenseHandler(strInternalNr, strSerialCode, intLicenseID);
+                licenseToHardware.AssignLicenseToHardware();
+                var ShowSuccessAlert = new JSUtility();
+                ShowSuccessAlert.ShowAlert(this, "Congratulations! The license is assigned to the hardware with internal nr: " + strInternalNr, "alert-success");
+
+
+            }
         }
         protected void Search_Click(object sender, EventArgs e)
         {
             this.Search();
-            btnAssignToSelectedHardwareSearch.Visible = true;
-            btnAssignToSelectedHardware.Visible = false;
         }
         //Search and bind the entrys
         private void Search()
         {
-            try
-            {
-                String strSearchItem = drpSearchItem.SelectedValue.ToString();
-                String strSearchText = txtSearch.Text.Trim();
-                // string bindToGridCmd = "SELECT * FROM hardware WHERE @searchItem LIKE '%@searchText%'";
-                var searchedHardware = new Hardware();
-                searchedHardware.BindGrvSearch(strSearchItem, strSearchText, licenseOverviewGridSearch);
-                int intTotalResultReturned = licenseOverviewGridSearch.Rows.Count;
-                if (intTotalResultReturned == 0)
-                {
-                    lblSearchResult.Text = "No entry found for search word: " + strSearchText +
-                      " on " + drpSearchItem.SelectedItem.Text + ", please use a different keyword or switch between the search types.";
-                }
-                else
-                {
-                    lblSearchResult.Text = "Total result returned: " + intTotalResultReturned + " for "
-                        + strSearchText + " on " + drpSearchItem.SelectedItem.Text;
-                }
-                grvHardwareLicenseSelect.Visible = false;
-            }
-            catch (MySqlException ex)
-            {
-            }
 
+            String strSearchItem = drpSearchItem.SelectedValue.ToString();
+            String strSearchText = txtSearch.Text.Trim();
+            if (strSearchText != "")
+            {
+                HardwareLicense.FilterExpression = "" + strSearchItem + " LIKE '%" + strSearchText + "%'";
+                grvHardwareLicenseSelect.DataBind();
+            }
+            else
+            {
+                HardwareLicense.FilterExpression = "1 = 1";
+                grvHardwareLicenseSelect.DataBind();
+            }
         }
+
+
+
         protected void SearchBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)

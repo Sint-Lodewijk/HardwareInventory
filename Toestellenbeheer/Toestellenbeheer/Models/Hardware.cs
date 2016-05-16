@@ -366,12 +366,14 @@ namespace Toestellenbeheer.Models
         {
             MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             mysqlConnectie.Open();
-            var update = new MySqlCommand("UPDATE hardware SET purchaseDate = @purchaseDate, type = @type, manufacturerName = @manufacturer, warranty = @warranty, extraInfo = @extraInfo", mysqlConnectie);
+            var update = new MySqlCommand("UPDATE hardware SET purchaseDate = @purchaseDate, type = @type, manufacturerName = @manufacturer, warranty = @warranty, extraInfo = @extraInfo, modelNr = @modelNr WHERE internalNr = @internalNr", mysqlConnectie);
             update.Parameters.AddWithValue("@purchaseDate", PurchaseDate);
             update.Parameters.AddWithValue("@type", TypeName);
             update.Parameters.AddWithValue("@manufacturer", ManufacturerName);
             update.Parameters.AddWithValue("@warranty", WarrantyInfo);
             update.Parameters.AddWithValue("@extraInfo", ExtraInfo);
+            update.Parameters.AddWithValue("@internalNr", InternalNr);
+            update.Parameters.AddWithValue("@modelNr", ModelName);
             update.ExecuteNonQuery();
             mysqlConnectie.Close();
         }

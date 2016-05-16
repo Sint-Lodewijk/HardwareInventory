@@ -166,15 +166,6 @@ namespace Toestellenbeheer.Manage {
         protected global::System.Web.UI.WebControls.Button btnAssignToSelectedHardware;
         
         /// <summary>
-        /// btnAssignToSelectedHardwareSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAssignToSelectedHardwareSearch;
-        
-        /// <summary>
         /// btnCloseHardware control.
         /// </summary>
         /// <remarks>

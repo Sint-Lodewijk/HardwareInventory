@@ -26,6 +26,7 @@ namespace Toestellenbeheer.Manage
                 Response.ContentType = ContentType;
                 Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
                 Response.WriteFile(path + Path.GetFileName(filePath));
+                Response.End();
             }
             catch (Exception ex)
             {
@@ -37,6 +38,7 @@ namespace Toestellenbeheer.Manage
             Backup();
             var ShowSuccessAlert = new JSUtility();
             ShowSuccessAlert.ShowAlert(this, "Backup successfully", "alert-success");
+            Response.End();
 
         }
         private void Backup()
@@ -48,16 +50,14 @@ namespace Toestellenbeheer.Manage
             var ShowSuccessAlert = new JSUtility();
             ShowSuccessAlert.ShowAlert(this, "Backup successfully", "alert-success");
             backup.ExportInfo.AddCreateDatabase = true;
-            string backups = backup.ExportToString();
+            backup.ExportToFile(Server.MapPath("~/Backup/") + "mysql-backup.sql");
             Directory.CreateDirectory(Server.MapPath("~/Backup/"));
             mysqlConnectie.Close();
-            string path = HttpContext.Current.Server.MapPath("~/Backup/mysql-backup.sql");
             Response.Buffer = true;
             Response.Clear();
             Response.ContentType = ContentType;
             Response.AppendHeader("Content-Disposition", "attachment; filename=mysql-backup.sql");
-            Response.WriteFile(path);
-            Response.End();
+            Response.WriteFile(Server.MapPath("~/Backup/") + "mysql-backup.sql");
         }
         protected void btnRestore_Click(object sender, EventArgs e)
         {
@@ -77,6 +77,8 @@ namespace Toestellenbeheer.Manage
         protected void btnTruncate_Click(object sender, EventArgs e)
         {
             Backup();
+
+
             var table = new MySqlUtility();
             DataTable dt = table.DtTable();
             mysqlConnectie.Open();
@@ -94,6 +96,8 @@ namespace Toestellenbeheer.Manage
             setCheck1.ExecuteNonQuery();
             mysqlConnectie.Close();
             Response.Redirect("~/Default.aspx?success=truncate");
+            Response.End();
+
         }
     }
 }

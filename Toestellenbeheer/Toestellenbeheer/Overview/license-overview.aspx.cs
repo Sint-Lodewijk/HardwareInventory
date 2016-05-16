@@ -195,7 +195,7 @@ namespace Toestellenbeheer.Overview
             else
             {
                 var ShowSuccessAlert = new JSUtility();
-                ShowSuccessAlert.ShowAlert(this, "<strong>Warning!</strong> Exception occurred!", "alert-danger");
+                ShowSuccessAlert.ShowAlert(this, "<strong>Warning!</strong> Exception occurred! Mostly because this license is already assigned to people.", "alert-danger");
             }
         }
     }

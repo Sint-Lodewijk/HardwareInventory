@@ -13,21 +13,44 @@ namespace Toestellenbeheer.Overview
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
+        protected void Page_LoadComplete(object sender, EventArgs e)
+        {
             if (!IsPostBack)
             {
                 if (Session["ToModifiedInternalNr"] != null)
                 {
-                    DropDownList ddlType = (DropDownList)grvModifyHardware.FindControl("ddlType");
-                    string strInternalNrModify = Session["ToModifiedInternalNr"].ToString();
-                    var modifyHardwareInfo = new Hardware(strInternalNrModify);
-                    DataTable dt = modifyHardwareInfo.ReturnDatatableHardwareFromInternal();
-                    grvModifyHardware.DataSource = dt;
-                    grvModifyHardware.DataBind();
+                    BindData();
+                    initialize();
+                }
+                else
+                {
+                    btnModify.Visible = false;
                 }
             }
         }
+
+        protected void BindData()
+        {
+            DropDownList ddlType = (DropDownList)grvModifyHardware.FindControl("ddlType");
+            string strInternalNrModify = Session["ToModifiedInternalNr"].ToString();
+            var modifyHardwareInfo = new Hardware(strInternalNrModify);
+            DataTable dt = modifyHardwareInfo.ReturnDatatableHardwareFromInternal();
+            grvModifyHardware.DataSource = dt;
+            grvModifyHardware.DataBind();
+        }
+        protected void initialize()
+        {
+            DropDownList ddlType = grvModifyHardware.Rows[0].FindControl("ddlType") as DropDownList;
+            DropDownList ddlManufacturer = grvModifyHardware.Rows[0].FindControl("ddlManufacturer") as DropDownList;
+            TextBox txtPurchaseDate = grvModifyHardware.Rows[0].FindControl("txtPDate") as TextBox;
+            TextBox txtExtra = grvModifyHardware.Rows[0].FindControl("txtExtra") as TextBox;
+            TextBox txtWarranty = grvModifyHardware.Rows[0].FindControl("txtWarranty") as TextBox;
+            TextBox txtModelNr = grvModifyHardware.Rows[0].FindControl("txtModelNr") as TextBox;
+        }
         protected void btnModify_Click(object sender, EventArgs e)
         {
+          
             DropDownList ddlType = grvModifyHardware.Rows[0].FindControl("ddlType") as DropDownList;
             string strType = ddlType.SelectedValue.ToString();
             DropDownList ddlManufacturer = grvModifyHardware.Rows[0].FindControl("ddlManufacturer") as DropDownList;
@@ -44,7 +67,13 @@ namespace Toestellenbeheer.Overview
             updateHardware.UpdateHardware();
             var WarningAlert = new JSUtility();
             WarningAlert.ShowAlert(this, "<strong>Success!</strong> The hardware is modified.", "alert-success");
+            BindData();
+            
+        }
 
+        protected void grvModifyHardware_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            initialize();
         }
     }
 }

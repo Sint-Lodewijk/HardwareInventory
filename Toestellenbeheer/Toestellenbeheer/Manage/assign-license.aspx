@@ -92,7 +92,6 @@
                         </div>
                         <div class="modal-footer">
                             <asp:Button ID="btnAssignToSelectedHardware" runat="server" Text="Assign" CssClass="btn btn-primary" OnClick="assignToSelectedHardwareSearch_Click" />
-                            <asp:Button ID="btnAssignToSelectedHardwareSearch" runat="server" Text="Assign" CssClass="btn btn-primary " OnClick="assignToSelectedHardwareSearch_Click" />
                             <asp:Button ID="btnCloseHardware" runat="server" Text="Cancel" CssClass="btn btn-info" />
                         </div>
                         <div class="form-group col-sm-12">
@@ -103,7 +102,6 @@
                         <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
                         <asp:PostBackTrigger ControlID="btnCloseHardware" />
                         <asp:PostBackTrigger ControlID="btnAssignToSelectedHardware" />
-                        <asp:PostBackTrigger ControlID="btnAssignToSelectedHardwareSearch" />
                         <asp:AsyncPostBackTrigger ControlID="licenseOverviewGridSearch" EventName="SelectedIndexChanged" />
                         <asp:AsyncPostBackTrigger ControlID="grvHardwareLicenseSelect" EventName="SelectedIndexChanged" />
                     </Triggers>

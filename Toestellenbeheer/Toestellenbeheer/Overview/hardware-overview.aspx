@@ -18,7 +18,7 @@
                         <asp:Label ID="lblOn" runat="server" AssociatedControlID="drpSearchItem" CssClass="control-label">on</asp:Label>
                     </div>
                     <div class="col-sm-3">
-                        <asp:DropDownList ID="drpSearchItem" CssClass="form-control" runat="server">
+                        <asp:DropDownList ID="drpSearchItem" CssClass="selectpicker form-control" runat="server">
                             <asp:ListItem Value="internalNr">Internal Nr</asp:ListItem>
                             <asp:ListItem Value="manufacturerName">Manufacturer</asp:ListItem>
                             <asp:ListItem Value="type">Type</asp:ListItem>

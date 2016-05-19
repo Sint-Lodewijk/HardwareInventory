@@ -24,7 +24,7 @@
     <div class="form-group">
         <asp:Label runat="server" Text="Select a type" CssClass="control-label col-sm-2"></asp:Label>
         <div class="col-sm-10">
-            <asp:DropDownList ID="drpTypeList" OnSelectedIndexChanged="typeList_SelectedIndexChanged" CssClass="form-control" runat="server" AutoPostBack="True" DataTextField="type" DataValueField="type" />
+            <asp:DropDownList ID="drpTypeList" OnSelectedIndexChanged="typeList_SelectedIndexChanged" CssClass="selectpicker form-control" runat="server" AutoPostBack="True" DataTextField="type" DataValueField="type" />
         </div>
         <asp:GridView runat="server" OnPreRender="grvAvailableHardwareType_PreRender" EmptyDataText="No availible hardware with this type." ID="grvAvailableHardwareType" AutoGenerateColumns="False" DataKeyNames="serialNr,internalNr" OnRowDataBound="grvAvailibleHardwareType_RowDataBound" OnSelectedIndexChanged="grvAvailibleHardwareType_SelectedIndexChanged" CssClass="gridview table table-striped table-hover" OnRowDeleting="grvAvailableHardwareType_RowDeleting">
             <Columns>

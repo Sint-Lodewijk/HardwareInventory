@@ -181,6 +181,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Add\add-db-user.aspx" />
     <Content Include="Add\add-person.aspx" />
@@ -241,6 +242,7 @@
     <Content Include="Manage\return-hardware.aspx" />
     <Content Include="Overview\modify-hardware.aspx" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\jquery.tablesorter.min.js" />

@@ -16,7 +16,8 @@ namespace Toestellenbeheer.Account
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["ReturnUrl"] != "%20f" && Request.QueryString["ReturnUrl"] != null && Request.QueryString["ReturnUrl"] != "")
+
+                if (Request.QueryString["ReturnUrl"] != "/" && Request.QueryString["ReturnUrl"] != null && Request.QueryString["ReturnUrl"] != "")
                 {
                     var ShowNoPermission = new JSUtility();
                     ShowNoPermission.ShowAlert(this, "<strong>Warning!</strong> You do not have the right premission to access this page.", "alert-warning");

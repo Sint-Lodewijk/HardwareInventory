@@ -2,6 +2,7 @@
 /// <reference path="alert.js" />
 /// <reference path="bootstrap.min.js" />
 /// <reference path="bootstrap-datepicker.min.js" />
+/// <reference path="bootstrap-select.min.js" />
 /// <reference path="jquery.tablesorter.min.js" />
 /// <reference path="jquery.tablesorter.widgets.js" />
 /// <reference path="jquery-2.2.3.js" />

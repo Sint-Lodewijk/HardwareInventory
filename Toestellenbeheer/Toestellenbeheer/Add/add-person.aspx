@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="drpRoleSelect" CssClass="col-md-2 control-label">Role</asp:Label>
                             <div class="col-md-10">
-                                <asp:DropDownList ID="drpRoleSelect" CssClass="form-control margin-bottom-16" runat="server">
+                                <asp:DropDownList ID="drpRoleSelect" CssClass="selectpicker margin-bottom-16" runat="server">
                                     <asp:ListItem Value="noneSelect" Selected="True">*** Please select a role ***</asp:ListItem>
                                     <asp:ListItem>gg_hardware_administration</asp:ListItem>
                                     <asp:ListItem>gg_hardware_admin</asp:ListItem>

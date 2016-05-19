@@ -302,7 +302,7 @@ form {
 }
 
 .margin-bottom-16 {
-    margin-bottom: 16px;
+    margin-bottom: 16px !important;
     margin-top: 16px;
 }
 

@@ -21,8 +21,9 @@
     <script src='<%= ResolveUrl("~/Scripts/bootstrap-datepicker.min.js") %>'></script>
     <script src='<%= ResolveUrl("~/Scripts/jquery.tablesorter.widgets.js") %>'></script>
     <script src='<%= ResolveUrl("~/Scripts/loading.min.js") %>'></script>
-    <link rel="stylesheet" href='<%= ResolveUrl("~/Scripts/jquery-ui.css") %>' />
+    <script src='<%=ResolveClientUrl("~/Scripts/bootstrap-select.min.js") %>'></script>
     <link rel="stylesheet" href='<%= ResolveUrl("~/Content/bootstrap-datepicker3.min.css") %>' />
+    <link rel="stylesheet" href='<%= ResolveUrl("~/Content/bootstrap-select.min.css") %>' />
 
     <form runat="server">
         <asp:ScriptManager runat="server">

@@ -14,10 +14,11 @@ namespace Toestellenbeheer.Users
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
+            
 
             if (!IsPostBack)
             {
-                bindTypeToGrid();
+                drpTypeList.DataBind();
                 if (drpTypeList.Items.Count != 0)
                 {
                     drpTypeList.Items[0].Selected = true;
@@ -29,15 +30,12 @@ namespace Toestellenbeheer.Users
                 }
             }
         }
-        protected void bindTypeToGrid()
-        {
-            var type = new TypeName();
-            DataTable dt = type.ReturnDatatableType();
-            drpTypeList.DataSource = dt;
-            drpTypeList.DataBind();
-        }
+
         protected void typeList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int intTypeIndex = drpTypeList.SelectedIndex;
+            drpTypeList.DataBind();
+            drpTypeList.Items[intTypeIndex].Selected = true;
             getTypeAssociatedHardware(drpTypeList.SelectedValue.ToString());
         }
         private void getTypeAssociatedHardware(String strType)

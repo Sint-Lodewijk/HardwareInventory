@@ -26,6 +26,8 @@ namespace Toestellenbeheer
                     lblTypeAvailible.InnerText = totalType.CountType().ToString();
                     lblAvailibleManufacturer.InnerText = totalManufacturer.CountManufacturer().ToString();
                 }
+                String path = Server.MapPath("~/UserUploads/");
+                System.IO.Directory.CreateDirectory(path);
             }
         }
         private void initializeSetupModal()

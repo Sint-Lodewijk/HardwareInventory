@@ -20,6 +20,7 @@ namespace Toestellenbeheer.Manage
         /// Initialize MySqlConnection for whole file.
         /// </summary>
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -41,7 +42,7 @@ namespace Toestellenbeheer.Manage
 
                     }
                 }
-                
+
 
             }
             catch (Exception ex)
@@ -49,6 +50,7 @@ namespace Toestellenbeheer.Manage
                 txtResultUpload.Text = ex.ToString();
             }
         }
+
         #endregion
         #region Insert Data
         ///<summary>Add a hardware into the database
@@ -64,7 +66,7 @@ namespace Toestellenbeheer.Manage
             {
                 var WarningAlert = new JSUtility();
                 WarningAlert.ShowAlert(this, "<strong>Warning!</strong> The serial nr is necessary!", "alert-warning");
-                serialError.Text= "The serial nr is necessary!";
+                serialError.Text = "The serial nr is necessary!";
             }
             else if (strInternalNr == "")
             {
@@ -119,7 +121,7 @@ namespace Toestellenbeheer.Manage
                     viewJustAddedHardware();
 
                 }
-              
+
                 catch (MySqlException ex)
                 {
                     if (ex.Number.ToString() == "1062")
@@ -264,6 +266,7 @@ namespace Toestellenbeheer.Manage
                 Directory.CreateDirectory(path);
                 if (AttachmentUpload.HasFile)
                 {
+
                     try
                     {
                         AttachmentUpload.PostedFile.SaveAs(path
@@ -277,14 +280,16 @@ namespace Toestellenbeheer.Manage
                         ResultUploadAtta.Text = "File could not be uploaded. Because: " + ex.ToString();
                     }
                 }
+
             }
+
             else
             {
                 ResultUploadAtta.Text = "Do you not want to add a attachment?";
             }
         }
 
-      
+
     }
 }
 

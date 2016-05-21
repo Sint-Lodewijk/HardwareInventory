@@ -12,22 +12,23 @@
 <asp:Content ID="addHardware" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Panel ID="addHardwarePanel" runat="server">
         <fieldset class="hardware-add-item">
-            <div class="form-group">
+            <div class="form-group col-sm-12">
                 <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="typeList">Type</asp:Label>
                 <div class="col-sm-10">
-                    <asp:DropDownList ID="typeList" CssClass="selectpicker form-control" runat="server" AutoPostBack="True" DataSourceID="sqlType" DataTextField="type" DataValueField="type" />
+                    <asp:DropDownList ID="typeList" CssClass="selectpicker form-control" runat="server" DataTextField="type" DataValueField="type" DataSourceID="sqlType" />
                     <asp:SqlDataSource ID="sqlType" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT type FROM type"></asp:SqlDataSource>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-12">
                 <asp:Label CssClass="control-label col-sm-2" runat="server" AssociatedControlID="manufacturerList">Manufacturer</asp:Label>
                 <div class="col-sm-10">
-                    <asp:DropDownList ID="manufacturerList" CssClass="selectpicker form-control" runat="server" AutoPostBack="True" Height="34px" DataSourceID="sqlManufacturer" DataTextField="manufacturerName" DataValueField="manufacturerName">
+                    <asp:DropDownList ID="manufacturerList" CssClass="selectpicker form-control" runat="server" DataTextField="manufacturerName" DataValueField="manufacturerName" DataSourceID="sqlManufacturer">
                     </asp:DropDownList>
+
                     <asp:SqlDataSource ID="sqlManufacturer" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT manufacturerName FROM manufacturer"></asp:SqlDataSource>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-12">
                 <asp:Label AssociatedControlID="txtDatepicker" CssClass="control-label col-sm-2" runat="server">Purchasedate</asp:Label>
                 <div class="col-sm-10">
 
@@ -35,7 +36,7 @@
                         <asp:TextBox runat="server" ID="txtDatepicker" placeholder="Click to select a date." CssClass="form-control" />
                         <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                     </div>
-                    
+
                 </div>
                 <script>
                     $(function () {
@@ -47,7 +48,7 @@
                     });
                 </script>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-12">
                 <asp:Label AssociatedControlID="Serialnr" CssClass="control-label col-sm-2" runat="server">Serial Number</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox ID="Serialnr" CssClass="form-control" runat="server" placeholder="serial number can be found on the box of the product" />
@@ -56,32 +57,32 @@
                 </div>
             </div>
             <br />
-            <div class="form-group">
+            <div class="form-group col-sm-12">
                 <asp:Label runat="server" CssClass="control-label col-sm-2" AssociatedControlID="internalNr">Internal Nr</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox runat="server" ID="internalNr" CssClass="form-control" placeholder="internal number can be found under the hardware" />
                     <asp:Label runat="server" ID="internalError"></asp:Label>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-12">
                 <asp:Label runat="server" CssClass="control-label col-sm-2" AssociatedControlID="modelNr">Model nr</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox runat="server" ID="modelNr" CssClass="form-control" placeholder="model number of the hardware" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-12">
                 <asp:Label AssociatedControlID="warrantyInfo" CssClass="control-label col-sm-2" runat="server">Warranty</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox ID="warrantyInfo" runat="server" CssClass="form-control" placeholder="warranty information" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-12">
                 <asp:Label AssociatedControlID="extraInfo" runat="server" CssClass="control-label col-sm-2">Extra info</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox runat="server" ID="extraInfo" CssClass="form-control" placeholder="additional info related to this hardware" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-sm-12">
                 <asp:Label AssociatedControlID="PictureUpload" CssClass="control-label col-sm-2" runat="server">Picture</asp:Label>
                 <div class="col-sm-10">
                     <div class="input-group">
@@ -90,13 +91,12 @@
                             <asp:Button ID="Upload" runat="server" Text="Upload" CssClass="btn btn-info" OnClick="Upload_Click" />
                         </div>
                     </div>
+                    <asp:Label ID="ResultUploadImg" runat="server" Text="" CssClass="hint-block"></asp:Label>
+                    <asp:Label ID="Testlocation" runat="server" Text="" CssClass="hint-block"></asp:Label>
                 </div>
             </div>
-            <div class="form-group col-sm-10 col-sm-offset-2 hint-block">
-                <asp:Label ID="ResultUploadImg" runat="server" Text="" CssClass="hint-block"></asp:Label>
-                <asp:Label ID="Testlocation" runat="server" Text="" CssClass="hint-block"></asp:Label>
-            </div>
-            <div class="form-group">
+
+            <div class="form-group col-sm-12">
                 <asp:Label AssociatedControlID="AttachmentUpload" runat="server" CssClass="control-label col-sm-2">Attachments</asp:Label>
                 <div class="col-sm-10">
                     <div class="input-group">
@@ -105,12 +105,11 @@
                             <asp:Button ID="UploadAttachment" runat="server" CssClass="btn btn-info" Text="Upload" OnClick="UploadAttachment_Click" />
                         </div>
                     </div>
+                    <asp:Label ID="ResultUploadAtta" runat="server" Text="" CssClass="hint-block"></asp:Label>
+                    <asp:Label ID="TestlocationAtt" runat="server" Text="" CssClass="hint-block"></asp:Label>
                 </div>
             </div>
-            <div class="form-group col-sm-10 col-sm-offset-2 hint-block">
-                <asp:Label ID="ResultUploadAtta" runat="server" Text="" CssClass="hint-block"></asp:Label>
-                <asp:Label ID="TestlocationAtt" runat="server" Text="" CssClass="hint-block"></asp:Label>
-            </div>
+
             <div class="form-group">
                 <div class="col-sm-offset-5 col-sm-7">
                     <asp:Button ID="Submit" runat="server" Text="Add hardware" CssClass="btn btn-primary margin-top-15" OnClick="Submit_Click" />

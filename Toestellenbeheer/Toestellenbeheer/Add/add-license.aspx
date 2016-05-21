@@ -10,15 +10,17 @@
     </div>
 </asp:Content>
 <asp:Content ID="LicenseAdd" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:Label ID="licenseName" runat="server" AssociatedControlID="txtLicenseName" CssClass="control-label col-sm-2">Name</asp:Label>
-    <div class="col-sm-4">
-        <asp:TextBox ID="txtLicenseName" placeholder="Name of license" runat="server" CssClass="form-control"></asp:TextBox>
+    <div class="form-group col-sm-12">
+        <asp:Label ID="licenseName" runat="server" AssociatedControlID="txtLicenseName" CssClass="control-label col-sm-2">Name</asp:Label>
+        <div class="col-sm-4">
+            <asp:TextBox ID="txtLicenseName" placeholder="Name of license" runat="server" CssClass="form-control"></asp:TextBox>
+        </div>
+        <asp:Label ID="licenseCode" runat="server" AssociatedControlID="txtLicenseCode" CssClass="control-label col-sm-2">Code: </asp:Label>
+        <div class="col-sm-4">
+            <asp:TextBox ID="txtLicenseCode" placeholder="Enter the licensecode" runat="server" CssClass="form-control"></asp:TextBox>
+        </div>
     </div>
-    <asp:Label ID="licenseCode" runat="server" AssociatedControlID="txtLicenseCode" CssClass="control-label col-sm-2">Code: </asp:Label>
-    <div class="col-sm-4">
-        <asp:TextBox ID="txtLicenseCode" placeholder="Enter the licensecode" runat="server" CssClass="form-control"></asp:TextBox>
-    </div>
-    <div class="form-group">
+    <div class="form-group col-sm-12">
         <asp:Label AssociatedControlID="txtDatepicker" CssClass="control-label col-sm-2" runat="server">Expire Date</asp:Label>
         <div class="col-sm-10">
 
@@ -38,25 +40,24 @@
             });
         </script>
     </div>
-    <div class="form-group">
+    <div class="form-group  col-sm-12">
         <asp:Label AssociatedControlID="txtExtraInfoLicense" runat="server" CssClass="control-label col-sm-2" Text="Extra info:"></asp:Label>
         <div class="col-sm-10">
             <asp:TextBox ID="txtExtraInfoLicense" placeholder="Extra information of this license" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
     </div>
-    <asp:Label AssociatedControlID="LicenseFileUpload" runat="server" CssClass="control-label col-sm-2">License File:</asp:Label>
-    <div class="input-group col-sm-10 input-upload-adjust">
-        <asp:FileUpload ID="LicenseFileUpload" CssClass="form-control" runat="server" />
-        <span class="input-group-btn">
-            <asp:Button ID="btnUploadLicense" runat="server" CssClass="btn btn-info" Text="Upload" OnClick="btnUploadLicense_Click" />
-        </span>
-    </div>
+    <div class="form-group col-sm-12">
+        <asp:Label AssociatedControlID="LicenseFileUpload" runat="server" CssClass="control-label col-sm-2">License File:</asp:Label>
+        <div class="input-group col-sm-10 input-upload-adjust">
+            <asp:FileUpload ID="LicenseFileUpload" CssClass="form-control" runat="server" />
+            <span class="input-group-btn">
+                <asp:Button ID="btnUploadLicense" runat="server" CssClass="btn btn-info" Text="Upload" OnClick="btnUploadLicense_Click" />
+            </span>
+            <asp:Label ID="ResultUploadAtta" runat="server" Text="" CssClass="hint-block"></asp:Label>
+            <asp:Label ID="TestlocationAtt" runat="server" Text="" CssClass="hint-block"></asp:Label>
 
-    <div class="col-sm-10 col-sm-offset-2 form-group hint-block">
-        <asp:Label ID="ResultUploadAtta" runat="server" Text="" CssClass="hint-block"></asp:Label>
-        <asp:Label ID="TestlocationAtt" runat="server" Text="" CssClass="hint-block"></asp:Label>
+        </div>
     </div>
-
     <div class="modal fade" id="modalHardware" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <asp:Panel ID="hardwarePanel" CssClass="modal-content" runat="server">

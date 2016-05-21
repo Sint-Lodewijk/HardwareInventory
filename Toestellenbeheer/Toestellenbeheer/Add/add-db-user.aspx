@@ -1,6 +1,14 @@
 ﻿<%@ Page Title="Add a DB user" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="add-db-user.aspx.cs" Inherits="Toestellenbeheer.Add.add_db_user" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+     <div class="row no-15 sub-title-bar blue-title">
+        <div class="container">
+            <div class="col-sm-12 text-center">
+                <h4>Create an DB account.</h4>
+                <p class="head-text">By filling those boxes to create an account in to the database.</p>
+            </div>
+        </div>
+    </div>
 </asp:Content>
 <asp:Content ID="AddPersonContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container body-content">

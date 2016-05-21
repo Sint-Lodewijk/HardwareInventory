@@ -240,6 +240,8 @@ input[type="select"] {
 
 .sub-title-bar {
     padding-top: 10px;
+    color: #F8F8F8 !important;
+    background-color: #2f7bbf !important;
 }
 
 .head-text {

@@ -56,7 +56,7 @@ namespace Toestellenbeheer.Manage
             string strType = grvRequests.SelectedDataKey["type"].ToString(); 
             //requestedHardware.CreateXML("AssignedHardware", strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
             var createPDF = new PDFHandler(strInternalNr, strSerialNr, strManufacturer, strType, strModelNr);
-            createPDF.CreatePDF("AssignOverview", "Overview of assigned hardware", "Assign", Server.MapPath("../PDF/"));
+            createPDF.CreatePDF("AssignOverview", "Overview of assigned hardware", "Assign", Server.MapPath("../PDF/"),strNameAD);
             ShowPdf(Server.MapPath("../PDF/") + "AssignOverview.pdf");
 
 

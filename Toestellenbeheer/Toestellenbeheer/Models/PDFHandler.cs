@@ -23,7 +23,7 @@ namespace Toestellenbeheer.Models
             TypeName = strType;
             ModelName = strModel;
         }
-        public void CreatePDF(string FileName, string DocTitle, string DocType, string CurrentLocation)
+        public void CreatePDF(string FileName, string DocTitle, string DocType, string CurrentLocation, string ADUserName)
         {
             var companyFont = FontFactory.GetFont("Segoe UI", 18, Font.BOLD, BaseColor.ORANGE);
             var titleFont = FontFactory.GetFont("Segoe UI", 18, Font.BOLD);
@@ -80,7 +80,7 @@ namespace Toestellenbeheer.Models
 
             signtable.AddCell(DateTime.Now.Date.ToString("dd/MM/yyyy"));
 
-            signtable.AddCell("");
+            signtable.AddCell(ADUserName);
             signtable.AddCell("");
             signtable.SpacingAfter = 30;
 

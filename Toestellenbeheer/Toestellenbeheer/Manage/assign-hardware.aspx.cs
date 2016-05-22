@@ -75,6 +75,10 @@ namespace Toestellenbeheer.Manage
         {
             if (grvHardwarePoolUnassigned.SelectedRow != null && grvPeopleAD.SelectedRow != null)
             {
+                string strModelNr = grvHardwarePoolUnassigned.SelectedDataKey["modelNr"].ToString();
+                string strManufacturer = grvHardwarePoolUnassigned.SelectedDataKey["manufacturerName"].ToString();
+                string strType = grvHardwarePoolUnassigned.SelectedDataKey["type"].ToString();
+                string ADUser = grvPeopleAD.SelectedRow.Cells[0].Text.ToString();
                 String strSerialNr = grvHardwarePoolUnassigned.SelectedDataKey["serialNr"].ToString();
                 String strInternalNr = grvHardwarePoolUnassigned.SelectedDataKey["internalNr"].ToString();
                 String strNameAD = grvPeopleAD.SelectedRow.Cells[2].Text.ToString();
@@ -90,11 +94,10 @@ namespace Toestellenbeheer.Manage
                 //assignedHardware.CreateXML("AssignedHardware", strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
                 var ShowSuccessAlert = new JSUtility();
                 ShowSuccessAlert.ShowAlert(this, "<strong>Congratulations!</strong> The hardware is successfully assigned to the selected people.", "alert-success");
-                string strModelNr = grvHardwarePoolUnassigned.SelectedDataKey["modelNr"].ToString();
-                string strManufacturer = grvHardwarePoolUnassigned.SelectedDataKey["manufacturerName"].ToString();
-                string strType = grvHardwarePoolUnassigned.SelectedDataKey["type"].ToString();
-                var createPDF = new PDFHandler(strInternalNr, strSerialNr, strManufacturer, strType, strModelNr);
-                createPDF.CreatePDF("AssignOverview", "Overview of assigned hardware", "Assign", Server.MapPath("../PDF/"));
+                               var createPDF = new PDFHandler(strInternalNr, strSerialNr, strManufacturer, strType, strModelNr);
+                Directory.CreateDirectory(Server.MapPath("../PDF/"));
+
+                createPDF.CreatePDF("AssignOverview", "Overview of assigned hardware", "Assign", Server.MapPath("../PDF/"), ADUser);
                 ShowPdf(Server.MapPath("../PDF/") + "AssignOverview.pdf");
 
             }

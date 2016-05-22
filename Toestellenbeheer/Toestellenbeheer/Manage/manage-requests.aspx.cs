@@ -51,9 +51,33 @@ namespace Toestellenbeheer.Manage
             request.BindEventID();
             Hardware requestedHardware = new Hardware();
             requestedHardware.ArchiveAssignedHardware(strSerialNr, strInternalNr, userIndex); //Archive the assigned hardware
-            String strModelNr = "";
-            String strManufacturer = "";
-            requestedHardware.CreateXML("AssignedHardware", strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
+            string strModelNr = grvRequests.SelectedDataKey["modelNr"].ToString();
+            string strManufacturer = grvRequests.SelectedDataKey["manufacturerName"].ToString(); 
+            string strType = grvRequests.SelectedDataKey["type"].ToString(); 
+            //requestedHardware.CreateXML("AssignedHardware", strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
+            var createPDF = new PDFHandler(strInternalNr, strSerialNr, strManufacturer, strType, strModelNr);
+            createPDF.CreatePDF("AssignOverview", "Overview of assigned hardware", "Assign", Server.MapPath("../PDF/"));
+            ShowPdf(Server.MapPath("../PDF/") + "AssignOverview.pdf");
+
+
+
+        }
+        public void ShowPdf(string filename)
+        {
+            //Clears all content output from Buffer Stream
+            Response.ClearContent();
+            //Clears all headers from Buffer Stream
+            Response.ClearHeaders();
+            //Adds an HTTP header to the output stream
+            Response.AddHeader("Content-Disposition", "inline;filename=" + filename);
+            //Gets or Sets the HTTP MIME type of the output stream
+            Response.ContentType = "application/pdf";
+            //Writes the content of the specified file directory to an HTTP response output stream as a file block
+            Response.WriteFile(filename);
+            //sends all currently buffered output to the client
+            Response.Flush();
+            //Clears all content output from Buffer Stream
+            Response.Clear();
         }
         protected void btnDenyRequest_Click(object sender, EventArgs e)
         {

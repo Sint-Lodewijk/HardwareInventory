@@ -121,7 +121,7 @@
             </div>
         </div>
     </asp:Panel>
-    <asp:GridView ID="grvRequests" OnPreRender="grvPreRender" EmptyDataText="There are no open requests!" OnRowDeleting="grvRequests_RowDeleting" CssClass="gridview table table-hover table-striped" OnSelectedIndexChanged="grvRequests_SelectedIndexChanged" OnRowDataBound="grvRequests_RowDataBound" runat="server" AutoGenerateColumns="False" DataKeyNames="requestID,nameAD,internalNr,serialNr" DataSourceID="sqlRequest">
+    <asp:GridView ID="grvRequests" OnPreRender="grvPreRender" EmptyDataText="There are no open requests!" OnRowDeleting="grvRequests_RowDeleting" CssClass="gridview table table-hover table-striped" OnSelectedIndexChanged="grvRequests_SelectedIndexChanged" OnRowDataBound="grvRequests_RowDataBound" runat="server" AutoGenerateColumns="False" DataKeyNames="requestID,nameAD,internalNr,serialNr,type,manufacturerName, modelNr" DataSourceID="sqlRequest">
         <Columns>
             <asp:BoundField DataField="requestID" HeaderText="Request ID" InsertVisible="False" ReadOnly="True" SortExpression="requestID" />
             <asp:BoundField DataField="internalNr" HeaderText="Internal Nr" SortExpression="internalNr" />
@@ -139,5 +139,5 @@
     <asp:Button ID="btnAcceptRequest" Text="Accept" OnClick="btnAcceptRequest_Click" Visible="false" runat="server" CssClass="btn btn-primary" />
     <asp:Button ID="btnDenyRequest" Text="Deny" OnClick="btnDenyRequest_Click" Visible="false" runat="server" CssClass="btn btn-primary" />
     <asp:Label ID="lblExeption" runat="server"></asp:Label>
-    <asp:SqlDataSource ID="sqlRequest" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT request.requestID, request.requestAccepted, request.requestDate, people.nameAD, request.serialNr, request.internalNr, hardware.type FROM request INNER JOIN people ON request.eventID = people.eventID INNER JOIN hardware ON request.serialNr = hardware.serialNr AND request.internalNr = hardware.internalNr WHERE (request.requestAccepted = 0)" DeleteCommand="SELECT requestID FROM request"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="sqlRequest" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" ProviderName="<%$ ConnectionStrings:DefaultConnection.ProviderName %>" SelectCommand="SELECT request.requestID, request.requestAccepted, request.requestDate, people.nameAD, request.serialNr, request.internalNr, hardware.type, hardware.manufacturerName, hardware.modelNr FROM request INNER JOIN people ON request.eventID = people.eventID INNER JOIN hardware ON request.serialNr = hardware.serialNr AND request.internalNr = hardware.internalNr WHERE (request.requestAccepted = 0)" DeleteCommand="SELECT requestID FROM request"></asp:SqlDataSource>
 </asp:Content>

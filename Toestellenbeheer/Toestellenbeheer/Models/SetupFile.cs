@@ -65,5 +65,10 @@ namespace Toestellenbeheer.Models
             //SHA2 Encryption key
             public const string SHA2EncryptionKey = "HardwareInventory";
         }
+        public static class Company
+        {
+            public const string CompanyName = "Inventive Designers";
+        }
+
     }
 }

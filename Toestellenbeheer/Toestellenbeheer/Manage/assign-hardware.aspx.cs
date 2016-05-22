@@ -48,7 +48,7 @@ namespace Toestellenbeheer.Manage
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvHardwarePoolUnassigned, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
-            
+
         }
         protected void grvPeopleAD_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -57,7 +57,7 @@ namespace Toestellenbeheer.Manage
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvPeopleAD, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
-            
+
         }
         protected void getUserFromAD()
         {
@@ -84,13 +84,18 @@ namespace Toestellenbeheer.Manage
                 assignHardware(maxIndex, strInternalNr);
                 mysqlConnectie.Close();
                 getUnassignedHardware();
-                String strManufacturer = "";
-                String strModelNr = "";
+
                 Hardware assignedHardware = new Hardware();
                 assignedHardware.ArchiveAssignedHardware(strSerialNr, strInternalNr, maxIndex); //Archive the assigned hardware
-                assignedHardware.CreateXML("AssignedHardware", strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
+                //assignedHardware.CreateXML("AssignedHardware", strSerialNr, strInternalNr, strManufacturer, strNameAD, strNameAD, strModelNr); //Temporary
                 var ShowSuccessAlert = new JSUtility();
                 ShowSuccessAlert.ShowAlert(this, "<strong>Congratulations!</strong> The hardware is successfully assigned to the selected people.", "alert-success");
+                string strModelNr = grvHardwarePoolUnassigned.SelectedDataKey["modelNr"].ToString();
+                string strManufacturer = grvHardwarePoolUnassigned.SelectedDataKey["manufacturerName"].ToString();
+                string strType = grvHardwarePoolUnassigned.SelectedDataKey["type"].ToString();
+                var createPDF = new PDFHandler(strInternalNr, strSerialNr, strManufacturer, strType, strModelNr);
+                createPDF.CreatePDF("AssignOverview", "Overview of assigned hardware", "Assign", Server.MapPath("../PDF/"));
+                ShowPdf(Server.MapPath("../PDF/") + "AssignOverview.pdf");
 
             }
             else
@@ -98,6 +103,23 @@ namespace Toestellenbeheer.Manage
                 var ShowFailedAlert = new JSUtility();
                 ShowFailedAlert.ShowAlert(this, "<strong>Warning!</strong> Please select a hardware or people to continue!", "alert-danger");
             }
+        }
+        public void ShowPdf(string filename)
+        {
+            //Clears all content output from Buffer Stream
+            Response.ClearContent();
+            //Clears all headers from Buffer Stream
+            Response.ClearHeaders();
+            //Adds an HTTP header to the output stream
+            Response.AddHeader("Content-Disposition", "inline;filename=" + filename);
+            //Gets or Sets the HTTP MIME type of the output stream
+            Response.ContentType = "application/pdf";
+            //Writes the content of the specified file directory to an HTTP response output stream as a file block
+            Response.WriteFile(filename);
+            //sends all currently buffered output to the client
+            Response.Flush();
+            //Clears all content output from Buffer Stream
+            Response.Clear();
         }
         private void assignHardware(int index, String internalNr)
         {

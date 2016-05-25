@@ -46,7 +46,13 @@ namespace Toestellenbeheer.Manage
         }
         protected void btnReturnHardware_Click(object sender, EventArgs e)
         {
-            String strInternalNr = grvHardwarePoolAssigned.SelectedDataKey.Value.ToString();
+            string type = grvHardwarePoolAssigned.SelectedDataKey["type"].ToString();
+            string manufacturer = grvHardwarePoolAssigned.SelectedDataKey["manufacturerName"].ToString();
+            string serialNr = grvHardwarePoolAssigned.SelectedDataKey["serialNr"].ToString();
+            string modelNr = grvHardwarePoolAssigned.SelectedDataKey["modelNr"].ToString();
+            string ADUser = grvHardwarePoolAssigned.SelectedDataKey["nameAD"].ToString();
+
+            String strInternalNr = grvHardwarePoolAssigned.SelectedDataKey["internalNr"].ToString();
             archiveReturnedHardware(strInternalNr, getCorrespondingEventID(strInternalNr));
             mysqlConnectie.Open();
             MySqlCommand unassignHardware = new MySqlCommand("UPDATE hardware SET eventID = NULL WHERE internalNr='" + strInternalNr + "'", mysqlConnectie);
@@ -58,7 +64,9 @@ namespace Toestellenbeheer.Manage
             //returnedHardware.createXML("Returned hardware",);
             var ShowSuccessAlert = new JSUtility();
             ShowSuccessAlert.ShowAlert(this, "<strong>Success!</strong> The hardware is returned!", "alert-success");
-
+            var createPDF = new PDFHandler(strInternalNr, serialNr, manufacturer, type,modelNr);
+            createPDF.CreatePDF("ReturnOverview", "Overview of returned hardware", "return", Server.MapPath("../PDF/"), ADUser);
+            ShowPdf(Server.MapPath("../PDF/") + "ReturnOverview.pdf");
         }
         private void archiveReturnedHardware(String strInternalNr, int intEventID)
         {
@@ -73,7 +81,8 @@ namespace Toestellenbeheer.Manage
         protected int getCorrespondingEventID(String internalNr)
         {
             mysqlConnectie.Open();
-            MySqlCommand getCorrespondingIndex = new MySqlCommand("SELECT eventID from hardware where internalNr = '" + internalNr + "'", mysqlConnectie);
+            MySqlCommand getCorrespondingIndex = new MySqlCommand("SELECT eventID from hardware where internalNr = @internalNr", mysqlConnectie);
+            getCorrespondingIndex.Parameters.AddWithValue("@internalNr", internalNr);
             int intCorrespondingIndex = (int)getCorrespondingIndex.ExecuteScalar();
             mysqlConnectie.Close();
             return intCorrespondingIndex;
@@ -106,6 +115,24 @@ namespace Toestellenbeheer.Manage
             var gridview = sender as GridView;
             var Sort = new GridViewPreRender(gridview);
             Sort.SetHeader();
+        }
+        public void ShowPdf(string filename)
+        {
+            //Clears all content output from Buffer Stream
+            Response.ClearContent();
+            //Clears all headers from Buffer Stream
+            Response.ClearHeaders();
+            //Adds an HTTP header to the output stream
+            Response.AddHeader("Content-Disposition", "inline;filename=" + filename);
+            //Gets or Sets the HTTP MIME type of the output stream
+            Response.ContentType = "application/pdf";
+            //Writes the content of the specified file directory to an HTTP response output stream as a file block
+            Response.WriteFile(filename);
+            //sends all currently buffered output to the client
+            Response.Flush();
+            //Clears all content output from Buffer Stream
+            Response.Clear();
+
         }
     }
 }

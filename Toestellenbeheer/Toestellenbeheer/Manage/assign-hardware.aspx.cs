@@ -97,7 +97,7 @@ namespace Toestellenbeheer.Manage
                                var createPDF = new PDFHandler(strInternalNr, strSerialNr, strManufacturer, strType, strModelNr);
                 Directory.CreateDirectory(Server.MapPath("../PDF/"));
 
-                createPDF.CreatePDF("AssignOverview", "Overview of assigned hardware", "Assign", Server.MapPath("../PDF/"), ADUser);
+                createPDF.CreatePDF("AssignOverview", "Overview of assigned hardware", "assign", Server.MapPath("../PDF/"), ADUser);
                 ShowPdf(Server.MapPath("../PDF/") + "AssignOverview.pdf");
 
             }

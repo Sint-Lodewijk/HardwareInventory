@@ -1,5 +1,5 @@
 -- MySqlBackup.NET 2.0.9.2
--- Dump Time: 2016-05-16 13:56:28
+-- Dump Time: 2016-05-25 17:34:54
 -- --------------------------------------
 -- Server version 5.7.11-log MySQL Community Server (GPL)
 
@@ -43,7 +43,8 @@ CREATE TABLE IF NOT EXISTS `DBAccount` (
 INSERT INTO `DBAccount`(`UserName`,`PassHash`,`UserGroup`,`ADAccount`) VALUES
 ('jhli','ef51306214d9a6361ee1d5b452e6d2bb70dc7ebb85bf9e02c3d4747fb57d6bec','gg_hardware_user','jhli'),
 ('Jianing','e2e3650e7e61d661007d536f94f56ed065170ec303d2160407b3d7664f226c6a','gg_hardware_admin','jli'),
-('jli','ef51306214d9a6361ee1d5b452e6d2bb70dc7ebb85bf9e02c3d4747fb57d6bec','gg_hardware_user','jli');
+('jli','ef51306214d9a6361ee1d5b452e6d2bb70dc7ebb85bf9e02c3d4747fb57d6bec','gg_hardware_user','jli'),
+('mark','62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a','gg_hardware_user','');
 /*!40000 ALTER TABLE `DBAccount` ENABLE KEYS */;
 
 -- 
@@ -64,14 +65,20 @@ CREATE TABLE IF NOT EXISTS `archive` (
   KEY `IX_Relationship2` (`eventID`),
   CONSTRAINT `hardwareArchive` FOREIGN KEY (`serialNr`, `internalNr`) REFERENCES `hardware` (`serialNr`, `internalNr`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `peopleArchive` FOREIGN KEY (`eventID`) REFERENCES `people` (`eventID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 -- 
 -- Dumping data for table archive
 -- 
 
 /*!40000 ALTER TABLE `archive` DISABLE KEYS */;
-
+INSERT INTO `archive`(`person`,`archiveID`,`serialNr`,`internalNr`,`eventID`,`assignedDate`,`returnedDate`) VALUES
+(NULL,1,'MF-DSF0541','MOU-C65W0A',1,'2016-05-22 00:00:00','2016-05-25 00:00:00'),
+(NULL,31,'MF-DSF0541','MOU-C65W0A',2,'2016-05-22 00:00:00','2016-05-25 00:00:00'),
+(NULL,32,'MF-DSF0541','MOU-C65W0A',1,'2016-05-22 00:00:00','2016-05-25 00:00:00'),
+(NULL,33,'MF-DSF0541','MOU-C65W0A',2,'2016-05-22 00:00:00','2016-05-25 00:00:00'),
+(NULL,34,'MF-DSF0541','MOU-C65W0A',2,'2016-05-22 00:00:00','2016-05-25 00:00:00'),
+(NULL,35,'MF-DSF0541','MOU-C65W0A',2,'2016-05-25 00:00:00','2016-05-25 00:00:00');
 /*!40000 ALTER TABLE `archive` ENABLE KEYS */;
 
 -- 
@@ -106,7 +113,8 @@ CREATE TABLE IF NOT EXISTS `hardware` (
 -- 
 
 /*!40000 ALTER TABLE `hardware` DISABLE KEYS */;
-
+INSERT INTO `hardware`(`purchaseDate`,`serialNr`,`internalNr`,`warranty`,`extraInfo`,`addedDate`,`pictureLocation`,`attachmentLocation`,`eventID`,`modelNr`,`type`,`manufacturerName`) VALUES
+('2016-05-02 00:00:00','MF-DSF0541','MOU-C65W0A','Until 01-05-2018 Media Markt','Black','2016-05-21 00:00:00','20160521163706lenovo-wireless-mouse.jpg','',NULL,'N50','Wireless Mouse','Lenovo');
 /*!40000 ALTER TABLE `hardware` ENABLE KEYS */;
 
 -- 
@@ -175,7 +183,10 @@ CREATE TABLE IF NOT EXISTS `manufacturer` (
 -- 
 
 /*!40000 ALTER TABLE `manufacturer` DISABLE KEYS */;
-
+INSERT INTO `manufacturer`(`manufacturerName`) VALUES
+('Apple'),
+('HP'),
+('Lenovo');
 /*!40000 ALTER TABLE `manufacturer` ENABLE KEYS */;
 
 -- 
@@ -187,14 +198,16 @@ CREATE TABLE IF NOT EXISTS `people` (
   `nameAD` varchar(40) NOT NULL,
   `eventID` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`eventID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- 
 -- Dumping data for table people
 -- 
 
 /*!40000 ALTER TABLE `people` DISABLE KEYS */;
-
+INSERT INTO `people`(`nameAD`,`eventID`) VALUES
+('jhli',1),
+('jli',2);
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
 
 -- 
@@ -214,14 +227,15 @@ CREATE TABLE IF NOT EXISTS `request` (
   KEY `IX_Relationship5` (`eventID`),
   CONSTRAINT `hardwareRequest` FOREIGN KEY (`serialNr`, `internalNr`) REFERENCES `hardware` (`serialNr`, `internalNr`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `peopleRequest` FOREIGN KEY (`eventID`) REFERENCES `people` (`eventID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- 
 -- Dumping data for table request
 -- 
 
 /*!40000 ALTER TABLE `request` DISABLE KEYS */;
-
+INSERT INTO `request`(`requestID`,`serialNr`,`internalNr`,`eventID`,`requestAccepted`,`requestDate`) VALUES
+(1,'MF-DSF0541','MOU-C65W0A',1,1,'2016-05-22 00:00:00');
 /*!40000 ALTER TABLE `request` ENABLE KEYS */;
 
 -- 
@@ -239,7 +253,12 @@ CREATE TABLE IF NOT EXISTS `type` (
 -- 
 
 /*!40000 ALTER TABLE `type` DISABLE KEYS */;
-
+INSERT INTO `type`(`type`) VALUES
+('Adapter'),
+('Chromecast'),
+('Laptop'),
+('Wireless Keyboard'),
+('Wireless Mouse');
 /*!40000 ALTER TABLE `type` ENABLE KEYS */;
 
 
@@ -252,5 +271,5 @@ CREATE TABLE IF NOT EXISTS `type` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 
--- Dump completed on 2016-05-16 13:56:38
--- Total time: 0:0:0:10:68 (d:h:m:s:ms)
+-- Dump completed on 2016-05-25 17:35:04
+-- Total time: 0:0:0:10:234 (d:h:m:s:ms)

@@ -143,7 +143,7 @@
             </div>
         </div>
     </asp:Panel>
-    <asp:GridView ID="grvHardwarePoolAssigned" OnPreRender="grvPreRender" OnRowDeleting="grvHardwarePoolAssigned_RowDeleting" AutoGenerateColumns="false" OnRowDataBound="grvHardwarePoolAssigned_OnRowDataBound" runat="server" CssClass="table table-hover table-striped gridview" DataKeyNames="internalNr">
+    <asp:GridView ID="grvHardwarePoolAssigned" DataKeyNames="nameAD,internalNr, type, manufacturerName, modelNr, serialNr" OnPreRender="grvPreRender" OnRowDeleting="grvHardwarePoolAssigned_RowDeleting" AutoGenerateColumns="false" OnRowDataBound="grvHardwarePoolAssigned_OnRowDataBound" runat="server" CssClass="table table-hover table-striped gridview" >
         <Columns>
             <asp:BoundField DataField="nameAD" HeaderText="User name" />
             <asp:BoundField DataField="type" HeaderText="Type" />

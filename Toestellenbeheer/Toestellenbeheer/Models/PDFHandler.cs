@@ -23,6 +23,7 @@ namespace Toestellenbeheer.Models
             TypeName = strType;
             ModelName = strModel;
         }
+       
         public void CreatePDF(string FileName, string DocTitle, string DocType, string CurrentLocation, string ADUserName)
         {
             var companyFont = FontFactory.GetFont("Segoe UI", 18, Font.BOLD, BaseColor.ORANGE);
@@ -66,8 +67,15 @@ namespace Toestellenbeheer.Models
             var hintP = new Paragraph("Please keep this contract carefully!", subTitleFont);
             hintP.SpacingAfter = 35;
             pdfdoc.Add(hintP);
-
-            var clarifyP = new Paragraph("I received the hardware described above in a working condition.", subTitleFont);
+            string strClarify;
+            if (DocType == "assign") {
+                strClarify = PDFStatus.STATUS_RECEIVE;
+            }
+            else
+            {
+                strClarify = PDFStatus.STATUS_RETURN;
+            }
+            var clarifyP = new Paragraph(strClarify, subTitleFont);
             clarifyP.SpacingBefore = 130;
             clarifyP.SpacingAfter = 20;
             pdfdoc.Add(clarifyP);
@@ -86,8 +94,14 @@ namespace Toestellenbeheer.Models
 
             pdfdoc.Add(signtable);
             pdfdoc.Close();
-
         }
 
+    }
+    public static class PDFStatus
+    {
+
+        public const string STATUS_RECEIVE = "I received the hardware described above in a working condition.";
+        public const string STATUS_RETURN = SetupFile.Company.CompanyName + " received the hardware described above in a working condition.";
+       
     }
 }

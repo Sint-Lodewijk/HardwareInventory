@@ -38,7 +38,7 @@ namespace Toestellenbeheer
         protected void btnType_Click(object sender, EventArgs e)
         {
             var type = new TypeName(txtType.Value);
-            type.AddTypeToDatabase();
+            type.IsAdded();
             lblTypeAvailible.InnerText = type.CountType().ToString();
             NextSlide("carousel-init", 1);
             initializeSetupModal();
@@ -55,7 +55,7 @@ namespace Toestellenbeheer
         protected void btnManufacturer_Click(object sender, EventArgs e)
         {
             var manufacturer = new Manufacturer(txtManufacturer.Value);
-            manufacturer.AddManufacturerToDatabase();
+            manufacturer.IsAdded();
             lblAvailibleManufacturer.InnerText = manufacturer.CountManufacturer().ToString();
             NextSlide("carousel-init", 2);
             initializeSetupModal();

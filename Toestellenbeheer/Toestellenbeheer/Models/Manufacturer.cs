@@ -40,14 +40,22 @@ namespace Toestellenbeheer.Models
             gridview.DataSource = dt;
             gridview.DataBind();
         }
-        public void AddManufacturerToDatabase()
+        public bool IsAdded()
         {
-            mysqlConnectie.Open();
-            MySqlCommand addManufacturer = new MySqlCommand("Insert into manufacturer (manufacturerName) values (@ManufacturerName)", mysqlConnectie);
-            addManufacturer.Parameters.AddWithValue("@ManufacturerName", ManufacturerName);
-            addManufacturer.ExecuteNonQuery();
-            addManufacturer.Dispose();
-            mysqlConnectie.Close();
+            if (ManufacturerName.Trim() != null && ManufacturerName.Trim() != string.Empty && ManufacturerName.Trim() != "")
+            {
+                mysqlConnectie.Open();
+                MySqlCommand addManufacturer = new MySqlCommand("Insert into manufacturer (manufacturerName) values (@ManufacturerName)", mysqlConnectie);
+                addManufacturer.Parameters.AddWithValue("@ManufacturerName", ManufacturerName);
+                addManufacturer.ExecuteNonQuery();
+                addManufacturer.Dispose();
+                mysqlConnectie.Close();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public DataTable AssociatedDatatableHardware()
         {

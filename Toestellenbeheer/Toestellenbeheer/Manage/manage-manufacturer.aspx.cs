@@ -19,7 +19,7 @@ namespace Toestellenbeheer.Manage
             {
                 bindManufacturerToGrid();
             }
-        
+
         }
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -28,14 +28,14 @@ namespace Toestellenbeheer.Manage
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvManufacturer, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
-                    }
+        }
         protected void bindManufacturerToGrid()
         {
             try
             {
                 var manufacturer = new Manufacturer();
                 manufacturer.BindManufacturer(grvManufacturer);
-             
+
             }
             catch (MySqlException ex)
             {
@@ -48,20 +48,27 @@ namespace Toestellenbeheer.Manage
             {
                 String strManufacturer = txtManufacturerName.Text.ToString();
                 var manufacturer = new Manufacturer(strManufacturer);
-                manufacturer.AddManufacturerToDatabase();
-                var ShowSuccessAlert = new JSUtility();
-                ShowSuccessAlert.ShowAlert(this, "Added successfully", "alert-success");
-                bindManufacturerToGrid();
+                if (manufacturer.IsAdded())
+                {
+                    var ShowSuccessAlert = new JSUtility();
+                    ShowSuccessAlert.ShowAlert(this, "Added successfully", "alert-success");
+                    bindManufacturerToGrid();
+                }
+                else
+                {
+                    var ShowFailedAlert = new JSUtility();
+                    ShowFailedAlert.ShowAlert(this, "<strong>Warning, </strong>Manufacturer cannot be empty.", "alert-warning");
+                }
+
             }
             catch (MySqlException ex)
             {
-                ShowMessage(ex.Message);
+                var ShowFailedAlert = new JSUtility();
+                var exeption = new MySqlExceptionHandler(ex, "Manufacturer");
+                ShowFailedAlert.ShowAlert(this, "<strong>Warning, </strong>" + exeption.ReturnMessage(), "alert-warning");
             }
         }
-        void ShowMessage(string msg)
-        {
-            ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> alert('" + msg + "');</ script > ");
-        }
+
         protected void grvManufacturer_SelectedIndexChanged(object sender, EventArgs e)
         {
             ViewState["manufacturerName"] = grvManufacturer.SelectedDataKey["manufacturerName"].ToString();

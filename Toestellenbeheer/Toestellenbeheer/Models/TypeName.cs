@@ -39,14 +39,22 @@ namespace Toestellenbeheer.Models
             gridview.DataSource = dt;
             gridview.DataBind();
         }
-        public void AddTypeToDatabase()
+        public bool IsAdded()
         {
-            mysqlConnectie.Open();
-            MySqlCommand addType = new MySqlCommand("Insert into type (type) values (@Type)", mysqlConnectie);
-            addType.Parameters.AddWithValue("@Type", typeName);
-            addType.ExecuteNonQuery();
-            addType.Dispose();
-            mysqlConnectie.Close();
+            if (typeName.Trim() != null && typeName.Trim() != string.Empty && typeName.Trim() != "")
+            {
+                mysqlConnectie.Open();
+                MySqlCommand addType = new MySqlCommand("Insert into type (type) values (@Type)", mysqlConnectie);
+                addType.Parameters.AddWithValue("@Type", typeName);
+                addType.ExecuteNonQuery();
+                addType.Dispose();
+                mysqlConnectie.Close();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public DataTable AssociatedDatatableHardware()
         {

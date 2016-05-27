@@ -50,20 +50,24 @@ namespace Toestellenbeheer.Manage
             {
                 String strType = typeName.Text.ToString();
                 var type = new TypeName(strType);
-                type.AddTypeToDatabase();
-                var ShowSuccessAlert = new JSUtility();
-                ShowSuccessAlert.ShowAlert(this, "Added successfully", "alert-success");
-
-                bindTypeToGrid();
+                if (type.IsAdded())
+                {
+                    var ShowSuccessAlert = new JSUtility();
+                    ShowSuccessAlert.ShowAlert(this, "<strong>Success,</strong> Type added successfully", "alert-success");
+                    bindTypeToGrid();
+                }
+                else
+                {
+                    var ShowFailedAlert = new JSUtility();
+                    ShowFailedAlert.ShowAlert(this, "<strong>Warning,</strong> Type cannot be empty.", "alert-warning");
+                }
             }
             catch (MySqlException ex)
             {
-                ShowMessage(ex.Message);
+                var ShowFailedAlert = new JSUtility();
+                var exeption = new MySqlExceptionHandler(ex, "Type");
+                ShowFailedAlert.ShowAlert(this, "<strong>Warning, </strong>" + exeption.ReturnMessage(), "alert-warning");
             }
-        }
-        void ShowMessage(string msg)
-        {
-            ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<scriptlanguage = 'javascript'> alert('" + msg + "');</ script > ");
         }
         protected void typeSelect_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -19,21 +19,16 @@ namespace Toestellenbeheer.Models
         public MySqlException MySqlExceptionName { get; set; }
         public string ReturnMessage()
         {
-            if (MySqlExceptionName.Number == 1042)
+            switch (MySqlExceptionName.Number)
             {
-                return "Can not connect with the specified MySql Connection, please checks the connection string or the status of MySqlServer";
-            }
-            else if (MySqlExceptionName.Number == 1062)
-            {
-                return ExceptionType + " already exists in database";
-            }
-            else if (MySqlExceptionName.Number == 1149)
-            {
-                return "\', ; and \" are not allowed in the search word";
-            }
-            else
-            {
-                return "Unexpected error encountered! " + MySqlExceptionName.Message;
+                case 1042:
+                    return "Can not connect with the specified MySql Connection, please checks the connection string or the status of MySqlServer";
+                case 1062:
+                    return ExceptionType + " already exists in database";
+                case 1149:
+                    return "\', ; and \" are not allowed in the search word";
+                default:
+                    return "Unexpected error encountered! " + MySqlExceptionName.Message;
             }
         }
     }

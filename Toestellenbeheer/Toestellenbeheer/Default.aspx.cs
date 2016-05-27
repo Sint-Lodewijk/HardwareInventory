@@ -11,6 +11,7 @@ namespace Toestellenbeheer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CompanyName.InnerText = SetupFile.Company.CompanyName;
             if (!IsPostBack)
             {
                 if (Request.QueryString["success"] == "truncate")

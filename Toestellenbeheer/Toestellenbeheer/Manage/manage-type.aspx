@@ -3,7 +3,7 @@
 <asp:Content ID="ManageType" ContentPlaceHolderID="MainContent" runat="server">
     <div class="form-group">
         <div class="input-group">
-            <asp:TextBox ID="typeName" placeholder="type" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="typeName" placeholder="Type" runat="server" CssClass="form-control text-center"></asp:TextBox>
             <div class="input-group-btn">
                 <asp:Button ID="btnAddType" runat="server" Text="Add a type" CssClass="btn btn-primary" OnClick="btnAddType_Click" />
             </div>

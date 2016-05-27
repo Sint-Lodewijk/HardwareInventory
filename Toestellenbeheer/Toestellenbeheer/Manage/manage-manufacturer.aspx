@@ -3,7 +3,7 @@
 <asp:Content ID="ManageManufacturer" ContentPlaceHolderID="MainContent" runat="server">
     <div class="form-group">
         <div class="input-group">
-            <asp:TextBox ID="txtManufacturerName" placeholder="manufacturer" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtManufacturerName" placeholder="Manufacturer" runat="server" CssClass="form-control text-center"></asp:TextBox>
             <div class="input-group-btn">
                 <asp:Button ID="btnAddManufacturer" runat="server" Text="Add" CssClass="btn btn-primary" OnClick="btnAddManufacturer_Click" />
             </div>

@@ -4,7 +4,7 @@
     <div class="row title-bar no-15">
         <div class="container title-container">
             <div class="col-lg-12 p6-margin">
-                <h1 class="text-center">Inventive Designers</h1>
+                <h1 class="text-center" id="CompanyName" runat="server"></h1>
                 <p class="lead text-center">Manage the hardware, users, licenses and more...</p>
             </div>
         </div>

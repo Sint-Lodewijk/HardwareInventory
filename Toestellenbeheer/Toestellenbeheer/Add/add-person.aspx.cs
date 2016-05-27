@@ -77,6 +77,11 @@ namespace Toestellenbeheer.Add
                 ShowFailedAlert.ShowAlert(this, "<strong>Warning!</strong> We cannot create a AD account, because: " + ex.Message, "alert-danger");
             }
         }
+        protected void ClearInput()
+        {
+            txtGivenName.Text = "";
+            txtLastName.Text = "";
+        }
         /// <summary>
         /// Adds the user to group.
         /// </summary>

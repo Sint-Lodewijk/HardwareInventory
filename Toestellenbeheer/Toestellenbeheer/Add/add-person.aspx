@@ -21,7 +21,7 @@
                         </p>
                     </asp:PlaceHolder>
                     <div class="form-group col-sm-12">
-                        <asp:Label runat="server" AssociatedControlID="drpRoleSelect" CssClass="col-sm-2 control-label">Role</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="drpRoleSelect" CssClass="col-sm-2 control-label margin-bottom-16">Role</asp:Label>
                         <div class="col-md-10">
                             <asp:DropDownList ID="drpRoleSelect" CssClass="selectpicker margin-bottom-16 form-control" runat="server">
                                 <asp:ListItem Value="noneSelect" Selected="True">*** Please select a role ***</asp:ListItem>
@@ -31,31 +31,37 @@
                             </asp:DropDownList>
                         </div>
                     </div>
-                    <asp:Label runat="server" AssociatedControlID="txtGivenName" CssClass="col-sm-2 control-label" Text="Given name"></asp:Label>
-                    <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="txtGivenName" CssClass="form-control" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtGivenName"
-                            CssClass="text-danger" ErrorMessage="The Given name is required." />
+                    <div class="col-sm-12 form-group">
+                        <asp:Label runat="server" AssociatedControlID="txtGivenName" CssClass="col-sm-2 control-label" Text="Given name"></asp:Label>
+                        <div class="col-md-4">
+                            <asp:TextBox runat="server" ID="txtGivenName" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtGivenName"
+                                CssClass="text-danger" ErrorMessage="The Given name is required." />
+                        </div>
+                        <asp:Label runat="server" AssociatedControlID="txtLastName" CssClass="col-md-2 control-label">Last name</asp:Label>
+                        <div class="col-md-4">
+                            <asp:TextBox runat="server" ID="txtLastName" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
+                                CssClass="text-danger" ErrorMessage="The AD username is required." />
+                        </div>
                     </div>
-                    <asp:Label runat="server" AssociatedControlID="txtLastName" CssClass="col-md-2 control-label">Last name</asp:Label>
-                    <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="txtLastName" CssClass="form-control" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
-                            CssClass="text-danger" ErrorMessage="The AD username is required." />
+                    <div class="col-sm-12 form-group">
+                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">AD account</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="UserName" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
+                                CssClass="text-danger" ErrorMessage="The  username is required." />
+                        </div>
                     </div>
-                    <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">AD account</asp:Label>
-                    <div class="col-md-10">
-                        <asp:TextBox runat="server" ID="UserName" CssClass="form-control" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
-                            CssClass="text-danger" ErrorMessage="The  username is required." />
+                    <div class="col-sm-12 form-group">
+                        <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="The password field is required." />
+                        </div>
                     </div>
-                    <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
-                    <div class="col-md-10">
-                        <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="The password field is required." />
-                    </div>
-
                     <asp:Label ID="errorLabel" runat="server" Text=""></asp:Label>
+
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <asp:Button runat="server" OnClick="CreateAccount_Click" Text="Create account" CssClass="btn btn-default" />

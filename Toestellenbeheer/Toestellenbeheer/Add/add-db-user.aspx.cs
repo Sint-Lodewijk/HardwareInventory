@@ -17,7 +17,11 @@ namespace Toestellenbeheer.Add
         {
 
         }
-
+        protected void CleatInput()
+        {
+            UserName.Text = null;
+            ADAccount.Text = null;
+        }
         protected void CreateAccount_Click(object sender, EventArgs e)
         {
             if (Password.Text == ConfirmPassword.Text)
@@ -33,6 +37,7 @@ namespace Toestellenbeheer.Add
                         CreateDBUser.Parameters.AddWithValue("@UserGroup", drpRoleSelect.SelectedValue);
                         CreateDBUser.Parameters.AddWithValue("@ADAccount", ADAccount.Text);
                         CreateDBUser.ExecuteNonQuery();
+                        CleatInput();
                         var ShowSuccessAlert = new JSUtility();
                         ShowSuccessAlert.ShowAlert(this, "<strong>Success!</strong> The account is created!", "alert-success");
                     }

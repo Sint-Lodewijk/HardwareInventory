@@ -140,6 +140,10 @@ namespace Toestellenbeheer.Manage
                 addResultPanel.Visible = true;
             }
         }
+        protected void ClearInput()
+        {
+            txtDatepicker.Text = Serialnr.Text = internalNr.Text = modelNr.Text = warrantyInfo.Text = extraInfo.Text = ResultUploadAtta.Text = ResultUploadImg.Text = null;
+        }
         /// <summary>
         /// Views the just added hardware.
         /// </summary>

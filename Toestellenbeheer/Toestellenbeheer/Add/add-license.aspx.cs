@@ -66,6 +66,10 @@ namespace Toestellenbeheer.Manage
             btnAssignToSelectedHardwareSearch.Visible = true;
         }
         //Search and bind the entrys
+        protected void ClearInput()
+        {
+            txtLicenseCode.Text = txtDatepicker.Text = txtExtraInfoLicense.Text = null;
+        }
         private void Search()
         {
             try
@@ -130,12 +134,13 @@ namespace Toestellenbeheer.Manage
             {
                 lblResult.Text = "Expire date cannot be empty.";
             }
-            
+
 
         }
         protected void btnAddLicense_click(object sender, EventArgs e)
         {
             addLicense();
+            ClearInput();
         }
         //When click the button, use the assign function to assign the right hardware.
         protected void assignToSelectedHardware_Click(object sender, EventArgs e)
@@ -156,6 +161,7 @@ namespace Toestellenbeheer.Manage
                 var ShowSuccessAlert = new JSUtility();
                 ShowSuccessAlert.ShowAlert(this, "Congratulations! The license code:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
                         + "</span>" + " you have entered, has been successfully added into the database and assigned to the hardware with internal nr: " + strInternalNr, "alert-success");
+                ClearInput();
 
             }
             catch (MySqlException ex)
@@ -180,6 +186,7 @@ namespace Toestellenbeheer.Manage
             var ShowSuccessAlert = new JSUtility();
             ShowSuccessAlert.ShowAlert(this, "Congratulations! The license code:" + "<span class=\"labelOutput\">" + txtLicenseCode.Text
                     + "</span>" + " you have entered, has been successfully added into the database and assigned to the hardware with internal nr: " + strInternalNr, "alert-success");
+            ClearInput();
 
         }
         //Expand or hide hardware grid + change the text of it
@@ -249,6 +256,7 @@ namespace Toestellenbeheer.Manage
                 assignLicenseToPeople.AssignLicenseToPeople();
                 var ShowSuccessAlert = new JSUtility();
                 ShowSuccessAlert.ShowAlert(this, "Successfully add the license and assigned to people.", "alert-success");
+                ClearInput();
             }
             catch (MySqlException ex)
             {

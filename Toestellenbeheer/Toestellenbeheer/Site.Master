@@ -63,11 +63,7 @@
                 });
             });
         </script>
-        <script type="text/javascript">
-            $(function () {
-                $(".autoTableSort").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
-            });
-        </script>
+        
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">

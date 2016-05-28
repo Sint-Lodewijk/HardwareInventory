@@ -74,19 +74,9 @@ namespace Toestellenbeheer
         }
         private void getOpenRequest()
         {
-            MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            mysqlConnectie.Open();
-            MySqlCommand getOpenRequest = new MySqlCommand("SELECT count(*) FROM request where requestAccepted = 0", mysqlConnectie);
             Label lblOpenRequest = ((Label)(this.login.FindControl("lblOpenRequest")));
-            int intOpenRequests = Convert.ToInt32(getOpenRequest.ExecuteScalar());
-            if (intOpenRequests > SetupFile.Requests.hardwareRequestChangeColorAfter)
-            {
-                lblOpenRequest.Text = "<span style=\"color:" + SetupFile.Requests.hardwareRequestChangeColorHex + "\">" + intOpenRequests.ToString() + "</span>";
-            }
-            else {
-                lblOpenRequest.Text = intOpenRequests.ToString();
-            }
-            mysqlConnectie.Close();
+            var RequestCount = new Request();
+            RequestCount.bindRequestToLabel(lblOpenRequest);
         }
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {

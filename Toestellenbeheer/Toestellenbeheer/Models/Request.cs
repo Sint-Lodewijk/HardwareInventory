@@ -51,9 +51,7 @@ namespace Toestellenbeheer.Models
             MySqlConnection mysqlConnectie = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             try
             {
-                mysqlConnectie.Open();
-                MySqlCommand setRequestAccepted = new MySqlCommand("UPDATE request SET requestAccepted = true WHERE requestID = " + RequestID, mysqlConnectie);
-                setRequestAccepted.ExecuteNonQuery();
+                DenyRequest();
             }
             catch (MySqlException ex)
             {
@@ -71,6 +69,22 @@ namespace Toestellenbeheer.Models
             MySqlCommand deleteSelectedRequest = new MySqlCommand("DELETE FROM request WHERE requestID = " + RequestID, mysqlConnectie);
             deleteSelectedRequest.ExecuteNonQuery();
             mysqlConnectie.Close();
+        }
+        public void bindRequestToLabel(System.Web.UI.WebControls.Label lblOpenRequest)
+        {
+            MySqlConnection mysqlConnectie = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            mysqlConnectie.Open();
+            MySqlCommand getOpenRequest = new MySqlCommand("SELECT count(*) FROM request where requestAccepted = 0", mysqlConnectie);
+            int intOpenRequests = Convert.ToInt32(getOpenRequest.ExecuteScalar());
+            if (intOpenRequests > SetupFile.Requests.hardwareRequestChangeColorAfter)
+            {
+                lblOpenRequest.Text = "<span style=\"color:" + SetupFile.Requests.hardwareRequestChangeColorHex + "\">" + intOpenRequests.ToString() + "</span>";
+            }
+            else {
+                lblOpenRequest.Text = intOpenRequests.ToString();
+            }
+            mysqlConnectie.Close();
+
         }
     }
 }

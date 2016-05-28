@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="Manage type" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="manage-type.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_type" %>
 
 <asp:Content ID="ManageType" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript">
+            $(function () {
+                $(".autoTableSort").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+            });
+        </script>
     <div class="form-group">
         <div class="input-group">
             <asp:TextBox ID="typeName" placeholder="Type" runat="server" CssClass="form-control text-center"></asp:TextBox>

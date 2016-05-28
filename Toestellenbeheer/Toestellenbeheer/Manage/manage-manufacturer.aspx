@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="Add a manufacturer" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="manage-manufacturer.aspx.cs" Inherits="Toestellenbeheer.Manage.manage_manufacturer" %>
 
 <asp:Content ID="ManageManufacturer" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript">
+            $(function () {
+                $(".autoTableSort").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+            });
+        </script>
     <div class="form-group">
         <div class="input-group">
             <asp:TextBox ID="txtManufacturerName" placeholder="Manufacturer" runat="server" CssClass="form-control text-center"></asp:TextBox>

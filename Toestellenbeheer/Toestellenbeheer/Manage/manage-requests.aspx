@@ -130,6 +130,7 @@
             <asp:BoundField DataField="requestDate" HeaderText="Request Date" SortExpression="requestDate" DataFormatString="{0:yyyy-MM-dd}" />
             <asp:CommandField DeleteText="Details" ShowDeleteButton="True" />
         </Columns>
+        <SelectedRowStyle CssClass="success" />
     </asp:GridView>
     <script type="text/javascript">
         $(document).ready(function () {

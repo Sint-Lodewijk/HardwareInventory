@@ -17,11 +17,6 @@ namespace Toestellenbeheer.Manage
             {
                 getAssignedHardware();
             }
-            if (grvHardwarePoolAssigned.Rows.Count == 0)
-            {
-                btnReturnHardware.Visible = false;
-                lblResult.Text = "There are no assigned hardware currently.";
-            }
         }
         protected void getAssignedHardware()
         {
@@ -133,6 +128,11 @@ namespace Toestellenbeheer.Manage
             //Clears all content output from Buffer Stream
             Response.Clear();
 
+        }
+
+        protected void grvHardwarePoolAssigned_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnReturnHardware.Visible = true;
         }
     }
 }

@@ -143,7 +143,7 @@
             </div>
         </div>
     </asp:Panel>
-    <asp:GridView ID="grvHardwarePoolAssigned" DataKeyNames="nameAD,internalNr, type, manufacturerName, modelNr, serialNr" OnPreRender="grvPreRender" OnRowDeleting="grvHardwarePoolAssigned_RowDeleting" AutoGenerateColumns="false" OnRowDataBound="grvHardwarePoolAssigned_OnRowDataBound" runat="server" CssClass="table table-hover table-striped gridview" >
+    <asp:GridView ID="grvHardwarePoolAssigned" OnSelectedIndexChanged="grvHardwarePoolAssigned_SelectedIndexChanged" EmptyDataText="There are no assigned hardware yet." DataKeyNames="nameAD,internalNr, type, manufacturerName, modelNr, serialNr" OnPreRender="grvPreRender" OnRowDeleting="grvHardwarePoolAssigned_RowDeleting" AutoGenerateColumns="false" OnRowDataBound="grvHardwarePoolAssigned_OnRowDataBound" runat="server" CssClass="table table-hover table-striped gridview" >
         <Columns>
             <asp:BoundField DataField="nameAD" HeaderText="User name" />
             <asp:BoundField DataField="type" HeaderText="Type" />
@@ -159,6 +159,6 @@
             $("#MainContent_grvHardwarePoolAssigned").tablesorter();
         });
     </script>
-    <asp:Button ID="btnReturnHardware" OnClientClick="if (!confirm('Are you sure you want to return the assigned hardware? This will delete the corresponding record from the database!')) return false;" runat="server" Text="Return the selected hardware" CssClass="btn btn-primary" OnClick="btnReturnHardware_Click" />
+    <asp:Button ID="btnReturnHardware" OnClientClick="if (!confirm('Are you sure you want to return the assigned hardware? This will delete the corresponding record from the database!')) return false;" runat="server" Visible="false" Text="Return the selected hardware" CssClass="btn btn-primary" OnClick="btnReturnHardware_Click" />
     <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
 </asp:Content>

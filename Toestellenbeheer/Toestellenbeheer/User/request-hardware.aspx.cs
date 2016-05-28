@@ -4,6 +4,7 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Net.Mail;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Toestellenbeheer.Models;
@@ -14,11 +15,23 @@ namespace Toestellenbeheer.Users
         MySqlConnection mysqlConnectie = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
 
             if (!IsPostBack)
             {
                 drpTypeList.DataBind();
+                if (drpTypeList.Items.Count != 0)
+                {
+                    drpTypeList.Items[0].Selected = true;
+                    getTypeAssociatedHardware(drpTypeList.SelectedValue.ToString());
+                }
+                else
+                {
+                    Server.Transfer("~/Default.aspx");
+                }
+            }
+            else
+            {
                 if (drpTypeList.Items.Count != 0)
                 {
                     drpTypeList.Items[0].Selected = true;
@@ -43,9 +56,7 @@ namespace Toestellenbeheer.Users
             try
             {
                 var type = new TypeName(strType);
-                DataTable dt = type.AssociatedDatatableHardware();
-                grvAvailableHardwareType.DataSource = dt;
-                grvAvailableHardwareType.DataBind();
+                type.BindGrvHardwareNoRequest(grvAvailableHardwareType, Context.User.Identity.Name);
                 int intTotalAssociatedCount = grvAvailableHardwareType.Rows.Count;
                 if (intTotalAssociatedCount != 0)
                 {
@@ -105,17 +116,18 @@ namespace Toestellenbeheer.Users
         }
         protected void btnRequest_Click(object sender, EventArgs e)
         {
-            String strInternalNr = grvAvailableHardwareType.SelectedDataKey["internalNr"].ToString();
-            String strSerialNr = grvAvailableHardwareType.SelectedDataKey["serialNr"].ToString();
-            String requestDate = DateTime.Now.ToString("yyyy-MM-dd");
+            string selectIndex = drpTypeList.SelectedValue;
+            string strInternalNr = grvAvailableHardwareType.SelectedDataKey["internalNr"].ToString();
+            string strSerialNr = grvAvailableHardwareType.SelectedDataKey["serialNr"].ToString();
+            string requestDate = DateTime.Now.ToString("yyyy-MM-dd");
             var userID = new Models.User(base.Context.User.Identity.Name);
             int intEventID = userID.ReturnEventID();
             var hardwareRequest = new Request(strInternalNr, strSerialNr, intEventID, requestDate);
             hardwareRequest.RequestHardware();
+            getTypeAssociatedHardware(selectIndex);
             sendEmailNotification(strInternalNr);
             var ShowSuccessAlert = new JSUtility();
-            ShowSuccessAlert.ShowAlert(this, "<strong>Congratulations!</strong> The hardware request is successfull.", "alert-warning");
-
+            ShowSuccessAlert.ShowAlert(this, "<strong>Congratulations!</strong> The hardware request is successful.", "alert-success");
         }
         protected void grvAvailableHardwareType_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {

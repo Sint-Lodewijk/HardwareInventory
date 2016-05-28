@@ -56,6 +56,21 @@ namespace Toestellenbeheer.Models
                 return false;
             }
         }
+        public void BindGrvHardwareNoRequest(GridView gridview, string _username)
+        {
+            mysqlConnectie.Open();
+            MySqlCommand bindHardware = new MySqlCommand("SELECT  * FROM hardware LEFT JOIN request ON hardware.internalNr = request.internalNr WHERE request.requestID != ANY (SELECT requestID FROM request WHERE request.eventID != @eventID ) OR request.requestID IS NULL AND type = @type", mysqlConnectie);
+            bindHardware.Parameters.AddWithValue("@type", typeName);
+            var _uid = new User(_username);
+            int uid = _uid.ReturnEventID();
+            bindHardware.Parameters.AddWithValue("@eventID", uid);
+            var hardwareReader = bindHardware.ExecuteReader();
+            var dt = new DataTable();
+            dt.Load(hardwareReader);
+            gridview.DataSource = dt;
+            gridview.DataBind();
+            mysqlConnectie.Close();
+        }
         public DataTable AssociatedDatatableHardware()
         {
             mysqlConnectie.Open();

@@ -24,7 +24,8 @@
     <script src='<%=ResolveClientUrl("~/Scripts/bootstrap-select.min.js") %>'></script>
     <link rel="stylesheet" href='<%= ResolveUrl("~/Content/bootstrap-datepicker3.min.css") %>' />
     <link rel="stylesheet" href='<%= ResolveUrl("~/Content/bootstrap-select.min.css") %>' />
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/bs/dt-1.10.12/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/u/bs/dt-1.10.12/datatables.min.js"></script>
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -60,6 +61,11 @@
                         $(this).parent().addClass('active');
                     }
                 });
+            });
+        </script>
+        <script type="text/javascript">
+            $(function () {
+                $(".autoTableSort").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
             });
         </script>
         <div class="navbar navbar-default navbar-fixed-top">

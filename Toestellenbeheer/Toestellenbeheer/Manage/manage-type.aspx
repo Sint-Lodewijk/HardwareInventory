@@ -10,7 +10,7 @@
             <asp:Label runat="server" ID="lblProblem" Text=""></asp:Label>
         </div>
     </div>
-    <asp:GridView ID="grvType" OnPreRender="grvPreRender" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="typeSelect_SelectedIndexChanged" runat="server" CssClass="table table-hover table-striped gridview text-center" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="type">
+    <asp:GridView ID="grvType" OnPreRender="grvPreRender" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="typeSelect_SelectedIndexChanged" runat="server" CssClass="table table-hover table-striped gridview text-center autoTableSort" AutoGenerateColumns="False" DataKeyNames="type">
         <Columns>
             <asp:BoundField DataField="type" HeaderText="Type" ReadOnly="False" SortExpression="type" />
         </Columns>

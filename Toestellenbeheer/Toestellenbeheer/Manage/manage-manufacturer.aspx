@@ -11,7 +11,7 @@
         </div>
         <asp:Label runat="server" ID="lblProblem" Text=""></asp:Label>
     </div>
-    <asp:GridView ID="grvManufacturer" OnPreRender="grvPreRender" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="grvManufacturer_SelectedIndexChanged" runat="server" CssClass="table table-hover table-striped gridview text-center" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="manufacturerName">
+    <asp:GridView ID="grvManufacturer" OnPreRender="grvPreRender" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="grvManufacturer_SelectedIndexChanged" runat="server" CssClass="table table-hover table-striped gridview text-center autoTableSort" AutoGenerateColumns="False" DataKeyNames="manufacturerName">
         <Columns>
             <asp:BoundField DataField="manufacturerName" HeaderText="Manufacturer" ReadOnly="False" SortExpression="manufacturerName" />
         </Columns>

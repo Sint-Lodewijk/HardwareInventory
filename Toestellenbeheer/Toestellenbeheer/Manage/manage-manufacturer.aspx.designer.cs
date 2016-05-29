@@ -6,8 +6,12 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 namespace Toestellenbeheer.Manage {
+    
+    
     public partial class manage_manufacturer {
+        
         /// <summary>
         /// txtManufacturerName control.
         /// </summary>
@@ -16,6 +20,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtManufacturerName;
+        
         /// <summary>
         /// btnAddManufacturer control.
         /// </summary>
@@ -24,6 +29,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddManufacturer;
+        
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -32,6 +38,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
+        
         /// <summary>
         /// lblProblem control.
         /// </summary>
@@ -40,6 +47,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProblem;
+        
         /// <summary>
         /// grvManufacturer control.
         /// </summary>
@@ -48,6 +56,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvManufacturer;
+        
         /// <summary>
         /// ButtonPanel control.
         /// </summary>
@@ -56,6 +65,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel ButtonPanel;
+        
         /// <summary>
         /// btnEdit control.
         /// </summary>
@@ -64,6 +74,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEdit;
+        
         /// <summary>
         /// btnDelete control.
         /// </summary>
@@ -72,6 +83,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDelete;
+        
         /// <summary>
         /// target control.
         /// </summary>
@@ -80,6 +92,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button target;
+        
         /// <summary>
         /// manufacturerModalTitle control.
         /// </summary>
@@ -88,6 +101,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl manufacturerModalTitle;
+        
         /// <summary>
         /// udpDetails control.
         /// </summary>
@@ -96,6 +110,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel udpDetails;
+        
         /// <summary>
         /// txtManufacturerModifying control.
         /// </summary>
@@ -104,6 +119,7 @@ namespace Toestellenbeheer.Manage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtManufacturerModifying;
+        
         /// <summary>
         /// Button1 control.
         /// </summary>

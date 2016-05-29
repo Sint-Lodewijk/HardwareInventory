@@ -180,8 +180,7 @@ namespace Toestellenbeheer.Manage
         /// </summary>
         protected void DownloadFile(object sender, EventArgs e)
         {
-            string path = "../UserUploads/Attachments/";
-            Directory.CreateDirectory(path);
+            string path = Server.MapPath("../UserUploads/Attachments/");
             string filePath = (sender as LinkButton).CommandArgument;
             Response.ContentType = ContentType;
             Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));

@@ -2,10 +2,10 @@
 
 <asp:Content ID="ManageType" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
-            $(function () {
-                $(".autoTableSort").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
-            });
-        </script>
+        $(function () {
+            $(".autoTableSort").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+        });
+    </script>
     <div class="form-group">
         <div class="input-group">
             <asp:TextBox ID="typeName" placeholder="Type" runat="server" CssClass="form-control text-center"></asp:TextBox>
@@ -38,14 +38,13 @@
                     <h4 class="modal-title" runat="server" id="typeModalTitle">Modify type</h4>
                 </div>
                 <div class="modal-body">
-                    <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="udpDetails">
-                        <ContentTemplate>
-                            <div class="form-group">
+                    <div class="height-36">
+                        <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="udpDetails">
+                            <ContentTemplate>
                                 <asp:TextBox ID="txtType" runat="server" CssClass="form-control col-sm-12"></asp:TextBox>
-                            </div>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                    <br />
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

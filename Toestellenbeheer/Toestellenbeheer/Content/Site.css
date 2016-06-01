@@ -313,26 +313,41 @@ th {
     font-weight: bold;
     text-align: center;
 }
+
 td {
     text-align: center;
 }
+
 .modal td {
     text-align: left !important;
 }
+
 .alert-db {
     background-color: #f6f6f6;
     border: none;
 }
+
 .control-label {
     text-align: right;
 }
-.btn-group-wrap{
+
+.btn-group-wrap {
     text-align: center;
 }
+
 .input-upload-adjust {
     padding-left: 15px !important;
     padding-right: 15px !important;
 }
-.height-36{
+
+.height-36 {
     height: 36px;
+}
+
+.absolute-position {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
 }

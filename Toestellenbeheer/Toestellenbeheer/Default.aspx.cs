@@ -14,10 +14,14 @@ namespace Toestellenbeheer
             CompanyName.InnerText = SetupFile.Company.CompanyName;
             if (!IsPostBack)
             {
-                if (Request.QueryString["success"] == "truncate")
+                switch (Request.QueryString["success"])
                 {
-                    var ShowTruncateSuccess = new JSUtility();
-                    ShowTruncateSuccess.ShowAlert(this, "<strong>Success!</strong> Database truncate successful, please initialize the database or <a href=\""+ ResolveUrl("~/Manage/manage-database#restore") +"\"> Restore </a> the previous backup.", "alert-success");
+                    case "truncate":
+                        var ShowTruncateSuccess = new JSUtility();
+                        ShowTruncateSuccess.ShowAlert(this, "<strong>Success!</strong> Database truncate successful, please initialize the database or <a href=\"" + ResolveUrl("~/Manage/manage-database#restore") + "\"> Restore </a> the previous backup.", "alert-success absolute-position");
+                        break;
+                    default:
+                        break;
                 }
                 var totalType = new TypeName();
                 var totalManufacturer = new Manufacturer();

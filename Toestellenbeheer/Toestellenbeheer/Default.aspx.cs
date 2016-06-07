@@ -11,6 +11,10 @@ namespace Toestellenbeheer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (HttpContext.Current.User.IsInRole("gg_hardware_user"))
+            {
+                Response.Redirect("~/User/Default.aspx");
+            }
             CompanyName.InnerText = SetupFile.Company.CompanyName;
             if (!IsPostBack)
             {

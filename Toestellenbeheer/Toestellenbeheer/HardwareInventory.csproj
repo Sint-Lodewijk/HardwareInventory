@@ -180,6 +180,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Backup\Default.aspx" />
     <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Add\add-db-user.aspx" />
@@ -208,6 +209,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="PDF\AssignOverview.pdf" />
+    <Content Include="PDF\ReturnOverview.pdf" />
     <None Include="Properties\PublishProfiles\Server.pubxml" />
     <None Include="Properties\PublishProfiles\Server2.pubxml" />
     <None Include="Properties\PublishProfiles\toestellenbeheer - Web Deploy.pubxml" />
@@ -248,6 +251,9 @@
     <Content Include="Scripts\jquery.tablesorter.widgets.js" />
     <Content Include="Scripts\loading.min.js" />
     <Content Include="Success.aspx" />
+    <Content Include="UserUploads\Attachments\Default.aspx" />
+    <Content Include="UserUploads\Images\Default.aspx" />
+    <Content Include="UserUploads\License\Default.aspx" />
     <Content Include="User\Default.aspx" />
     <Content Include="User\my-hardware.aspx" />
     <Content Include="User\my-license.aspx" />
@@ -367,6 +373,13 @@
     <Compile Include="Archive\people-history.aspx.designer.cs">
       <DependentUpon>people-history.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Backup\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Backup\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BugReport.aspx.cs">
       <DependentUpon>BugReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -470,6 +483,27 @@
     </Compile>
     <Compile Include="Success.aspx.designer.cs">
       <DependentUpon>Success.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserUploads\Attachments\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserUploads\Attachments\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserUploads\Images\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserUploads\Images\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserUploads\License\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserUploads\License\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -582,12 +616,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Backup\" />
     <Folder Include="Images\HardwarePicture\" />
     <Folder Include="Scripts\images\" />
-    <Folder Include="UserUploads\Attachments\" />
-    <Folder Include="UserUploads\Images\" />
-    <Folder Include="UserUploads\License\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

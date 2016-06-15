@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Overview" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Toestellenbeheer.Overview.Default" %>
 <asp:Content ID="HeadCon" ContentPlaceHolderID="HeadContent" runat="server">
-    <div class="row title-bar no-15 green-title">
+    <div class="row title-bar no-15">
         <div class="container title-container">
             <div class="col-lg-12 p6-margin">
                 <h1 class="text-center">

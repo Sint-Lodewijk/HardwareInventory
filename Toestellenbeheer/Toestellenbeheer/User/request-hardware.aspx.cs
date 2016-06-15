@@ -34,7 +34,6 @@ namespace Toestellenbeheer.Users
             {
                 if (drpTypeList.Items.Count != 0)
                 {
-                    drpTypeList.Items[0].Selected = true;
                     getTypeAssociatedHardware(drpTypeList.SelectedValue.ToString());
                 }
                 else

@@ -4,11 +4,11 @@
 </asp:Content>
 <asp:Content ID="DatabaseContent" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
+    <ul class="nav nav-tabs nav-justified" role="tablist">
         <li role="presentation" class="active"><a href="#backup" aria-controls="backup" role="tab" data-toggle="tab">Backup database</a></li>
         <li role="presentation"><a href="#restore" aria-controls="restore" role="tab" data-toggle="tab">Restore database</a></li>
         <li role="presentation"><a href="#destroy" aria-controls="destroy" role="tab" data-toggle="tab">Destroy database</a></li>
-    </ul>
+    </ul>  
     <!-- Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="backup">

@@ -123,7 +123,7 @@ namespace Toestellenbeheer
         protected void btnModifying_Click(object sender, EventArgs e)
         {
             Session["ToModifiedInternalNr"] = Session["internalNr"];
-            Server.Transfer("./modify-hardware.aspx");
+            Response.Redirect("./modify-hardware.aspx");
         }
         protected void updateInfo(String parameter, String value)
         {

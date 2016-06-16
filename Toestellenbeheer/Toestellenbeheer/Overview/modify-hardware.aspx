@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Modify hardware" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="modify-hardware.aspx.cs" Inherits="Toestellenbeheer.Overview.modify_hardware" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <style type="text/css">
         td {
@@ -37,14 +38,23 @@
                                 <asp:Label ID="Label8" runat="server" Text="Purchase date: ">
                                 </asp:Label>
                             </td>
-                            <td class="col-sm-6">
-                                    <script>
-                                        $(function () {
-                                            $("[id$=txtPDate]").datepicker({ dateFormat: 'dd-mm-yy' }).val();
+                            <td>
+                                <div class="form-group">
+                                    <div class="input-group date" id="input-date">
+                                        <asp:TextBox runat="server" ID="txtPDate" Text='<%#Eval("purchaseDate")%>' placeholder="Click to select a date." CssClass="form-control" />
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                    </div>
+
+                                </div>
+                                <script>
+                                    $(function () {
+                                        $("[id$=input-date]").datepicker({
+                                            format: "yyyy-mm-dd",
+                                            autoclose: true,
+                                            todayHighlight: true
                                         });
-                                    </script>
-                                    <asp:TextBox ID="txtPDate" runat="server" Text='<%#Eval("purchaseDate")%>' CssClass="form-control">
-                                    </asp:TextBox>
+                                    });
+                                </script>
                             </td>
                         </tr>
                         <tr>
@@ -99,7 +109,7 @@
                                 </asp:Label>
                             </td>
                             <td>
-                                <asp:Label ID="Label6" runat="server"  Text='<%#Eval("addedDate")%>'>
+                                <asp:Label ID="Label6" runat="server" Text='<%#Eval("addedDate")%>'>
                                 </asp:Label></td>
                         </tr>
                     </table>

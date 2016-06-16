@@ -14,6 +14,7 @@ namespace Toestellenbeheer.Overview
         protected void Page_Load(object sender, EventArgs e)
         {
         }
+
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -21,10 +22,11 @@ namespace Toestellenbeheer.Overview
                 if (Session["ToModifiedInternalNr"] != null)
                 {
                     BindData();
-                    initialize();
                 }
                 else
                 {
+                    var EmptyAlert = new JSUtility();
+                    EmptyAlert.ShowAlert(this, "<strong>No hardware selected</strong>, please <a href=\"" + ResolveUrl("~/Overview/hardware-overview.aspx") + "\"> select </a> a hardware to modify.", "alert-warning");
                     btnModify.Visible = false;
                 }
             }
@@ -38,15 +40,6 @@ namespace Toestellenbeheer.Overview
             DataTable dt = modifyHardwareInfo.ReturnDatatableHardwareFromInternal();
             grvModifyHardware.DataSource = dt;
             grvModifyHardware.DataBind();
-        }
-        protected void initialize()
-        {
-            DropDownList ddlType = grvModifyHardware.Rows[0].FindControl("ddlType") as DropDownList;
-            DropDownList ddlManufacturer = grvModifyHardware.Rows[0].FindControl("ddlManufacturer") as DropDownList;
-            TextBox txtPurchaseDate = grvModifyHardware.Rows[0].FindControl("txtPDate") as TextBox;
-            TextBox txtExtra = grvModifyHardware.Rows[0].FindControl("txtExtra") as TextBox;
-            TextBox txtWarranty = grvModifyHardware.Rows[0].FindControl("txtWarranty") as TextBox;
-            TextBox txtModelNr = grvModifyHardware.Rows[0].FindControl("txtModelNr") as TextBox;
         }
         protected void btnModify_Click(object sender, EventArgs e)
         {
@@ -73,7 +66,6 @@ namespace Toestellenbeheer.Overview
 
         protected void grvModifyHardware_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            initialize();
         }
     }
 }

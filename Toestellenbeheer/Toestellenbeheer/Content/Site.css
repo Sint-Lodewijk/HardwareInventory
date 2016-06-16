@@ -252,12 +252,6 @@ input[type="select"] {
     max-width: 95% !important;
 }
 
-.OpenRequest {
-    border-radius: 2px;
-    background: rgba(255, 69, 18, 0.68);
-    color: white;
-}
-
 .img-center {
     margin: 0 auto;
 }

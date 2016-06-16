@@ -63,7 +63,7 @@
                 });
             });
         </script>
-        
+
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -129,6 +129,7 @@
                                                 <li class="text-center"><a href='<%= ResolveUrl("~/Add") %>'>Overview</a></li>
                                             </ul>
                                         </li>
+                                        
                                         <li class="dropdown">
                                             <a href="~/User" runat="server" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MySpace <span class="caret"></span></a>
                                             <ul class="dropdown-menu">
@@ -193,8 +194,9 @@
                                         </li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li><a runat="server" class="OpenRequest" href="~/Manage/manage-requests"><span class="badge">
-                                            <asp:Label ID="lblOpenRequest" runat="server" EnableViewState="True"></asp:Label></span> &nbsp;requests
+                                        <li><a runat="server" href="~/Manage/manage-requests">
+                                            <span class="badge">
+                                                <asp:Label ID="lblOpenRequest" runat="server" EnableViewState="True"></asp:Label></span> &nbsp;requests
                                         </a></li>
                                         <li class="dropdown">
                                             <a href='<%= ResolveUrl("~/Manage") %>' class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage, <%: Context.User.Identity.GetUserName()  %> ! <span class="caret"></span></a>
